@@ -1,0 +1,58 @@
+name: 🚀 Deploy estx.exchange
+
+on:
+  push:
+    branches:
+      - main
+      - staging
+
+jobs:
+  deploy-production:
+    name: 🟢 Production → estx.exchange
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: 🚚 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📂 FTP Deploy → /public_html/
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          server-dir: /
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/node_modules/**
+            README.md
+            CLAUDE.md
+
+  deploy-staging:
+    name: 🟡 Staging → stage.estx.exchange
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/staging'
+    steps:
+      - name: 🚚 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📂 FTP Deploy → /stage/
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          server-dir: /stage/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/node_modules/**
+            README.md
+            CLAUDE.md
