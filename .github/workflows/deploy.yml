@@ -15,7 +15,7 @@ jobs:
       - name: 🚚 Checkout code
         uses: actions/checkout@v4
 
-      - name: 📂 FTP Deploy → /public_html/
+      - name: 📂 FTP Deploy → production
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -23,6 +23,8 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           port: 21
+          security: loose
+          timeout: 60000
           server-dir: /
           exclude: |
             **/.git*
@@ -30,7 +32,9 @@ jobs:
             **/.github/**
             **/node_modules/**
             README.md
+            SETUP-GUIDE.md
             CLAUDE.md
+            screenshot.mjs
 
   deploy-staging:
     name: 🟡 Staging → stage.estx.exchange
@@ -40,7 +44,7 @@ jobs:
       - name: 🚚 Checkout code
         uses: actions/checkout@v4
 
-      - name: 📂 FTP Deploy → /stage/
+      - name: 📂 FTP Deploy → staging
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -48,6 +52,8 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           port: 21
+          security: loose
+          timeout: 60000
           server-dir: /stage/
           exclude: |
             **/.git*
@@ -55,4 +61,6 @@ jobs:
             **/.github/**
             **/node_modules/**
             README.md
+            SETUP-GUIDE.md
             CLAUDE.md
+            screenshot.mjs
