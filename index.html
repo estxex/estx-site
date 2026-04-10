@@ -1170,6 +1170,64 @@ qtInit();
 const s=document.createElement('style');
 s.textContent='@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.75);}}';
 document.head.appendChild(s);
+
+// ── EARLY ACCESS POPUP ──────────────────────────────────
+(function(){
+  if(sessionStorage.getItem('estx_popup_closed'))return;
+  const overlay=document.createElement('div');
+  overlay.id='earlyPopup';
+  overlay.style.cssText='display:none;position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,0.55);backdrop-filter:blur(8px);align-items:center;justify-content:center;opacity:0;transition:opacity 0.4s ease;';
+  overlay.innerHTML=`
+    <div style="background:#fff;border-radius:24px;max-width:480px;width:90%;padding:44px 40px;position:relative;box-shadow:0 24px 80px rgba(0,0,0,0.25);transform:translateY(20px);transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);" id="popupCard">
+      <button onclick="closeEarlyPopup()" style="position:absolute;top:16px;right:20px;background:none;border:none;cursor:pointer;font-size:1.4rem;color:#94a3b8;line-height:1;transition:color 0.2s;" onmouseover="this.style.color='#0a1628'" onmouseout="this.style.color='#94a3b8'">&times;</button>
+      <div style="width:56px;height:56px;background:linear-gradient(135deg,var(--brand),var(--navy));border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;box-shadow:0 6px 20px rgba(20,76,188,0.25);">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      </div>
+      <h3 style="font-family:'Outfit',sans-serif;font-size:1.5rem;font-weight:800;color:#0a1628;letter-spacing:-0.03em;line-height:1.2;margin-bottom:12px;">Get Early Access to<br/>ESTX Exchange</h3>
+      <p style="font-family:'DM Sans',sans-serif;font-size:0.92rem;color:#64748b;line-height:1.7;margin-bottom:24px;">Create your account today and generate your wallet before the official launch. Be ready when ESTX goes live at the end of June.</p>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:28px;">
+        <li style="display:flex;align-items:center;gap:10px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;color:#0a1628;">
+          <div style="width:28px;height:28px;border-radius:50%;background:rgba(16,185,129,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+          Open your account now
+        </li>
+        <li style="display:flex;align-items:center;gap:10px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;color:#0a1628;">
+          <div style="width:28px;height:28px;border-radius:50%;background:rgba(16,185,129,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+          Generate your wallet
+        </li>
+        <li style="display:flex;align-items:center;gap:10px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;color:#0a1628;">
+          <div style="width:28px;height:28px;border-radius:50%;background:rgba(16,185,129,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+          Be ready before launch
+        </li>
+      </ul>
+      <a href="https://trade.estx.exchange/signup" target="_blank" class="btn-primary" style="width:100%;justify-content:center;padding:15px 28px;font-size:0.95rem;border-radius:14px;">
+        Register Now
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <p style="font-size:0.72rem;color:#cbd5e1;text-align:center;margin-top:12px;">Free to join · No commitment required</p>
+    </div>`;
+  document.body.appendChild(overlay);
+
+  window.closeEarlyPopup=function(){
+    overlay.style.opacity='0';
+    document.getElementById('popupCard').style.transform='translateY(20px)';
+    setTimeout(()=>{overlay.style.display='none';},400);
+    sessionStorage.setItem('estx_popup_closed','1');
+  };
+  overlay.addEventListener('click',function(e){if(e.target===overlay)closeEarlyPopup();});
+
+  let shown=false;
+  window.addEventListener('scroll',function(){
+    if(shown)return;
+    if(window.scrollY>100){
+      shown=true;
+      overlay.style.display='flex';
+      requestAnimationFrame(()=>{requestAnimationFrame(()=>{
+        overlay.style.opacity='1';
+        document.getElementById('popupCard').style.transform='translateY(0)';
+      });});
+    }
+  },{passive:true});
+})();
 </script>
 </body>
 </html>
