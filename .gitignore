@@ -1,0 +1,5 @@
+.DS_Store
+.vscode/
+temporary screenshots/
+node_modules/
+*.odt
