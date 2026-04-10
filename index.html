@@ -1202,7 +1202,7 @@ document.head.appendChild(s);
 
 // ── EARLY ACCESS POPUP ──────────────────────────────────
 (function(){
-  if(sessionStorage.getItem('estx_popup_closed'))return;
+  if(localStorage.getItem('estx_registered'))return;
   const overlay=document.createElement('div');
   overlay.id='earlyPopup';
   overlay.style.cssText='display:none;position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,0.55);backdrop-filter:blur(8px);align-items:center;justify-content:center;opacity:0;transition:opacity 0.4s ease;';
@@ -1232,6 +1232,7 @@ document.head.appendChild(s);
         Register Now
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
+      <button onclick="alreadyRegistered()" style="width:100%;margin-top:10px;padding:12px 28px;background:none;border:1.5px solid #e2e8f8;border-radius:14px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:600;color:#64748b;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--brand)';this.style.color='var(--brand)'" onmouseout="this.style.borderColor='#e2e8f8';this.style.color='#64748b'">I Already Have an Account</button>
       <p style="font-size:0.72rem;color:#cbd5e1;text-align:center;margin-top:12px;">Free to join · No commitment required</p>
     </div>`;
   document.body.appendChild(overlay);
@@ -1240,7 +1241,10 @@ document.head.appendChild(s);
     overlay.style.opacity='0';
     document.getElementById('popupCard').style.transform='translateY(20px)';
     setTimeout(()=>{overlay.style.display='none';},400);
-    sessionStorage.setItem('estx_popup_closed','1');
+  };
+  window.alreadyRegistered=function(){
+    localStorage.setItem('estx_registered','1');
+    closeEarlyPopup();
   };
   overlay.addEventListener('click',function(e){if(e.target===overlay)closeEarlyPopup();});
 
