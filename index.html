@@ -138,6 +138,25 @@ option{background:#0a1628;}
 .cd-num{font-family:'Outfit',sans-serif;font-size:2.4rem;font-weight:800;color:var(--navy);line-height:1;letter-spacing:-0.03em;}
 .cd-lbl{font-family:'DM Sans',sans-serif;font-size:0.6rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#94a3b8;margin-top:5px;}
 
+/* LANG SWITCH */
+.lang-switch{position:relative;display:flex;align-items:center;}
+.lang-switch-btn{display:flex;align-items:center;gap:5px;background:rgba(20,76,188,0.06);border:1px solid rgba(20,76,188,0.12);border-radius:8px;padding:6px 12px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;color:var(--brand);transition:all 0.2s;user-select:none;}
+.lang-switch-btn:hover{background:rgba(20,76,188,0.1);border-color:rgba(20,76,188,0.25);}
+.lang-switch-btn:focus-visible{outline:2px solid var(--brand);outline-offset:2px;}
+.lang-switch-btn:active{transform:scale(0.97);}
+.lang-dropdown{position:absolute;top:calc(100% + 6px);right:0;background:#fff;border:1px solid #e2e8f8;border-radius:10px;box-shadow:0 8px 28px rgba(3,35,99,0.12);overflow:hidden;opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity 0.2s ease,transform 0.2s ease,visibility 0.2s;z-index:110;min-width:120px;}
+.lang-dropdown.open{opacity:1;visibility:visible;transform:translateY(0);}
+.lang-option{display:flex;align-items:center;gap:8px;width:100%;padding:10px 14px;border:none;background:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;color:#475569;transition:all 0.15s;text-align:left;}
+.lang-option:hover{background:rgba(20,76,188,0.06);color:var(--brand);}
+.lang-option:focus-visible{outline:2px solid var(--brand);outline-offset:-2px;}
+.lang-option:active{background:rgba(20,76,188,0.1);}
+.lang-option.active{color:var(--brand);background:rgba(20,76,188,0.04);}
+.mob-lang-switch{display:flex;gap:12px;margin-top:4px;}
+.mob-lang-btn{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:10px 18px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;color:rgba(255,255,255,0.7);transition:all 0.2s;}
+.mob-lang-btn:hover,.mob-lang-btn.active{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3);color:#fff;}
+.mob-lang-btn:focus-visible{outline:2px solid #fff;outline-offset:2px;}
+.mob-lang-btn:active{transform:scale(0.97);}
+
 /* MOBILE MENU */
 .mob-menu{display:none;position:fixed;inset:0;background:rgba(3,35,99,0.97);backdrop-filter:blur(20px);z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:36px;}
 .mob-menu.open{display:flex;}
@@ -151,15 +170,19 @@ option{background:#0a1628;}
   <button onclick="closeMob()" style="position:absolute;top:24px;right:24px;background:none;border:none;cursor:pointer;color:#fff;">
     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
   </button>
-  <a href="#home" class="mob-link" onclick="closeMob()">Home</a>
-  <a href="#markets" class="mob-link" onclick="closeMob()">Markets</a>
-  <a href="#why" class="mob-link" onclick="closeMob()">Why ESTX</a>
-  <a href="#buy" class="mob-link" onclick="closeMob()">Buy Crypto</a>
-  <a href="#institutional" class="mob-link" onclick="closeMob()">Institutional</a>
-  <a href="#contact" class="mob-link" onclick="closeMob()">Contact</a>
+  <a href="#home" class="mob-link" onclick="closeMob()" data-i18n="nav_home">Home</a>
+  <a href="#markets" class="mob-link" onclick="closeMob()" data-i18n="nav_markets">Markets</a>
+  <a href="#why" class="mob-link" onclick="closeMob()" data-i18n="nav_why">Why ESTX</a>
+  <a href="#buy" class="mob-link" onclick="closeMob()" data-i18n="nav_buy">Buy Crypto</a>
+  <a href="#institutional" class="mob-link" onclick="closeMob()" data-i18n="nav_institutional">Institutional</a>
+  <a href="#contact" class="mob-link" onclick="closeMob()" data-i18n="nav_contact">Contact</a>
+  <div class="mob-lang-switch">
+    <button class="mob-lang-btn" onclick="setLang('en');closeMob();" id="mobLangEn">&#127468;&#127463; EN</button>
+    <button class="mob-lang-btn" onclick="setLang('de');closeMob();" id="mobLangDe">&#127465;&#127466; DE</button>
+  </div>
   <div style="display:flex;gap:12px;margin-top:8px;">
-    <a href="https://trade.estx.exchange/login" class="btn-outline-white">Login</a>
-    <a href="https://trade.estx.exchange/signup" class="btn-primary">Sign Up</a>
+    <a href="https://trade.estx.exchange/login" class="btn-outline-white" data-i18n="nav_login">Login</a>
+    <a href="https://trade.estx.exchange/signup" class="btn-primary" data-i18n="nav_signup">Sign Up</a>
   </div>
 </div>
 
@@ -168,16 +191,27 @@ option{background:#0a1628;}
   <div class="max-w-7xl mx-auto flex items-center justify-between">
     <a href="#home"><img src="brand_assets/logo.svg" alt="ESTX" style="height:34px;width:auto;"/></a>
     <div class="hidden md:flex items-center gap-7">
-      <a href="#home" class="nav-link">Home</a>
-      <a href="#markets" class="nav-link">Markets</a>
-      <a href="#why" class="nav-link">Why ESTX</a>
-      <a href="#buy" class="nav-link">Buy Crypto</a>
-      <a href="#institutional" class="nav-link">Institutional</a>
-      <a href="#contact" class="nav-link">Contact</a>
+      <a href="#home" class="nav-link" data-i18n="nav_home">Home</a>
+      <a href="#markets" class="nav-link" data-i18n="nav_markets">Markets</a>
+      <a href="#why" class="nav-link" data-i18n="nav_why">Why ESTX</a>
+      <a href="#buy" class="nav-link" data-i18n="nav_buy">Buy Crypto</a>
+      <a href="#institutional" class="nav-link" data-i18n="nav_institutional">Institutional</a>
+      <a href="#contact" class="nav-link" data-i18n="nav_contact">Contact</a>
     </div>
     <div class="hidden md:flex items-center gap-3">
-      <a href="https://trade.estx.exchange/login" style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.85rem;color:var(--brand);text-decoration:none;">Login</a>
-      <a href="https://trade.estx.exchange/signup" class="btn-primary" style="padding:10px 20px;font-size:0.8rem;">Sign Up</a>
+      <div class="lang-switch">
+        <button class="lang-switch-btn" id="langBtn" onclick="toggleLangDropdown()" aria-label="Select language">
+          <span id="langFlag">&#127468;&#127463;</span>
+          <span id="langCode">EN</span>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="lang-dropdown" id="langDropdown">
+          <button class="lang-option active" id="langOptEn" onclick="setLang('en')">&#127468;&#127463; English</button>
+          <button class="lang-option" id="langOptDe" onclick="setLang('de')">&#127465;&#127466; Deutsch</button>
+        </div>
+      </div>
+      <a href="https://trade.estx.exchange/login" style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.85rem;color:var(--brand);text-decoration:none;" data-i18n="nav_login">Login</a>
+      <a href="https://trade.estx.exchange/signup" class="btn-primary" style="padding:10px 20px;font-size:0.8rem;" data-i18n="nav_signup">Sign Up</a>
     </div>
     <button onclick="document.getElementById('mobMenu').classList.add('open')" class="md:hidden" style="background:none;border:none;cursor:pointer;">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0a1628" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -203,42 +237,42 @@ option{background:#0a1628;}
         <!-- LEFT -->
         <div>
           <div class="reveal" style="display:inline-flex;align-items:center;gap:10px;background:rgba(20,76,188,0.07);border:1px solid rgba(20,76,188,0.15);border-radius:100px;padding:5px 16px 5px 8px;margin-bottom:28px;">
-            <span style="background:var(--brand);border-radius:100px;padding:2px 10px;font-family:'DM Sans';font-size:0.62rem;font-weight:700;letter-spacing:0.1em;color:#fff;text-transform:uppercase;">Live</span>
-            <span style="font-size:0.78rem;color:#64748b;font-weight:500;">Official launch June 30, 2026</span>
+            <span style="background:var(--brand);border-radius:100px;padding:2px 10px;font-family:'DM Sans';font-size:0.62rem;font-weight:700;letter-spacing:0.1em;color:#fff;text-transform:uppercase;" data-i18n="hero_live">Live</span>
+            <span style="font-size:0.78rem;color:#64748b;font-weight:500;" data-i18n="hero_launch_date">Official launch June 30, 2026</span>
           </div>
 
-          <h1 class="reveal" style="font-size:clamp(3rem,6vw,5.5rem);font-weight:900;color:#0a1628;line-height:1.0;letter-spacing:-0.04em;margin-bottom:24px;">
+          <h1 class="reveal" style="font-size:clamp(3rem,6vw,5.5rem);font-weight:900;color:#0a1628;line-height:1.0;letter-spacing:-0.04em;margin-bottom:24px;" data-i18n-html="hero_heading">
             Where<br/>
             <span style="color:var(--brand);">Crypto</span><br/>
             Starts to Trade.
           </h1>
 
-          <p class="reveal" style="font-size:1.05rem;color:#64748b;line-height:1.75;margin-bottom:36px;max-width:460px;font-weight:400;">
+          <p class="reveal" style="font-size:1.05rem;color:#64748b;line-height:1.75;margin-bottom:36px;max-width:460px;font-weight:400;" data-i18n="hero_subtitle">
             ESTX Exchange introduces a revolutionary three-tier market structure — built for new token projects, memecoins, security tokens, and major cryptocurrencies alike.
           </p>
 
           <div class="reveal" style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:52px;">
-            <a href="https://trade.estx.exchange/signup" class="btn-primary">
+            <a href="https://trade.estx.exchange/signup" class="btn-primary" data-i18n-html="hero_start_trading">
               Start Trading
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a href="#why" class="btn-outline-dark">Learn More</a>
+            <a href="#why" class="btn-outline-dark" data-i18n="hero_learn_more">Learn More</a>
           </div>
 
           <div class="reveal" style="display:flex;gap:28px;flex-wrap:wrap;">
             <div>
               <div style="font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;color:var(--navy);line-height:1;">3</div>
-              <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#94a3b8;margin-top:3px;">Market Tiers</div>
+              <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#94a3b8;margin-top:3px;" data-i18n="hero_market_tiers">Market Tiers</div>
             </div>
             <div style="width:1px;background:#e2e8f8;"></div>
             <div>
               <div style="font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;color:var(--navy);line-height:1;">200+</div>
-              <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#94a3b8;margin-top:3px;">Crypto Assets</div>
+              <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#94a3b8;margin-top:3px;" data-i18n="hero_crypto_assets">Crypto Assets</div>
             </div>
             <div style="width:1px;background:#e2e8f8;"></div>
             <div>
               <div style="font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;color:var(--navy);line-height:1;">VASP</div>
-              <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#94a3b8;margin-top:3px;">Licensed</div>
+              <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#94a3b8;margin-top:3px;" data-i18n="hero_licensed">Licensed</div>
             </div>
           </div>
         </div>
@@ -247,26 +281,26 @@ option{background:#0a1628;}
         <div class="reveal">
           <div style="background:#f8faff;border:1px solid #e2e8f8;border-radius:24px;padding:40px 36px;box-shadow:0 8px 40px rgba(3,35,99,0.08);">
             <div style="text-align:center;margin-bottom:32px;">
-              <div style="font-family:'DM Sans',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#94a3b8;margin-bottom:8px;">Official Token Launch</div>
-              <div style="font-family:'Outfit',sans-serif;font-size:1.1rem;font-weight:700;color:var(--navy);">June 30, 2026 · 10:00 AM CET</div>
+              <div style="font-family:'DM Sans',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#94a3b8;margin-bottom:8px;" data-i18n="cd_label">Official Token Launch</div>
+              <div style="font-family:'Outfit',sans-serif;font-size:1.1rem;font-weight:700;color:var(--navy);" data-i18n="cd_date">June 30, 2026 · 10:00 AM CET</div>
             </div>
 
             <div style="display:flex;justify-content:center;align-items:flex-start;gap:10px;flex-wrap:wrap;">
-              <div class="cd-box"><div class="cd-num" id="cd-d">00</div><div class="cd-lbl">Days</div></div>
+              <div class="cd-box"><div class="cd-num" id="cd-d">00</div><div class="cd-lbl" data-i18n="cd_days">Days</div></div>
               <span style="font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;color:#cbd5e1;padding-top:14px;">:</span>
-              <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-lbl">Hours</div></div>
+              <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-lbl" data-i18n="cd_hours">Hours</div></div>
               <span style="font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;color:#cbd5e1;padding-top:14px;">:</span>
-              <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-lbl">Minutes</div></div>
+              <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-lbl" data-i18n="cd_minutes">Minutes</div></div>
               <span style="font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;color:#cbd5e1;padding-top:14px;">:</span>
-              <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-lbl">Seconds</div></div>
+              <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-lbl" data-i18n="cd_seconds">Seconds</div></div>
             </div>
 
             <div style="margin-top:32px;padding-top:24px;border-top:1px solid #e2e8f8;">
               <div style="display:flex;gap:10px;align-items:center;margin-bottom:14px;">
                 <div style="width:8px;height:8px;border-radius:50%;background:#10b981;animation:pulse 2s infinite;flex-shrink:0;"></div>
-                <span style="font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#10b981;">Live on Trade.ESTX.Exchange</span>
+                <span style="font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#10b981;" data-i18n="cd_live">Live on Trade.ESTX.Exchange</span>
               </div>
-              <a href="https://trade.estx.exchange/signup" class="btn-primary" style="width:100%;justify-content:center;">
+              <a href="https://trade.estx.exchange/signup" class="btn-primary" style="width:100%;justify-content:center;" data-i18n-html="cd_join">
                 Join the ESTX Army
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </a>
@@ -287,11 +321,11 @@ option{background:#0a1628;}
   <div class="relative" style="z-index:1;">
     <div class="max-w-7xl mx-auto px-6 reveal" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:48px;">
       <div>
-        <div class="label label-white" style="color:rgba(255,255,255,0.45);">Live Markets</div>
-        <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;letter-spacing:-0.03em;line-height:1.1;">Markets That Never Sleep</h2>
-        <p style="font-size:0.95rem;color:rgba(255,255,255,0.5);line-height:1.7;margin-top:12px;">200+ digital assets available on ESTX Exchange — updated in real time.</p>
+        <div class="label label-white" style="color:rgba(255,255,255,0.45);" data-i18n="markets_label">Live Markets</div>
+        <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;letter-spacing:-0.03em;line-height:1.1;" data-i18n="markets_heading">Markets That Never Sleep</h2>
+        <p style="font-size:0.95rem;color:rgba(255,255,255,0.5);line-height:1.7;margin-top:12px;" data-i18n="markets_subtitle">200+ digital assets available on ESTX Exchange — updated in real time.</p>
       </div>
-      <a href="https://trade.estx.exchange" target="_blank" class="btn-outline-white" style="flex-shrink:0;">View All Markets <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="https://trade.estx.exchange" target="_blank" class="btn-outline-white" style="flex-shrink:0;" data-i18n-html="markets_view_all">View All Markets <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
 
     <div class="mticker-outer" style="padding:8px 0;">
@@ -305,7 +339,7 @@ option{background:#0a1628;}
     </div>
 
     <div style="text-align:center;margin-top:48px;padding:0 24px;">
-      <a href="https://trade.estx.exchange/signup" target="_blank" class="btn-primary" style="background:#fff;color:var(--navy);box-shadow:0 4px 18px rgba(0,0,0,0.2);">
+      <a href="https://trade.estx.exchange/signup" target="_blank" class="btn-primary" style="background:#fff;color:var(--navy);box-shadow:0 4px 18px rgba(0,0,0,0.2);" data-i18n-html="markets_start_trading">
         Start Trading Now
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
@@ -340,13 +374,13 @@ option{background:#0a1628;}
       <!-- Copy -->
       <div class="reveal" style="animation-delay:0.15s;">
         <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(20,76,188,0.08);border:1px solid rgba(20,76,188,0.15);border-radius:100px;padding:5px 14px;margin-bottom:20px;">
-          <span style="font-family:'DM Sans',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--brand);">Official Brand Ambassador</span>
+          <span style="font-family:'DM Sans',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--brand);" data-i18n="amb_label">Official Brand Ambassador</span>
         </div>
         <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#0a1628;letter-spacing:-0.03em;line-height:1.1;margin-bottom:8px;">Romain Grosjean</h2>
-        <p style="font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;color:#64748b;margin-bottom:24px;">Former Formula 1 Pilot &amp; Current IndyCar Driver</p>
-        <p style="font-size:1rem;color:#64748b;line-height:1.75;margin-bottom:20px;">ESTX is proud to partner with Romain Grosjean as our official brand ambassador — bringing the speed, precision, and competitive spirit of world-class motorsport to the world of digital assets.</p>
-        <p style="font-size:1rem;color:#64748b;line-height:1.75;margin-bottom:36px;">Just like racing, crypto rewards those who are fast, decisive, and ahead of the curve.</p>
-        <a href="https://trade.estx.exchange/signup" class="btn-primary">Join the Community</a>
+        <p style="font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;color:#64748b;margin-bottom:24px;" data-i18n="amb_role">Former Formula 1 Pilot &amp; Current IndyCar Driver</p>
+        <p style="font-size:1rem;color:#64748b;line-height:1.75;margin-bottom:20px;" data-i18n="amb_p1">ESTX is proud to partner with Romain Grosjean as our official brand ambassador — bringing the speed, precision, and competitive spirit of world-class motorsport to the world of digital assets.</p>
+        <p style="font-size:1rem;color:#64748b;line-height:1.75;margin-bottom:36px;" data-i18n="amb_p2">Just like racing, crypto rewards those who are fast, decisive, and ahead of the curve.</p>
+        <a href="https://trade.estx.exchange/signup" class="btn-primary" data-i18n="amb_cta">Join the Community</a>
       </div>
 
     </div>
@@ -357,9 +391,9 @@ option{background:#0a1628;}
 <section id="why" style="padding:96px 24px;background:#f8faff;">
   <div class="max-w-7xl mx-auto">
     <div class="reveal" style="max-width:640px;margin-bottom:56px;">
-      <div class="label">Why ESTX</div>
-      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#0a1628;letter-spacing:-0.03em;line-height:1.1;margin-bottom:18px;">Not Just Another Crypto Exchange</h2>
-      <p style="font-size:1rem;color:#64748b;line-height:1.75;">ESTX goes beyond standard crypto trading. Our main focus is listing new token projects, memecoins, and security tokens — alongside all major cryptocurrencies like BTC, ETH, SOL, XRP and BNB.</p>
+      <div class="label" data-i18n="why_label">Why ESTX</div>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#0a1628;letter-spacing:-0.03em;line-height:1.1;margin-bottom:18px;" data-i18n="why_heading">Not Just Another Crypto Exchange</h2>
+      <p style="font-size:1rem;color:#64748b;line-height:1.75;" data-i18n="why_subtitle">ESTX goes beyond standard crypto trading. Our main focus is listing new token projects, memecoins, and security tokens — alongside all major cryptocurrencies like BTC, ETH, SOL, XRP and BNB.</p>
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;" class="why-grid">
@@ -368,48 +402,48 @@ option{background:#0a1628;}
         <div class="why-icon" style="background:linear-gradient(135deg,rgba(20,76,188,0.12),rgba(20,76,188,0.06));">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
         </div>
-        <h3 class="why-card-title" style="font-size:1rem;font-weight:700;color:#0a1628;margin-bottom:10px;transition:color 0.25s ease;">New Token Listings</h3>
-        <p style="font-size:0.875rem;color:#64748b;line-height:1.7;">The launchpad for promising projects that cannot afford listings on Binance or Coinbase. A structured onboarding and screening process ensures only legitimate projects make it through.</p>
+        <h3 class="why-card-title" style="font-size:1rem;font-weight:700;color:#0a1628;margin-bottom:10px;transition:color 0.25s ease;" data-i18n="why_c1_title">New Token Listings</h3>
+        <p style="font-size:0.875rem;color:#64748b;line-height:1.7;" data-i18n="why_c1_desc">The launchpad for promising projects that cannot afford listings on Binance or Coinbase. A structured onboarding and screening process ensures only legitimate projects make it through.</p>
       </div>
       <!-- Card 2 -->
       <div class="why-card reveal">
         <div class="why-icon" style="background:linear-gradient(135deg,rgba(124,58,237,0.12),rgba(124,58,237,0.06));">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
         </div>
-        <h3 class="why-card-title" style="font-size:1rem;font-weight:700;color:#0a1628;margin-bottom:10px;transition:color 0.25s ease;">Curated Memecoins</h3>
-        <p style="font-size:0.875rem;color:#64748b;line-height:1.7;">A carefully vetted selection of emerging memecoins. Get early access to the tokens the market is talking about — with quality screening to separate signal from noise.</p>
+        <h3 class="why-card-title" style="font-size:1rem;font-weight:700;color:#0a1628;margin-bottom:10px;transition:color 0.25s ease;" data-i18n="why_c2_title">Curated Memecoins</h3>
+        <p style="font-size:0.875rem;color:#64748b;line-height:1.7;" data-i18n="why_c2_desc">A carefully vetted selection of emerging memecoins. Get early access to the tokens the market is talking about — with quality screening to separate signal from noise.</p>
       </div>
       <!-- Card 3 -->
       <div class="why-card reveal">
         <div class="why-icon" style="background:linear-gradient(135deg,rgba(201,168,76,0.15),rgba(201,168,76,0.07));">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <h3 class="why-card-title" style="font-size:1rem;font-weight:700;color:#0a1628;margin-bottom:10px;transition:color 0.25s ease;">Security Tokens</h3>
-        <p style="font-size:0.875rem;color:#64748b;line-height:1.7;">A dedicated segment for security tokens — bridging traditional finance and blockchain with compliant, regulated digital securities.</p>
+        <h3 class="why-card-title" style="font-size:1rem;font-weight:700;color:#0a1628;margin-bottom:10px;transition:color 0.25s ease;" data-i18n="why_c3_title">Security Tokens</h3>
+        <p style="font-size:0.875rem;color:#64748b;line-height:1.7;" data-i18n="why_c3_desc">A dedicated segment for security tokens — bridging traditional finance and blockchain with compliant, regulated digital securities.</p>
       </div>
       <!-- Card 4 -->
       <div class="why-card reveal">
         <div class="why-icon" style="background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(16,185,129,0.06));">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
-        <h3 class="why-card-title" style="font-size:1rem;font-weight:700;color:#0a1628;margin-bottom:10px;transition:color 0.25s ease;">Professional Trading</h3>
-        <p style="font-size:0.875rem;color:#64748b;line-height:1.7;">Advanced order book, real-time charts, and instant execution. Professional-grade tools for serious traders.</p>
+        <h3 class="why-card-title" style="font-size:1rem;font-weight:700;color:#0a1628;margin-bottom:10px;transition:color 0.25s ease;" data-i18n="why_c4_title">Professional Trading</h3>
+        <p style="font-size:0.875rem;color:#64748b;line-height:1.7;" data-i18n="why_c4_desc">Advanced order book, real-time charts, and instant execution. Professional-grade tools for serious traders.</p>
       </div>
       <!-- Card 5 -->
       <div class="why-card reveal">
         <div class="why-icon" style="background:linear-gradient(135deg,rgba(3,35,99,0.1),rgba(3,35,99,0.05));">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
         </div>
-        <h3 class="why-card-title" style="font-size:1rem;font-weight:700;color:#0a1628;margin-bottom:10px;transition:color 0.25s ease;">Secure &amp; Regulated</h3>
-        <p style="font-size:0.875rem;color:#64748b;line-height:1.7;">Multi-layered security framework. Two-factor authentication, cold storage, and full regulatory compliance under VASP license.</p>
+        <h3 class="why-card-title" style="font-size:1rem;font-weight:700;color:#0a1628;margin-bottom:10px;transition:color 0.25s ease;" data-i18n="why_c5_title">Secure &amp; Regulated</h3>
+        <p style="font-size:0.875rem;color:#64748b;line-height:1.7;" data-i18n="why_c5_desc">Multi-layered security framework. Two-factor authentication, cold storage, and full regulatory compliance under VASP license.</p>
       </div>
       <!-- Card 6 -->
       <div class="why-card reveal">
         <div class="why-icon" style="background:linear-gradient(135deg,rgba(239,68,68,0.1),rgba(239,68,68,0.05));">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
         </div>
-        <h3 class="why-card-title" style="font-size:1rem;font-weight:700;color:#0a1628;margin-bottom:10px;transition:color 0.25s ease;">Instant Buy with Card</h3>
-        <p style="font-size:0.875rem;color:#64748b;line-height:1.7;">Buy crypto instantly with credit card or debit card. Support for USD, EUR, GBP, AUD, and over 48 local currencies worldwide.</p>
+        <h3 class="why-card-title" style="font-size:1rem;font-weight:700;color:#0a1628;margin-bottom:10px;transition:color 0.25s ease;" data-i18n="why_c6_title">Instant Buy with Card</h3>
+        <p style="font-size:0.875rem;color:#64748b;line-height:1.7;" data-i18n="why_c6_desc">Buy crypto instantly with credit card or debit card. Support for USD, EUR, GBP, AUD, and over 48 local currencies worldwide.</p>
       </div>
     </div>
   </div>
@@ -420,11 +454,11 @@ option{background:#0a1628;}
   <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:44px 44px;"></div>
   <div class="max-w-3xl mx-auto text-center relative" style="z-index:1;">
     <div class="reveal">
-      <h2 style="font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:#fff;letter-spacing:-0.04em;line-height:1.05;margin-bottom:16px;">Start Trading on ESTX Today</h2>
-      <p style="font-size:1.05rem;color:rgba(255,255,255,0.7);margin-bottom:36px;">Create your free account in minutes and access the next generation of digital asset markets.</p>
+      <h2 style="font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:#fff;letter-spacing:-0.04em;line-height:1.05;margin-bottom:16px;" data-i18n="cta_heading">Start Trading on ESTX Today</h2>
+      <p style="font-size:1.05rem;color:rgba(255,255,255,0.7);margin-bottom:36px;" data-i18n="cta_subtitle">Create your free account in minutes and access the next generation of digital asset markets.</p>
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-        <a href="https://trade.estx.exchange/signup" style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--brand);font-family:'DM Sans',sans-serif;font-weight:700;font-size:0.9rem;padding:14px 32px;border-radius:8px;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,0.2);transition:all 0.22s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 32px rgba(0,0,0,0.25)'" onmouseout="this.style.transform='none';this.style.boxShadow='0 4px 20px rgba(0,0,0,0.2)'">Create Free Account</a>
-        <a href="#why" class="btn-outline-white">Learn More</a>
+        <a href="https://trade.estx.exchange/signup" style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--brand);font-family:'DM Sans',sans-serif;font-weight:700;font-size:0.9rem;padding:14px 32px;border-radius:8px;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,0.2);transition:all 0.22s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 32px rgba(0,0,0,0.25)'" onmouseout="this.style.transform='none';this.style.boxShadow='0 4px 20px rgba(0,0,0,0.2)'" data-i18n="cta_create_account">Create Free Account</a>
+        <a href="#why" class="btn-outline-white" data-i18n="cta_learn_more">Learn More</a>
       </div>
     </div>
   </div>
@@ -434,9 +468,9 @@ option{background:#0a1628;}
 <section style="padding:96px 24px;background:#fff;">
   <div class="max-w-7xl mx-auto">
     <div class="reveal" style="text-align:center;max-width:620px;margin:0 auto 60px;">
-      <div class="label" style="justify-content:center;">Market Structure</div>
-      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#0a1628;letter-spacing:-0.03em;line-height:1.1;margin-bottom:16px;">Three Tiers. Clear Segmentation.</h2>
-      <p style="font-size:1rem;color:#64748b;line-height:1.75;">ESTX offers three clearly defined market segments — providing the right environment for every stage of a digital asset's lifecycle.</p>
+      <div class="label" style="justify-content:center;" data-i18n="ms_label">Market Structure</div>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#0a1628;letter-spacing:-0.03em;line-height:1.1;margin-bottom:16px;" data-i18n="ms_heading">Three Tiers. Clear Segmentation.</h2>
+      <p style="font-size:1rem;color:#64748b;line-height:1.75;" data-i18n="ms_subtitle">ESTX offers three clearly defined market segments — providing the right environment for every stage of a digital asset's lifecycle.</p>
     </div>
 
     <div class="grid md:grid-cols-3 gap-6">
@@ -447,13 +481,13 @@ option{background:#0a1628;}
           <span style="font-family:'DM Sans',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#B8963E;">Tier 1</span>
         </div>
         <h3 class="tier-card-title" style="font-family:'Outfit',sans-serif;font-size:1.4rem;font-weight:800;color:#0a1628;margin-bottom:4px;">ESTX Prime</h3>
-        <div style="font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;color:#B8963E;margin-bottom:16px;">Security Tokens</div>
-        <p style="font-size:0.875rem;color:#64748b;line-height:1.7;margin-bottom:24px;">The premium segment. Dedicated to security tokens and regulated digital securities — where traditional finance meets blockchain infrastructure.</p>
+        <div style="font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;color:#B8963E;margin-bottom:16px;" data-i18n="ms_t1_sub">Security Tokens</div>
+        <p style="font-size:0.875rem;color:#64748b;line-height:1.7;margin-bottom:24px;" data-i18n="ms_t1_desc">The premium segment. Dedicated to security tokens and regulated digital securities — where traditional finance meets blockchain infrastructure.</p>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
-          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Security token listings</li>
-          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Full regulatory compliance</li>
-          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Institutional-grade infrastructure</li>
-          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Real-world asset tokenization</li>
+          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="ms_t1_li1"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Security token listings</li>
+          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="ms_t1_li2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Full regulatory compliance</li>
+          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="ms_t1_li3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Institutional-grade infrastructure</li>
+          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="ms_t1_li4"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Real-world asset tokenization</li>
         </ul>
       </div>
 
@@ -464,13 +498,13 @@ option{background:#0a1628;}
           <span style="font-family:'DM Sans',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--brand);">Tier 2</span>
         </div>
         <h3 class="tier-card-title" style="font-family:'Outfit',sans-serif;font-size:1.4rem;font-weight:800;color:#0a1628;margin-bottom:4px;">ESTX Market</h3>
-        <div style="font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;color:var(--brand);margin-bottom:16px;">Established Crypto Assets</div>
-        <p style="font-size:0.875rem;color:#64748b;line-height:1.7;margin-bottom:24px;">The core trading tier. Mid-cap and established cryptocurrency projects with extended liquidity structures and institutional-grade connectivity.</p>
+        <div style="font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;color:var(--brand);margin-bottom:16px;" data-i18n="ms_t2_sub">Established Crypto Assets</div>
+        <p style="font-size:0.875rem;color:#64748b;line-height:1.7;margin-bottom:24px;" data-i18n="ms_t2_desc">The core trading tier. Mid-cap and established cryptocurrency projects with extended liquidity structures and institutional-grade connectivity.</p>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
-          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Mid-cap crypto projects</li>
-          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Extended liquidity structure</li>
-          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Institutional connectivity</li>
-          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Proven project track records</li>
+          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="ms_t2_li1"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Mid-cap crypto projects</li>
+          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="ms_t2_li2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Extended liquidity structure</li>
+          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="ms_t2_li3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Institutional connectivity</li>
+          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="ms_t2_li4"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Proven project track records</li>
         </ul>
       </div>
 
@@ -481,13 +515,13 @@ option{background:#0a1628;}
           <span style="font-family:'DM Sans',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#7C3AED;">Tier 3</span>
         </div>
         <h3 class="tier-card-title" style="font-family:'Outfit',sans-serif;font-size:1.4rem;font-weight:800;color:#0a1628;margin-bottom:4px;">ESTX Venture</h3>
-        <div style="font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;color:#7C3AED;margin-bottom:16px;">Early-Stage &amp; Micro Tokens</div>
-        <p style="font-size:0.875rem;color:#64748b;line-height:1.7;margin-bottom:24px;">The launchpad tier. Focused on micro tokens, early-stage coins, and selected memecoins. Built for token issuers who need an accessible, credible listing venue.</p>
+        <div style="font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;color:#7C3AED;margin-bottom:16px;" data-i18n="ms_t3_sub">Early-Stage &amp; Micro Tokens</div>
+        <p style="font-size:0.875rem;color:#64748b;line-height:1.7;margin-bottom:24px;" data-i18n="ms_t3_desc">The launchpad tier. Focused on micro tokens, early-stage coins, and selected memecoins. Built for token issuers who need an accessible, credible listing venue.</p>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
-          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>New token project listings</li>
-          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Curated memecoins</li>
-          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Structured screening process</li>
-          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Affordable listing fees</li>
+          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="ms_t3_li1"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>New token project listings</li>
+          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="ms_t3_li2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Curated memecoins</li>
+          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="ms_t3_li3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Structured screening process</li>
+          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="ms_t3_li4"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Affordable listing fees</li>
         </ul>
       </div>
     </div>
@@ -501,9 +535,9 @@ option{background:#0a1628;}
 
   <div class="max-w-7xl mx-auto relative" style="z-index:1;">
     <div class="reveal" style="text-align:center;max-width:580px;margin:0 auto 60px;">
-      <div class="label label-white" style="justify-content:center;">Pro Trading</div>
-      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;letter-spacing:-0.03em;line-height:1.1;margin-bottom:16px;">Trade Like a Professional</h2>
-      <p style="font-size:1rem;color:rgba(255,255,255,0.6);line-height:1.75;">Experience fast execution, advanced charting, and a deep order book — all in a clean, responsive interface designed for performance.</p>
+      <div class="label label-white" style="justify-content:center;" data-i18n="pro_label">Pro Trading</div>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;letter-spacing:-0.03em;line-height:1.1;margin-bottom:16px;" data-i18n="pro_heading">Trade Like a Professional</h2>
+      <p style="font-size:1rem;color:rgba(255,255,255,0.6);line-height:1.75;" data-i18n="pro_subtitle">Experience fast execution, advanced charting, and a deep order book — all in a clean, responsive interface designed for performance.</p>
     </div>
 
     <div class="grid md:grid-cols-3 gap-6">
@@ -511,22 +545,22 @@ option{background:#0a1628;}
         <div class="pro-icon" style="width:52px;height:52px;background:rgba(20,76,188,0.3);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
-        <h3 class="pro-title" style="font-size:1.1rem;font-weight:700;color:rgba(255,255,255,0.9);margin-bottom:10px;">Real-Time Charts</h3>
-        <p style="font-size:0.875rem;color:rgba(255,255,255,0.55);line-height:1.7;">TradingView-powered charts with full technical analysis toolkit.</p>
+        <h3 class="pro-title" style="font-size:1.1rem;font-weight:700;color:rgba(255,255,255,0.9);margin-bottom:10px;" data-i18n="pro_c1_title">Real-Time Charts</h3>
+        <p style="font-size:0.875rem;color:rgba(255,255,255,0.55);line-height:1.7;" data-i18n="pro_c1_desc">TradingView-powered charts with full technical analysis toolkit.</p>
       </div>
       <div class="pro-card reveal" style="animation-delay:0.1s;">
         <div class="pro-icon" style="width:52px;height:52px;background:rgba(20,76,188,0.3);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
         </div>
-        <h3 class="pro-title" style="font-size:1.1rem;font-weight:700;color:rgba(255,255,255,0.9);margin-bottom:10px;">Order Book Depth</h3>
-        <p style="font-size:0.875rem;color:rgba(255,255,255,0.55);line-height:1.7;">Full visibility into market depth with live bid/ask spread data.</p>
+        <h3 class="pro-title" style="font-size:1.1rem;font-weight:700;color:rgba(255,255,255,0.9);margin-bottom:10px;" data-i18n="pro_c2_title">Order Book Depth</h3>
+        <p style="font-size:0.875rem;color:rgba(255,255,255,0.55);line-height:1.7;" data-i18n="pro_c2_desc">Full visibility into market depth with live bid/ask spread data.</p>
       </div>
       <div class="pro-card reveal" style="animation-delay:0.2s;">
         <div class="pro-icon" style="width:52px;height:52px;background:rgba(20,76,188,0.3);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         </div>
-        <h3 class="pro-title" style="font-size:1.1rem;font-weight:700;color:rgba(255,255,255,0.9);margin-bottom:10px;">Instant Execution</h3>
-        <p style="font-size:0.875rem;color:rgba(255,255,255,0.55);line-height:1.7;">Market and limit orders processed instantly with zero re-quotes.</p>
+        <h3 class="pro-title" style="font-size:1.1rem;font-weight:700;color:rgba(255,255,255,0.9);margin-bottom:10px;" data-i18n="pro_c3_title">Instant Execution</h3>
+        <p style="font-size:0.875rem;color:rgba(255,255,255,0.55);line-height:1.7;" data-i18n="pro_c3_desc">Market and limit orders processed instantly with zero re-quotes.</p>
       </div>
     </div>
   </div>
@@ -540,38 +574,38 @@ option{background:#0a1628;}
       <!-- Steps -->
       <div>
         <div class="reveal">
-          <div class="label">Buy Crypto</div>
-          <h2 style="font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;color:#0a1628;letter-spacing:-0.03em;line-height:1.1;margin-bottom:16px;">Buy Cryptocurrency Instantly with Card</h2>
-          <p style="font-size:1rem;color:#64748b;line-height:1.75;margin-bottom:40px;">Start buying and selling crypto in minutes. On ESTX, the process is secure and simple.</p>
+          <div class="label" data-i18n="buy_label">Buy Crypto</div>
+          <h2 style="font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;color:#0a1628;letter-spacing:-0.03em;line-height:1.1;margin-bottom:16px;" data-i18n="buy_heading">Buy Cryptocurrency Instantly with Card</h2>
+          <p style="font-size:1rem;color:#64748b;line-height:1.75;margin-bottom:40px;" data-i18n="buy_subtitle">Start buying and selling crypto in minutes. On ESTX, the process is secure and simple.</p>
         </div>
 
         <div style="display:flex;flex-direction:column;gap:24px;">
           <div class="reveal" style="display:flex;gap:16px;align-items:flex-start;">
             <div class="step-circle">1</div>
             <div>
-              <h4 style="font-size:0.95rem;font-weight:700;color:#0a1628;margin-bottom:6px;">Create Your ESTX Account</h4>
-              <p style="font-size:0.875rem;color:#64748b;line-height:1.65;">Sign up with your email or phone number and your country of residence. Create a strong password to protect your account.</p>
+              <h4 style="font-size:0.95rem;font-weight:700;color:#0a1628;margin-bottom:6px;" data-i18n="buy_s1_title">Create Your ESTX Account</h4>
+              <p style="font-size:0.875rem;color:#64748b;line-height:1.65;" data-i18n="buy_s1_desc">Sign up with your email or phone number and your country of residence. Create a strong password to protect your account.</p>
             </div>
           </div>
           <div class="reveal" style="display:flex;gap:16px;align-items:flex-start;animation-delay:0.08s;">
             <div class="step-circle">2</div>
             <div>
-              <h4 style="font-size:0.95rem;font-weight:700;color:#0a1628;margin-bottom:6px;">Verify Your Identity</h4>
-              <p style="font-size:0.875rem;color:#64748b;line-height:1.65;">Complete a quick and secure Identity Verification (KYC) process by uploading the required documents.</p>
+              <h4 style="font-size:0.95rem;font-weight:700;color:#0a1628;margin-bottom:6px;" data-i18n="buy_s2_title">Verify Your Identity</h4>
+              <p style="font-size:0.875rem;color:#64748b;line-height:1.65;" data-i18n="buy_s2_desc">Complete a quick and secure Identity Verification (KYC) process by uploading the required documents.</p>
             </div>
           </div>
           <div class="reveal" style="display:flex;gap:16px;align-items:flex-start;animation-delay:0.16s;">
             <div class="step-circle">3</div>
             <div>
-              <h4 style="font-size:0.95rem;font-weight:700;color:#0a1628;margin-bottom:6px;">Add a Payment Method</h4>
-              <p style="font-size:0.875rem;color:#64748b;line-height:1.65;">Choose your preferred payment method — credit card, debit card, bank transfer, or others.</p>
+              <h4 style="font-size:0.95rem;font-weight:700;color:#0a1628;margin-bottom:6px;" data-i18n="buy_s3_title">Add a Payment Method</h4>
+              <p style="font-size:0.875rem;color:#64748b;line-height:1.65;" data-i18n="buy_s3_desc">Choose your preferred payment method — credit card, debit card, bank transfer, or others.</p>
             </div>
           </div>
           <div class="reveal" style="display:flex;gap:16px;align-items:flex-start;animation-delay:0.24s;">
             <div class="step-circle">4</div>
             <div>
-              <h4 style="font-size:0.95rem;font-weight:700;color:#0a1628;margin-bottom:6px;">Buy Cryptocurrency</h4>
-              <p style="font-size:0.875rem;color:#64748b;line-height:1.65;">Purchase Bitcoin, Ethereum, Solana and 200+ cryptocurrencies using USD, EUR, GBP, AUD, and over 48 local currencies.</p>
+              <h4 style="font-size:0.95rem;font-weight:700;color:#0a1628;margin-bottom:6px;" data-i18n="buy_s4_title">Buy Cryptocurrency</h4>
+              <p style="font-size:0.875rem;color:#64748b;line-height:1.65;" data-i18n="buy_s4_desc">Purchase Bitcoin, Ethereum, Solana and 200+ cryptocurrencies using USD, EUR, GBP, AUD, and over 48 local currencies.</p>
             </div>
           </div>
         </div>
@@ -582,9 +616,9 @@ option{background:#0a1628;}
         <div id="qtWidget" style="background:linear-gradient(145deg,#f8faff,#eef2ff);border:1px solid #e2e8f8;border-radius:24px;padding:0;box-shadow:0 8px 40px rgba(3,35,99,0.09);overflow:hidden;">
 
           <!-- Sparkline header -->
-          <div id="qtChart" style="position:relative;height:120px;overflow:hidden;background:linear-gradient(180deg,rgba(20,76,188,0.04),transparent);">
-            <canvas id="qtCanvas" style="width:100%;height:100%;"></canvas>
-            <div id="qtChartInfo" style="position:absolute;top:16px;left:24px;z-index:2;">
+          <div id="qtChart" style="position:relative;height:200px;overflow:hidden;background:linear-gradient(180deg,rgba(20,76,188,0.04),transparent);">
+            <canvas id="qtCanvas" style="width:100%;height:100%;position:absolute;bottom:0;left:0;right:0;top:75px;"></canvas>
+            <div id="qtChartInfo" style="position:absolute;top:14px;left:24px;z-index:2;">
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
                 <img id="qtChartIcon" src="" width="28" height="28" style="border-radius:50%;display:none;"/>
                 <span id="qtChartName" style="font-family:'Outfit';font-size:0.9rem;font-weight:700;color:#0a1628;"></span>
@@ -599,11 +633,11 @@ option{background:#0a1628;}
 
           <!-- Converter body -->
           <div style="padding:24px 28px 28px;">
-            <div style="font-family:'Outfit';font-size:0.95rem;font-weight:700;color:#0a1628;margin-bottom:18px;">Convert</div>
+            <div style="font-family:'Outfit';font-size:0.95rem;font-weight:700;color:#0a1628;margin-bottom:18px;" data-i18n="qt_convert">Convert</div>
 
             <!-- From -->
             <div style="margin-bottom:12px;">
-              <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#94a3b8;margin-bottom:6px;">You Pay</div>
+              <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#94a3b8;margin-bottom:6px;" data-i18n="qt_you_pay">You Pay</div>
               <div class="qt-field" style="background:#fff;border-radius:14px;padding:14px 16px;">
                 <input type="number" placeholder="0.00" value="100" id="qtAmtIn" oninput="qtCalc()" style="font-size:1.2rem;"/>
                 <div id="qtFromBtn" onclick="qtOpenPicker('from')" style="display:flex;align-items:center;gap:6px;cursor:pointer;background:rgba(20,76,188,0.06);padding:6px 12px 6px 8px;border-radius:10px;flex-shrink:0;transition:background 0.2s;">
@@ -623,7 +657,7 @@ option{background:#0a1628;}
 
             <!-- To -->
             <div style="margin-bottom:20px;">
-              <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#94a3b8;margin-bottom:6px;">You Receive</div>
+              <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#94a3b8;margin-bottom:6px;" data-i18n="qt_you_receive">You Receive</div>
               <div class="qt-field" style="background:#fff;border-radius:14px;padding:14px 16px;">
                 <input type="text" placeholder="0.00" id="qtAmtOut" readonly style="font-size:1.2rem;color:#0a1628;"/>
                 <div id="qtToBtn" onclick="qtOpenPicker('to')" style="display:flex;align-items:center;gap:6px;cursor:pointer;background:rgba(20,76,188,0.06);padding:6px 12px 6px 8px;border-radius:10px;flex-shrink:0;transition:background 0.2s;">
@@ -637,11 +671,11 @@ option{background:#0a1628;}
             <!-- Rate info -->
             <div id="qtRate" style="font-size:0.75rem;color:#94a3b8;margin-bottom:18px;text-align:center;"></div>
 
-            <a href="https://trade.estx.exchange/signup" class="btn-primary" style="width:100%;justify-content:center;border-radius:14px;padding:15px 28px;font-size:0.95rem;">
+            <a href="https://trade.estx.exchange/signup" class="btn-primary" style="width:100%;justify-content:center;border-radius:14px;padding:15px 28px;font-size:0.95rem;" data-i18n-html="qt_buy_btn">
               Buy on ESTX Exchange
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <p style="font-size:0.65rem;color:#cbd5e1;margin-top:10px;text-align:center;">Prices by CoinGecko · Updated in real time</p>
+            <p style="font-size:0.65rem;color:#cbd5e1;margin-top:10px;text-align:center;" data-i18n="qt_prices_by">Prices by CoinGecko · Updated in real time</p>
           </div>
         </div>
 
@@ -671,30 +705,30 @@ option{background:#0a1628;}
     <div class="grid lg:grid-cols-2 gap-16 items-center">
 
       <div class="reveal">
-        <div class="label">Security &amp; Compliance</div>
-        <h2 style="font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;color:#0a1628;letter-spacing:-0.03em;line-height:1.1;margin-bottom:16px;">Multi-Layered Security Framework</h2>
-        <p style="font-size:1rem;color:#64748b;line-height:1.75;margin-bottom:36px;">We've built a comprehensive security framework that addresses vulnerabilities, data protection, user privacy, and global compliance standards.</p>
+        <div class="label" data-i18n="sec_label">Security &amp; Compliance</div>
+        <h2 style="font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;color:#0a1628;letter-spacing:-0.03em;line-height:1.1;margin-bottom:16px;" data-i18n="sec_heading">Multi-Layered Security Framework</h2>
+        <p style="font-size:1rem;color:#64748b;line-height:1.75;margin-bottom:36px;" data-i18n="sec_subtitle">We've built a comprehensive security framework that addresses vulnerabilities, data protection, user privacy, and global compliance standards.</p>
 
         <div style="display:flex;flex-direction:column;gap:16px;">
           <div style="display:flex;gap:14px;align-items:flex-start;padding:18px;background:#f8faff;border-radius:12px;border:1px solid #e8edf8;">
             <div style="width:40px;height:40px;background:linear-gradient(135deg,var(--brand),var(--navy));border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg></div>
-            <div><div style="font-family:'Outfit',sans-serif;font-weight:700;font-size:0.9rem;color:#0a1628;margin-bottom:3px;">Two-Factor Authentication</div><div style="font-size:0.82rem;color:#64748b;line-height:1.6;">Mandatory 2FA on all withdrawals. Supported across every account action for maximum asset protection.</div></div>
+            <div><div style="font-family:'Outfit',sans-serif;font-weight:700;font-size:0.9rem;color:#0a1628;margin-bottom:3px;" data-i18n="sec_2fa_title">Two-Factor Authentication</div><div style="font-size:0.82rem;color:#64748b;line-height:1.6;" data-i18n="sec_2fa_desc">Mandatory 2FA on all withdrawals. Supported across every account action for maximum asset protection.</div></div>
           </div>
           <div style="display:flex;gap:14px;align-items:flex-start;padding:18px;background:#f8faff;border-radius:12px;border:1px solid #e8edf8;">
             <div style="width:40px;height:40px;background:linear-gradient(135deg,#10b981,#059669);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-            <div><div style="font-family:'Outfit',sans-serif;font-weight:700;font-size:0.9rem;color:#0a1628;margin-bottom:3px;">Cold Storage Custody</div><div style="font-size:0.82rem;color:#64748b;line-height:1.6;">The majority of digital assets are stored in secure, offline cold storage — completely isolated from online threats.</div></div>
+            <div><div style="font-family:'Outfit',sans-serif;font-weight:700;font-size:0.9rem;color:#0a1628;margin-bottom:3px;" data-i18n="sec_cold_title">Cold Storage Custody</div><div style="font-size:0.82rem;color:#64748b;line-height:1.6;" data-i18n="sec_cold_desc">The majority of digital assets are stored in secure, offline cold storage — completely isolated from online threats.</div></div>
           </div>
           <div style="display:flex;gap:14px;align-items:flex-start;padding:18px;background:#f8faff;border-radius:12px;border:1px solid #e8edf8;">
             <div style="width:40px;height:40px;background:linear-gradient(135deg,#f59e0b,#d97706);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-            <div><div style="font-family:'Outfit',sans-serif;font-weight:700;font-size:0.9rem;color:#0a1628;margin-bottom:3px;">Suspicious Login Detection</div><div style="font-size:0.82rem;color:#64748b;line-height:1.6;">Real-time monitoring with automated alerts for unusual login patterns, device changes, or geographic anomalies.</div></div>
+            <div><div style="font-family:'Outfit',sans-serif;font-weight:700;font-size:0.9rem;color:#0a1628;margin-bottom:3px;" data-i18n="sec_login_title">Suspicious Login Detection</div><div style="font-size:0.82rem;color:#64748b;line-height:1.6;" data-i18n="sec_login_desc">Real-time monitoring with automated alerts for unusual login patterns, device changes, or geographic anomalies.</div></div>
           </div>
           <div style="display:flex;gap:14px;align-items:flex-start;padding:18px;background:#f8faff;border-radius:12px;border:1px solid #e8edf8;">
             <div style="width:40px;height:40px;background:linear-gradient(135deg,var(--navy),#0a2878);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
-            <div><div style="font-family:'Outfit',sans-serif;font-weight:700;font-size:0.9rem;color:#0a1628;margin-bottom:3px;">VASP Licensed &amp; Compliant</div><div style="font-size:0.82rem;color:#64748b;line-height:1.6;">Virtual Assets Service Provider license ensuring full regulatory compliance, operational transparency, and user fund protection.</div></div>
+            <div><div style="font-family:'Outfit',sans-serif;font-weight:700;font-size:0.9rem;color:#0a1628;margin-bottom:3px;" data-i18n="sec_vasp_title">VASP Licensed &amp; Compliant</div><div style="font-size:0.82rem;color:#64748b;line-height:1.6;" data-i18n="sec_vasp_desc">Virtual Assets Service Provider license ensuring full regulatory compliance, operational transparency, and user fund protection.</div></div>
           </div>
           <div style="display:flex;gap:14px;align-items:flex-start;padding:18px;background:#f8faff;border-radius:12px;border:1px solid #e8edf8;">
             <div style="width:40px;height:40px;background:linear-gradient(135deg,#6366f1,#4f46e5);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="9" y1="12" x2="15" y2="12"/></svg></div>
-            <div><div style="font-family:'Outfit',sans-serif;font-weight:700;font-size:0.9rem;color:#0a1628;margin-bottom:3px;">Anti-Bot Protection</div><div style="font-size:0.82rem;color:#64748b;line-height:1.6;">Cloudflare Turnstile integration on all login and signup forms to prevent automated attacks and credential stuffing.</div></div>
+            <div><div style="font-family:'Outfit',sans-serif;font-weight:700;font-size:0.9rem;color:#0a1628;margin-bottom:3px;" data-i18n="sec_bot_title">Anti-Bot Protection</div><div style="font-size:0.82rem;color:#64748b;line-height:1.6;" data-i18n="sec_bot_desc">Cloudflare Turnstile integration on all login and signup forms to prevent automated attacks and credential stuffing.</div></div>
           </div>
         </div>
       </div>
@@ -702,24 +736,24 @@ option{background:#0a1628;}
       <div class="reveal" style="animation-delay:0.15s;">
         <div style="background:linear-gradient(135deg,var(--navy),#071a47);border-radius:20px;padding:48px 40px;color:#fff;">
           <div style="width:56px;height:56px;background:rgba(20,76,188,0.4);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-          <h3 style="font-size:1.5rem;font-weight:800;color:#fff;margin-bottom:14px;">Enterprise-Grade Protection</h3>
-          <p style="font-size:0.9rem;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:28px;">Your digital assets are safeguarded by institutional-level security infrastructure — the same standards used by leading financial institutions.</p>
+          <h3 style="font-size:1.5rem;font-weight:800;color:#fff;margin-bottom:14px;" data-i18n="sec_ent_heading">Enterprise-Grade Protection</h3>
+          <p style="font-size:0.9rem;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:28px;" data-i18n="sec_ent_desc">Your digital assets are safeguarded by institutional-level security infrastructure — the same standards used by leading financial institutions.</p>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
             <div style="background:rgba(255,255,255,0.07);border-radius:10px;padding:16px;text-align:center;">
               <div style="font-family:'Outfit',sans-serif;font-size:1.8rem;font-weight:800;color:#fff;">99.9%</div>
-              <div style="font-size:0.7rem;color:rgba(255,255,255,0.5);margin-top:4px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">Uptime SLA</div>
+              <div style="font-size:0.7rem;color:rgba(255,255,255,0.5);margin-top:4px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;" data-i18n="sec_stat_uptime">Uptime SLA</div>
             </div>
             <div style="background:rgba(255,255,255,0.07);border-radius:10px;padding:16px;text-align:center;">
               <div style="font-family:'Outfit',sans-serif;font-size:1.8rem;font-weight:800;color:#fff;">100%</div>
-              <div style="font-size:0.7rem;color:rgba(255,255,255,0.5);margin-top:4px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">Cold Storage</div>
+              <div style="font-size:0.7rem;color:rgba(255,255,255,0.5);margin-top:4px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;" data-i18n="sec_stat_cold">Cold Storage</div>
             </div>
             <div style="background:rgba(255,255,255,0.07);border-radius:10px;padding:16px;text-align:center;">
               <div style="font-family:'Outfit',sans-serif;font-size:1.8rem;font-weight:800;color:#fff;">24/7</div>
-              <div style="font-size:0.7rem;color:rgba(255,255,255,0.5);margin-top:4px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">Monitoring</div>
+              <div style="font-size:0.7rem;color:rgba(255,255,255,0.5);margin-top:4px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;" data-i18n="sec_stat_monitoring">Monitoring</div>
             </div>
             <div style="background:rgba(255,255,255,0.07);border-radius:10px;padding:16px;text-align:center;">
               <div style="font-family:'Outfit',sans-serif;font-size:1.8rem;font-weight:800;color:#fff;">VASP</div>
-              <div style="font-size:0.7rem;color:rgba(255,255,255,0.5);margin-top:4px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">Licensed</div>
+              <div style="font-size:0.7rem;color:rgba(255,255,255,0.5);margin-top:4px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;" data-i18n="sec_stat_licensed">Licensed</div>
             </div>
           </div>
         </div>
@@ -735,25 +769,25 @@ option{background:#0a1628;}
     <div class="grid lg:grid-cols-2 gap-8">
       <div class="reveal" style="background:#fff;border:1px solid #e2e8f8;border-radius:20px;padding:44px 40px;box-shadow:0 2px 16px rgba(3,35,99,0.05);">
         <div style="width:52px;height:52px;background:linear-gradient(135deg,var(--brand),#3b7dfc);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:22px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
-        <h3 style="font-size:1.4rem;font-weight:800;color:#0a1628;margin-bottom:12px;">Institutional Access</h3>
-        <p style="font-size:0.9rem;color:#64748b;line-height:1.75;margin-bottom:28px;">ESTX provides dedicated infrastructure for institutional participants — deep liquidity pools, API connectivity, OTC trading desks, and bespoke custody solutions.</p>
+        <h3 style="font-size:1.4rem;font-weight:800;color:#0a1628;margin-bottom:12px;" data-i18n="inst_title">Institutional Access</h3>
+        <p style="font-size:0.9rem;color:#64748b;line-height:1.75;margin-bottom:28px;" data-i18n="inst_desc">ESTX provides dedicated infrastructure for institutional participants — deep liquidity pools, API connectivity, OTC trading desks, and bespoke custody solutions.</p>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:28px;">
-          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>High-frequency trading API</li>
-          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>OTC desk for large-block trades</li>
-          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Dedicated relationship management</li>
+          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="inst_li1"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>High-frequency trading API</li>
+          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="inst_li2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>OTC desk for large-block trades</li>
+          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="inst_li3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Dedicated relationship management</li>
         </ul>
-        <a href="#contact" class="btn-primary">Contact Institutional Team</a>
+        <a href="#contact" class="btn-primary" data-i18n="inst_cta">Contact Institutional Team</a>
       </div>
       <div class="reveal" style="background:#fff;border:1px solid #e2e8f8;border-radius:20px;padding:44px 40px;box-shadow:0 2px 16px rgba(3,35,99,0.05);animation-delay:0.15s;">
         <div style="width:52px;height:52px;background:linear-gradient(135deg,#7C3AED,#9f67ff);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:22px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-        <h3 style="font-size:1.4rem;font-weight:800;color:#0a1628;margin-bottom:12px;">List Your Token</h3>
-        <p style="font-size:0.9rem;color:#64748b;line-height:1.75;margin-bottom:28px;">ESTX provides a transparent, structured listing pathway for projects of all sizes — from early-stage tokens to established networks.</p>
+        <h3 style="font-size:1.4rem;font-weight:800;color:#0a1628;margin-bottom:12px;" data-i18n="list_title">List Your Token</h3>
+        <p style="font-size:0.9rem;color:#64748b;line-height:1.75;margin-bottom:28px;" data-i18n="list_desc">ESTX provides a transparent, structured listing pathway for projects of all sizes — from early-stage tokens to established networks.</p>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:28px;">
-          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Transparent listing criteria</li>
-          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Three-tier placement system</li>
-          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Marketing support &amp; community access</li>
+          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="list_li1"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Transparent listing criteria</li>
+          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="list_li2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Three-tier placement system</li>
+          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="list_li3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Marketing support &amp; community access</li>
         </ul>
-        <a href="#contact" class="btn-outline-dark" style="border-color:#7C3AED;color:#7C3AED;" onmouseover="this.style.background='rgba(124,58,237,0.06)'" onmouseout="this.style.background='transparent'">Apply for Listing</a>
+        <a href="#contact" class="btn-outline-dark" style="border-color:#7C3AED;color:#7C3AED;" onmouseover="this.style.background='rgba(124,58,237,0.06)'" onmouseout="this.style.background='transparent'" data-i18n="list_cta">Apply for Listing</a>
       </div>
     </div>
   </div>
@@ -765,10 +799,10 @@ option{background:#0a1628;}
   <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:40px 40px;"></div>
   <div class="max-w-3xl mx-auto text-center relative" style="z-index:1;">
     <div class="reveal">
-      <div class="label label-white" style="justify-content:center;">ESTX Token</div>
-      <h2 style="font-size:clamp(2.2rem,5vw,3.5rem);font-weight:900;color:#fff;letter-spacing:-0.04em;line-height:1.05;margin-bottom:18px;">Join the ESTX Army</h2>
-      <p style="font-size:1.05rem;color:rgba(255,255,255,0.6);line-height:1.75;margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;">Join the ESTX Token Community and become part of the fast-growing ESTX ecosystem. Early community members receive exclusive benefits and priority access to new features.</p>
-      <a href="https://trade.estx.exchange/signup" class="btn-primary" style="font-size:1rem;padding:15px 36px;">Join Community <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <div class="label label-white" style="justify-content:center;" data-i18n="token_label">ESTX Token</div>
+      <h2 style="font-size:clamp(2.2rem,5vw,3.5rem);font-weight:900;color:#fff;letter-spacing:-0.04em;line-height:1.05;margin-bottom:18px;" data-i18n="token_heading">Join the ESTX Army</h2>
+      <p style="font-size:1.05rem;color:rgba(255,255,255,0.6);line-height:1.75;margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;" data-i18n="token_subtitle">Join the ESTX Token Community and become part of the fast-growing ESTX ecosystem. Early community members receive exclusive benefits and priority access to new features.</p>
+      <a href="https://trade.estx.exchange/signup" class="btn-primary" style="font-size:1rem;padding:15px 36px;" data-i18n-html="token_cta">Join Community <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
   </div>
 </section>
@@ -777,9 +811,9 @@ option{background:#0a1628;}
 <section style="padding:96px 24px;background:#fff;">
   <div class="max-w-3xl mx-auto">
     <div class="reveal" style="text-align:center;margin-bottom:56px;">
-      <div class="label" style="justify-content:center;">FAQ</div>
-      <h2 style="font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;color:#0a1628;letter-spacing:-0.03em;margin-bottom:12px;">Questions? We've Got Answers.</h2>
-      <p style="font-size:1rem;color:#64748b;">Find quick answers to common questions about our platform and services.</p>
+      <div class="label" style="justify-content:center;" data-i18n="faq_label">FAQ</div>
+      <h2 style="font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;color:#0a1628;letter-spacing:-0.03em;margin-bottom:12px;" data-i18n="faq_heading">Questions? We've Got Answers.</h2>
+      <p style="font-size:1rem;color:#64748b;" data-i18n="faq_subtitle">Find quick answers to common questions about our platform and services.</p>
     </div>
 
     <div style="display:flex;flex-direction:column;" id="faqContainer">
@@ -793,17 +827,17 @@ option{background:#0a1628;}
   <div class="max-w-7xl mx-auto relative" style="z-index:1;">
     <div class="grid lg:grid-cols-2 gap-16 items-start">
       <div class="reveal">
-        <div class="label label-white">Get in Touch</div>
-        <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;letter-spacing:-0.03em;line-height:1.1;margin-bottom:18px;">Let's Build the Future of Finance Together</h2>
-        <p style="font-size:1rem;color:rgba(255,255,255,0.6);line-height:1.75;margin-bottom:40px;">Whether you're looking to list your token, explore institutional services, or simply have questions — our team is ready.</p>
+        <div class="label label-white" data-i18n="contact_label">Get in Touch</div>
+        <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;letter-spacing:-0.03em;line-height:1.1;margin-bottom:18px;" data-i18n="contact_heading">Let's Build the Future of Finance Together</h2>
+        <p style="font-size:1rem;color:rgba(255,255,255,0.6);line-height:1.75;margin-bottom:40px;" data-i18n="contact_subtitle">Whether you're looking to list your token, explore institutional services, or simply have questions — our team is ready.</p>
         <div style="display:flex;flex-direction:column;gap:18px;">
           <div style="display:flex;gap:14px;align-items:center;">
             <div style="width:42px;height:42px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-            <div><div style="font-size:0.72rem;color:rgba(255,255,255,0.35);margin-bottom:2px;">Registered Office</div><div style="font-size:0.88rem;color:rgba(255,255,255,0.8);">Bangarten 10, FL-9400 Vaduz, Liechtenstein</div></div>
+            <div><div style="font-size:0.72rem;color:rgba(255,255,255,0.35);margin-bottom:2px;" data-i18n="contact_office_label">Registered Office</div><div style="font-size:0.88rem;color:rgba(255,255,255,0.8);">Bangarten 10, FL-9400 Vaduz, Liechtenstein</div></div>
           </div>
           <div style="display:flex;gap:14px;align-items:center;">
             <div style="width:42px;height:42px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-            <div><div style="font-size:0.72rem;color:rgba(255,255,255,0.35);margin-bottom:2px;">Regulatory</div><div style="font-size:0.88rem;color:rgba(255,255,255,0.8);">VASP License · Black Forest Digital Assets LLC · Georgia</div></div>
+            <div><div style="font-size:0.72rem;color:rgba(255,255,255,0.35);margin-bottom:2px;" data-i18n="contact_reg_label">Regulatory</div><div style="font-size:0.88rem;color:rgba(255,255,255,0.8);" data-i18n="contact_reg_value">VASP License · Black Forest Digital Assets LLC · Georgia</div></div>
           </div>
         </div>
       </div>
@@ -816,14 +850,14 @@ option{background:#0a1628;}
           <input type="hidden" name="_next" id="formNext"/>
           <input type="text" name="_honey" style="display:none"/>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
-            <div><label style="display:block;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:7px;">Full Name *</label><input type="text" name="name" required placeholder="John Smith" class="form-field"/></div>
-            <div><label style="display:block;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:7px;">Email *</label><input type="email" name="email" required placeholder="john@company.com" class="form-field"/></div>
+            <div><label style="display:block;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:7px;" data-i18n="form_name">Full Name *</label><input type="text" name="name" required placeholder="John Smith" class="form-field"/></div>
+            <div><label style="display:block;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:7px;" data-i18n="form_email">Email *</label><input type="email" name="email" required placeholder="john@company.com" class="form-field"/></div>
           </div>
-          <div style="margin-bottom:14px;"><label style="display:block;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:7px;">Phone <span style="opacity:0.5;">(Optional)</span></label><input type="tel" name="phone" placeholder="+1 234 567 8900" class="form-field"/></div>
-          <div style="margin-bottom:14px;"><label style="display:block;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:7px;">Subject</label><select name="subject" class="form-field" style="cursor:pointer;"><option value="">Select a subject</option><option>Token Listing</option><option>Institutional Services</option><option>General Inquiry</option><option>Technical Support</option><option>Partnership</option></select></div>
-          <div style="margin-bottom:24px;"><label style="display:block;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:7px;">Message *</label><textarea name="message" required rows="4" placeholder="Tell us how we can help…" class="form-field" style="resize:vertical;"></textarea></div>
-          <button type="submit" class="btn-primary" id="formBtn" style="width:100%;justify-content:center;">Send Message <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
-          <div id="formOk" style="display:none;margin-top:14px;padding:12px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:8px;text-align:center;font-size:0.87rem;color:#10b981;font-weight:500;">Message sent! We'll respond within 24 hours.</div>
+          <div style="margin-bottom:14px;"><label style="display:block;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:7px;" data-i18n-html="form_phone">Phone <span style="opacity:0.5;">(Optional)</span></label><input type="tel" name="phone" placeholder="+1 234 567 8900" class="form-field"/></div>
+          <div style="margin-bottom:14px;"><label style="display:block;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:7px;" data-i18n="form_subject">Subject</label><select name="subject" class="form-field" style="cursor:pointer;" id="formSubjectSelect"><option value="" data-i18n="form_subject_default">Select a subject</option><option data-i18n="form_subject_listing">Token Listing</option><option data-i18n="form_subject_institutional">Institutional Services</option><option data-i18n="form_subject_general">General Inquiry</option><option data-i18n="form_subject_support">Technical Support</option><option data-i18n="form_subject_partnership">Partnership</option></select></div>
+          <div style="margin-bottom:24px;"><label style="display:block;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:7px;" data-i18n="form_message">Message *</label><textarea name="message" required rows="4" placeholder="Tell us how we can help…" class="form-field" style="resize:vertical;" id="formMessageArea"></textarea></div>
+          <button type="submit" class="btn-primary" id="formBtn" style="width:100%;justify-content:center;" data-i18n-html="form_submit">Send Message <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+          <div id="formOk" style="display:none;margin-top:14px;padding:12px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:8px;text-align:center;font-size:0.87rem;color:#10b981;font-weight:500;" data-i18n="form_success">Message sent! We'll respond within 24 hours.</div>
         </form>
       </div>
     </div>
@@ -836,43 +870,43 @@ option{background:#0a1628;}
     <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;" class="grid-cols-2 md:grid-cols-4">
       <div>
         <img src="brand_assets/logo_bw.svg" alt="ESTX" style="height:30px;width:auto;margin-bottom:16px;"/>
-        <p style="font-size:0.82rem;color:rgba(255,255,255,0.35);line-height:1.7;max-width:240px;margin-bottom:20px;">Next-generation digital asset exchange with a purpose-built three-tier market structure.</p>
-        <a href="https://trade.estx.exchange/signup" class="btn-primary" style="padding:10px 20px;font-size:0.78rem;">Sign Up Free</a>
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.35);line-height:1.7;max-width:240px;margin-bottom:20px;" data-i18n="footer_desc">Next-generation digital asset exchange with a purpose-built three-tier market structure.</p>
+        <a href="https://trade.estx.exchange/signup" class="btn-primary" style="padding:10px 20px;font-size:0.78rem;" data-i18n="footer_signup">Sign Up Free</a>
       </div>
       <div>
-        <div style="font-family:'DM Sans',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:14px;">Exchange</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:14px;" data-i18n="footer_col_exchange">Exchange</div>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;">
-          <li><a href="#markets" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Crypto Prices</a></li>
-          <li><a href="https://trade.estx.exchange" target="_blank" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Trade Now</a></li>
-          <li><a href="#buy" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Buy Crypto</a></li>
-          <li><a href="#institutional" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Institutional</a></li>
-          <li><a href="#contact" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">List Token</a></li>
+          <li><a href="#markets" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" data-i18n="footer_crypto_prices">Crypto Prices</a></li>
+          <li><a href="https://trade.estx.exchange" target="_blank" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" data-i18n="footer_trade_now">Trade Now</a></li>
+          <li><a href="#buy" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" data-i18n="footer_buy_crypto">Buy Crypto</a></li>
+          <li><a href="#institutional" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" data-i18n="footer_institutional">Institutional</a></li>
+          <li><a href="#contact" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" data-i18n="footer_list_token">List Token</a></li>
         </ul>
       </div>
       <div>
-        <div style="font-family:'DM Sans',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:14px;">Service</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:14px;" data-i18n="footer_col_service">Service</div>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;">
-          <li><a href="https://trade.estx.exchange" target="_blank" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Help Center</a></li>
-          <li><a href="https://trade.estx.exchange" target="_blank" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Beginner's Guide</a></li>
-          <li><a href="https://trade.estx.exchange" target="_blank" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Submit a Ticket</a></li>
+          <li><a href="https://trade.estx.exchange" target="_blank" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" data-i18n="footer_help">Help Center</a></li>
+          <li><a href="https://trade.estx.exchange" target="_blank" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" data-i18n="footer_guide">Beginner's Guide</a></li>
+          <li><a href="https://trade.estx.exchange" target="_blank" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" data-i18n="footer_ticket">Submit a Ticket</a></li>
           <li><a href="https://trade.estx.exchange" target="_blank" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">ESTX Token</a></li>
-          <li><a href="#contact" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Contact Us</a></li>
+          <li><a href="#contact" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" data-i18n="footer_contact">Contact Us</a></li>
         </ul>
       </div>
       <div>
-        <div style="font-family:'DM Sans',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:14px;">Legal</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:14px;" data-i18n="footer_col_legal">Legal</div>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;">
-          <li><a href="https://trade.estx.exchange" target="_blank" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Terms of Use</a></li>
-          <li><a href="https://trade.estx.exchange" target="_blank" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Privacy Policy</a></li>
-          <li><a href="https://trade.estx.exchange" target="_blank" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Risk Disclosure</a></li>
-          <li><a href="https://trade.estx.exchange" target="_blank" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Security</a></li>
-          <li><a href="https://trade.estx.exchange" target="_blank" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">About Us</a></li>
+          <li><a href="https://trade.estx.exchange" target="_blank" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" data-i18n="footer_terms">Terms of Use</a></li>
+          <li><a href="https://trade.estx.exchange" target="_blank" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" data-i18n="footer_privacy">Privacy Policy</a></li>
+          <li><a href="https://trade.estx.exchange" target="_blank" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" data-i18n="footer_risk">Risk Disclosure</a></li>
+          <li><a href="https://trade.estx.exchange" target="_blank" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" data-i18n="footer_security">Security</a></li>
+          <li><a href="https://trade.estx.exchange" target="_blank" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" data-i18n="footer_about">About Us</a></li>
         </ul>
       </div>
     </div>
 
     <div style="padding:20px 0;border-top:1px solid rgba(255,255,255,0.06);margin-bottom:16px;">
-      <p style="font-size:0.73rem;color:rgba(255,255,255,0.22);line-height:1.7;"><strong style="color:rgba(255,255,255,0.35);">ESTX Venture GmbH</strong> — Bangarten 10, FL-9400 Vaduz, Liechtenstein. Operated under license by <strong style="color:rgba(255,255,255,0.35);">Black Forest Digital Assets LLC</strong> (VASP License · ID: 404610845), incorporated in Georgia, Kutaisi city, Avtomshenebeli Street N 88. Trading involves significant risk.</p>
+      <p style="font-size:0.73rem;color:rgba(255,255,255,0.22);line-height:1.7;" data-i18n-html="footer_legal"><strong style="color:rgba(255,255,255,0.35);">ESTX Venture GmbH</strong> — Bangarten 10, FL-9400 Vaduz, Liechtenstein. Operated under license by <strong style="color:rgba(255,255,255,0.35);">Black Forest Digital Assets LLC</strong> (VASP License · ID: 404610845), incorporated in Georgia, Kutaisi city, Avtomshenebeli Street N 88. Trading involves significant risk.</p>
     </div>
     <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
       <div style="font-size:0.72rem;color:rgba(255,255,255,0.18);">© 2026 ESTX Exchange. All rights reserved.</div>
@@ -1051,18 +1085,16 @@ function qtDrawSparkline(prices,isUp){
   const canvas=document.getElementById('qtCanvas');
   if(!canvas||!prices||prices.length<2)return;
   const dpr=window.devicePixelRatio||1;
-  const rect=canvas.parentElement.getBoundingClientRect();
+  const rect=canvas.getBoundingClientRect();
   canvas.width=rect.width*dpr;
   canvas.height=rect.height*dpr;
-  canvas.style.width=rect.width+'px';
-  canvas.style.height=rect.height+'px';
   const ctx=canvas.getContext('2d');
   ctx.scale(dpr,dpr);
   const w=rect.width,h=rect.height;
   ctx.clearRect(0,0,w,h);
   const min=Math.min(...prices),max=Math.max(...prices);
   const range=max-min||1;
-  const pts=prices.map((p,i)=>({x:i/(prices.length-1)*w,y:h-((p-min)/range)*(h*0.7)-h*0.12}));
+  const pts=prices.map((p,i)=>({x:i/(prices.length-1)*w,y:h-((p-min)/range)*(h*0.7)-h*0.08}));
   // Fill
   const grad=ctx.createLinearGradient(0,0,0,h);
   if(isUp){grad.addColorStop(0,'rgba(16,185,129,0.18)');grad.addColorStop(1,'rgba(16,185,129,0)');}
@@ -1202,13 +1234,13 @@ qtInit();
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="8" cy="9" r="1" fill="var(--brand)" stroke="none"/><circle cx="15" cy="10" r="1.5" fill="var(--brand)" stroke="none"/><circle cx="10" cy="15" r="1" fill="var(--brand)" stroke="none"/><circle cx="16" cy="15" r="0.8" fill="var(--brand)" stroke="none"/><circle cx="12" cy="12" r="1.2" fill="var(--brand)" stroke="none"/></svg>
         </div>
         <div>
-          <div style="font-family:'Outfit',sans-serif;font-size:0.92rem;font-weight:700;color:#0a1628;margin-bottom:4px;">We value your privacy</div>
-          <p style="font-family:'DM Sans',sans-serif;font-size:0.8rem;color:#64748b;line-height:1.65;margin:0;">We use cookies to improve your experience, analyse traffic, and personalise content. You can choose to accept all or only essential cookies.</p>
+          <div style="font-family:'Outfit',sans-serif;font-size:0.92rem;font-weight:700;color:#0a1628;margin-bottom:4px;" data-i18n="cookie_title">We value your privacy</div>
+          <p style="font-family:'DM Sans',sans-serif;font-size:0.8rem;color:#64748b;line-height:1.65;margin:0;" data-i18n="cookie_desc">We use cookies to improve your experience, analyse traffic, and personalise content. You can choose to accept all or only essential cookies.</p>
         </div>
       </div>
       <div style="display:flex;gap:10px;justify-content:flex-end;">
-        <button onclick="acceptCookies('essential')" style="font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;color:#64748b;background:none;border:1.5px solid #e2e8f8;border-radius:10px;padding:9px 18px;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--brand)';this.style.color='var(--brand)'" onmouseout="this.style.borderColor='#e2e8f8';this.style.color='#64748b'">Essential Only</button>
-        <button onclick="acceptCookies('all')" style="font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:700;color:#fff;background:var(--brand);border:none;border-radius:10px;padding:9px 22px;cursor:pointer;box-shadow:0 2px 10px rgba(20,76,188,0.25);transition:all 0.2s;" onmouseover="this.style.background='#1a58e0';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--brand)';this.style.transform='none'">Accept All</button>
+        <button onclick="acceptCookies('essential')" style="font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;color:#64748b;background:none;border:1.5px solid #e2e8f8;border-radius:10px;padding:9px 18px;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--brand)';this.style.color='var(--brand)'" onmouseout="this.style.borderColor='#e2e8f8';this.style.color='#64748b'" data-i18n="cookie_essential">Essential Only</button>
+        <button onclick="acceptCookies('all')" style="font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:700;color:#fff;background:var(--brand);border:none;border-radius:10px;padding:9px 22px;cursor:pointer;box-shadow:0 2px 10px rgba(20,76,188,0.25);transition:all 0.2s;" onmouseover="this.style.background='#1a58e0';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--brand)';this.style.transform='none'" data-i18n="cookie_accept">Accept All</button>
       </div>
     </div>`;
   document.body.appendChild(bar);
@@ -1226,6 +1258,446 @@ const s=document.createElement('style');
 s.textContent='@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.75);}}';
 document.head.appendChild(s);
 
+// ── i18n TRANSLATION SYSTEM ─────────────────────────────
+const i18n = {
+  en: {
+    // Nav
+    nav_home: 'Home', nav_markets: 'Markets', nav_why: 'Why ESTX', nav_buy: 'Buy Crypto',
+    nav_institutional: 'Institutional', nav_contact: 'Contact', nav_login: 'Login', nav_signup: 'Sign Up',
+    // Hero
+    hero_live: 'Live', hero_launch_date: 'Official launch June 30, 2026',
+    hero_heading: 'Where<br/><span style="color:var(--brand);">Crypto</span><br/>Starts to Trade.',
+    hero_subtitle: 'ESTX Exchange introduces a revolutionary three-tier market structure \u2014 built for new token projects, memecoins, security tokens, and major cryptocurrencies alike.',
+    hero_start_trading: 'Start Trading <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+    hero_learn_more: 'Learn More',
+    hero_market_tiers: 'Market Tiers', hero_crypto_assets: 'Crypto Assets', hero_licensed: 'Licensed',
+    // Countdown
+    cd_label: 'Official Token Launch', cd_date: 'June 30, 2026 \u00B7 10:00 AM CET',
+    cd_days: 'Days', cd_hours: 'Hours', cd_minutes: 'Minutes', cd_seconds: 'Seconds',
+    cd_live: 'Live on Trade.ESTX.Exchange',
+    cd_join: 'Join the ESTX Army <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+    // Markets
+    markets_label: 'Live Markets', markets_heading: 'Markets That Never Sleep',
+    markets_subtitle: '200+ digital assets available on ESTX Exchange \u2014 updated in real time.',
+    markets_view_all: 'View All Markets <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+    markets_start_trading: 'Start Trading Now <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+    // Ambassador
+    amb_label: 'Official Brand Ambassador',
+    amb_role: 'Former Formula 1 Pilot & Current IndyCar Driver',
+    amb_p1: 'ESTX is proud to partner with Romain Grosjean as our official brand ambassador \u2014 bringing the speed, precision, and competitive spirit of world-class motorsport to the world of digital assets.',
+    amb_p2: 'Just like racing, crypto rewards those who are fast, decisive, and ahead of the curve.',
+    amb_cta: 'Join the Community',
+    // Why ESTX
+    why_label: 'Why ESTX', why_heading: 'Not Just Another Crypto Exchange',
+    why_subtitle: 'ESTX goes beyond standard crypto trading. Our main focus is listing new token projects, memecoins, and security tokens \u2014 alongside all major cryptocurrencies like BTC, ETH, SOL, XRP and BNB.',
+    why_c1_title: 'New Token Listings', why_c1_desc: 'The launchpad for promising projects that cannot afford listings on Binance or Coinbase. A structured onboarding and screening process ensures only legitimate projects make it through.',
+    why_c2_title: 'Curated Memecoins', why_c2_desc: 'A carefully vetted selection of emerging memecoins. Get early access to the tokens the market is talking about \u2014 with quality screening to separate signal from noise.',
+    why_c3_title: 'Security Tokens', why_c3_desc: 'A dedicated segment for security tokens \u2014 bridging traditional finance and blockchain with compliant, regulated digital securities.',
+    why_c4_title: 'Professional Trading', why_c4_desc: 'Advanced order book, real-time charts, and instant execution. Professional-grade tools for serious traders.',
+    why_c5_title: 'Secure & Regulated', why_c5_desc: 'Multi-layered security framework. Two-factor authentication, cold storage, and full regulatory compliance under VASP license.',
+    why_c6_title: 'Instant Buy with Card', why_c6_desc: 'Buy crypto instantly with credit card or debit card. Support for USD, EUR, GBP, AUD, and over 48 local currencies worldwide.',
+    // CTA
+    cta_heading: 'Start Trading on ESTX Today',
+    cta_subtitle: 'Create your free account in minutes and access the next generation of digital asset markets.',
+    cta_create_account: 'Create Free Account', cta_learn_more: 'Learn More',
+    // Market Structure
+    ms_label: 'Market Structure', ms_heading: 'Three Tiers. Clear Segmentation.',
+    ms_subtitle: 'ESTX offers three clearly defined market segments \u2014 providing the right environment for every stage of a digital asset\u2019s lifecycle.',
+    ms_t1_sub: 'Security Tokens',
+    ms_t1_desc: 'The premium segment. Dedicated to security tokens and regulated digital securities \u2014 where traditional finance meets blockchain infrastructure.',
+    ms_t1_li1: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Security token listings',
+    ms_t1_li2: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Full regulatory compliance',
+    ms_t1_li3: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Institutional-grade infrastructure',
+    ms_t1_li4: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Real-world asset tokenization',
+    ms_t2_sub: 'Established Crypto Assets',
+    ms_t2_desc: 'The core trading tier. Mid-cap and established cryptocurrency projects with extended liquidity structures and institutional-grade connectivity.',
+    ms_t2_li1: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Mid-cap crypto projects',
+    ms_t2_li2: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Extended liquidity structure',
+    ms_t2_li3: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Institutional connectivity',
+    ms_t2_li4: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Proven project track records',
+    ms_t3_sub: 'Early-Stage & Micro Tokens',
+    ms_t3_desc: 'The launchpad tier. Focused on micro tokens, early-stage coins, and selected memecoins. Built for token issuers who need an accessible, credible listing venue.',
+    ms_t3_li1: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>New token project listings',
+    ms_t3_li2: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Curated memecoins',
+    ms_t3_li3: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Structured screening process',
+    ms_t3_li4: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Affordable listing fees',
+    // Pro Trading
+    pro_label: 'Pro Trading', pro_heading: 'Trade Like a Professional',
+    pro_subtitle: 'Experience fast execution, advanced charting, and a deep order book \u2014 all in a clean, responsive interface designed for performance.',
+    pro_c1_title: 'Real-Time Charts', pro_c1_desc: 'TradingView-powered charts with full technical analysis toolkit.',
+    pro_c2_title: 'Order Book Depth', pro_c2_desc: 'Full visibility into market depth with live bid/ask spread data.',
+    pro_c3_title: 'Instant Execution', pro_c3_desc: 'Market and limit orders processed instantly with zero re-quotes.',
+    // Buy Crypto
+    buy_label: 'Buy Crypto', buy_heading: 'Buy Cryptocurrency Instantly with Card',
+    buy_subtitle: 'Start buying and selling crypto in minutes. On ESTX, the process is secure and simple.',
+    buy_s1_title: 'Create Your ESTX Account', buy_s1_desc: 'Sign up with your email or phone number and your country of residence. Create a strong password to protect your account.',
+    buy_s2_title: 'Verify Your Identity', buy_s2_desc: 'Complete a quick and secure Identity Verification (KYC) process by uploading the required documents.',
+    buy_s3_title: 'Add a Payment Method', buy_s3_desc: 'Choose your preferred payment method \u2014 credit card, debit card, bank transfer, or others.',
+    buy_s4_title: 'Buy Cryptocurrency', buy_s4_desc: 'Purchase Bitcoin, Ethereum, Solana and 200+ cryptocurrencies using USD, EUR, GBP, AUD, and over 48 local currencies.',
+    // Quick Trade
+    qt_convert: 'Convert', qt_you_pay: 'You Pay', qt_you_receive: 'You Receive',
+    qt_buy_btn: 'Buy on ESTX Exchange <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+    qt_prices_by: 'Prices by CoinGecko \u00B7 Updated in real time',
+    // Security
+    sec_label: 'Security & Compliance', sec_heading: 'Multi-Layered Security Framework',
+    sec_subtitle: 'We\u2019ve built a comprehensive security framework that addresses vulnerabilities, data protection, user privacy, and global compliance standards.',
+    sec_2fa_title: 'Two-Factor Authentication', sec_2fa_desc: 'Mandatory 2FA on all withdrawals. Supported across every account action for maximum asset protection.',
+    sec_cold_title: 'Cold Storage Custody', sec_cold_desc: 'The majority of digital assets are stored in secure, offline cold storage \u2014 completely isolated from online threats.',
+    sec_login_title: 'Suspicious Login Detection', sec_login_desc: 'Real-time monitoring with automated alerts for unusual login patterns, device changes, or geographic anomalies.',
+    sec_vasp_title: 'VASP Licensed & Compliant', sec_vasp_desc: 'Virtual Assets Service Provider license ensuring full regulatory compliance, operational transparency, and user fund protection.',
+    sec_bot_title: 'Anti-Bot Protection', sec_bot_desc: 'Cloudflare Turnstile integration on all login and signup forms to prevent automated attacks and credential stuffing.',
+    sec_ent_heading: 'Enterprise-Grade Protection',
+    sec_ent_desc: 'Your digital assets are safeguarded by institutional-level security infrastructure \u2014 the same standards used by leading financial institutions.',
+    sec_stat_uptime: 'Uptime SLA', sec_stat_cold: 'Cold Storage', sec_stat_monitoring: 'Monitoring', sec_stat_licensed: 'Licensed',
+    // Institutional
+    inst_title: 'Institutional Access',
+    inst_desc: 'ESTX provides dedicated infrastructure for institutional participants \u2014 deep liquidity pools, API connectivity, OTC trading desks, and bespoke custody solutions.',
+    inst_li1: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>High-frequency trading API',
+    inst_li2: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>OTC desk for large-block trades',
+    inst_li3: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Dedicated relationship management',
+    inst_cta: 'Contact Institutional Team',
+    // List Token
+    list_title: 'List Your Token',
+    list_desc: 'ESTX provides a transparent, structured listing pathway for projects of all sizes \u2014 from early-stage tokens to established networks.',
+    list_li1: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Transparent listing criteria',
+    list_li2: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Three-tier placement system',
+    list_li3: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Marketing support & community access',
+    list_cta: 'Apply for Listing',
+    // Token Community
+    token_label: 'ESTX Token', token_heading: 'Join the ESTX Army',
+    token_subtitle: 'Join the ESTX Token Community and become part of the fast-growing ESTX ecosystem. Early community members receive exclusive benefits and priority access to new features.',
+    token_cta: 'Join Community <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+    // FAQ
+    faq_label: 'FAQ', faq_heading: 'Questions? We\u2019ve Got Answers.',
+    faq_subtitle: 'Find quick answers to common questions about our platform and services.',
+    faq_q0: 'What is ESTX Exchange?',
+    faq_a0: 'ESTX is a regulated digital asset exchange that stands apart from conventional crypto platforms. While we support all major cryptocurrencies like BTC, ETH, SOL, XRP, and BNB, our core focus is on listing new token projects, curated memecoins, and security tokens. Our unique three-tier market structure \u2014 Venture, Market, and Prime \u2014 provides clear segmentation for different asset classes and investor profiles.',
+    faq_q1: 'How is ESTX different from Binance, Coinbase or other exchanges?',
+    faq_a1: 'ESTX is specifically designed to serve projects and communities that are underserved by major exchanges. We provide an accessible, structured listing path for token issuers who cannot afford the high fees and long waiting periods at platforms like Binance or Coinbase \u2014 while maintaining rigorous screening to ensure project quality and legitimacy. Our three-tier structure gives every project the right market environment.',
+    faq_q2: 'Is ESTX a regulated exchange?',
+    faq_a2: 'Yes. ESTX is operated and managed by ESTX Venture GmbH, headquartered at Bangarten 10, FL-9490 Vaduz, Liechtenstein. The exchange operates under a Virtual Assets Service Provider (VASP) license held by Black Forest Digital Assets LLC (BFDA), a company incorporated in Georgia with Identification Number 404610845. This ensures full regulatory compliance and operational transparency.',
+    faq_q3: 'How can I buy cryptocurrency on ESTX?',
+    faq_a3: 'Getting started is simple: (1) Create an account with your email and country of residence, (2) Complete identity verification (KYC) by uploading required documents, (3) Add your payment method \u2014 credit card, debit card, or bank transfer, (4) Start buying Bitcoin, Ethereum, Solana and 200+ other cryptocurrencies using USD, EUR, GBP, AUD, and over 48 additional local currencies.',
+    faq_q4: 'What is the ESTX Token?',
+    faq_a4: 'The ESTX Token is the native utility token of the ESTX Exchange ecosystem. Token holders benefit from reduced trading fees, governance participation, exclusive access to new token listings and launchpad events, and staking rewards. The official ESTX Token launch is scheduled for June 30, 2026.',
+    faq_q5: 'How do I list my token on ESTX?',
+    faq_a5: 'ESTX provides an accessible and structured listing process. Visit our "Apply for Listing" page to submit your project for review. Our team evaluates every submission through a comprehensive screening process \u2014 covering project legitimacy, team background, tokenomics, and community \u2014 before approving listings on the appropriate market tier (Venture, Market, or Prime).',
+    faq_q6: 'How do I secure my ESTX account?',
+    faq_a6: 'ESTX provides multiple layers of account security: enable Two-Factor Authentication (2FA) \u2014 which is mandatory for withdrawals \u2014 use a strong, unique password, and monitor your active sessions regularly. Our platform also includes suspicious login detection that alerts you to any unusual access attempts on your account.',
+    // Contact
+    contact_label: 'Get in Touch', contact_heading: 'Let\u2019s Build the Future of Finance Together',
+    contact_subtitle: 'Whether you\u2019re looking to list your token, explore institutional services, or simply have questions \u2014 our team is ready.',
+    contact_office_label: 'Registered Office', contact_reg_label: 'Regulatory',
+    contact_reg_value: 'VASP License \u00B7 Black Forest Digital Assets LLC \u00B7 Georgia',
+    form_name: 'Full Name *', form_email: 'Email *',
+    form_phone: 'Phone <span style="opacity:0.5;">(Optional)</span>',
+    form_subject: 'Subject', form_message: 'Message *',
+    form_subject_default: 'Select a subject', form_subject_listing: 'Token Listing',
+    form_subject_institutional: 'Institutional Services', form_subject_general: 'General Inquiry',
+    form_subject_support: 'Technical Support', form_subject_partnership: 'Partnership',
+    form_submit: 'Send Message <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>',
+    form_success: 'Message sent! We\u2019ll respond within 24 hours.',
+    // Footer
+    footer_desc: 'Next-generation digital asset exchange with a purpose-built three-tier market structure.',
+    footer_signup: 'Sign Up Free',
+    footer_col_exchange: 'Exchange', footer_col_service: 'Service', footer_col_legal: 'Legal',
+    footer_crypto_prices: 'Crypto Prices', footer_trade_now: 'Trade Now', footer_buy_crypto: 'Buy Crypto',
+    footer_institutional: 'Institutional', footer_list_token: 'List Token',
+    footer_help: 'Help Center', footer_guide: 'Beginner\u2019s Guide', footer_ticket: 'Submit a Ticket',
+    footer_contact: 'Contact Us',
+    footer_terms: 'Terms of Use', footer_privacy: 'Privacy Policy', footer_risk: 'Risk Disclosure',
+    footer_security: 'Security', footer_about: 'About Us',
+    footer_legal: '<strong style="color:rgba(255,255,255,0.35);">ESTX Venture GmbH</strong> \u2014 Bangarten 10, FL-9400 Vaduz, Liechtenstein. Operated under license by <strong style="color:rgba(255,255,255,0.35);">Black Forest Digital Assets LLC</strong> (VASP License \u00B7 ID: 404610845), incorporated in Georgia, Kutaisi city, Avtomshenebeli Street N 88. Trading involves significant risk.',
+    // Cookie
+    cookie_title: 'We value your privacy',
+    cookie_desc: 'We use cookies to improve your experience, analyse traffic, and personalise content. You can choose to accept all or only essential cookies.',
+    cookie_essential: 'Essential Only', cookie_accept: 'Accept All',
+    // Popup
+    popup_heading: 'Get Early Access to<br/>ESTX Exchange',
+    popup_desc: 'Create your account today and generate your wallet before the official launch. Be ready when ESTX goes live at the end of June.',
+    popup_li1: 'Open your account now', popup_li2: 'Generate your wallet', popup_li3: 'Be ready before launch',
+    popup_register: 'Register Now <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>', popup_already: 'I Already Have an Account',
+    popup_free: 'Free to join \u00B7 No commitment required',
+  },
+  de: {
+    // Nav
+    nav_home: 'Startseite', nav_markets: 'M\u00E4rkte', nav_why: 'Warum ESTX', nav_buy: 'Krypto kaufen',
+    nav_institutional: 'Institutionell', nav_contact: 'Kontakt', nav_login: 'Anmelden', nav_signup: 'Registrieren',
+    // Hero
+    hero_live: 'Live', hero_launch_date: 'Offizieller Launch am 30. Juni 2026',
+    hero_heading: 'Wo<br/><span style="color:var(--brand);">Krypto</span><br/>beginnt zu handeln.',
+    hero_subtitle: 'ESTX Exchange f\u00FChrt eine revolution\u00E4re Drei-Stufen-Marktstruktur ein \u2014 entwickelt f\u00FCr neue Token-Projekte, Memecoins, Security Token und alle g\u00E4ngigen Kryptow\u00E4hrungen.',
+    hero_start_trading: 'Jetzt handeln <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+    hero_learn_more: 'Mehr erfahren',
+    hero_market_tiers: 'Marktstufen', hero_crypto_assets: 'Krypto-Assets', hero_licensed: 'Lizenziert',
+    // Countdown
+    cd_label: 'Offizieller Token-Launch', cd_date: '30. Juni 2026 \u00B7 10:00 Uhr MEZ',
+    cd_days: 'Tage', cd_hours: 'Stunden', cd_minutes: 'Minuten', cd_seconds: 'Sekunden',
+    cd_live: 'Live auf Trade.ESTX.Exchange',
+    cd_join: 'Werde Teil der ESTX Army <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+    // Markets
+    markets_label: 'Live-M\u00E4rkte', markets_heading: 'M\u00E4rkte, die niemals schlafen',
+    markets_subtitle: '\u00DCber 200 digitale Assets auf ESTX Exchange \u2014 in Echtzeit aktualisiert.',
+    markets_view_all: 'Alle M\u00E4rkte anzeigen <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+    markets_start_trading: 'Jetzt mit dem Handel beginnen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+    // Ambassador
+    amb_label: 'Offizieller Markenbotschafter',
+    amb_role: 'Ehemaliger Formel-1-Pilot & aktiver IndyCar-Fahrer',
+    amb_p1: 'ESTX ist stolz auf die Partnerschaft mit Romain Grosjean als offizieller Markenbotschafter \u2014 er bringt die Geschwindigkeit, Pr\u00E4zision und den Wettbewerbsgeist des Weltklasse-Motorsports in die Welt der digitalen Assets.',
+    amb_p2: 'Genau wie im Rennsport belohnt Krypto diejenigen, die schnell, entschlossen und der Konkurrenz voraus sind.',
+    amb_cta: 'Community beitreten',
+    // Why ESTX
+    why_label: 'Warum ESTX', why_heading: 'Nicht einfach eine weitere Krypto-B\u00F6rse',
+    why_subtitle: 'ESTX geht \u00FCber den Standard-Kryptohandel hinaus. Unser Hauptfokus liegt auf der Listung neuer Token-Projekte, Memecoins und Security Token \u2014 neben allen g\u00E4ngigen Kryptow\u00E4hrungen wie BTC, ETH, SOL, XRP und BNB.',
+    why_c1_title: 'Neue Token-Listings', why_c1_desc: 'Die Startrampe f\u00FCr vielversprechende Projekte, die sich Listings auf Binance oder Coinbase nicht leisten k\u00F6nnen. Ein strukturierter Onboarding- und Pr\u00FCfprozess stellt sicher, dass nur seri\u00F6se Projekte zugelassen werden.',
+    why_c2_title: 'Kuratierte Memecoins', why_c2_desc: 'Eine sorgf\u00E4ltig gepr\u00FCfte Auswahl aufstrebender Memecoins. Fr\u00FChzeitiger Zugang zu den Token, \u00FCber die der Markt spricht \u2014 mit Qualit\u00E4tspr\u00FCfung, um Signal von Rauschen zu trennen.',
+    why_c3_title: 'Security Token', why_c3_desc: 'Ein eigenes Segment f\u00FCr Security Token \u2014 die Br\u00FCcke zwischen traditionellem Finanzwesen und Blockchain mit konformen, regulierten digitalen Wertpapieren.',
+    why_c4_title: 'Professioneller Handel', why_c4_desc: 'Fortschrittliches Orderbuch, Echtzeit-Charts und sofortige Ausf\u00FChrung. Professionelle Tools f\u00FCr erfahrene Trader.',
+    why_c5_title: 'Sicher & reguliert', why_c5_desc: 'Mehrschichtiges Sicherheitsframework. Zwei-Faktor-Authentifizierung, Cold Storage und vollst\u00E4ndige regulatorische Konformit\u00E4t unter VASP-Lizenz.',
+    why_c6_title: 'Sofortkauf per Karte', why_c6_desc: 'Krypto sofort mit Kredit- oder Debitkarte kaufen. Unterst\u00FCtzung f\u00FCr USD, EUR, GBP, AUD und \u00FCber 48 lokale W\u00E4hrungen weltweit.',
+    // CTA
+    cta_heading: 'Starte noch heute mit ESTX',
+    cta_subtitle: 'Erstelle dein kostenloses Konto in wenigen Minuten und erhalte Zugang zur n\u00E4chsten Generation digitaler Asset-M\u00E4rkte.',
+    cta_create_account: 'Kostenloses Konto erstellen', cta_learn_more: 'Mehr erfahren',
+    // Market Structure
+    ms_label: 'Marktstruktur', ms_heading: 'Drei Stufen. Klare Segmentierung.',
+    ms_subtitle: 'ESTX bietet drei klar definierte Marktsegmente \u2014 die richtige Umgebung f\u00FCr jede Phase im Lebenszyklus eines digitalen Assets.',
+    ms_t1_sub: 'Security Token',
+    ms_t1_desc: 'Das Premium-Segment. Gewidmet Security Token und regulierten digitalen Wertpapieren \u2014 dort, wo traditionelles Finanzwesen auf Blockchain-Infrastruktur trifft.',
+    ms_t1_li1: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Security-Token-Listings',
+    ms_t1_li2: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Vollst\u00E4ndige regulatorische Konformit\u00E4t',
+    ms_t1_li3: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Infrastruktur auf institutionellem Niveau',
+    ms_t1_li4: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Tokenisierung realer Verm\u00F6genswerte',
+    ms_t2_sub: 'Etablierte Krypto-Assets',
+    ms_t2_desc: 'Die zentrale Handelsstufe. Mid-Cap- und etablierte Kryptow\u00E4hrungsprojekte mit erweiterten Liquidit\u00E4tsstrukturen und institutioneller Anbindung.',
+    ms_t2_li1: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Mid-Cap-Kryptoprojekte',
+    ms_t2_li2: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Erweiterte Liquidit\u00E4tsstruktur',
+    ms_t2_li3: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Institutionelle Anbindung',
+    ms_t2_li4: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Nachgewiesene Projekt-Erfolgsbilanz',
+    ms_t3_sub: 'Fr\u00FChphasen- & Micro-Token',
+    ms_t3_desc: 'Die Launchpad-Stufe. Fokussiert auf Micro-Token, Fr\u00FChphasen-Coins und ausgew\u00E4hlte Memecoins. Entwickelt f\u00FCr Token-Emittenten, die einen zug\u00E4nglichen, glaubw\u00FCrdigen Listungsort ben\u00F6tigen.',
+    ms_t3_li1: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Neue Token-Projekt-Listings',
+    ms_t3_li2: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Kuratierte Memecoins',
+    ms_t3_li3: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Strukturierter Pr\u00FCfprozess',
+    ms_t3_li4: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Erschwingliche Listing-Geb\u00FChren',
+    // Pro Trading
+    pro_label: 'Profi-Handel', pro_heading: 'Handeln wie ein Profi',
+    pro_subtitle: 'Erlebe schnelle Ausf\u00FChrung, fortschrittliche Charts und ein tiefes Orderbuch \u2014 alles in einer sauberen, responsiven Oberfl\u00E4che, die auf Performance ausgelegt ist.',
+    pro_c1_title: 'Echtzeit-Charts', pro_c1_desc: 'TradingView-basierte Charts mit vollst\u00E4ndigem technischen Analyse-Toolkit.',
+    pro_c2_title: 'Orderbuch-Tiefe', pro_c2_desc: 'Volle Sichtbarkeit der Markttiefe mit Live-Bid/Ask-Spread-Daten.',
+    pro_c3_title: 'Sofortige Ausf\u00FChrung', pro_c3_desc: 'Market- und Limit-Orders werden sofort ohne Re-Quotes ausgef\u00FChrt.',
+    // Buy Crypto
+    buy_label: 'Krypto kaufen', buy_heading: 'Kryptow\u00E4hrung sofort mit Karte kaufen',
+    buy_subtitle: 'Beginne innerhalb von Minuten mit dem Kauf und Verkauf von Krypto. Bei ESTX ist der Prozess sicher und einfach.',
+    buy_s1_title: 'ESTX-Konto erstellen', buy_s1_desc: 'Registriere dich mit deiner E-Mail oder Telefonnummer und deinem Wohnsitzland. Erstelle ein starkes Passwort zum Schutz deines Kontos.',
+    buy_s2_title: 'Identit\u00E4t verifizieren', buy_s2_desc: 'Schlie\u00DFe einen schnellen und sicheren Identit\u00E4tsnachweis (KYC) ab, indem du die erforderlichen Dokumente hochl\u00E4dst.',
+    buy_s3_title: 'Zahlungsmethode hinzuf\u00FCgen', buy_s3_desc: 'W\u00E4hle deine bevorzugte Zahlungsmethode \u2014 Kreditkarte, Debitkarte, Bank\u00FCberweisung oder andere.',
+    buy_s4_title: 'Kryptow\u00E4hrung kaufen', buy_s4_desc: 'Kaufe Bitcoin, Ethereum, Solana und \u00FCber 200 Kryptow\u00E4hrungen mit USD, EUR, GBP, AUD und \u00FCber 48 lokalen W\u00E4hrungen.',
+    // Quick Trade
+    qt_convert: 'Umrechnen', qt_you_pay: 'Du zahlst', qt_you_receive: 'Du erh\u00E4ltst',
+    qt_buy_btn: 'Auf ESTX Exchange kaufen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+    qt_prices_by: 'Preise von CoinGecko \u00B7 In Echtzeit aktualisiert',
+    // Security
+    sec_label: 'Sicherheit & Compliance', sec_heading: 'Mehrschichtiges Sicherheitsframework',
+    sec_subtitle: 'Wir haben ein umfassendes Sicherheitsframework aufgebaut, das Schwachstellen, Datenschutz, Nutzerprivatsph\u00E4re und globale Compliance-Standards adressiert.',
+    sec_2fa_title: 'Zwei-Faktor-Authentifizierung', sec_2fa_desc: 'Verpflichtende 2FA bei allen Auszahlungen. Unterst\u00FCtzt bei jeder Kontoaktion f\u00FCr maximalen Asset-Schutz.',
+    sec_cold_title: 'Cold-Storage-Verwahrung', sec_cold_desc: 'Der Gro\u00DFteil der digitalen Assets wird in sicherem, offline Cold Storage verwahrt \u2014 vollst\u00E4ndig isoliert von Online-Bedrohungen.',
+    sec_login_title: 'Erkennung verd\u00E4chtiger Anmeldungen', sec_login_desc: 'Echtzeit-\u00DCberwachung mit automatischen Benachrichtigungen bei ungew\u00F6hnlichen Anmeldemustern, Ger\u00E4tewechseln oder geografischen Auff\u00E4lligkeiten.',
+    sec_vasp_title: 'VASP-lizenziert & konform', sec_vasp_desc: 'VASP-Lizenz (Virtual Assets Service Provider) f\u00FCr vollst\u00E4ndige regulatorische Konformit\u00E4t, operationelle Transparenz und Schutz der Nutzermittel.',
+    sec_bot_title: 'Anti-Bot-Schutz', sec_bot_desc: 'Cloudflare-Turnstile-Integration bei allen Anmelde- und Registrierungsformularen zum Schutz vor automatisierten Angriffen und Credential Stuffing.',
+    sec_ent_heading: 'Schutz auf Enterprise-Niveau',
+    sec_ent_desc: 'Deine digitalen Assets werden durch Sicherheitsinfrastruktur auf institutionellem Niveau gesch\u00FCtzt \u2014 dieselben Standards, die von f\u00FChrenden Finanzinstituten verwendet werden.',
+    sec_stat_uptime: 'Verf\u00FCgbarkeit', sec_stat_cold: 'Cold Storage', sec_stat_monitoring: '\u00DCberwachung', sec_stat_licensed: 'Lizenziert',
+    // Institutional
+    inst_title: 'Institutioneller Zugang',
+    inst_desc: 'ESTX bietet dedizierte Infrastruktur f\u00FCr institutionelle Teilnehmer \u2014 tiefe Liquidit\u00E4tspools, API-Anbindung, OTC-Trading-Desks und ma\u00DFgeschneiderte Verwahrungsl\u00F6sungen.',
+    inst_li1: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Hochfrequenz-Trading-API',
+    inst_li2: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>OTC-Desk f\u00FCr Blockhandel',
+    inst_li3: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Dediziertes Relationship Management',
+    inst_cta: 'Institutionelles Team kontaktieren',
+    // List Token
+    list_title: 'Token listen lassen',
+    list_desc: 'ESTX bietet einen transparenten, strukturierten Listing-Prozess f\u00FCr Projekte jeder Gr\u00F6\u00DFe \u2014 von Fr\u00FChphasen-Token bis hin zu etablierten Netzwerken.',
+    list_li1: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Transparente Listing-Kriterien',
+    list_li2: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Drei-Stufen-Platzierungssystem',
+    list_li3: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Marketing-Support & Community-Zugang',
+    list_cta: 'F\u00FCr Listing bewerben',
+    // Token Community
+    token_label: 'ESTX Token', token_heading: 'Werde Teil der ESTX Army',
+    token_subtitle: 'Tritt der ESTX Token Community bei und werde Teil des schnell wachsenden ESTX-\u00D6kosystems. Fr\u00FChe Community-Mitglieder erhalten exklusive Vorteile und bevorzugten Zugang zu neuen Funktionen.',
+    token_cta: 'Community beitreten <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+    // FAQ
+    faq_label: 'FAQ', faq_heading: 'Fragen? Wir haben Antworten.',
+    faq_subtitle: 'Finde schnelle Antworten auf h\u00E4ufige Fragen zu unserer Plattform und unseren Dienstleistungen.',
+    faq_q0: 'Was ist ESTX Exchange?',
+    faq_a0: 'ESTX ist eine regulierte B\u00F6rse f\u00FCr digitale Assets, die sich von herk\u00F6mmlichen Krypto-Plattformen abhebt. W\u00E4hrend wir alle g\u00E4ngigen Kryptow\u00E4hrungen wie BTC, ETH, SOL, XRP und BNB unterst\u00FCtzen, liegt unser Kernfokus auf der Listung neuer Token-Projekte, kuratierter Memecoins und Security Token. Unsere einzigartige Drei-Stufen-Marktstruktur \u2014 Venture, Market und Prime \u2014 bietet eine klare Segmentierung f\u00FCr verschiedene Assetklassen und Anlegerprofile.',
+    faq_q1: 'Wie unterscheidet sich ESTX von Binance, Coinbase oder anderen B\u00F6rsen?',
+    faq_a1: 'ESTX wurde speziell f\u00FCr Projekte und Communities entwickelt, die von gro\u00DFen B\u00F6rsen unterversorgt werden. Wir bieten einen zug\u00E4nglichen, strukturierten Listing-Weg f\u00FCr Token-Emittenten, die sich die hohen Geb\u00FChren und langen Wartezeiten bei Plattformen wie Binance oder Coinbase nicht leisten k\u00F6nnen \u2014 bei gleichzeitig strenger Pr\u00FCfung zur Sicherstellung der Projektqualit\u00E4t und Legitimit\u00E4t. Unsere Drei-Stufen-Struktur bietet jedem Projekt die richtige Marktumgebung.',
+    faq_q2: 'Ist ESTX eine regulierte B\u00F6rse?',
+    faq_a2: 'Ja. ESTX wird von der ESTX Venture GmbH betrieben und verwaltet, mit Sitz in Bangarten 10, FL-9490 Vaduz, Liechtenstein. Die B\u00F6rse operiert unter einer VASP-Lizenz (Virtual Assets Service Provider), gehalten von der Black Forest Digital Assets LLC (BFDA), einem in Georgien eingetragenen Unternehmen mit der Identifikationsnummer 404610845. Dies gew\u00E4hrleistet vollst\u00E4ndige regulatorische Konformit\u00E4t und operationelle Transparenz.',
+    faq_q3: 'Wie kann ich auf ESTX Kryptow\u00E4hrungen kaufen?',
+    faq_a3: 'Der Einstieg ist einfach: (1) Erstelle ein Konto mit deiner E-Mail und deinem Wohnsitzland, (2) Schlie\u00DFe die Identit\u00E4tsverifizierung (KYC) durch Hochladen der erforderlichen Dokumente ab, (3) F\u00FCge deine Zahlungsmethode hinzu \u2014 Kreditkarte, Debitkarte oder Bank\u00FCberweisung, (4) Beginne mit dem Kauf von Bitcoin, Ethereum, Solana und \u00FCber 200 weiteren Kryptow\u00E4hrungen mit USD, EUR, GBP, AUD und \u00FCber 48 zus\u00E4tzlichen lokalen W\u00E4hrungen.',
+    faq_q4: 'Was ist der ESTX Token?',
+    faq_a4: 'Der ESTX Token ist der native Utility-Token des ESTX Exchange-\u00D6kosystems. Token-Inhaber profitieren von reduzierten Handelsgeb\u00FChren, Governance-Beteiligung, exklusivem Zugang zu neuen Token-Listings und Launchpad-Events sowie Staking-Rewards. Der offizielle ESTX Token Launch ist f\u00FCr den 30. Juni 2026 geplant.',
+    faq_q5: 'Wie kann ich meinen Token auf ESTX listen lassen?',
+    faq_a5: 'ESTX bietet einen zug\u00E4nglichen und strukturierten Listing-Prozess. Besuche unsere Seite \u201EF\u00FCr Listing bewerben\u201C, um dein Projekt zur Pr\u00FCfung einzureichen. Unser Team bewertet jede Einreichung durch einen umfassenden Screening-Prozess \u2014 einschlie\u00DFlich Projektlegitimit\u00E4t, Team-Hintergrund, Tokenomics und Community \u2014 bevor Listings auf der entsprechenden Marktstufe (Venture, Market oder Prime) genehmigt werden.',
+    faq_q6: 'Wie sichere ich mein ESTX-Konto?',
+    faq_a6: 'ESTX bietet mehrere Sicherheitsebenen: Aktiviere die Zwei-Faktor-Authentifizierung (2FA) \u2014 die f\u00FCr Auszahlungen verpflichtend ist \u2014 verwende ein starkes, einzigartiges Passwort und \u00FCberwache deine aktiven Sitzungen regelm\u00E4\u00DFig. Unsere Plattform enth\u00E4lt zudem eine Erkennung verd\u00E4chtiger Anmeldungen, die dich bei ungew\u00F6hnlichen Zugriffsversuchen auf dein Konto benachrichtigt.',
+    // Contact
+    contact_label: 'Kontakt', contact_heading: 'Gemeinsam die Zukunft der Finanzwelt gestalten',
+    contact_subtitle: 'Ob du deinen Token listen lassen, institutionelle Dienste erkunden oder einfach Fragen stellen m\u00F6chtest \u2014 unser Team ist bereit.',
+    contact_office_label: 'Firmensitz', contact_reg_label: 'Regulierung',
+    contact_reg_value: 'VASP-Lizenz \u00B7 Black Forest Digital Assets LLC \u00B7 Georgien',
+    form_name: 'Vollst\u00E4ndiger Name *', form_email: 'E-Mail *',
+    form_phone: 'Telefon <span style="opacity:0.5;">(Optional)</span>',
+    form_subject: 'Betreff', form_message: 'Nachricht *',
+    form_subject_default: 'Betreff ausw\u00E4hlen', form_subject_listing: 'Token-Listing',
+    form_subject_institutional: 'Institutionelle Dienste', form_subject_general: 'Allgemeine Anfrage',
+    form_subject_support: 'Technischer Support', form_subject_partnership: 'Partnerschaft',
+    form_submit: 'Nachricht senden <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>',
+    form_success: 'Nachricht gesendet! Wir antworten innerhalb von 24 Stunden.',
+    // Footer
+    footer_desc: 'B\u00F6rse der n\u00E4chsten Generation f\u00FCr digitale Assets mit einer speziell entwickelten Drei-Stufen-Marktstruktur.',
+    footer_signup: 'Kostenlos registrieren',
+    footer_col_exchange: 'B\u00F6rse', footer_col_service: 'Service', footer_col_legal: 'Rechtliches',
+    footer_crypto_prices: 'Krypto-Kurse', footer_trade_now: 'Jetzt handeln', footer_buy_crypto: 'Krypto kaufen',
+    footer_institutional: 'Institutionell', footer_list_token: 'Token listen',
+    footer_help: 'Hilfecenter', footer_guide: 'Einsteiger-Leitfaden', footer_ticket: 'Ticket einreichen',
+    footer_contact: 'Kontakt',
+    footer_terms: 'Nutzungsbedingungen', footer_privacy: 'Datenschutzerkl\u00E4rung', footer_risk: 'Risikohinweis',
+    footer_security: 'Sicherheit', footer_about: '\u00DCber uns',
+    footer_legal: '<strong style="color:rgba(255,255,255,0.35);">ESTX Venture GmbH</strong> \u2014 Bangarten 10, FL-9400 Vaduz, Liechtenstein. Betrieben unter Lizenz von <strong style="color:rgba(255,255,255,0.35);">Black Forest Digital Assets LLC</strong> (VASP-Lizenz \u00B7 ID: 404610845), eingetragen in Georgien, Stadt Kutaissi, Avtomshenebeli Stra\u00DFe Nr. 88. Der Handel ist mit erheblichen Risiken verbunden.',
+    // Cookie
+    cookie_title: 'Wir sch\u00E4tzen Ihre Privatsph\u00E4re',
+    cookie_desc: 'Wir verwenden Cookies, um Ihr Erlebnis zu verbessern, den Datenverkehr zu analysieren und Inhalte zu personalisieren. Sie k\u00F6nnen alle oder nur essenzielle Cookies akzeptieren.',
+    cookie_essential: 'Nur essenzielle', cookie_accept: 'Alle akzeptieren',
+    // Popup
+    popup_heading: 'Fr\u00FChzeitigen Zugang zu<br/>ESTX Exchange erhalten',
+    popup_desc: 'Erstelle heute dein Konto und generiere dein Wallet vor dem offiziellen Launch. Sei bereit, wenn ESTX Ende Juni live geht.',
+    popup_li1: 'Konto jetzt er\u00F6ffnen', popup_li2: 'Wallet generieren', popup_li3: 'Vor dem Launch bereit sein',
+    popup_register: 'Jetzt registrieren <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>', popup_already: 'Ich habe bereits ein Konto',
+    popup_free: 'Kostenlos \u00B7 Keine Verpflichtung',
+  }
+};
+
+let currentLang = localStorage.getItem('estx_lang') || 'en';
+
+function applyTranslations(lang) {
+  const t = i18n[lang];
+  if (!t) return;
+  // textContent elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+  // innerHTML elements
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  // Update html lang
+  document.documentElement.lang = lang;
+  // Update page title
+  document.title = lang === 'de' ? 'ESTX Exchange \u2014 Wo Krypto beginnt zu handeln' : 'ESTX Exchange \u2014 Where Crypto Starts to Trade';
+  // Update form placeholders
+  const msgArea = document.getElementById('formMessageArea');
+  if (msgArea) msgArea.placeholder = lang === 'de' ? 'Sagen Sie uns, wie wir helfen k\u00F6nnen\u2026' : 'Tell us how we can help\u2026';
+  // Re-render FAQ with translated content
+  renderFaqTranslated(lang);
+}
+
+function renderFaqTranslated(lang) {
+  const t = i18n[lang];
+  const fc = document.getElementById('faqContainer');
+  if (!fc || !t) return;
+  fc.innerHTML = '';
+  for (let i = 0; i < 7; i++) {
+    const q = t['faq_q' + i];
+    const a = t['faq_a' + i];
+    if (!q || !a) continue;
+    const item = document.createElement('div');
+    item.className = 'faq-item reveal in';
+    item.innerHTML = '<button class="faq-btn" onclick="toggleFaq(' + i + ')"><span>' + q + '</span><svg class="faq-chevron" id="chev-' + i + '" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer" id="ans-' + i + '"><p style="font-size:0.9rem;color:#64748b;line-height:1.75;padding-bottom:20px;">' + a + '</p></div>';
+    fc.appendChild(item);
+  }
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('estx_lang', lang);
+  applyTranslations(lang);
+  // Update desktop picker UI
+  const langBtn = document.getElementById('langBtn');
+  const flagEl = document.getElementById('langFlag');
+  const codeEl = document.getElementById('langCode');
+  if (flagEl) flagEl.innerHTML = lang === 'de' ? '\uD83C\uDDE9\uD83C\uDDEA' : '\uD83C\uDDEC\uD83C\uDDE7';
+  if (codeEl) codeEl.textContent = lang.toUpperCase();
+  // Highlight active option
+  const optEn = document.getElementById('langOptEn');
+  const optDe = document.getElementById('langOptDe');
+  if (optEn) optEn.classList.toggle('active', lang === 'en');
+  if (optDe) optDe.classList.toggle('active', lang === 'de');
+  // Mobile active state
+  const mobEn = document.getElementById('mobLangEn');
+  const mobDe = document.getElementById('mobLangDe');
+  if (mobEn) mobEn.classList.toggle('active', lang === 'en');
+  if (mobDe) mobDe.classList.toggle('active', lang === 'de');
+  // Close dropdown
+  const dd = document.getElementById('langDropdown');
+  if (dd) dd.classList.remove('open');
+  // Update cookie banner if present
+  updateCookieLang(lang);
+  // Update popup if present
+  updatePopupLang(lang);
+}
+
+function toggleLangDropdown() {
+  const dd = document.getElementById('langDropdown');
+  if (dd) dd.classList.toggle('open');
+}
+// Close dropdown on outside click
+document.addEventListener('click', function(e) {
+  const ls = document.querySelector('.lang-switch');
+  const dd = document.getElementById('langDropdown');
+  if (ls && dd && !ls.contains(e.target)) dd.classList.remove('open');
+});
+
+function updateCookieLang(lang) {
+  const t = i18n[lang];
+  const bar = document.getElementById('cookieBar');
+  if (!bar || !t) return;
+  const titleEl = bar.querySelector('[data-i18n="cookie_title"]');
+  const descEl = bar.querySelector('[data-i18n="cookie_desc"]');
+  const essEl = bar.querySelector('[data-i18n="cookie_essential"]');
+  const accEl = bar.querySelector('[data-i18n="cookie_accept"]');
+  if (titleEl) titleEl.textContent = t.cookie_title;
+  if (descEl) descEl.textContent = t.cookie_desc;
+  if (essEl) essEl.textContent = t.cookie_essential;
+  if (accEl) accEl.textContent = t.cookie_accept;
+}
+
+function updatePopupLang(lang) {
+  const t = i18n[lang];
+  const popup = document.getElementById('earlyPopup');
+  if (!popup || !t) return;
+  const headEl = popup.querySelector('[data-i18n-html="popup_heading"]');
+  const descEl = popup.querySelector('[data-i18n="popup_desc"]');
+  const li1 = popup.querySelector('[data-i18n="popup_li1"]');
+  const li2 = popup.querySelector('[data-i18n="popup_li2"]');
+  const li3 = popup.querySelector('[data-i18n="popup_li3"]');
+  const regEl = popup.querySelector('[data-i18n-html="popup_register"]');
+  const alrEl = popup.querySelector('[data-i18n="popup_already"]');
+  const freeEl = popup.querySelector('[data-i18n="popup_free"]');
+  if (headEl) headEl.innerHTML = t.popup_heading;
+  if (descEl) descEl.textContent = t.popup_desc;
+  if (li1) li1.textContent = t.popup_li1;
+  if (li2) li2.textContent = t.popup_li2;
+  if (li3) li3.textContent = t.popup_li3;
+  if (regEl) regEl.innerHTML = t.popup_register;
+  if (alrEl) alrEl.textContent = t.popup_already;
+  if (freeEl) freeEl.textContent = t.popup_free;
+}
+
 // ── EARLY ACCESS POPUP ──────────────────────────────────
 (function(){
   if(localStorage.getItem('estx_registered'))return;
@@ -1238,28 +1710,28 @@ document.head.appendChild(s);
       <div style="width:56px;height:56px;background:linear-gradient(135deg,var(--brand),var(--navy));border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;box-shadow:0 6px 20px rgba(20,76,188,0.25);">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
       </div>
-      <h3 style="font-family:'Outfit',sans-serif;font-size:1.5rem;font-weight:800;color:#0a1628;letter-spacing:-0.03em;line-height:1.2;margin-bottom:12px;">Get Early Access to<br/>ESTX Exchange</h3>
-      <p style="font-family:'DM Sans',sans-serif;font-size:0.92rem;color:#64748b;line-height:1.7;margin-bottom:24px;">Create your account today and generate your wallet before the official launch. Be ready when ESTX goes live at the end of June.</p>
+      <h3 style="font-family:'Outfit',sans-serif;font-size:1.5rem;font-weight:800;color:#0a1628;letter-spacing:-0.03em;line-height:1.2;margin-bottom:12px;" data-i18n-html="popup_heading">Get Early Access to<br/>ESTX Exchange</h3>
+      <p style="font-family:'DM Sans',sans-serif;font-size:0.92rem;color:#64748b;line-height:1.7;margin-bottom:24px;" data-i18n="popup_desc">Create your account today and generate your wallet before the official launch. Be ready when ESTX goes live at the end of June.</p>
       <ul style="list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:28px;">
         <li style="display:flex;align-items:center;gap:10px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;color:#0a1628;">
           <div style="width:28px;height:28px;border-radius:50%;background:rgba(16,185,129,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-          Open your account now
+          <span data-i18n="popup_li1">Open your account now</span>
         </li>
         <li style="display:flex;align-items:center;gap:10px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;color:#0a1628;">
           <div style="width:28px;height:28px;border-radius:50%;background:rgba(16,185,129,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-          Generate your wallet
+          <span data-i18n="popup_li2">Generate your wallet</span>
         </li>
         <li style="display:flex;align-items:center;gap:10px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;color:#0a1628;">
           <div style="width:28px;height:28px;border-radius:50%;background:rgba(16,185,129,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-          Be ready before launch
+          <span data-i18n="popup_li3">Be ready before launch</span>
         </li>
       </ul>
-      <a href="https://trade.estx.exchange/signup" target="_blank" class="btn-primary" style="width:100%;justify-content:center;padding:15px 28px;font-size:0.95rem;border-radius:14px;">
+      <a href="https://trade.estx.exchange/signup" target="_blank" class="btn-primary" style="width:100%;justify-content:center;padding:15px 28px;font-size:0.95rem;border-radius:14px;" data-i18n-html="popup_register">
         Register Now
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
-      <button onclick="alreadyRegistered()" style="width:100%;margin-top:10px;padding:12px 28px;background:none;border:1.5px solid #e2e8f8;border-radius:14px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:600;color:#64748b;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--brand)';this.style.color='var(--brand)'" onmouseout="this.style.borderColor='#e2e8f8';this.style.color='#64748b'">I Already Have an Account</button>
-      <p style="font-size:0.72rem;color:#cbd5e1;text-align:center;margin-top:12px;">Free to join · No commitment required</p>
+      <button onclick="alreadyRegistered()" style="width:100%;margin-top:10px;padding:12px 28px;background:none;border:1.5px solid #e2e8f8;border-radius:14px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:600;color:#64748b;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--brand)';this.style.color='var(--brand)'" onmouseout="this.style.borderColor='#e2e8f8';this.style.color='#64748b'" data-i18n="popup_already">I Already Have an Account</button>
+      <p style="font-size:0.72rem;color:#cbd5e1;text-align:center;margin-top:12px;" data-i18n="popup_free">Free to join · No commitment required</p>
     </div>`;
   document.body.appendChild(overlay);
 
@@ -1286,6 +1758,28 @@ document.head.appendChild(s);
       });});
     }
   },{passive:true});
+})();
+
+// ── i18n INIT (after all dynamic elements created) ──────
+(function(){
+  if (currentLang !== 'en') {
+    applyTranslations(currentLang);
+  }
+  // Set initial button states
+  var mobEn = document.getElementById('mobLangEn');
+  var mobDe = document.getElementById('mobLangDe');
+  if (mobEn) mobEn.classList.toggle('active', currentLang === 'en');
+  if (mobDe) mobDe.classList.toggle('active', currentLang === 'de');
+  var optEn = document.getElementById('langOptEn');
+  var optDe = document.getElementById('langOptDe');
+  if (optEn) optEn.classList.toggle('active', currentLang === 'en');
+  if (optDe) optDe.classList.toggle('active', currentLang === 'de');
+  if (currentLang === 'de') {
+    var flagEl = document.getElementById('langFlag');
+    var codeEl = document.getElementById('langCode');
+    if (flagEl) flagEl.innerHTML = '\uD83C\uDDE9\uD83C\uDDEA';
+    if (codeEl) codeEl.textContent = 'DE';
+  }
 })();
 </script>
 </body>
