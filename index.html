@@ -158,6 +158,9 @@ option{background:#0a1628;}
 .mob-lang-btn:focus-visible{outline:2px solid #fff;outline-offset:2px;}
 .mob-lang-btn:active{transform:scale(0.97);}
 
+/* FOOTER GRID */
+@media(min-width:768px){.footer-grid{grid-template-columns:2fr 1fr 1fr 1fr !important;gap:40px !important;}}
+
 /* MOBILE MENU */
 .mob-menu{display:none;position:fixed;inset:0;background:rgba(3,35,99,0.97);backdrop-filter:blur(20px);z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:36px;}
 .mob-menu.open{display:flex;}
@@ -868,7 +871,7 @@ option{background:#0a1628;}
 <!-- ═══ FOOTER ═══ -->
 <footer style="background:#020d24;padding:60px 24px 32px;border-top:1px solid rgba(255,255,255,0.05);">
   <div class="max-w-7xl mx-auto">
-    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;" class="grid-cols-2 md:grid-cols-4">
+    <div style="display:grid;gap:32px;margin-bottom:48px;grid-template-columns:1fr 1fr;" class="footer-grid">
       <div>
         <img src="brand_assets/logo_bw.svg" alt="ESTX" style="height:30px;width:auto;margin-bottom:16px;"/>
         <p style="font-size:0.82rem;color:rgba(255,255,255,0.35);line-height:1.7;max-width:240px;margin-bottom:20px;" data-i18n="footer_desc">Next-generation digital asset exchange with a purpose-built three-tier market structure.</p>
