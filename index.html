@@ -121,15 +121,50 @@ option{background:#0a1628;}
 .qt-field:focus-within{border-color:var(--brand);box-shadow:0 0 0 3px rgba(20,76,188,0.08);}
 .qt-field input{background:none;border:none;outline:none;font-family:'Outfit',sans-serif;font-size:1.2rem;font-weight:700;color:#0a1628;width:100%;}
 
-/* HERO */
-.hero-bg{background:#fff;position:relative;overflow:hidden;max-width:100vw;}
-.hero-blob{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;}
-/* HERO GRID */
-.hero-grid{position:absolute;inset:0;z-index:0;overflow:hidden;}
-.hero-grid svg{width:100%;height:100%;position:absolute;inset:0;}
-.hero-grid-base{opacity:0.04;}
-.hero-grid-glow{opacity:0;transition:opacity 0.3s ease;}
-.hero-bg:hover .hero-grid-glow{opacity:0.35;}
+/* HERO (dark cinematic) */
+.hero-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% center;}
+.hero-grad-lr{position:absolute;inset:0;background:linear-gradient(100deg,rgba(2,13,36,0.96) 0%,rgba(2,13,36,0.88) 22%,rgba(2,13,36,0.5) 48%,rgba(2,13,36,0.18) 78%);}
+.hero-grad-tb{position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,13,36,0.35) 0%,transparent 16%,transparent 65%,rgba(2,13,36,0.92) 100%);}
+.hero-dark-content{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:130px 40px 36px;min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;}
+.hero-dark-text{max-width:580px;margin-top:16px;}
+.hero-dark-h1{font-size:clamp(2.6rem,5.5vw,5.2rem);font-weight:900;color:#fff;line-height:0.96;letter-spacing:-0.04em;margin-bottom:22px;text-shadow:0 2px 30px rgba(0,0,0,0.3);}
+.hero-dark-sub{font-size:1.05rem;color:rgba(255,255,255,0.7);line-height:1.8;margin-bottom:0;max-width:480px;text-shadow:0 1px 8px rgba(0,0,0,0.2);}
+.hero-dark-quote{position:relative;border-left:3px solid var(--brand);padding:14px 20px;margin:28px 0 32px;max-width:480px;background:rgba(20,76,188,0.06);border-radius:0 12px 12px 0;}
+.hero-dark-quote p{font-family:'DM Sans';font-size:0.92rem;font-style:italic;color:rgba(255,255,255,0.85);line-height:1.7;}
+.hero-dark-quote cite{display:block;margin-top:10px;font-style:normal;font-family:'DM Sans';font-size:0.72rem;font-weight:700;color:rgba(255,255,255,0.4);}
+.hero-dark-btns{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-hero-white{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--navy);font-family:'DM Sans';font-weight:700;font-size:0.9rem;padding:15px 36px;border-radius:10px;text-decoration:none;box-shadow:0 4px 24px rgba(0,0,0,0.2);transition:all 0.22s;}
+.btn-hero-white:hover{transform:translateY(-2px);box-shadow:0 8px 36px rgba(0,0,0,0.3);}
+.btn-hero-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#fff;font-family:'DM Sans';font-weight:700;font-size:0.85rem;padding:13px 28px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.25);text-decoration:none;transition:all 0.22s;}
+.btn-hero-outline:hover{border-color:#fff;background:rgba(255,255,255,0.06);transform:translateY(-2px);}
+.hero-dark-bottom{display:flex;align-items:stretch;gap:14px;flex-wrap:wrap;padding-top:28px;border-top:1px solid rgba(255,255,255,0.08);margin-top:36px;}
+.hero-dark-cd{display:flex;gap:8px;align-items:center;margin-right:16px;}
+.hero-dark-feats{display:flex;gap:12px;margin-left:auto;}
+.hcd{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:10px 14px;text-align:center;}
+.hcd-n{font-family:'Outfit';font-size:1.3rem;font-weight:800;color:#fff;}
+.hcd-l{font-size:0.46rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);}
+.hcd-sep{color:rgba(255,255,255,0.15);font-family:'Outfit';font-weight:800;}
+.hfeat{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:12px 16px;backdrop-filter:blur(8px);}
+.hfeat-icon{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.hfeat-label{font-family:'DM Sans';font-size:0.68rem;font-weight:600;color:rgba(255,255,255,0.4);}
+.hfeat-val{font-family:'Outfit';font-size:1.05rem;font-weight:800;color:#fff;}
+@media(max-width:768px){
+  .hero-bg-img{object-position:78% 8% !important;}
+  .hero-grad-lr{background:linear-gradient(180deg,transparent 0%,transparent 22%,rgba(2,13,36,0.55) 38%,rgba(2,13,36,0.95) 52%,rgba(2,13,36,1) 100%) !important;}
+  .hero-grad-tb{background:none !important;}
+  .hero-dark-content{padding:80px 20px 24px;justify-content:flex-end !important;}
+  .hero-dark-text{margin-top:42vh;}
+  .hero-dark-h1{font-size:2.3rem;margin-bottom:14px;}
+  .hero-dark-sub{font-size:0.9rem;}
+  .hero-dark-quote{margin:20px 0 24px;padding:12px 16px;}
+  .hero-dark-quote p{font-size:0.84rem;}
+  .hero-dark-bottom{flex-direction:column;gap:16px;}
+  .hero-dark-cd{margin-right:0;justify-content:center;}
+  .hero-dark-feats{margin-left:0;justify-content:center;}
+  .hfeat{padding:10px 12px;}.hfeat-icon{width:30px;height:30px;}.hfeat-val{font-size:0.95rem;}
+  .btn-hero-white{width:100%;justify-content:center;padding:14px 28px;}
+  .btn-hero-outline{width:100%;justify-content:center;}
+}
 
 /* STEP CIRCLE */
 .step-circle{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--navy));display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:800;font-size:1rem;color:#fff;flex-shrink:0;box-shadow:0 4px 14px rgba(20,76,188,0.28);}
@@ -225,99 +260,67 @@ option{background:#0a1628;}
   </div>
 </nav>
 
-<!-- ═══ HERO (white) ═══ -->
-<section class="hero-bg" id="home" style="min-height:100vh;display:flex;flex-direction:column;">
-  <!-- Interactive grid -->
-  <div class="hero-grid">
-    <svg class="hero-grid-base"><defs><pattern id="gridBase" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="rgba(20,76,188,1)" stroke-width="0.8"/></pattern></defs><rect width="100%" height="100%" fill="url(#gridBase)"/></svg>
-    <svg class="hero-grid-glow" id="heroGridGlow" style="-webkit-mask-image:radial-gradient(350px circle at 50% 50%,black,transparent);mask-image:radial-gradient(350px circle at 50% 50%,black,transparent);"><defs><pattern id="gridGlow" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="rgba(20,76,188,1)" stroke-width="0.8"/></pattern></defs><rect width="100%" height="100%" fill="url(#gridGlow)"/></svg>
+<!-- ═══ HERO (dark cinematic) ═══ -->
+<section id="home" style="min-height:100vh;position:relative;overflow:hidden;background:#020d24;">
+  <!-- BG image -->
+  <div style="position:absolute;inset:0;">
+    <img src="brand_assets/image7.jpg" alt="" class="hero-bg-img"/>
+    <div class="hero-grad-lr"></div>
+    <div class="hero-grad-tb"></div>
   </div>
-  <!-- decorative blobs -->
-  <div class="hero-blob" style="width:600px;height:600px;background:rgba(20,76,188,0.06);top:-200px;right:-150px;"></div>
-  <div class="hero-blob" style="width:400px;height:400px;background:rgba(3,35,99,0.04);bottom:0;left:-100px;"></div>
+  <!-- Grid overlay -->
+  <div style="position:absolute;inset:0;opacity:0.025;"><svg width="100%" height="100%"><defs><pattern id="gridBase" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#fff" stroke-width="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(#gridBase)"/></svg></div>
 
-  <div style="flex:1;display:flex;align-items:center;padding:120px 24px 60px;position:relative;z-index:1;overflow:hidden;">
-    <div class="max-w-7xl mx-auto" style="width:100%;min-width:0;">
-      <div class="grid lg:grid-cols-2 gap-16 items-center" style="min-width:0;">
+  <!-- Content -->
+  <div class="hero-dark-content">
+    <div class="hero-dark-text">
+      <h1 class="hero-dark-h1 reveal" data-i18n-html="hero_heading">
+        Trade at<br/>the Speed of<br/><span style="color:#5b9aff;">Champions.</span>
+      </h1>
+      <p class="hero-dark-sub reveal" data-i18n="hero_subtitle">
+        New tokens. Memecoins. Security tokens. Major crypto. All in one place — regulated and secure.
+      </p>
+      <div class="hero-dark-quote reveal">
+        <p>"Speed wins races and speed wins markets. I trust ESTX because they do things the right way — regulated, transparent, and built to last."</p>
+        <cite>— Romain Grosjean, ESTX Brand Ambassador</cite>
+      </div>
+      <div class="hero-dark-btns reveal">
+        <a href="https://trade.estx.exchange/signup" class="btn-hero-white" data-i18n-html="hero_start_trading">
+          Start Now — It's Free
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#markets" class="btn-hero-outline" data-i18n="hero_learn_more">View Markets</a>
+      </div>
+    </div>
 
-        <!-- LEFT -->
-        <div style="min-width:0;overflow:hidden;">
-          <div class="reveal" style="display:inline-flex;align-items:center;gap:10px;background:rgba(20,76,188,0.07);border:1px solid rgba(20,76,188,0.15);border-radius:100px;padding:5px 16px 5px 8px;margin-bottom:28px;">
-            <span style="background:var(--brand);border-radius:100px;padding:2px 10px;font-family:'DM Sans';font-size:0.62rem;font-weight:700;letter-spacing:0.1em;color:#fff;text-transform:uppercase;" data-i18n="hero_live">Live</span>
-            <span style="font-size:0.78rem;color:#64748b;font-weight:500;" data-i18n="hero_launch_date">Official launch June 30, 2026</span>
-          </div>
-
-          <h1 class="reveal" style="font-size:clamp(3rem,6vw,5.5rem);font-weight:900;color:#0a1628;line-height:1.0;letter-spacing:-0.04em;margin-bottom:24px;" data-i18n-html="hero_heading">
-            Where<br/>
-            <span style="color:var(--brand);">Crypto</span><br/>
-            Starts to Trade.
-          </h1>
-
-          <p class="reveal" style="font-size:1.05rem;color:#64748b;line-height:1.75;margin-bottom:36px;max-width:460px;font-weight:400;" data-i18n="hero_subtitle">
-            ESTX Exchange introduces a revolutionary three-tier market structure — built for new token projects, memecoins, security tokens, and major cryptocurrencies alike.
-          </p>
-
-          <div class="reveal" style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:52px;">
-            <a href="https://trade.estx.exchange/signup" class="btn-primary" data-i18n-html="hero_start_trading">
-              Start Trading
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <a href="#why" class="btn-outline-dark" data-i18n="hero_learn_more">Learn More</a>
-          </div>
-
-          <div class="reveal" style="display:flex;gap:clamp(12px,3vw,20px);flex-wrap:nowrap;">
-            <div>
-              <div style="font-family:'Outfit',sans-serif;font-size:clamp(1.2rem,4vw,2rem);font-weight:800;color:var(--navy);line-height:1;">3</div>
-              <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#94a3b8;margin-top:3px;white-space:nowrap;" data-i18n="hero_market_tiers">Market Tiers</div>
-            </div>
-            <div style="width:1px;background:#e2e8f8;"></div>
-            <div>
-              <div style="font-family:'Outfit',sans-serif;font-size:clamp(1.2rem,4vw,2rem);font-weight:800;color:var(--navy);line-height:1;">200+</div>
-              <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#94a3b8;margin-top:3px;white-space:nowrap;" data-i18n="hero_crypto_assets">Crypto Assets</div>
-            </div>
-            <div style="width:1px;background:#e2e8f8;"></div>
-            <div>
-              <div style="font-family:'Outfit',sans-serif;font-size:clamp(1.2rem,4vw,2rem);font-weight:800;color:var(--navy);line-height:1;">VASP</div>
-              <div style="font-size:0.6rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#94a3b8;margin-top:3px;white-space:nowrap;" data-i18n="hero_licensed">Licensed</div>
-            </div>
-          </div>
+    <!-- Bottom bar -->
+    <div class="hero-dark-bottom reveal">
+      <div class="hero-dark-cd">
+        <div class="hcd"><div class="hcd-n" id="cd-d">00</div><div class="hcd-l" data-i18n="cd_days">Days</div></div>
+        <span class="hcd-sep">:</span>
+        <div class="hcd"><div class="hcd-n" id="cd-h">00</div><div class="hcd-l" data-i18n="cd_hours">Hrs</div></div>
+        <span class="hcd-sep">:</span>
+        <div class="hcd"><div class="hcd-n" id="cd-m">00</div><div class="hcd-l" data-i18n="cd_minutes">Min</div></div>
+        <span class="hcd-sep">:</span>
+        <div class="hcd"><div class="hcd-n" id="cd-s">00</div><div class="hcd-l" data-i18n="cd_seconds">Sec</div></div>
+        <div style="font-size:0.68rem;color:rgba(255,255,255,0.35);line-height:1.3;margin-left:10px;" data-i18n-html="cd_launch_label">Launch<br/><span style="color:#5b9aff;font-weight:700;">June 30, 2026</span></div>
+      </div>
+      <div class="hero-dark-feats">
+        <div class="hfeat">
+          <div class="hfeat-icon" style="background:rgba(20,76,188,0.2);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+          <div><div class="hfeat-label" data-i18n="hero_market_tiers">Market Tiers</div><div class="hfeat-val">3</div></div>
         </div>
-
-        <!-- RIGHT: Countdown -->
-        <div class="reveal" style="min-width:0;overflow:hidden;">
-          <div style="background:#f8faff;border:1px solid #e2e8f8;border-radius:24px;padding:32px 20px;box-shadow:0 8px 40px rgba(3,35,99,0.08);">
-            <div style="text-align:center;margin-bottom:32px;">
-              <div style="font-family:'DM Sans',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#94a3b8;margin-bottom:8px;" data-i18n="cd_label">Official Token Launch</div>
-              <div style="font-family:'Outfit',sans-serif;font-size:1.1rem;font-weight:700;color:var(--navy);" data-i18n="cd_date">June 30, 2026 · 10:00 AM CET</div>
-            </div>
-
-            <div style="display:flex;justify-content:center;align-items:flex-start;gap:6px;flex-wrap:nowrap;">
-              <div class="cd-box"><div class="cd-num" id="cd-d">00</div><div class="cd-lbl" data-i18n="cd_days">Days</div></div>
-              <span class="cd-colon">:</span>
-              <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-lbl" data-i18n="cd_hours">Hours</div></div>
-              <span class="cd-colon">:</span>
-              <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-lbl" data-i18n="cd_minutes">Minutes</div></div>
-              <span class="cd-colon">:</span>
-              <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-lbl" data-i18n="cd_seconds">Seconds</div></div>
-            </div>
-
-            <div style="margin-top:32px;padding-top:24px;border-top:1px solid #e2e8f8;">
-              <div style="display:flex;gap:10px;align-items:center;margin-bottom:14px;">
-                <div style="width:8px;height:8px;border-radius:50%;background:#10b981;animation:pulse 2s infinite;flex-shrink:0;"></div>
-                <span style="font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#10b981;" data-i18n="cd_live">Live on Trade.ESTX.Exchange</span>
-              </div>
-              <a href="https://trade.estx.exchange/signup" class="btn-primary" style="width:100%;justify-content:center;" data-i18n-html="cd_join">
-                Join the ESTX Army
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
-            </div>
-          </div>
+        <div class="hfeat">
+          <div class="hfeat-icon" style="background:rgba(16,185,129,0.15);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div><div class="hfeat-label" data-i18n="hero_crypto_assets">Crypto Assets</div><div class="hfeat-val">200+</div></div>
         </div>
-
+        <div class="hfeat">
+          <div class="hfeat-icon" style="background:rgba(201,168,76,0.15);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div><div class="hfeat-label" data-i18n="hero_licensed">Regulation</div><div class="hfeat-val">VASP</div></div>
+        </div>
       </div>
     </div>
   </div>
-
 </section>
 
 <!-- ═══ LIVE MARKETS ═══ -->
@@ -349,46 +352,6 @@ option{background:#0a1628;}
         Start Trading Now
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ BRAND AMBASSADOR ═══ -->
-<section style="padding:96px 24px;background:#fff;">
-  <div class="max-w-7xl mx-auto">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
-
-      <!-- Images collage -->
-      <div class="reveal" style="position:relative;">
-        <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:12px;">
-          <div style="grid-row:1/3;border-radius:18px;overflow:hidden;box-shadow:0 12px 40px rgba(3,35,99,0.14);">
-            <img src="brand_assets/image1.png" alt="Romain Grosjean portrait" style="width:100%;height:100%;object-fit:cover;display:block;"/>
-          </div>
-          <div style="border-radius:16px;overflow:hidden;box-shadow:0 8px 28px rgba(3,35,99,0.1);">
-            <img src="brand_assets/image2.png" alt="INDYCAR at speed" style="width:100%;height:100%;object-fit:cover;display:block;"/>
-          </div>
-          <div style="border-radius:16px;overflow:hidden;box-shadow:0 8px 28px rgba(3,35,99,0.1);">
-            <img src="brand_assets/image3.png" alt="Romain helmet" style="width:100%;height:100%;object-fit:cover;display:block;"/>
-          </div>
-        </div>
-        <div style="position:absolute;top:-12px;right:-12px;background:var(--brand);border-radius:12px;padding:12px 16px;box-shadow:0 8px 28px rgba(20,76,188,0.4);">
-          <div style="font-family:'Outfit',sans-serif;font-size:1.3rem;font-weight:800;color:#fff;line-height:1;">#8</div>
-          <div style="font-size:0.58rem;font-weight:600;color:rgba(255,255,255,0.7);letter-spacing:0.08em;">INDYCAR</div>
-        </div>
-      </div>
-
-      <!-- Copy -->
-      <div class="reveal" style="animation-delay:0.15s;">
-        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(20,76,188,0.08);border:1px solid rgba(20,76,188,0.15);border-radius:100px;padding:5px 14px;margin-bottom:20px;">
-          <span style="font-family:'DM Sans',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--brand);" data-i18n="amb_label">Official Brand Ambassador</span>
-        </div>
-        <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#0a1628;letter-spacing:-0.03em;line-height:1.1;margin-bottom:8px;">Romain Grosjean</h2>
-        <p style="font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;color:#64748b;margin-bottom:24px;" data-i18n="amb_role">Former Formula 1 Pilot &amp; Current IndyCar Driver</p>
-        <p style="font-size:1rem;color:#64748b;line-height:1.75;margin-bottom:20px;" data-i18n="amb_p1">ESTX is proud to partner with Romain Grosjean as our official brand ambassador — bringing the speed, precision, and competitive spirit of world-class motorsport to the world of digital assets.</p>
-        <p style="font-size:1rem;color:#64748b;line-height:1.75;margin-bottom:36px;" data-i18n="amb_p2">Just like racing, crypto rewards those who are fast, decisive, and ahead of the curve.</p>
-        <a href="https://trade.estx.exchange/signup" class="btn-primary" data-i18n="amb_cta">Join the Community</a>
-      </div>
-
     </div>
   </div>
 </section>
@@ -529,6 +492,41 @@ option{background:#0a1628;}
           <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="ms_t3_li3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Structured screening process</li>
           <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="ms_t3_li4"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Affordable listing fees</li>
         </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BRAND AMBASSADOR ═══ -->
+<section style="padding:96px 24px;background:#fff;">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="reveal" style="position:relative;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:12px;">
+          <div style="grid-row:1/3;border-radius:18px;overflow:hidden;box-shadow:0 12px 40px rgba(3,35,99,0.14);">
+            <img src="brand_assets/image1.png" alt="Romain Grosjean portrait" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          </div>
+          <div style="border-radius:16px;overflow:hidden;box-shadow:0 8px 28px rgba(3,35,99,0.1);">
+            <img src="brand_assets/image2.png" alt="INDYCAR at speed" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          </div>
+          <div style="border-radius:16px;overflow:hidden;box-shadow:0 8px 28px rgba(3,35,99,0.1);">
+            <img src="brand_assets/image3.png" alt="Romain helmet" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          </div>
+        </div>
+        <div style="position:absolute;top:-12px;right:-12px;background:var(--brand);border-radius:12px;padding:12px 16px;box-shadow:0 8px 28px rgba(20,76,188,0.4);">
+          <div style="font-family:'Outfit',sans-serif;font-size:1.3rem;font-weight:800;color:#fff;line-height:1;">#8</div>
+          <div style="font-size:0.58rem;font-weight:600;color:rgba(255,255,255,0.7);letter-spacing:0.08em;">INDYCAR</div>
+        </div>
+      </div>
+      <div class="reveal" style="animation-delay:0.15s;">
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(20,76,188,0.08);border:1px solid rgba(20,76,188,0.15);border-radius:100px;padding:5px 14px;margin-bottom:20px;">
+          <span style="font-family:'DM Sans',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--brand);" data-i18n="amb_label">Official Brand Ambassador</span>
+        </div>
+        <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#0a1628;letter-spacing:-0.03em;line-height:1.1;margin-bottom:8px;">Romain Grosjean</h2>
+        <p style="font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;color:#64748b;margin-bottom:24px;" data-i18n="amb_role">Former Formula 1 Pilot &amp; Current IndyCar Driver</p>
+        <p style="font-size:1rem;color:#64748b;line-height:1.75;margin-bottom:20px;" data-i18n="amb_p1">ESTX is proud to partner with Romain Grosjean as our official brand ambassador — bringing the speed, precision, and competitive spirit of world-class motorsport to the world of digital assets.</p>
+        <p style="font-size:1rem;color:#64748b;line-height:1.75;margin-bottom:36px;" data-i18n="amb_p2">Just like racing, crypto rewards those who are fast, decisive, and ahead of the curve.</p>
+        <a href="https://trade.estx.exchange/signup" class="btn-primary" data-i18n="amb_cta">Join the Community</a>
       </div>
     </div>
   </div>
@@ -1271,17 +1269,14 @@ const i18n = {
     nav_home: 'Home', nav_markets: 'Markets', nav_why: 'Why ESTX', nav_buy: 'Buy Crypto',
     nav_institutional: 'Institutional', nav_contact: 'Contact', nav_login: 'Login', nav_signup: 'Sign Up',
     // Hero
-    hero_live: 'Live', hero_launch_date: 'Official launch June 30, 2026',
-    hero_heading: 'Where<br/><span style="color:var(--brand);">Crypto</span><br/>Starts to Trade.',
-    hero_subtitle: 'ESTX Exchange introduces a revolutionary three-tier market structure \u2014 built for new token projects, memecoins, security tokens, and major cryptocurrencies alike.',
-    hero_start_trading: 'Start Trading <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
-    hero_learn_more: 'Learn More',
-    hero_market_tiers: 'Market Tiers', hero_crypto_assets: 'Crypto Assets', hero_licensed: 'Licensed',
+    hero_heading: 'Trade at<br/>the Speed of<br/><span style="color:#5b9aff;">Champions.</span>',
+    hero_subtitle: 'New tokens. Memecoins. Security tokens. Major crypto. All in one place \u2014 regulated and secure.',
+    hero_start_trading: 'Start Now \u2014 It\u2019s Free <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+    hero_learn_more: 'View Markets',
+    hero_market_tiers: 'Market Tiers', hero_crypto_assets: 'Crypto Assets', hero_licensed: 'Regulation',
     // Countdown
-    cd_label: 'Official Token Launch', cd_date: 'June 30, 2026 \u00B7 10:00 AM CET',
-    cd_days: 'Days', cd_hours: 'Hours', cd_minutes: 'Minutes', cd_seconds: 'Seconds',
-    cd_live: 'Live on Trade.ESTX.Exchange',
-    cd_join: 'Join the ESTX Army <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+    cd_days: 'Days', cd_hours: 'Hrs', cd_minutes: 'Min', cd_seconds: 'Sec',
+    cd_launch_label: 'Launch<br/><span style="color:#5b9aff;font-weight:700;">June 30, 2026</span>',
     // Markets
     markets_label: 'Live Markets', markets_heading: 'Markets That Never Sleep',
     markets_subtitle: '200+ digital assets available on ESTX Exchange \u2014 updated in real time.',
@@ -1430,17 +1425,14 @@ const i18n = {
     nav_home: 'Startseite', nav_markets: 'M\u00E4rkte', nav_why: 'Warum ESTX', nav_buy: 'Krypto kaufen',
     nav_institutional: 'Institutionell', nav_contact: 'Kontakt', nav_login: 'Anmelden', nav_signup: 'Registrieren',
     // Hero
-    hero_live: 'Live', hero_launch_date: 'Offizieller Launch am 30. Juni 2026',
-    hero_heading: 'Wo<br/><span style="color:var(--brand);">Krypto</span><br/>beginnt zu handeln.',
-    hero_subtitle: 'ESTX Exchange f\u00FChrt eine revolution\u00E4re Drei-Stufen-Marktstruktur ein \u2014 entwickelt f\u00FCr neue Token-Projekte, Memecoins, Security Token und alle g\u00E4ngigen Kryptow\u00E4hrungen.',
-    hero_start_trading: 'Jetzt handeln <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
-    hero_learn_more: 'Mehr erfahren',
-    hero_market_tiers: 'Marktstufen', hero_crypto_assets: 'Krypto-Assets', hero_licensed: 'Lizenziert',
+    hero_heading: 'Handeln mit der<br/>Geschwindigkeit von<br/><span style="color:#5b9aff;">Champions.</span>',
+    hero_subtitle: 'Neue Token. Memecoins. Security Token. Gro\u00DFe Kryptow\u00E4hrungen. Alles an einem Ort \u2014 reguliert und sicher.',
+    hero_start_trading: 'Jetzt starten \u2014 Kostenlos <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+    hero_learn_more: 'M\u00E4rkte ansehen',
+    hero_market_tiers: 'Marktstufen', hero_crypto_assets: 'Krypto-Assets', hero_licensed: 'Regulierung',
     // Countdown
-    cd_label: 'Offizieller Token-Launch', cd_date: '30. Juni 2026 \u00B7 10:00 Uhr MEZ',
-    cd_days: 'Tage', cd_hours: 'Stunden', cd_minutes: 'Minuten', cd_seconds: 'Sekunden',
-    cd_live: 'Live auf Trade.ESTX.Exchange',
-    cd_join: 'Werde Teil der ESTX Army <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+    cd_days: 'Tage', cd_hours: 'Std', cd_minutes: 'Min', cd_seconds: 'Sek',
+    cd_launch_label: 'Launch<br/><span style="color:#5b9aff;font-weight:700;">30. Juni 2026</span>',
     // Markets
     markets_label: 'Live-M\u00E4rkte', markets_heading: 'M\u00E4rkte, die niemals schlafen',
     markets_subtitle: '\u00DCber 200 digitale Assets auf ESTX Exchange \u2014 in Echtzeit aktualisiert.',
