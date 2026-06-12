@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="index, follow"/>
+<title>Terms of Use — ESTX.Exchange</title>
+<meta name="description" content="Terms of Use for ESTX.Exchange — the regulated venue where crypto starts to trade."/>
+<link rel="icon" href="brand_assets/favicon.png" type="image/png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ink: #0a1628;
+    --body: #475569;
+    --muted: #64748b;
+    --gold: #B8963E;
+    --paper: #f8faff;
+    --line: #e8edf8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--paper); color: var(--body); }
+
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(248,250,255,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar-inner {
+    max-width: 1080px; margin: 0 auto; padding: 16px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .back-link {
+    font-size: 0.84rem; font-weight: 600; color: var(--muted); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 7px; transition: color .15s;
+  }
+  .back-link:hover { color: var(--ink); }
+
+  .doc-head {
+    max-width: 760px; margin: 0 auto; padding: 72px 24px 0;
+  }
+  .eyebrow {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 18px;
+  }
+  .eyebrow::before {
+    content: ''; display: inline-block; width: 26px; height: 2px; background: var(--gold);
+    vertical-align: middle; margin-right: 10px;
+  }
+  h1 {
+    font-family: 'Outfit', sans-serif; font-weight: 800; color: var(--ink);
+    font-size: clamp(2rem, 5vw, 2.9rem); line-height: 1.12; letter-spacing: -0.02em;
+    margin-bottom: 14px;
+  }
+  .updated { font-size: 0.86rem; color: var(--muted); margin-bottom: 36px; }
+  .updated strong { color: var(--ink); font-weight: 600; }
+
+  .intro {
+    border-left: 3px solid var(--gold);
+    background: #fff; border-radius: 0 12px 12px 0;
+    padding: 24px 28px; margin-bottom: 44px;
+    box-shadow: 0 1px 3px rgba(10,22,40,0.05);
+  }
+  .intro p { font-size: 0.96rem; line-height: 1.7; }
+  .intro p + p { margin-top: 12px; }
+
+  .toc {
+    max-width: 760px; margin: 0 auto 56px; padding: 0 24px;
+  }
+  .toc-box {
+    background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 26px 30px;
+  }
+  .toc-title {
+    font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 0.78rem;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); margin-bottom: 16px;
+  }
+  .toc ol {
+    columns: 2; column-gap: 40px; list-style: none; counter-reset: toc;
+  }
+  .toc li { counter-increment: toc; margin-bottom: 8px; break-inside: avoid; }
+  .toc a {
+    font-size: 0.86rem; color: var(--body); text-decoration: none; line-height: 1.45;
+    display: inline-block; transition: color .15s;
+  }
+  .toc a::before {
+    content: counter(toc, decimal-leading-zero); font-family: 'Outfit', sans-serif;
+    font-weight: 700; font-size: 0.72rem; color: var(--gold); margin-right: 9px;
+  }
+  .toc a:hover { color: var(--ink); }
+  @media (max-width: 640px) { .toc ol { columns: 1; } }
+
+  main { max-width: 760px; margin: 0 auto; padding: 0 24px 90px; }
+  section { margin-bottom: 48px; }
+  h2 {
+    font-family: 'Outfit', sans-serif; font-weight: 700; color: var(--ink);
+    font-size: 1.32rem; letter-spacing: -0.01em; line-height: 1.3;
+    margin-bottom: 16px; padding-top: 10px;
+  }
+  h2 .num { color: var(--gold); margin-right: 10px; font-weight: 800; }
+  h3 {
+    font-family: 'Outfit', sans-serif; font-weight: 600; color: var(--ink);
+    font-size: 1.02rem; margin: 22px 0 10px;
+  }
+  h3 .num { color: var(--gold); margin-right: 8px; font-weight: 700; }
+  p { font-size: 0.95rem; line-height: 1.75; margin-bottom: 13px; }
+  ul { margin: 0 0 16px 4px; list-style: none; }
+  li {
+    font-size: 0.95rem; line-height: 1.7; margin-bottom: 7px; padding-left: 22px; position: relative;
+  }
+  li::before {
+    content: ''; position: absolute; left: 0; top: 0.62em;
+    width: 7px; height: 7px; border-radius: 2px;
+    background: linear-gradient(135deg, var(--gold), #d4b86a);
+  }
+  .address { font-style: normal; }
+  .address p { margin-bottom: 2px; font-weight: 500; color: var(--ink); }
+
+  .crossref {
+    margin: 64px auto 0; max-width: 760px; padding: 0 24px;
+  }
+  .crossref-box {
+    border: 1px solid var(--line); background: #fff; border-radius: 14px;
+    padding: 22px 28px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    flex-wrap: wrap;
+  }
+  .crossref-box span { font-size: 0.9rem; color: var(--muted); }
+  .crossref-box a {
+    font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 0.9rem;
+    color: var(--gold); text-decoration: none;
+  }
+  .crossref-box a:hover { text-decoration: underline; }
+
+  footer {
+    background: var(--ink); margin-top: 80px; padding: 30px 24px;
+  }
+  .footer-inner {
+    max-width: 1080px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+  }
+  footer .copy { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+  footer nav { display: flex; gap: 22px; }
+  footer nav a {
+    font-size: 0.8rem; color: rgba(255,255,255,0.55); text-decoration: none; transition: color .15s;
+  }
+  footer nav a:hover { color: #fff; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="index.html"><img src="brand_assets/logo.svg" alt="ESTX" style="height:30px;width:auto;display:block;"/></a>
+    <a class="back-link" href="index.html">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to ESTX.Exchange
+    </a>
+  </div>
+</div>
+
+<header class="doc-head">
+  <div class="eyebrow">Legal</div>
+  <h1>Terms of Use</h1>
+  <p class="updated">Last updated: <strong>April 1, 2026</strong></p>
+  <div class="intro">
+    <p>These Terms of Use (“Terms”) govern your access to and use of the website, platform, applications, products, services, content, tools, and features made available through ESTX.Exchange (the “Platform”).</p>
+    <p>The Platform is operated by ESTX Venture GmbH, Vaduz, Liechtenstein, and may utilize affiliated or licensed service providers, including regulated virtual asset service provider infrastructure and third-party service providers, to facilitate certain services.</p>
+    <p>By accessing, registering for, or using the Platform, you confirm that you have read, understood, and accepted these Terms, together with our Privacy Policy, Risk Disclosure Statement, AML/KYC rules, listing standards, trading rules, and any other policies or guidelines published on the Platform from time to time (collectively, the “Agreement”). If you do not agree, you must not access or use the Platform.</p>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Table of contents">
+  <div class="toc-box">
+    <div class="toc-title">Contents</div>
+    <ol>
+      <li><a href="#definitions">Definitions</a></li>
+      <li><a href="#nature-of-the-platform">Nature of the Platform</a></li>
+      <li><a href="#eligibility">Eligibility</a></li>
+      <li><a href="#restricted-jurisdictions-and-regulatory-access-controls">Restricted Jurisdictions and Regulatory Access Controls</a></li>
+      <li><a href="#account-registration-and-verification">Account Registration and Verification</a></li>
+      <li><a href="#user-representations-and-warranties">User Representations and Warranties</a></li>
+      <li><a href="#account-security">Account Security</a></li>
+      <li><a href="#platform-services">Platform Services</a></li>
+      <li><a href="#no-investment-advice-no-fiduciary-relationship">No Investment Advice / No Fiduciary Relationship</a></li>
+      <li><a href="#third-party-providers-and-partners">Third-Party Providers and Partners</a></li>
+      <li><a href="#trading-rules">Trading Rules</a></li>
+      <li><a href="#token-listings-and-project-information">Token Listings and Project Information</a></li>
+      <li><a href="#fees">Fees</a></li>
+      <li><a href="#prohibited-conduct">Prohibited Conduct</a></li>
+      <li><a href="#suspension-restriction-freezing-and-termination">Suspension, Restriction, Freezing, and Termination</a></li>
+      <li><a href="#service-interruptions-and-technical-failures">Service Interruptions and Technical Failures</a></li>
+      <li><a href="#risk-disclosure">Risk Disclosure</a></li>
+      <li><a href="#intellectual-property">Intellectual Property</a></li>
+      <li><a href="#privacy-and-data-protection">Privacy and Data Protection</a></li>
+      <li><a href="#notices-and-communications">Notices and Communications</a></li>
+      <li><a href="#disclaimers">Disclaimers</a></li>
+      <li><a href="#limitation-of-liability">Limitation of Liability</a></li>
+      <li><a href="#indemnification">Indemnification</a></li>
+      <li><a href="#amendments">Amendments</a></li>
+      <li><a href="#governing-law-and-dispute-resolution">Governing Law and Dispute Resolution</a></li>
+      <li><a href="#general-provisions">General Provisions</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </div>
+</nav>
+
+<main>
+<section id="definitions">
+<h2><span class="num">1.</span>Definitions</h2>
+<p>For purposes of these Terms:</p>
+<p>“Platform” means ESTX.Exchange, including its website, user interface, mobile or web applications, APIs, services, tools, and related infrastructure.</p>
+<p>“Company” means ESTX Venture GmbH and, where applicable, its affiliates, service providers, contractors, technology partners, licensed infrastructure providers, and authorized operating entities.</p>
+<p>“User” or “you” means any individual or legal entity that accesses or uses the Platform.</p>
+<p>“Digital Assets” means cryptocurrencies, utility tokens, memecoins, tokenized assets, security tokens where supported, and any other blockchain-based digital representation of value supported by the Platform.</p>
+<p>“Supported Assets” means those Digital Assets that the Platform makes available from time to time in its sole discretion.</p>
+<p>“Restricted Jurisdictions” means any jurisdiction or region in which access to the Platform or certain services is prohibited, restricted, or not supported due to legal, regulatory, sanctions, licensing, compliance, or business reasons.</p>
+<p>“Services” means all products and services made available by or through the Platform, including trading, wallet functionality, market data, token listing support, institutional services, fiat gateway integrations, customer support, and related features.</p>
+<p>“Third-Party Services” means services, tools, websites, protocols, wallets, payment providers, banking providers, fiat on/off-ramp providers, custody providers, liquidity providers, market makers, staking interfaces, DApps, or other external services not directly controlled by the Company.</p>
+<p>“Force Majeure Event” means any event beyond the reasonable control of the Company, including market disruptions, cyberattacks, outages, blockchain failures, wars, government action, sanctions, technical failures, regulatory changes, labor disputes, natural disasters, and failures by service providers or counterparties.</p>
+</section>
+<section id="nature-of-the-platform">
+<h2><span class="num">2.</span>Nature of the Platform</h2>
+<p>ESTX.Exchange is a digital asset platform that may provide, facilitate, or arrange access to:</p>
+<ul><li>digital asset spot trading</li><li>token listings and market access</li><li>market data, quotes, and trading tools</li><li>institutional liquidity and trading infrastructure</li><li>fiat-related services via authorized third-party providers</li><li>wallet and account functionality</li><li>project information and issuer disclosures</li></ul>
+<p>support and operational services.</p>
+<p>The Platform may also support listings of utility tokens, memecoins, and selected tokenized or security-token-related assets, subject to applicable law, technical feasibility, partner support, internal approval, and jurisdictional eligibility.</p>
+<p>The Platform does not provide investment advice, legal advice, tax advice, brokerage advice, fiduciary advice, or any guarantee of profit, liquidity, token value, listing success, or market performance.</p>
+</section>
+<section id="eligibility">
+<h2><span class="num">3.</span>Eligibility</h2>
+<p>You may use the Platform only if:</p>
+<ul><li>you are at least 18 years old or the legal age of majority in your jurisdiction</li><li>you have full legal capacity to enter into binding agreements</li><li>you are not located in, organized in, or acting from a Restricted Jurisdiction</li><li>you are not a sanctioned person and are not listed on any applicable sanctions list</li><li>your use of the Platform does not violate any law, regulation, court order, or regulatory restriction applicable to you</li></ul>
+<p>all information you provide is true, accurate, current, and complete.</p>
+<p>Where you use the Platform on behalf of a company, fund, trust, or other entity, you represent that you have full authority to bind that entity to these Terms.</p>
+</section>
+<section id="restricted-jurisdictions-and-regulatory-access-controls">
+<h2><span class="num">4.</span>Restricted Jurisdictions and Regulatory Access Controls</h2>
+<p>The Platform may not be available in all jurisdictions.</p>
+<p>The Company may, in its sole discretion and without prior notice:</p>
+<ul><li>restrict or block access based on IP address, residency, nationality, incorporation, source of funds, or other compliance factors</li><li>prohibit access to certain products, assets, markets, or features</li><li>suspend or terminate accounts where required by law, licensing limitations, internal compliance policies, or regulatory obligations</li></ul>
+<p>request enhanced due diligence, source-of-funds documentation, proof of address, or other compliance information at any time.</p>
+<p>You must not use VPNs, proxies, routing tools, or other methods to conceal your true location or circumvent access restrictions.</p>
+</section>
+<section id="account-registration-and-verification">
+<h2><span class="num">5.</span>Account Registration and Verification</h2>
+<p>To use certain Services, you must register an account and complete identity verification procedures as required by the Platform.</p>
+<p>You agree to provide all information, documents, and confirmations reasonably requested by the Company, including but not limited to:</p>
+<ul><li>name</li><li>date of birth</li><li>address</li><li>nationality</li><li>identification documents</li><li>corporate formation documents</li><li>beneficial ownership information</li><li>source of funds / source of wealth information</li><li>tax information</li></ul>
+<p>any other information required under AML, KYC, sanctions, fraud, or risk-control procedures.</p>
+<p>The Company may reject any application, delay activation, limit functionality, or terminate access at its sole discretion.</p>
+<p>Completion of registration or KYC does not create any obligation for the Company to provide any particular service.</p>
+</section>
+<section id="user-representations-and-warranties">
+<h2><span class="num">6.</span>User Representations and Warranties</h2>
+<p>By using the Platform, you represent and warrant that:</p>
+<ul><li>you are acting lawfully and for your own account unless expressly disclosed otherwise</li><li>your assets and funds originate from lawful sources</li><li>you will not use the Platform for fraud, money laundering, terrorist financing, sanctions evasion, market manipulation, deceptive conduct, or any unlawful purpose</li><li>you will not upload misleading, false, infringing, or unlawful content</li><li>you understand the risks of Digital Assets and are able to bear full losses</li><li>you have conducted your own due diligence before buying, selling, holding, or listing any asset</li></ul>
+<p>you will comply with all Platform rules, notices, and policies.</p>
+</section>
+<section id="account-security">
+<h2><span class="num">7.</span>Account Security</h2>
+<p>You are solely responsible for safeguarding your account credentials, passwords, two-factor authentication devices, wallet approvals, devices, and communications.</p>
+<p>You are responsible for all actions taken through your account unless caused solely by the Company’s gross negligence or willful misconduct.</p>
+<p>You must notify the Platform immediately if you suspect unauthorized access, security compromise, fraud, phishing, or misuse of your account.</p>
+<p>The Company may freeze, suspend, or restrict your account where it reasonably suspects unauthorized access, fraud, compliance risk, suspicious activity, sanctions exposure, or technical compromise.</p>
+</section>
+<section id="platform-services">
+<h2><span class="num">8.</span>Platform Services</h2>
+<p>Subject to availability and eligibility, the Platform may offer the following categories of services:</p>
+<h3><span class="num">8.1</span>Trading Services</h3>
+<p>Users may place orders to buy or sell Supported Assets through the Platform. Execution, matching, quoting, spreads, liquidity, pricing, and order priority may depend on market conditions, third-party liquidity providers, counterparties, market makers, technical constraints, compliance restrictions, or other factors.</p>
+<h3><span class="num">8.2</span>Wallet / Account Functionality</h3>
+<p>The Platform may provide access to hosted wallet balances, blockchain deposit addresses, withdrawal tools, or connected wallet interfaces, depending on the product.</p>
+<h3><span class="num">8.3</span>Listing Services</h3>
+<p>The Platform may review and approve token or asset listings at its sole discretion and under separate criteria, procedures, and agreements.</p>
+<h3><span class="num">8.4</span>Institutional Services</h3>
+<p>The Platform may provide or facilitate institutional trading access, onboarding, dedicated support, liquidity solutions, or partner integrations.</p>
+<h3><span class="num">8.5</span>Fiat-Related Services</h3>
+<p>Fiat on-ramp, off-ramp, card processing, bank transfer support, and exchange services may be provided through authorized third-party partners and are subject to separate third-party terms.</p>
+<h3><span class="num">8.6</span>Market Information</h3>
+<p>The Platform may provide asset descriptions, token data, charts, pricing, project materials, or issuer disclosures for informational purposes only.</p>
+</section>
+<section id="no-investment-advice-no-fiduciary-relationship">
+<h2><span class="num">9.</span>No Investment Advice / No Fiduciary Relationship</h2>
+<p>Nothing on the Platform constitutes:</p>
+<ul><li>investment advice</li><li>legal advice</li><li>tax advice</li><li>accounting advice</li><li>financial planning advice</li><li>a recommendation to buy, sell, hold, or list any Digital Asset</li><li>a solicitation where unlawful</li></ul>
+<p>a fiduciary undertaking.</p>
+<p>You are solely responsible for your own decisions, and you should seek professional advice where appropriate.</p>
+</section>
+<section id="third-party-providers-and-partners">
+<h2><span class="num">10.</span>Third-Party Providers and Partners</h2>
+<p>The Platform may rely on third-party service providers, including:</p>
+<ul><li>liquidity providers</li><li>market makers</li><li>banking and fiat partners</li><li>VASP infrastructure providers</li><li>blockchain analytics providers</li><li>KYC/AML vendors</li><li>custody or wallet technology providers</li><li>cloud infrastructure providers</li><li>payment processors</li></ul>
+<p>DApps, protocols, and blockchain networks.</p>
+<p>The Company does not control all third-party services and is not responsible for the performance, solvency, legality, availability, or security of any third party.</p>
+<p>Your use of third-party services may be governed by separate terms and conditions.</p>
+</section>
+<section id="trading-rules">
+<h2><span class="num">11.</span>Trading Rules</h2>
+<p>You acknowledge and agree that:</p>
+<ul><li>all orders submitted through the Platform may be executed automatically if matching conditions are met</li><li>once submitted, an order may not always be amendable or cancellable</li><li>trading activity may be delayed, interrupted, partially executed, rejected, repriced, or canceled due to technical, legal, compliance, or liquidity reasons</li><li>Digital Asset prices may move rapidly and without warning</li><li>there is no guarantee of execution, spread quality, price stability, or liquidity</li><li>certain assets may be highly volatile, illiquid, speculative, or subject to suspension</li></ul>
+<p>the Platform may impose trading limits, position limits, withdrawal limits, circuit breakers, or manual reviews.</p>
+<p>The Company reserves the right to cancel, refuse, adjust, reverse, or void transactions where it determines, in its sole discretion, that there has been a manifest error, system malfunction, abuse, manipulation, compliance issue, legal restriction, or security event.</p>
+</section>
+<section id="token-listings-and-project-information">
+<h2><span class="num">12.</span>Token Listings and Project Information</h2>
+<p>Any token, issuer, or project listed on the Platform remains solely responsible for its own disclosures, operations, promises, code, tokenomics, utility, legal status, and performance.</p>
+<p>The Platform does not guarantee the truthfulness, completeness, legality, market quality, or future success of any listed token, issuer, or project.</p>
+<p>A listing or display on the Platform does not constitute endorsement, verification, certification, or recommendation.</p>
+<p>The Company may suspend, restrict, delist, or refuse any token, market, or asset at any time for any reason.</p>
+</section>
+<section id="fees">
+<h2><span class="num">13.</span>Fees</h2>
+<p>You agree to pay all fees, commissions, spreads, listing fees, service fees, withdrawal fees, processing fees, network fees, partner fees, and other charges applicable to your use of the Platform.</p>
+<p>Applicable fees may be shown on the Platform, in fee schedules, in onboarding materials, or in separate agreements.</p>
+<p>The Company may amend fees at any time in its sole discretion.</p>
+<p>You are also responsible for all taxes, duties, withholding obligations, reporting requirements, and similar liabilities arising from your use of the Platform, except where applicable law requires otherwise.</p>
+</section>
+<section id="prohibited-conduct">
+<h2><span class="num">14.</span>Prohibited Conduct</h2>
+<p>You must not:</p>
+<ul><li>violate any law or regulation</li><li>use the Platform from a prohibited jurisdiction</li><li>bypass KYC, sanctions, or geolocation controls</li><li>engage in fraud, wash trading, spoofing, front-running, market manipulation, or deceptive conduct</li><li>upload false, misleading, or infringing information</li><li>interfere with the Platform’s systems or security</li><li>use bots, scraping tools, or unauthorized APIs in a harmful or abusive manner</li><li>attempt unauthorized access to accounts, systems, data, or wallets</li><li>use the Platform for laundering proceeds of crime</li><li>buy, sell, rent, or transfer verified accounts or KYC information</li><li>impersonate any other person or entity</li></ul>
+<p>infringe the intellectual property or rights of others.</p>
+<p>The Company may investigate suspected misconduct and may cooperate with regulators, law enforcement, courts, or counterparties as required.</p>
+</section>
+<section id="suspension-restriction-freezing-and-termination">
+<h2><span class="num">15.</span>Suspension, Restriction, Freezing, and Termination</h2>
+<p>The Company may at any time, with or without notice, suspend, freeze, restrict, or terminate your access to the Platform where it reasonably believes that:</p>
+<ul><li>you have breached these Terms</li><li>your activity presents legal, regulatory, fraud, security, or reputational risk</li><li>you are subject to sanctions or adverse media</li><li>you failed KYC or due diligence requirements</li><li>your account is inactive, compromised, or under dispute</li><li>a court, regulator, law enforcement body, or competent authority requires action</li></ul>
+<p>continued access is no longer commercially, legally, or operationally feasible.</p>
+<p>The Company may also block withdrawals, refuse transactions, or freeze assets where required by law, compliance policy, blockchain tracing results, suspicious activity review, asset recovery processes, or ongoing investigations.</p>
+<p>Termination does not affect accrued rights, liabilities, investigations, indemnities, or obligations that survive termination.</p>
+</section>
+<section id="service-interruptions-and-technical-failures">
+<h2><span class="num">16.</span>Service Interruptions and Technical Failures</h2>
+<p>The Platform may become unavailable, delayed, degraded, or interrupted due to:</p>
+<ul><li>maintenance</li><li>upgrades</li><li>cyberattacks</li><li>system failures</li><li>blockchain congestion</li><li>oracle failures</li><li>API outages</li><li>force majeure events</li><li>market stress</li><li>failures of liquidity providers or payment providers</li></ul>
+<p>actions by regulators or public authorities.</p>
+<p>The Company does not guarantee uninterrupted availability and will not be liable for losses caused by outages, delays, failed broadcasts, failed settlements, or temporary inability to access the Platform, except to the extent non-excludable under applicable law.</p>
+</section>
+<section id="risk-disclosure">
+<h2><span class="num">17.</span>Risk Disclosure</h2>
+<p>Digital Assets are highly risky and may lose all value.</p>
+<p>By using the Platform, you acknowledge and accept, among others, the following risks:</p>
+<ul><li>extreme volatility</li><li>illiquidity</li><li>smart contract failure</li><li>blockchain failure</li><li>counterparty failure</li><li>token issuer default</li><li>fraud and scams</li><li>cyberattacks</li><li>loss of private keys or access credentials</li><li>market manipulation</li><li>legal and regulatory changes</li><li>sanctions restrictions</li><li>banking and payment interruptions</li><li>suspension or delisting of assets</li><li>inability to sell at desired prices</li><li>technology failures</li><li>oracle failures</li><li>stablecoin depegs</li><li>custody or settlement failures</li></ul>
+<p>complete loss of capital.</p>
+<p>You are solely responsible for evaluating whether any transaction or asset is suitable for you.</p>
+</section>
+<section id="intellectual-property">
+<h2><span class="num">18.</span>Intellectual Property</h2>
+<p>All content, software, branding, designs, graphics, data compilations, text, marks, logos, interfaces, and materials on the Platform are owned by the Company or its licensors and are protected by intellectual property laws.</p>
+<p>You may not copy, reproduce, distribute, modify, reverse engineer, scrape, republish, frame, exploit, or create derivative works from the Platform without prior written consent.</p>
+<p>Use of the Platform does not grant you any ownership right in any intellectual property.</p>
+</section>
+<section id="privacy-and-data-protection">
+<h2><span class="num">19.</span>Privacy and Data Protection</h2>
+<p>The Company may collect, process, verify, store, transfer, and disclose personal data and business information in accordance with its Privacy Policy and applicable legal obligations.</p>
+<p>This may include the use of your data for:</p>
+<ul><li>account administration</li><li>KYC/AML verification</li><li>sanctions screening</li><li>fraud prevention</li><li>risk management</li><li>regulatory reporting</li><li>analytics</li><li>customer support</li><li>product improvement</li><li>security monitoring</li></ul>
+<p>lawful cooperation with service providers and authorities.</p>
+<p>You consent to such processing to the extent required for the operation of the Platform and compliance with applicable law.</p>
+</section>
+<section id="notices-and-communications">
+<h2><span class="num">20.</span>Notices and Communications</h2>
+<p>The Company may send notices to you by:</p>
+<ul><li>email</li><li>platform message</li><li>dashboard notification</li><li>website announcement</li><li>push notification</li><li>SMS</li></ul>
+<p>other contact methods you provided.</p>
+<p>You are responsible for keeping your contact information current and accurate.</p>
+<p>Electronic notices are deemed received when sent or posted through the relevant channel.</p>
+</section>
+<section id="disclaimers">
+<h2><span class="num">21.</span>Disclaimers</h2>
+<p>The Platform and all services are provided on an “as is” and “as available” basis.</p>
+<p>To the maximum extent permitted by law, the Company disclaims all warranties, whether express, implied, statutory, or otherwise, including warranties of:</p>
+<ul><li>merchantability</li><li>fitness for a particular purpose</li><li>non-infringement</li><li>uninterrupted service</li><li>error-free functionality</li><li>accuracy of market data</li><li>continued availability of any asset or service</li></ul>
+<p>profitability or suitability of any transaction.</p>
+<p>The Company does not guarantee that the Platform is free from bugs, malware, exploits, outages, or vulnerabilities.</p>
+</section>
+<section id="limitation-of-liability">
+<h2><span class="num">22.</span>Limitation of Liability</h2>
+<p>To the maximum extent permitted by law, the Company and its affiliates, officers, directors, employees, contractors, partners, liquidity providers, service providers, and licensors shall not be liable for any:</p>
+<ul><li>indirect losses</li><li>incidental losses</li><li>consequential losses</li><li>punitive damages</li><li>loss of profit</li><li>loss of business</li><li>loss of opportunity</li><li>loss of data</li><li>reputational damage</li><li>loss arising from market movements</li><li>loss arising from third-party failures</li><li>loss arising from compliance-related restrictions, freezes, or suspensions</li></ul>
+<p>loss arising from force majeure events.</p>
+<p>To the fullest extent permitted by law, the total aggregate liability of the Company for any claim arising out of or relating to the Platform or these Terms shall not exceed the total fees paid by you to the Platform in the three (3) months preceding the event giving rise to the claim.</p>
+<p>Nothing in these Terms excludes liability that cannot be excluded under mandatory law.</p>
+</section>
+<section id="indemnification">
+<h2><span class="num">23.</span>Indemnification</h2>
+<p>You agree to indemnify, defend, and hold harmless the Company and its affiliates, officers, directors, employees, contractors, partners, and service providers from and against any claims, losses, damages, liabilities, judgments, costs, investigations, fines, penalties, and expenses (including reasonable legal fees) arising out of or relating to:</p>
+<ul><li>your breach of these Terms</li><li>your use of the Platform</li><li>your violation of law</li><li>your infringement of any third-party rights</li><li>your token, project, listing materials, or issuer disclosures</li></ul>
+<p>your fraud, negligence, misconduct, or misuse of the Platform.</p>
+</section>
+<section id="amendments">
+<h2><span class="num">24.</span>Amendments</h2>
+<p>The Company may amend these Terms at any time.</p>
+<p>Updated Terms become effective upon publication on the Platform or on the date specified in the updated version.</p>
+<p>Your continued use of the Platform after such publication constitutes acceptance of the updated Terms.</p>
+</section>
+<section id="governing-law-and-dispute-resolution">
+<h2><span class="num">25.</span>Governing Law and Dispute Resolution</h2>
+<p>These Terms shall be governed by the laws specified by the Platform in its final legal framework and jurisdiction notice published on the Platform from time to time.</p>
+<p>Any dispute, claim, or controversy arising out of or in connection with these Terms or the Platform shall be resolved in the forum, court, or arbitration venue designated by the Company in the final legal version applicable to the relevant contracting entity and service offering.</p>
+</section>
+<section id="general-provisions">
+<h2><span class="num">26.</span>General Provisions</h2>
+<p>If any provision of these Terms is held invalid or unenforceable, the remaining provisions remain in full force and effect.</p>
+<p>The Company’s failure to enforce any provision shall not constitute a waiver.</p>
+<p>You may not assign your rights or obligations under these Terms without the Company’s prior written consent.</p>
+<p>The Company may assign or transfer its rights and obligations under these Terms to an affiliate, successor, restructuring vehicle, or acquirer.</p>
+<p>These Terms, together with all referenced policies and rules, constitute the entire agreement between you and the Company regarding the Platform.</p>
+</section>
+<section id="contact">
+<h2><span class="num">27.</span>Contact</h2>
+<p class="address">ESTX Venture GmbH</p>
+<p class="address">Bangarten 10</p>
+<p class="address">FL-9490 Vaduz</p>
+<p class="address">Liechtenstein</p>
+<p>For legal, compliance, or support inquiries, please use the contact details and support channels published on ESTX.Exchange.</p>
+</section>
+</main>
+
+<div class="crossref">
+  <div class="crossref-box">
+    <span>Please also review the risks of trading digital assets:</span>
+    <a href="risk-disclosure.html">Risk Disclosure Statement &rarr;</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="copy">&copy; 2026 ESTX.Exchange &middot; ESTX Venture GmbH, Vaduz, Liechtenstein</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="risk-disclosure.html">Risk Disclosure</a>
+      <a href="https://trade.estx.exchange" target="_blank" rel="noopener">Trade</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

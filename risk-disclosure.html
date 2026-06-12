@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="index, follow"/>
+<title>Risk Disclosure Statement — ESTX.Exchange</title>
+<meta name="description" content="Risk Disclosure Statement for ESTX.Exchange — the regulated venue where crypto starts to trade."/>
+<link rel="icon" href="brand_assets/favicon.png" type="image/png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ink: #0a1628;
+    --body: #475569;
+    --muted: #64748b;
+    --gold: #B8963E;
+    --paper: #f8faff;
+    --line: #e8edf8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--paper); color: var(--body); }
+
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(248,250,255,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar-inner {
+    max-width: 1080px; margin: 0 auto; padding: 16px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .back-link {
+    font-size: 0.84rem; font-weight: 600; color: var(--muted); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 7px; transition: color .15s;
+  }
+  .back-link:hover { color: var(--ink); }
+
+  .doc-head {
+    max-width: 760px; margin: 0 auto; padding: 72px 24px 0;
+  }
+  .eyebrow {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 18px;
+  }
+  .eyebrow::before {
+    content: ''; display: inline-block; width: 26px; height: 2px; background: var(--gold);
+    vertical-align: middle; margin-right: 10px;
+  }
+  h1 {
+    font-family: 'Outfit', sans-serif; font-weight: 800; color: var(--ink);
+    font-size: clamp(2rem, 5vw, 2.9rem); line-height: 1.12; letter-spacing: -0.02em;
+    margin-bottom: 14px;
+  }
+  .updated { font-size: 0.86rem; color: var(--muted); margin-bottom: 36px; }
+  .updated strong { color: var(--ink); font-weight: 600; }
+
+  .intro {
+    border-left: 3px solid var(--gold);
+    background: #fff; border-radius: 0 12px 12px 0;
+    padding: 24px 28px; margin-bottom: 44px;
+    box-shadow: 0 1px 3px rgba(10,22,40,0.05);
+  }
+  .intro p { font-size: 0.96rem; line-height: 1.7; }
+  .intro p + p { margin-top: 12px; }
+
+  .toc {
+    max-width: 760px; margin: 0 auto 56px; padding: 0 24px;
+  }
+  .toc-box {
+    background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 26px 30px;
+  }
+  .toc-title {
+    font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 0.78rem;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); margin-bottom: 16px;
+  }
+  .toc ol {
+    columns: 2; column-gap: 40px; list-style: none; counter-reset: toc;
+  }
+  .toc li { counter-increment: toc; margin-bottom: 8px; break-inside: avoid; }
+  .toc a {
+    font-size: 0.86rem; color: var(--body); text-decoration: none; line-height: 1.45;
+    display: inline-block; transition: color .15s;
+  }
+  .toc a::before {
+    content: counter(toc, decimal-leading-zero); font-family: 'Outfit', sans-serif;
+    font-weight: 700; font-size: 0.72rem; color: var(--gold); margin-right: 9px;
+  }
+  .toc a:hover { color: var(--ink); }
+  @media (max-width: 640px) { .toc ol { columns: 1; } }
+
+  main { max-width: 760px; margin: 0 auto; padding: 0 24px 90px; }
+  section { margin-bottom: 48px; }
+  h2 {
+    font-family: 'Outfit', sans-serif; font-weight: 700; color: var(--ink);
+    font-size: 1.32rem; letter-spacing: -0.01em; line-height: 1.3;
+    margin-bottom: 16px; padding-top: 10px;
+  }
+  h2 .num { color: var(--gold); margin-right: 10px; font-weight: 800; }
+  h3 {
+    font-family: 'Outfit', sans-serif; font-weight: 600; color: var(--ink);
+    font-size: 1.02rem; margin: 22px 0 10px;
+  }
+  h3 .num { color: var(--gold); margin-right: 8px; font-weight: 700; }
+  p { font-size: 0.95rem; line-height: 1.75; margin-bottom: 13px; }
+  ul { margin: 0 0 16px 4px; list-style: none; }
+  li {
+    font-size: 0.95rem; line-height: 1.7; margin-bottom: 7px; padding-left: 22px; position: relative;
+  }
+  li::before {
+    content: ''; position: absolute; left: 0; top: 0.62em;
+    width: 7px; height: 7px; border-radius: 2px;
+    background: linear-gradient(135deg, var(--gold), #d4b86a);
+  }
+  .address { font-style: normal; }
+  .address p { margin-bottom: 2px; font-weight: 500; color: var(--ink); }
+
+  .crossref {
+    margin: 64px auto 0; max-width: 760px; padding: 0 24px;
+  }
+  .crossref-box {
+    border: 1px solid var(--line); background: #fff; border-radius: 14px;
+    padding: 22px 28px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    flex-wrap: wrap;
+  }
+  .crossref-box span { font-size: 0.9rem; color: var(--muted); }
+  .crossref-box a {
+    font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 0.9rem;
+    color: var(--gold); text-decoration: none;
+  }
+  .crossref-box a:hover { text-decoration: underline; }
+
+  footer {
+    background: var(--ink); margin-top: 80px; padding: 30px 24px;
+  }
+  .footer-inner {
+    max-width: 1080px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+  }
+  footer .copy { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+  footer nav { display: flex; gap: 22px; }
+  footer nav a {
+    font-size: 0.8rem; color: rgba(255,255,255,0.55); text-decoration: none; transition: color .15s;
+  }
+  footer nav a:hover { color: #fff; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="index.html"><img src="brand_assets/logo.svg" alt="ESTX" style="height:30px;width:auto;display:block;"/></a>
+    <a class="back-link" href="index.html">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to ESTX.Exchange
+    </a>
+  </div>
+</div>
+
+<header class="doc-head">
+  <div class="eyebrow">Legal</div>
+  <h1>Risk Disclosure Statement</h1>
+  <p class="updated">Last updated: <strong>April 1, 2026</strong></p>
+  <div class="intro">
+    <p>Before accessing, using, or transacting on ESTX.Exchange (the “Platform”), you must carefully review and fully understand the risks associated with digital assets, tokenized instruments, and related services.</p>
+    <p>This Risk Disclosure Statement outlines key risks but is not exhaustive and does not disclose all possible risks associated with the use of the Platform.</p>
+    <p>You should only use the Platform if you fully understand these risks and have the financial ability to bear potential losses, including the total loss of your assets.</p>
+    <p>If you are uncertain, you should seek independent legal, financial, and tax advice.</p>
+    <p>Capitalized terms used herein shall have the meaning assigned in the Terms of Use, unless otherwise defined.</p>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Table of contents">
+  <div class="toc-box">
+    <div class="toc-title">Contents</div>
+    <ol>
+      <li><a href="#general-risk-acknowledgment">General Risk Acknowledgment</a></li>
+      <li><a href="#trading-risks">Trading Risks</a></li>
+      <li><a href="#platform-and-execution-risks">Platform and Execution Risks</a></li>
+      <li><a href="#technology-and-internet-risks">Technology and Internet Risks</a></li>
+      <li><a href="#cybersecurity-and-account-risks">Cybersecurity and Account Risks</a></li>
+      <li><a href="#digital-asset-blockchain-risks">Digital Asset &amp; Blockchain Risks</a></li>
+      <li><a href="#token-listing-risks">Token Listing Risks</a></li>
+      <li><a href="#regulatory-and-legal-risks">Regulatory and Legal Risks</a></li>
+      <li><a href="#counterparty-and-liquidity-risks">Counterparty and Liquidity Risks</a></li>
+      <li><a href="#third-party-service-risks">Third-Party Service Risks</a></li>
+      <li><a href="#suspension-delisting-and-service-changes">Suspension, Delisting, and Service Changes</a></li>
+      <li><a href="#no-guarantee-of-access-or-utility">No Guarantee of Access or Utility</a></li>
+      <li><a href="#total-loss-risk">Total Loss Risk</a></li>
+      <li><a href="#user-responsibility">User Responsibility</a></li>
+      <li><a href="#no-liability-and-waiver">No Liability and Waiver</a></li>
+    </ol>
+  </div>
+</nav>
+
+<main>
+<section id="general-risk-acknowledgment">
+<h2><span class="num">1.</span>General Risk Acknowledgment</h2>
+<p>You acknowledge and agree that:</p>
+<ul><li>You access and use the Platform entirely at your own risk</li><li>Digital assets are highly volatile, speculative, and complex</li><li>You may incur partial or total loss of your invested capital</li><li>No guarantee of profit, liquidity, or price stability exists</li><li>ESTX does not provide investment advice or recommendations</li></ul>
+<p>You are solely responsible for your trading decisions and asset selections.</p>
+</section>
+<section id="trading-risks">
+<h2><span class="num">2.</span>Trading Risks</h2>
+<p>Trading digital assets involves substantial risk, including but not limited to:</p>
+<ul><li>Extreme price volatility within short time periods</li><li>Loss of entire funds held on the Platform</li><li>Market manipulation, including pump-and-dump schemes</li></ul>
+<p>Sudden loss of value due to:</p>
+<ul><li>regulatory actions</li><li>project failure</li><li>security breaches</li><li>liquidity collapse</li><li>Lack of liquidity, making it difficult or impossible to buy or sell assets</li></ul>
+<p>Under certain market conditions, execution may fail, be delayed, or occur at unfavorable prices.</p>
+<p>ESTX does not guarantee:</p>
+<ul><li>execution of orders</li><li>price accuracy</li><li>market depth</li><li>availability of buyers or sellers</li></ul>
+</section>
+<section id="platform-and-execution-risks">
+<h2><span class="num">3.</span>Platform and Execution Risks</h2>
+<p>The Platform relies on complex infrastructure, including:</p>
+<ul><li>trading engines</li><li>liquidity providers (including institutional partners)</li><li>blockchain networks</li><li>third-party integrations</li></ul>
+<p>As a result:</p>
+<ul><li>Orders may be delayed, partially filled, or rejected</li><li>Trades may be subject to pricing discrepancies or slippage</li><li>The Platform may suspend trading, withdrawals, or specific assets at any time</li><li>Errors (including technical or “manifest errors”) may occur</li></ul>
+<p>In such cases, ESTX reserves the right, at its sole discretion, to:</p>
+<ul><li>cancel or reverse transactions</li><li>correct pricing errors</li><li>suspend affected markets</li></ul>
+<p>You accept that such actions may result in financial loss.</p>
+</section>
+<section id="technology-and-internet-risks">
+<h2><span class="num">4.</span>Technology and Internet Risks</h2>
+<p>Use of the Platform involves internet-based systems and technologies, which carry inherent risks:</p>
+<ul><li>hardware or software failure</li><li>internet disruptions or latency</li><li>cyberattacks or system breaches</li><li>API failures or connectivity issues</li></ul>
+<p>You acknowledge that ESTX is not liable for:</p>
+<ul><li>communication failures</li><li>transaction delays</li><li>data errors or distortions</li><li>inability to access the Platform</li></ul>
+</section>
+<section id="cybersecurity-and-account-risks">
+<h2><span class="num">5.</span>Cybersecurity and Account Risks</h2>
+<p>Your account and assets may be exposed to:</p>
+<ul><li>hacking attempts</li><li>phishing attacks</li><li>malware or unauthorized access</li><li>credential theft</li></ul>
+<p>You are solely responsible for securing your:</p>
+<ul><li>login credentials</li><li>devices</li><li>wallets</li><li>authentication methods</li></ul>
+<p>ESTX shall not be liable for losses resulting from unauthorized access unless required by applicable law.</p>
+</section>
+<section id="digital-asset-blockchain-risks">
+<h2><span class="num">6.</span>Digital Asset &amp; Blockchain Risks</h2>
+<p>Digital assets rely on underlying blockchain technology, which carries additional risks:</p>
+<ul><li>network congestion or failure</li><li>smart contract vulnerabilities</li><li>protocol bugs or exploits</li><li>forks, rollbacks, or network splits</li><li>double-spending risks</li><li>loss of assets due to incorrect wallet addresses</li></ul>
+<p>Any digital asset may:</p>
+<ul><li>lose value entirely</li><li>cease to function</li><li>be abandoned or unsupported</li></ul>
+<p>ESTX does not control or guarantee the performance of any blockchain network.</p>
+</section>
+<section id="token-listing-risks">
+<h2><span class="num">7.</span>Token Listing Risks</h2>
+<p>The listing of a token on ESTX does not constitute:</p>
+<ul><li>endorsement</li><li>due diligence certification</li><li>investment recommendation</li></ul>
+<p>Token issuers remain fully responsible for:</p>
+<ul><li>disclosures</li><li>business operations</li><li>token utility</li><li>legal compliance</li></ul>
+<p>Tokens may be:</p>
+<ul><li>highly speculative</li><li>illiquid</li><li>subject to fraud or misrepresentation</li></ul>
+<p>ESTX may suspend or delist any token at any time.</p>
+</section>
+<section id="regulatory-and-legal-risks">
+<h2><span class="num">8.</span>Regulatory and Legal Risks</h2>
+<p>The regulatory treatment of digital assets varies globally and remains uncertain.</p>
+<p>Risks include:</p>
+<ul><li>classification of tokens as securities or regulated instruments</li><li>changes in laws or regulations</li><li>restrictions on trading or ownership</li><li>enforcement actions by authorities</li><li>limitations based on jurisdiction</li></ul>
+<p>ESTX may:</p>
+<ul><li>restrict access</li><li>suspend accounts</li><li>block transactions</li></ul>
+<p>to comply with legal and regulatory obligations.</p>
+</section>
+<section id="counterparty-and-liquidity-risks">
+<h2><span class="num">9.</span>Counterparty and Liquidity Risks</h2>
+<p>Trading on the Platform may involve third-party liquidity providers, counterparties, or market participants.</p>
+<p>Risks include:</p>
+<ul><li>counterparty default or insolvency</li><li>lack of liquidity</li><li>failed settlements</li><li>inability to execute trades</li></ul>
+<p>There is no guarantee fund or insurance covering losses from counterparties.</p>
+</section>
+<section id="third-party-service-risks">
+<h2><span class="num">10.</span>Third-Party Service Risks</h2>
+<p>Certain services may involve third parties, including:</p>
+<ul><li>liquidity providers</li><li>fiat on/off-ramp providers</li><li>payment processors</li><li>custody or wallet providers</li></ul>
+<p>ESTX does not control and is not responsible for:</p>
+<ul><li>availability</li><li>performance</li><li>security</li><li>solvency</li></ul>
+<p>of such third parties.</p>
+</section>
+<section id="suspension-delisting-and-service-changes">
+<h2><span class="num">11.</span>Suspension, Delisting, and Service Changes</h2>
+<p>ESTX may at any time:</p>
+<ul><li>suspend trading</li><li>delist assets</li><li>restrict withdrawals</li><li>modify or discontinue services</li></ul>
+<p>Such actions may result in:</p>
+<ul><li>inability to access assets</li><li>loss of liquidity</li><li>financial loss</li></ul>
+</section>
+<section id="no-guarantee-of-access-or-utility">
+<h2><span class="num">12.</span>No Guarantee of Access or Utility</h2>
+<p>Holding a digital asset does not guarantee:</p>
+<ul><li>liquidity</li><li>future value</li><li>access to services</li><li>utility or benefits</li></ul>
+<p>Any expected utility may change or disappear entirely.</p>
+</section>
+<section id="total-loss-risk">
+<h2><span class="num">13.</span>Total Loss Risk</h2>
+<p>You acknowledge that:</p>
+<p>You may lose all of your funds.</p>
+<p>This includes losses resulting from:</p>
+<ul><li>market movements</li><li>technical failures</li><li>regulatory changes</li><li>security breaches</li><li>third-party failures</li></ul>
+<p>You should only trade with funds you can afford to lose.</p>
+</section>
+<section id="user-responsibility">
+<h2><span class="num">14.</span>User Responsibility</h2>
+<p>By using the Platform, you confirm that:</p>
+<ul><li>you understand the risks of digital assets</li><li>you have sufficient knowledge and experience</li><li>you conduct your own due diligence</li><li>you are not relying on ESTX for advice</li></ul>
+<p>You are solely responsible for all decisions and actions taken on the Platform.</p>
+</section>
+<section id="no-liability-and-waiver">
+<h2><span class="num">15.</span>No Liability and Waiver</h2>
+<p>To the maximum extent permitted by law:</p>
+<p>ESTX and its affiliates, partners, service providers, and employees shall not be liable for any losses arising from:</p>
+<ul><li>trading activities</li><li>market conditions</li><li>system failures</li><li>third-party services</li><li>security incidents</li><li>regulatory actions</li></ul>
+<p>You irrevocably waive any claims against ESTX in connection with such risks, except where liability cannot be excluded under applicable law.</p>
+</section>
+</main>
+
+<div class="crossref">
+  <div class="crossref-box">
+    <span>These risk disclosures form part of our user agreement:</span>
+    <a href="terms.html">Terms of Use &rarr;</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="copy">&copy; 2026 ESTX.Exchange &middot; ESTX Venture GmbH, Vaduz, Liechtenstein</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="risk-disclosure.html">Risk Disclosure</a>
+      <a href="https://trade.estx.exchange" target="_blank" rel="noopener">Trade</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

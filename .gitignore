@@ -5,3 +5,4 @@ node_modules/
 *.odt
 CLAUDE.md
 screenshot.mjs
+.gstack/

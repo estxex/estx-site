@@ -32,6 +32,7 @@ jobs:
             **/.github/**
             **/node_modules/**
             README.md
+            build-legal.py
             SETUP-GUIDE.md
             CLAUDE.md
             screenshot.mjs
@@ -61,6 +62,7 @@ jobs:
             **/.github/**
             **/node_modules/**
             README.md
+            build-legal.py
             SETUP-GUIDE.md
             CLAUDE.md
             screenshot.mjs
