@@ -303,7 +303,7 @@ option{background:#0a1628;}
         <div class="hcd"><div class="hcd-n" id="cd-m">00</div><div class="hcd-l" data-i18n="cd_minutes">Min</div></div>
         <span class="hcd-sep">:</span>
         <div class="hcd"><div class="hcd-n" id="cd-s">00</div><div class="hcd-l" data-i18n="cd_seconds">Sec</div></div>
-        <div style="font-size:0.68rem;color:rgba(255,255,255,0.35);line-height:1.3;margin-left:10px;" data-i18n-html="cd_launch_label">Launch<br/><span style="color:#5b9aff;font-weight:700;">June 30, 2026</span></div>
+        <div style="font-size:0.68rem;color:rgba(255,255,255,0.35);line-height:1.3;margin-left:10px;" data-i18n-html="cd_launch_label">Launch<br/><span style="color:#5b9aff;font-weight:700;">October 15, 2026</span></div>
       </div>
       <div class="hero-dark-feats">
         <div class="hfeat">
@@ -942,7 +942,7 @@ function pad(n){return String(n).padStart(2,'0');}
 function closeMob(){document.getElementById('mobMenu').classList.remove('open');}
 
 // ── COUNTDOWN ───────────────────────────────────────────
-const TARGET=new Date('2026-06-30T10:00:00+02:00').getTime();
+const TARGET=new Date('2026-10-15T10:00:00+02:00').getTime();
 function tick(){
   const d=TARGET-Date.now();
   if(d<=0){['cd-d','cd-h','cd-m','cd-s'].forEach(id=>document.getElementById(id).textContent='00');return;}
@@ -1045,7 +1045,7 @@ const FAQS=[
   {q:'How is ESTX different from Binance, Coinbase or other exchanges?',a:'ESTX is specifically designed to serve projects and communities that are underserved by major exchanges. We provide an accessible, structured listing path for token issuers who cannot afford the high fees and long waiting periods at platforms like Binance or Coinbase — while maintaining rigorous screening to ensure project quality and legitimacy. Our three-tier structure gives every project the right market environment.'},
   {q:'Is ESTX a regulated exchange?',a:'Yes. ESTX is operated and managed by ESTX Venture GmbH, headquartered at Bangarten 10, FL-9490 Vaduz, Liechtenstein. The exchange operates under a Virtual Assets Service Provider (VASP) license held by Black Forest Digital Assets LLC (BFDA), a company incorporated in Georgia with Identification Number 404610845. This ensures full regulatory compliance and operational transparency.'},
   {q:'How can I buy cryptocurrency on ESTX?',a:'Getting started is simple: (1) Create an account with your email and country of residence, (2) Complete identity verification (KYC) by uploading required documents, (3) Add your payment method — credit card, debit card, or bank transfer, (4) Start buying Bitcoin, Ethereum, Solana and 200+ other cryptocurrencies using USD, EUR, GBP, AUD, and over 48 additional local currencies.'},
-  {q:'What is the ESTX Token?',a:'The ESTX Token is the native utility token of the ESTX Exchange ecosystem. Token holders benefit from reduced trading fees, governance participation, exclusive access to new token listings and launchpad events, and staking rewards. The official ESTX Token launch is scheduled for June 30, 2026.'},
+  {q:'What is the ESTX Token?',a:'The ESTX Token is the native utility token of the ESTX Exchange ecosystem. Token holders benefit from reduced trading fees, governance participation, exclusive access to new token listings and launchpad events, and staking rewards. The official ESTX Token launch is scheduled for October 15, 2026.'},
   {q:'How do I list my token on ESTX?',a:'ESTX provides an accessible and structured listing process. Visit our "Apply for Listing" page to submit your project for review. Our team evaluates every submission through a comprehensive screening process — covering project legitimacy, team background, tokenomics, and community — before approving listings on the appropriate market tier (Venture, Market, or Prime).'},
   {q:'How do I secure my ESTX account?',a:'ESTX provides multiple layers of account security: enable Two-Factor Authentication (2FA) — which is mandatory for withdrawals — use a strong, unique password, and monitor your active sessions regularly. Our platform also includes suspicious login detection that alerts you to any unusual access attempts on your account.'},
 ];
@@ -1293,7 +1293,7 @@ const i18n = {
     hero_market_tiers: 'Market Tiers', hero_crypto_assets: 'Crypto Assets', hero_licensed: 'Regulation',
     // Countdown
     cd_days: 'Days', cd_hours: 'Hrs', cd_minutes: 'Min', cd_seconds: 'Sec',
-    cd_launch_label: 'Launch<br/><span style="color:#5b9aff;font-weight:700;">June 30, 2026</span>',
+    cd_launch_label: 'Launch<br/><span style="color:#5b9aff;font-weight:700;">October 15, 2026</span>',
     // Markets
     markets_label: 'Live Markets', markets_heading: 'Markets That Never Sleep',
     markets_subtitle: '200+ digital assets available on ESTX Exchange \u2014 updated in real time.',
@@ -1397,7 +1397,7 @@ const i18n = {
     faq_q3: 'How can I buy cryptocurrency on ESTX?',
     faq_a3: 'Getting started is simple: (1) Create an account with your email and country of residence, (2) Complete identity verification (KYC) by uploading required documents, (3) Add your payment method \u2014 credit card, debit card, or bank transfer, (4) Start buying Bitcoin, Ethereum, Solana and 200+ other cryptocurrencies using USD, EUR, GBP, AUD, and over 48 additional local currencies.',
     faq_q4: 'What is the ESTX Token?',
-    faq_a4: 'The ESTX Token is the native utility token of the ESTX Exchange ecosystem. Token holders benefit from reduced trading fees, governance participation, exclusive access to new token listings and launchpad events, and staking rewards. The official ESTX Token launch is scheduled for June 30, 2026.',
+    faq_a4: 'The ESTX Token is the native utility token of the ESTX Exchange ecosystem. Token holders benefit from reduced trading fees, governance participation, exclusive access to new token listings and launchpad events, and staking rewards. The official ESTX Token launch is scheduled for October 15, 2026.',
     faq_q5: 'How do I list my token on ESTX?',
     faq_a5: 'ESTX provides an accessible and structured listing process. Visit our "Apply for Listing" page to submit your project for review. Our team evaluates every submission through a comprehensive screening process \u2014 covering project legitimacy, team background, tokenomics, and community \u2014 before approving listings on the appropriate market tier (Venture, Market, or Prime).',
     faq_q6: 'How do I secure my ESTX account?',
@@ -1432,7 +1432,7 @@ const i18n = {
     cookie_essential: 'Essential Only', cookie_accept: 'Accept All',
     // Popup
     popup_heading: 'Get Early Access to<br/>ESTX Exchange',
-    popup_desc: 'Create your account today and generate your wallet before the official launch. Be ready when ESTX goes live at the end of June.',
+    popup_desc: 'Create your account today and generate your wallet before the official launch. Be ready when ESTX goes live in mid-October.',
     popup_li1: 'Open your account now', popup_li2: 'Generate your wallet', popup_li3: 'Be ready before launch',
     popup_register: 'Register Now <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>', popup_already: 'I Already Have an Account',
     popup_free: 'Free to join \u00B7 No commitment required',
@@ -1449,7 +1449,7 @@ const i18n = {
     hero_market_tiers: 'Marktstufen', hero_crypto_assets: 'Krypto-Assets', hero_licensed: 'Regulierung',
     // Countdown
     cd_days: 'Tage', cd_hours: 'Std', cd_minutes: 'Min', cd_seconds: 'Sek',
-    cd_launch_label: 'Launch<br/><span style="color:#5b9aff;font-weight:700;">30. Juni 2026</span>',
+    cd_launch_label: 'Launch<br/><span style="color:#5b9aff;font-weight:700;">15. Oktober 2026</span>',
     // Markets
     markets_label: 'Live-M\u00E4rkte', markets_heading: 'M\u00E4rkte, die niemals schlafen',
     markets_subtitle: '\u00DCber 200 digitale Assets auf ESTX Exchange \u2014 in Echtzeit aktualisiert.',
@@ -1553,7 +1553,7 @@ const i18n = {
     faq_q3: 'Wie kann ich auf ESTX Kryptow\u00E4hrungen kaufen?',
     faq_a3: 'Der Einstieg ist einfach: (1) Erstelle ein Konto mit deiner E-Mail und deinem Wohnsitzland, (2) Schlie\u00DFe die Identit\u00E4tsverifizierung (KYC) durch Hochladen der erforderlichen Dokumente ab, (3) F\u00FCge deine Zahlungsmethode hinzu \u2014 Kreditkarte, Debitkarte oder Bank\u00FCberweisung, (4) Beginne mit dem Kauf von Bitcoin, Ethereum, Solana und \u00FCber 200 weiteren Kryptow\u00E4hrungen mit USD, EUR, GBP, AUD und \u00FCber 48 zus\u00E4tzlichen lokalen W\u00E4hrungen.',
     faq_q4: 'Was ist der ESTX Token?',
-    faq_a4: 'Der ESTX Token ist der native Utility-Token des ESTX Exchange-\u00D6kosystems. Token-Inhaber profitieren von reduzierten Handelsgeb\u00FChren, Governance-Beteiligung, exklusivem Zugang zu neuen Token-Listings und Launchpad-Events sowie Staking-Rewards. Der offizielle ESTX Token Launch ist f\u00FCr den 30. Juni 2026 geplant.',
+    faq_a4: 'Der ESTX Token ist der native Utility-Token des ESTX Exchange-\u00D6kosystems. Token-Inhaber profitieren von reduzierten Handelsgeb\u00FChren, Governance-Beteiligung, exklusivem Zugang zu neuen Token-Listings und Launchpad-Events sowie Staking-Rewards. Der offizielle ESTX Token Launch ist f\u00FCr den 15. Oktober 2026 geplant.',
     faq_q5: 'Wie kann ich meinen Token auf ESTX listen lassen?',
     faq_a5: 'ESTX bietet einen zug\u00E4nglichen und strukturierten Listing-Prozess. Besuche unsere Seite \u201EF\u00FCr Listing bewerben\u201C, um dein Projekt zur Pr\u00FCfung einzureichen. Unser Team bewertet jede Einreichung durch einen umfassenden Screening-Prozess \u2014 einschlie\u00DFlich Projektlegitimit\u00E4t, Team-Hintergrund, Tokenomics und Community \u2014 bevor Listings auf der entsprechenden Marktstufe (Venture, Market oder Prime) genehmigt werden.',
     faq_q6: 'Wie sichere ich mein ESTX-Konto?',
@@ -1588,7 +1588,7 @@ const i18n = {
     cookie_essential: 'Nur essenzielle', cookie_accept: 'Alle akzeptieren',
     // Popup
     popup_heading: 'Fr\u00FChzeitigen Zugang zu<br/>ESTX Exchange erhalten',
-    popup_desc: 'Erstelle heute dein Konto und generiere dein Wallet vor dem offiziellen Launch. Sei bereit, wenn ESTX Ende Juni live geht.',
+    popup_desc: 'Erstelle heute dein Konto und generiere dein Wallet vor dem offiziellen Launch. Sei bereit, wenn ESTX Mitte Oktober live geht.',
     popup_li1: 'Konto jetzt er\u00F6ffnen', popup_li2: 'Wallet generieren', popup_li3: 'Vor dem Launch bereit sein',
     popup_register: 'Jetzt registrieren <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>', popup_already: 'Ich habe bereits ein Konto',
     popup_free: 'Kostenlos \u00B7 Keine Verpflichtung',
@@ -1726,7 +1726,7 @@ function updatePopupLang(lang) {
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
       </div>
       <h3 style="font-family:'Outfit',sans-serif;font-size:1.5rem;font-weight:800;color:#0a1628;letter-spacing:-0.03em;line-height:1.2;margin-bottom:12px;" data-i18n-html="popup_heading">Get Early Access to<br/>ESTX Exchange</h3>
-      <p style="font-family:'DM Sans',sans-serif;font-size:0.92rem;color:#64748b;line-height:1.7;margin-bottom:24px;" data-i18n="popup_desc">Create your account today and generate your wallet before the official launch. Be ready when ESTX goes live at the end of June.</p>
+      <p style="font-family:'DM Sans',sans-serif;font-size:0.92rem;color:#64748b;line-height:1.7;margin-bottom:24px;" data-i18n="popup_desc">Create your account today and generate your wallet before the official launch. Be ready when ESTX goes live in mid-October.</p>
       <ul style="list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:28px;">
         <li style="display:flex;align-items:center;gap:10px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;color:#0a1628;">
           <div style="width:28px;height:28px;border-radius:50%;background:rgba(16,185,129,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
