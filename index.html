@@ -1111,7 +1111,12 @@ document.getElementById('contactForm').addEventListener('submit',async function(
   const btn=document.getElementById('formBtn');
   btn.textContent='Sending…';btn.disabled=true;btn.style.opacity='0.7';
   try{
-    await fetch(this.action,{method:'POST',body:new FormData(this),headers:{'Accept':'application/json'}});
+    // /ajax/ endpoint returns JSON; the plain endpoint returns an HTML page
+    // (e.g. "activate this address"), which the old code counted as success.
+    const url=this.action.replace('formsubmit.co/','formsubmit.co/ajax/');
+    const res=await fetch(url,{method:'POST',body:new FormData(this),headers:{'Accept':'application/json'}});
+    const data=await res.json();
+    if(!res.ok||String(data.success)!=='true')throw new Error(data.message||('HTTP '+res.status));
     btn.style.display='none';
     document.getElementById('formOk').style.display='block';
     this.reset();
