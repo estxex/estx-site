@@ -1008,7 +1008,7 @@ function marketHref(lsym){
   return'https://trade.estx.exchange/prices';
 }
 
-function fmtP(p){if(p>=1000)return'$'+p.toLocaleString('en',{maximumFractionDigits:2});if(p>=1)return'$'+p.toFixed(2);if(p>=0.01)return'$'+p.toFixed(4);return'$'+p.toFixed(6);}
+function fmtP(p){if(p==null)return'—';if(p>=1000)return'$'+p.toLocaleString('en',{maximumFractionDigits:2});if(p>=1)return'$'+p.toFixed(2);if(p>=0.01)return'$'+p.toFixed(4);return'$'+p.toFixed(6);}
 
 function buildCard(c){
   const sym=c.symbol.toUpperCase();
@@ -1024,7 +1024,7 @@ function buildCard(c){
     </div>
     <div style="text-align:right;flex-shrink:0;">
       <div style="font-family:'Outfit',sans-serif;font-size:0.82rem;font-weight:700;color:#fff;">${fmtP(c.current_price)}</div>
-      <span class="mc-change" style="color:${col};background:${bg};">${sign}${pct.toFixed(2)}% <span style="opacity:0.55;font-weight:500;">24h</span></span>
+      ${c.price_change_percentage_24h==null?'':`<span class="mc-change" style="color:${col};background:${bg};">${sign}${pct.toFixed(2)}% <span style="opacity:0.55;font-weight:500;">24h</span></span>`}
     </div>
   </a>`;
 }
@@ -1065,7 +1065,7 @@ async function loadMarkets(){
     const fallback=Object.keys(coins).filter(s=>!EXCLUDE_SYM.has(s)).map(s=>({
       symbol:s,name:coins[s].fullname||s.toUpperCase(),
       image:`https://cdn.jsdelivr.net/gh/spothq/cryptocurrency-icons/svg/color/${s}.svg`,
-      current_price:null,price_change_percentage_24h:(Math.random()*24-10)
+      current_price:null,price_change_percentage_24h:null
     }));
     if(fallback.length>30){renderRows(fallback);return;}
   }catch{}
