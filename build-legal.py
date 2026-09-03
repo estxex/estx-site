@@ -2,6 +2,12 @@
 """Generate styled legal pages (terms.html, risk-disclosure.html) from the
 plain-text extractions of the source ODT documents. Re-run after the legal
 texts change:  python3 build-legal.py /tmp/terms.txt /tmp/risk.txt
+
+WARNING: terms.html, risk-disclosure.html and privacy.html were hand-edited on
+2026-08-24 for the ESTX Georgia LLC entity change (operator, licence, governing
+law, data controller, EU/EEA status). Those edits are NOT in the source ODT/txt
+files. Re-running this script will overwrite them -- update the source documents
+first, or re-apply the entity changes by hand afterwards.
 """
 import html
 import re
@@ -199,7 +205,7 @@ HEAD = """<!DOCTYPE html>
 
 <footer>
   <div class="footer-inner">
-    <div class="copy">&copy; 2026 ESTX.Exchange &middot; ESTX Venture GmbH, Vaduz, Liechtenstein</div>
+    <div class="copy">&copy; 2026 ESTX.Exchange &middot; ESTX Georgia LLC, Kutaisi, Georgia</div>
     <nav>
       <a href="index.html">Home</a>
       <a href="terms.html">Terms of Use</a>
