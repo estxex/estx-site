@@ -1,4 +1,4 @@
-name: 🚀 Deploy estx.exchange
+name: Deploy estx.exchange
 
 on:
   push:
@@ -6,63 +6,43 @@ on:
       - main
       - staging
 
+env:
+  DEPLOY_HOST: 188.245.243.192
+  DEPLOY_USER: deploy
+
 jobs:
-  deploy-production:
-    name: 🟢 Production → estx.exchange
+  deploy:
+    name: rsync to Hetzner
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
     steps:
-      - name: 🚚 Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: 📂 FTP Deploy → production
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          port: 21
-          security: loose
-          timeout: 60000
-          server-dir: /
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/.github/**
-            **/node_modules/**
-            README.md
-            build-legal.py
-            SETUP-GUIDE.md
-            CLAUDE.md
-            screenshot.mjs
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          echo "${{ env.DEPLOY_HOST }} ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBYgupgihWEc17UMG7HYySqfDIu/J2KG14rI7QVkL/gk" > ~/.ssh/known_hosts
 
-  deploy-staging:
-    name: 🟡 Staging → stage.estx.exchange
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/staging'
-    steps:
-      - name: 🚚 Checkout code
-        uses: actions/checkout@v4
+      - name: Pick target directory
+        id: target
+        run: |
+          if [ "${GITHUB_REF}" = "refs/heads/main" ]; then
+            echo "dir=/var/www/estx.exchange" >> "$GITHUB_OUTPUT"
+          else
+            echo "dir=/var/www/stage.estx.exchange" >> "$GITHUB_OUTPUT"
+          fi
 
-      - name: 📂 FTP Deploy → staging
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          port: 21
-          security: loose
-          timeout: 60000
-          server-dir: /stage/
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/.github/**
-            **/node_modules/**
-            README.md
-            build-legal.py
-            SETUP-GUIDE.md
-            CLAUDE.md
-            screenshot.mjs
+      - name: rsync
+        run: |
+          rsync -az --delete \
+            -e "ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes" \
+            --exclude='.git*' \
+            --exclude='.github/' \
+            --exclude='.htaccess' \
+            --exclude='README.md' \
+            --exclude='SETUP-GUIDE.md' \
+            --exclude='build-legal.py' \
+            --exclude='deploy/' \
+            ./ "${{ env.DEPLOY_USER }}@${{ env.DEPLOY_HOST }}:${{ steps.target.outputs.dir }}/"
