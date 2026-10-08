@@ -73,8 +73,7 @@ HEAD = """<!DOCTYPE html>
   .updated strong {{ color: var(--ink); font-weight: 600; }}
 
   .intro {{
-    border-left: 3px solid var(--gold);
-    background: #fff; border-radius: 0 12px 12px 0;
+    background: #fffaf3; border: 1px solid rgba(247,143,39,0.22); border-radius: 12px;
     padding: 24px 28px; margin-bottom: 44px;
     box-shadow: 0 1px 3px rgba(10,22,40,0.05);
   }}
