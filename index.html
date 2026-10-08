@@ -36,7 +36,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:all 0.35s ease;}
 nav.scrolled{background:rgba(255,255,255,0.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(20,76,188,0.08);box-shadow:0 2px 24px rgba(3,35,99,0.07);}
-.nav-link{font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(10,22,40,0.7);text-decoration:none;transition:color 0.2s;position:relative;}
+.nav-link{font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(10,22,40,0.7);text-decoration:none;transition:color 0.2s;position:relative;white-space:nowrap;}
 .nav-link::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:2px;background:var(--brand);transform:scaleX(0);transform-origin:left;transition:transform 0.2s ease;}
 .nav-link:hover{color:var(--brand);}
 .nav-link:hover::after{transform:scaleX(1);}
@@ -188,6 +188,10 @@ option{background:#0a1628;}
 .cd-lbl{font-family:'DM Sans',sans-serif;font-size:clamp(0.48rem,1.5vw,0.6rem);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#94a3b8;margin-top:4px;}
 .cd-colon{font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:#cbd5e1;padding-top:12px;flex-shrink:0;}
 
+.token-page-link{font-weight:600;font-size:0.92rem;color:rgba(255,255,255,0.72);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.28);padding-bottom:3px;transition:color 0.2s,border-color 0.2s;}
+.token-page-link:hover{color:#fff;border-color:#fff;}
+.token-page-link:focus-visible{outline:2px solid #fff;outline-offset:4px;border-radius:2px;}
+
 /* LANG SWITCH */
 .lang-switch{position:relative;display:flex;align-items:center;}
 .lang-switch-btn{display:flex;align-items:center;gap:5px;background:rgba(20,76,188,0.06);border:1px solid rgba(20,76,188,0.12);border-radius:8px;padding:6px 12px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;color:var(--brand);transition:all 0.2s;user-select:none;}
@@ -229,6 +233,7 @@ option{background:#0a1628;}
   <a href="#why" class="mob-link" onclick="closeMob()" data-i18n="nav_why">Why ESTX</a>
   <a href="#buy" class="mob-link" onclick="closeMob()" data-i18n="nav_buy">Buy Crypto</a>
   <a href="#institutional" class="mob-link" onclick="closeMob()" data-i18n="nav_institutional">Institutional</a>
+  <a href="token.html" class="mob-link" data-i18n="nav_token">ESTX Token</a>
   <a href="#contact" class="mob-link" onclick="closeMob()" data-i18n="nav_contact">Contact</a>
   <div class="mob-lang-switch">
     <button class="mob-lang-btn" onclick="setLang('en');closeMob();" id="mobLangEn">&#127468;&#127463; EN</button>
@@ -244,15 +249,16 @@ option{background:#0a1628;}
 <nav id="mainNav" class="scrolled px-6 py-4">
   <div class="max-w-7xl mx-auto flex items-center justify-between">
     <a href="#home"><img src="brand_assets/logo.svg" alt="ESTX" style="height:34px;width:auto;"/></a>
-    <div class="hidden md:flex items-center gap-7">
+    <div class="hidden xl:flex items-center gap-7">
       <a href="#home" class="nav-link" data-i18n="nav_home">Home</a>
       <a href="#markets" class="nav-link" data-i18n="nav_markets">Markets</a>
       <a href="#why" class="nav-link" data-i18n="nav_why">Why ESTX</a>
       <a href="#buy" class="nav-link" data-i18n="nav_buy">Buy Crypto</a>
       <a href="#institutional" class="nav-link" data-i18n="nav_institutional">Institutional</a>
+      <a href="token.html" class="nav-link" data-i18n="nav_token">ESTX Token</a>
       <a href="#contact" class="nav-link" data-i18n="nav_contact">Contact</a>
     </div>
-    <div class="hidden md:flex items-center gap-3">
+    <div class="hidden xl:flex items-center gap-3">
       <div class="lang-switch">
         <button class="lang-switch-btn" id="langBtn" onclick="toggleLangDropdown()" aria-label="Select language">
           <span id="langFlag">&#127468;&#127463;</span>
@@ -267,7 +273,7 @@ option{background:#0a1628;}
       <a href="https://trade.estx.exchange/login" style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.85rem;color:var(--brand);text-decoration:none;" data-i18n="nav_login">Login</a>
       <a href="https://trade.estx.exchange/signup" class="btn-primary" style="padding:10px 20px;font-size:0.8rem;" data-i18n="nav_signup">Sign Up</a>
     </div>
-    <button onclick="document.getElementById('mobMenu').classList.add('open')" class="md:hidden" style="background:none;border:none;cursor:pointer;">
+    <button onclick="document.getElementById('mobMenu').classList.add('open')" class="xl:hidden" style="background:none;border:none;cursor:pointer;">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0a1628" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
   </div>
@@ -830,6 +836,7 @@ option{background:#0a1628;}
           <span data-i18n="token_cta_x">Follow on X</span>
         </a>
       </div>
+      <div style="margin-top:26px;"><a href="token.html" class="token-page-link" data-i18n="token_cta_page">Token facts, allocation and whitepaper →</a></div>
     </div>
   </div>
 </section>
@@ -924,7 +931,7 @@ option{background:#0a1628;}
           <li><a href="#contact" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" data-i18n="footer_help">Help Center</a></li>
           <li><a href="#faq" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" data-i18n="footer_guide">Beginner's Guide</a></li>
           <li><a href="#contact" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" data-i18n="footer_ticket">Submit a Ticket</a></li>
-          <li><a href="#faq" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">ESTX Token</a></li>
+          <li><a href="token.html" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">ESTX Token</a></li>
           <li><a href="#contact" style="font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" data-i18n="footer_contact">Contact Us</a></li>
         </ul>
       </div>
@@ -1323,7 +1330,7 @@ const i18n = {
   en: {
     // Nav
     nav_home: 'Home', nav_markets: 'Markets', nav_why: 'Why ESTX', nav_buy: 'Buy Crypto',
-    nav_institutional: 'Institutional', nav_contact: 'Contact', nav_login: 'Login', nav_signup: 'Sign Up',
+    nav_institutional: 'Institutional', nav_token: 'ESTX Token', nav_contact: 'Contact', nav_login: 'Login', nav_signup: 'Sign Up',
     // Hero
     hero_heading: 'Where<br/><span style="color:#5b9aff;">Crypto</span><br/>Starts to Trade.',
     hero_subtitle: 'New tokens. Memecoins. Security tokens. Major crypto. All in one place \u2014 regulated and secure.',
@@ -1423,7 +1430,7 @@ const i18n = {
     // Token Community
     token_label: 'ESTX Token', token_heading: 'Join the ESTX Army',
     token_subtitle: 'Join the ESTX Token Community and become part of the fast-growing ESTX ecosystem. Early community members receive exclusive benefits and priority access to new features.',
-    token_cta_tg: 'Join Telegram', token_cta_x: 'Follow on X',
+    token_cta_tg: 'Join Telegram', token_cta_x: 'Follow on X', token_cta_page: 'Token facts, allocation and whitepaper →',
     // FAQ
     faq_label: 'FAQ', faq_heading: 'Questions? We\u2019ve Got Answers.',
     faq_subtitle: 'Find quick answers to common questions about our platform and services.',
@@ -1480,7 +1487,7 @@ const i18n = {
   de: {
     // Nav
     nav_home: 'Startseite', nav_markets: 'M\u00E4rkte', nav_why: 'Warum ESTX', nav_buy: 'Krypto kaufen',
-    nav_institutional: 'Institutionell', nav_contact: 'Kontakt', nav_login: 'Anmelden', nav_signup: 'Registrieren',
+    nav_institutional: 'Institutionell', nav_token: 'ESTX Token', nav_contact: 'Kontakt', nav_login: 'Anmelden', nav_signup: 'Registrieren',
     // Hero
     hero_heading: 'Wo<br/><span style="color:#5b9aff;">Krypto</span><br/>beginnt zu handeln.',
     hero_subtitle: 'Neue Token. Memecoins. Security Token. Gro\u00DFe Kryptow\u00E4hrungen. Alles an einem Ort \u2014 reguliert und sicher.',
@@ -1580,7 +1587,7 @@ const i18n = {
     // Token Community
     token_label: 'ESTX Token', token_heading: 'Werde Teil der ESTX Army',
     token_subtitle: 'Tritt der ESTX Token Community bei und werde Teil des schnell wachsenden ESTX-\u00D6kosystems. Fr\u00FChe Community-Mitglieder erhalten exklusive Vorteile und bevorzugten Zugang zu neuen Funktionen.',
-    token_cta_tg: 'Telegram beitreten', token_cta_x: 'Folgen auf X',
+    token_cta_tg: 'Telegram beitreten', token_cta_x: 'Folgen auf X', token_cta_page: 'Token-Fakten, Allokation und Whitepaper →',
     // FAQ
     faq_label: 'FAQ', faq_heading: 'Fragen? Wir haben Antworten.',
     faq_subtitle: 'Finde schnelle Antworten auf h\u00E4ufige Fragen zu unserer Plattform und unseren Dienstleistungen.',

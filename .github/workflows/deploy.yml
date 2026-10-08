@@ -44,5 +44,7 @@ jobs:
             --exclude='README.md' \
             --exclude='SETUP-GUIDE.md' \
             --exclude='build-legal.py' \
+            --exclude='build-token.py' \
+            --exclude='token-content.json' \
             --exclude='deploy/' \
             ./ "${{ env.DEPLOY_USER }}@${{ env.DEPLOY_HOST }}:${{ steps.target.outputs.dir }}/"

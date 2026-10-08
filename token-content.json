@@ -1,0 +1,738 @@
+{
+ "source": "ESTX Utility Token Whitepaper 2.0 (September 2026), via build_landing.py",
+ "PDF": "ESTX_Whitepaper_v2.0_2026-09.pdf",
+ "CONTRACT": "0x2C83ef0b36ab580b29350913239DA8f80E192644",
+ "ADDR": [
+  [
+   "ESTX Token contract",
+   "Token-Vertrag",
+   "0x2C83ef0b36ab580b29350913239DA8f80E192644"
+  ],
+  [
+   "Treasury Safe (owner, 2-of-3)",
+   "Treasury-Safe (Owner, 2 von 3)",
+   "0x455F5992c084Fe3Be2f833CbCB037765C4680DC9"
+  ],
+  [
+   "Liquidity Safe (2-of-3)",
+   "Liquidity-Safe (2 von 3)",
+   "0xE44bc53A227C15651c07ac989EA0f5c55CAfeD7f"
+  ],
+  [
+   "Vesting contract – Founder 1",
+   "Vesting-Vertrag – Gründer 1",
+   "0x7746F08703AD0683aEe1f4EC601122E89B36b433"
+  ],
+  [
+   "Vesting contract – Founder 2",
+   "Vesting-Vertrag – Gründer 2",
+   "0x1bF9A1AF18d64EDf17b509AB2618613443165B25"
+  ],
+  [
+   "Vesting contract – technical team",
+   "Vesting-Vertrag – Tech-Team",
+   "0xBcEf80bB635D6A58f0AA0C28A27893FbDf70969a"
+  ],
+  [
+   "Community & Ecosystem wallet",
+   "Community-&-Ecosystem-Wallet",
+   "0xAb64ab6E99263b2421ccB9Ce267Ad3d694dDC8ED"
+  ],
+  [
+   "Governance reserve",
+   "Governance-Reserve",
+   "0x2D5e8c64D7ac20215cC88f4c13310B438a24929F"
+  ]
+ ],
+ "ALLOC": [
+  [
+   "Community & Ecosystem",
+   "Community & Ecosystem",
+   35,
+   "700,000,000",
+   "#144CBC"
+  ],
+  [
+   "Liquidity Provisioning",
+   "Liquidity Provisioning",
+   20,
+   "400,000,000",
+   "#B8963E"
+  ],
+  [
+   "Treasury & Strategic Operations",
+   "Treasury & Strategic Operations",
+   15,
+   "300,000,000",
+   "#7C3AED"
+  ],
+  [
+   "Founders & Management",
+   "Founders & Management",
+   20,
+   "400,000,000",
+   "#0f9d8a"
+  ],
+  [
+   "Advisors & Early Contributors",
+   "Advisors & Early Contributors",
+   10,
+   "200,000,000",
+   "#3b7dfc"
+  ]
+ ],
+ "RELEASE": [
+  [
+   "7 Aug 2026 (TGE)",
+   "07.08.2026 (TGE)",
+   "0",
+   "416,000,000",
+   "104,000,000",
+   "5.2"
+  ],
+  [
+   "7 Feb 2027",
+   "07.02.2027",
+   "69,903,196",
+   "346,096,804",
+   "173,903,196",
+   "8.7"
+  ],
+  [
+   "7 Aug 2027",
+   "07.08.2027",
+   "138,666,667",
+   "277,333,333",
+   "242,666,667",
+   "12.1"
+  ],
+  [
+   "7 Feb 2028",
+   "07.02.2028",
+   "208,569,863",
+   "207,430,137",
+   "312,569,863",
+   "15.6"
+  ],
+  [
+   "7 Aug 2028",
+   "07.08.2028",
+   "277,713,242",
+   "138,286,758",
+   "381,713,242",
+   "19.1"
+  ],
+  [
+   "7 Feb 2029",
+   "07.02.2029",
+   "347,616,438",
+   "68,383,562",
+   "451,616,438",
+   "22.6"
+  ],
+  [
+   "6 Aug 2029 (end)",
+   "06.08.2029 (Ende)",
+   "416,000,000",
+   "0",
+   "520,000,000",
+   "26.0"
+  ]
+ ],
+ "T": {
+  "en": {
+   "lang": "en",
+   "other": "de",
+   "other_label": "DE",
+   "other_file": "estx-token-de.html",
+   "title": "ESTX Utility Token",
+   "meta_desc": "Key facts about the ESTX Utility Token: parameters, allocation, vesting, smart contract design and legal positioning, based on Whitepaper 2.0.",
+   "nav": [
+    [
+     "#token",
+     "Token"
+    ],
+    [
+     "#allocation",
+     "Allocation"
+    ],
+    [
+     "#vesting",
+     "Vesting"
+    ],
+    [
+     "#contract",
+     "Contract"
+    ],
+    [
+     "#ecosystem",
+     "Ecosystem"
+    ],
+    [
+     "#legal",
+     "Legal"
+    ]
+   ],
+   "nav_cta": "Whitepaper (PDF)",
+   "eyebrow": "ESTX Utility Token · Whitepaper 2.0 · September 2026",
+   "h1": "One Token. Every ESTX Platform.",
+   "lead": "The ESTX Utility Token is the unified access and usage layer across the ESTX ecosystem. It enables operational platform functionality only and is not designed as an investment, financing, or value-accrual instrument.",
+   "cta1": "Read the Whitepaper",
+   "cta2": "View contract on Etherscan",
+   "stats": [
+    [
+     "2,000,000,000",
+     "ESTX total supply, fixed"
+    ],
+    [
+     "Ethereum",
+     "Mainnet, ERC-20"
+    ],
+    [
+     "7 Aug 2026",
+     "Token Generation Event"
+    ],
+    [
+     "MiCA",
+     "other crypto-asset"
+    ]
+   ],
+   "s_token": [
+    "At a glance",
+    "Token Parameters",
+    "All values are verifiable on-chain. The contract source code is publicly verified on Etherscan."
+   ],
+   "params": [
+    [
+     "Name / Symbol",
+     "ESTX / ESTX"
+    ],
+    [
+     "Standard",
+     "ERC-20 (Ethereum) with ERC20Burnable and ERC20Permit (EIP-2612)"
+    ],
+    [
+     "Blockchain",
+     "Ethereum Mainnet (Chain ID 1)"
+    ],
+    [
+     "Contract address",
+     "0x2C83ef0b36ab580b29350913239DA8f80E192644"
+    ],
+    [
+     "Decimals",
+     "18"
+    ],
+    [
+     "Total supply",
+     "2,000,000,000 ESTX (fixed, minted once at deployment)"
+    ],
+    [
+     "Classification",
+     "Utility Token (MiCA – other crypto-asset)"
+    ],
+    [
+     "Issuer",
+     "ESTX Venture GmbH, Ruggell, Liechtenstein"
+    ],
+    [
+     "Token Generation Event",
+     "7 August 2026, 12:00 UTC"
+    ],
+    [
+     "Source code",
+     "Verified on Etherscan"
+    ]
+   ],
+   "s_utility": [
+    "Utility",
+    "What the Token Does",
+    "Strictly functional. The token enables platform interactions and nothing beyond them."
+   ],
+   "utility": [
+    [
+     "Fee settlement",
+     "Platform fees can be settled in ESTX. Fee reductions are usage-based and non-transferable; they are not financial rewards or yield."
+    ],
+    [
+     "Access control",
+     "Access tiers and loyalty mechanisms exist exclusively for functional differentiation and a better user experience."
+    ],
+    [
+     "Feature activation",
+     "Usage-based activation of platform features within the applicable regulatory perimeter."
+    ],
+    [
+     "Cross-platform",
+     "One consistent utility layer across ESTX.exchange International and the planned ESTX Europe, without altering their legal separation."
+    ]
+   ],
+   "conveys_h": "The token explicitly conveys no",
+   "conveys": [
+    "participation in revenues or profits",
+    "claims on assets",
+    "repayment or distribution rights",
+    "governance or voting rights"
+   ],
+   "s_alloc": [
+    "Tokenomics",
+    "Token Allocation",
+    "The fixed supply is allocated across five functional categories. No allocation confers ownership rights, profit participation, asset claims, or governance rights."
+   ],
+   "alloc_desc": [
+    "Onboarding, platform activity, campaigns and functional incentives.",
+    "Operational liquidity for orderly trading. Market functionality only, not price support.",
+    "Infrastructure, technology, regulatory expansion and operations.",
+    "Two founders with 10% each; 20% at TGE, 80% vested over 36 months.",
+    "Strategic partner 5%, technical team 1%, governance reserve 4%."
+   ],
+   "th_alloc": [
+    "Category",
+    "Share",
+    "ESTX"
+   ],
+   "s_vest": [
+    "Vesting",
+    "Release Schedule",
+    "Founders and contributors received 20% at the TGE. The remaining 80% vests linearly per second over 36 months until 6 August 2029, with no cliff, in individual, non-revocable on-chain vesting contracts based on the OpenZeppelin VestingWallet. No third party, including ESTX Venture GmbH, can revoke, stop or redirect the vesting."
+   ],
+   "th_rel": [
+    "Date",
+    "Vested per schedule",
+    "Not yet vested",
+    "Release incl. TGE tranches",
+    "Share of supply"
+   ],
+   "vest_note": "Vesting tranches total 416,000,000 ESTX (founders 320,000,000, strategic partner 80,000,000, technical team 16,000,000). Values rounded to whole tokens. At the TGE, 16.8% of the supply was locked in vesting contracts; 79.0% was held in project-controlled multisig safes and hardware wallets and is introduced into circulation gradually based on actual platform usage.",
+   "s_contract": [
+    "Technology",
+    "Smart Contract Design",
+    "OpenZeppelin Contracts 5.6, Solidity 0.8.28. No mechanism can influence token value, price formation or market behavior."
+   ],
+   "contract": [
+    [
+     "Fixed supply",
+     "Minted once at deployment. There is no mint function; the supply can never be increased."
+    ],
+    [
+     "No pause, freeze or blacklist",
+     "Token transfers can never be halted or restricted. This reinforces the utility, non-security character."
+    ],
+    [
+     "Immutable",
+     "No proxy, no upgradeability. Token economics can never be altered after deployment."
+    ],
+    [
+     "Holder-only burn",
+     "Holders may burn their own tokens or approve a third party (burnFrom). No one can burn or seize another holder's balance."
+    ],
+    [
+     "2-of-3 multisig",
+     "The Treasury Safe is the sole owner of the contract and holds no control over supply or holder transfers. Treasury and liquidity allocations sit in two 2-of-3 Safe accounts."
+    ],
+    [
+     "Gasless approvals",
+     "ERC20Permit (EIP-2612) allows approvals via signed messages."
+    ],
+    [
+     "Narrow recovery",
+     "rescueERC20 returns tokens accidentally sent to the contract. It can never mint, change supply or move a holder's balance."
+    ],
+    [
+     "Audit status",
+     "Multi-stage internal review with 51 automated tests and a full Sepolia rehearsal. An independent external audit has not been performed to date."
+    ]
+   ],
+   "s_addr": [
+    "Transparency",
+    "Verifiable On-Chain Addresses",
+    "All addresses are on the Ethereum mainnet and can be checked on etherscan.io."
+   ],
+   "th_addr": [
+    "Role",
+    "Address"
+   ],
+   "s_eco": [
+    "Ecosystem",
+    "Two Platforms, One Utility Layer",
+    "Global accessibility combined with jurisdiction-specific regulatory compliance. Both platforms remain legally, operationally and regulatorily separated."
+   ],
+   "eco": [
+    [
+     "ESTX.exchange International",
+     "Licensed VASP · Georgia",
+     [
+      [
+       "Operator",
+       "ESTX Georgia LLC, Kutaisi"
+      ],
+      [
+       "Licence",
+       "VASP License L37-2026, National Bank of Georgia"
+      ],
+      [
+       "Registration",
+       "412800036"
+      ],
+      [
+       "Launch",
+       "Planned for October 2026"
+      ],
+      [
+       "Website",
+       "estx.exchange"
+      ]
+     ]
+    ],
+    [
+     "European Standard Token Exchange",
+     "Planned · MiCA CASP path",
+     [
+      [
+       "Framework",
+       "EU Markets in Crypto-Assets Regulation (MiCA)"
+      ],
+      [
+       "Authorisation",
+       "CASP authorisation, subject to regulatory approval"
+      ],
+      [
+       "Supervision",
+       "Envisaged: Financial Market Authority (FMA) Liechtenstein"
+      ],
+      [
+       "Process",
+       "Planned to commence from December 2026"
+      ]
+     ]
+    ]
+   ],
+   "neutral_h": "Market neutrality",
+   "neutral": "ESTX does not engage in proprietary trading, price support or market-making strategies intended to influence pricing. Neither ESTX Venture GmbH nor ESTX Georgia LLC purchases ESTX Tokens on the open market to reduce supply or support prices. Liquidity provisioning serves market functionality only and does not constitute price stabilization or guaranteed liquidity.",
+   "s_legal": [
+    "Legal",
+    "Regulatory Positioning",
+    "The ESTX Utility Token qualifies as an “other crypto-asset” pursuant to Article 3 of the EU Markets in Crypto-Assets Regulation (MiCA)."
+   ],
+   "legal_not": [
+    "not an asset-referenced token (ART)",
+    "not an electronic money token (EMT)",
+    "not a financial instrument within the meaning of MiFID II",
+    "not a financing instrument, investment product, or ownership, profit or repayment claim"
+   ],
+   "legal_not_h": "The ESTX Token is",
+   "risk_h": "Risk factors, in brief",
+   "risks": [
+    "The value of the ESTX Token may fluctuate significantly and may decline to zero.",
+    "Secondary market liquidity for utility tokens may be limited or volatile.",
+    "At the TGE, 79.0% of the supply was held in technically transferable, project-controlled wallets; transfers from these holdings may significantly affect price and liquidity.",
+    "The smart contracts have not been externally audited; because they are immutable, remediation could require a migration to a new token contract.",
+    "Changes in laws, regulations or supervisory practice may affect platform operation or token usage."
+   ],
+   "disclaimer_h": "Disclaimer",
+   "disclaimer": "This page is a summary of the ESTX Utility Token Whitepaper (Version 2.0) and is provided for informational purposes only. It does not constitute an offer to sell, a solicitation of an offer to buy, or a recommendation of any security, investment product or financial instrument. The ESTX Token is structured exclusively as a utility token under MiCA and does not represent any form of security, equity, debt instrument, profit participation or ownership right. The ESTX Token is not issued for the purpose of raising capital or financing the development of the ESTX platforms. It is not intended to be offered or sold to residents of restricted jurisdictions, including U.S. persons as defined in Regulation S under the U.S. Securities Act of 1933. In case of discrepancy, the Whitepaper prevails.",
+   "final_h": "Read the full Whitepaper",
+   "final_p": "Version 2.0, September 2026, bilingual English / German, 38 pages.",
+   "foot_issuer": "Issuer",
+   "foot_operator": "Operator of ESTX.exchange International",
+   "foot_copy": "© 2026 ESTX Venture GmbH. All facts on this page are taken from Whitepaper 2.0 and verified against the Ethereum mainnet."
+  },
+  "de": {
+   "lang": "de",
+   "other": "en",
+   "other_label": "EN",
+   "other_file": "estx-token-en.html",
+   "title": "ESTX Utility Token",
+   "meta_desc": "Die wichtigsten Fakten zum ESTX Utility Token: Parameter, Allokation, Vesting, Smart-Contract-Design und rechtliche Einordnung, auf Basis von Whitepaper 2.0.",
+   "nav": [
+    [
+     "#token",
+     "Token"
+    ],
+    [
+     "#allocation",
+     "Allokation"
+    ],
+    [
+     "#vesting",
+     "Vesting"
+    ],
+    [
+     "#contract",
+     "Vertrag"
+    ],
+    [
+     "#ecosystem",
+     "Ökosystem"
+    ],
+    [
+     "#legal",
+     "Recht"
+    ]
+   ],
+   "nav_cta": "Whitepaper (PDF)",
+   "eyebrow": "ESTX Utility Token · Whitepaper 2.0 · September 2026",
+   "h1": "Ein Token. Jede ESTX-Plattform.",
+   "lead": "Der ESTX Utility Token ist die einheitliche Zugangs- und Nutzungsebene innerhalb des ESTX-Ökosystems. Er ermöglicht ausschließlich operative Plattformfunktionen und ist kein Investment-, Finanzierungs- oder Wertsteigerungsinstrument.",
+   "cta1": "Whitepaper lesen",
+   "cta2": "Vertrag auf Etherscan ansehen",
+   "stats": [
+    [
+     "2.000.000.000",
+     "ESTX Gesamtmenge, fix"
+    ],
+    [
+     "Ethereum",
+     "Mainnet, ERC-20"
+    ],
+    [
+     "7. Aug. 2026",
+     "Token Generation Event"
+    ],
+    [
+     "MiCA",
+     "sonstiger Kryptowert"
+    ]
+   ],
+   "s_token": [
+    "Auf einen Blick",
+    "Token-Parameter",
+    "Alle Werte sind on-chain nachprüfbar. Der Quellcode des Vertrags ist auf Etherscan öffentlich verifiziert."
+   ],
+   "params": [
+    [
+     "Name / Symbol",
+     "ESTX / ESTX"
+    ],
+    [
+     "Standard",
+     "ERC-20 (Ethereum) mit ERC20Burnable und ERC20Permit (EIP-2612)"
+    ],
+    [
+     "Blockchain",
+     "Ethereum-Mainnet (Chain-ID 1)"
+    ],
+    [
+     "Contract-Adresse",
+     "0x2C83ef0b36ab580b29350913239DA8f80E192644"
+    ],
+    [
+     "Nachkommastellen",
+     "18"
+    ],
+    [
+     "Gesamtmenge",
+     "2.000.000.000 ESTX (fix, einmalig beim Deployment erzeugt)"
+    ],
+    [
+     "Klassifizierung",
+     "Utility Token (MiCA – sonstiger Kryptowert)"
+    ],
+    [
+     "Emittentin",
+     "ESTX Venture GmbH, Ruggell, Liechtenstein"
+    ],
+    [
+     "Token Generation Event",
+     "7. August 2026, 12:00 UTC"
+    ],
+    [
+     "Quellcode",
+     "Auf Etherscan verifiziert"
+    ]
+   ],
+   "s_utility": [
+    "Nutzen",
+    "Was der Token leistet",
+    "Strikt funktional. Der Token ermöglicht Plattforminteraktionen und nichts darüber hinaus."
+   ],
+   "utility": [
+    [
+     "Gebührenabrechnung",
+     "Plattformgebühren können in ESTX beglichen werden. Gebührenreduktionen sind nutzungsbasiert und nicht übertragbar; sie sind keine finanziellen Erträge."
+    ],
+    [
+     "Zugriffskontrolle",
+     "Zugangs- und Loyalitätsmechanismen dienen ausschließlich der funktionalen Differenzierung und einer besseren Nutzererfahrung."
+    ],
+    [
+     "Feature-Aktivierung",
+     "Nutzungsbasierte Aktivierung von Plattformfunktionen innerhalb des jeweiligen regulatorischen Rahmens."
+    ],
+    [
+     "Plattformübergreifend",
+     "Eine einheitliche Utility-Ebene über ESTX.exchange International und die geplante ESTX Europe hinweg, ohne deren rechtliche Trennung aufzuheben."
+    ]
+   ],
+   "conveys_h": "Der Token vermittelt ausdrücklich keine",
+   "conveys": [
+    "Beteiligung an Umsätzen oder Gewinnen",
+    "Ansprüche auf Vermögenswerte",
+    "Rückzahlungs- oder Ausschüttungsrechte",
+    "Mitwirkungs- oder Stimmrechte"
+   ],
+   "s_alloc": [
+    "Tokenomics",
+    "Token-Allokation",
+    "Die feste Gesamtmenge verteilt sich auf fünf funktionale Kategorien. Keine Allokation begründet Eigentums-, Gewinn-, Vermögens- oder Mitspracherechte."
+   ],
+   "alloc_desc": [
+    "Onboarding, Plattformaktivität, Kampagnen und funktionale Anreize.",
+    "Operative Liquidität für geordneten Handel. Nur Marktfunktion, keine Preisstützung.",
+    "Infrastruktur, Technologie, regulatorische Expansion und Betrieb.",
+    "Zwei Gründer mit je 10 %; 20 % zum TGE, 80 % Vesting über 36 Monate.",
+    "Strategischer Partner 5 %, Tech-Team 1 %, Governance-Reserve 4 %."
+   ],
+   "th_alloc": [
+    "Kategorie",
+    "Anteil",
+    "ESTX"
+   ],
+   "s_vest": [
+    "Vesting",
+    "Freigabeplan",
+    "Gründer und Beitragende erhielten 20 % zum TGE. Die restlichen 80 % vesten sekundengenau linear über 36 Monate bis zum 6. August 2029, ohne Cliff, in individuellen, unwiderruflichen On-Chain-Vesting-Verträgen auf Basis des OpenZeppelin VestingWallet. Kein Dritter, auch nicht die ESTX Venture GmbH, kann das Vesting widerrufen, anhalten oder umleiten."
+   ],
+   "th_rel": [
+    "Datum",
+    "Planmäßig gevestet",
+    "Noch nicht gevestet",
+    "Freigabe inkl. TGE-Tranchen",
+    "Anteil Gesamtmenge"
+   ],
+   "vest_note": "Die Vesting-Tranchen umfassen 416.000.000 ESTX (Gründer 320.000.000, strategischer Partner 80.000.000, Tech-Team 16.000.000). Werte auf ganze Token gerundet. Zum TGE waren 16,8 % der Gesamtmenge in Vesting-Verträgen gesperrt; 79,0 % lagen in projektkontrollierten Multisig-Safes und Hardware-Wallets und gelangen schrittweise, abhängig von der tatsächlichen Plattformnutzung, in den Umlauf.",
+   "s_contract": [
+    "Technologie",
+    "Smart-Contract-Design",
+    "OpenZeppelin Contracts 5.6, Solidity 0.8.28. Kein Mechanismus kann Tokenwert, Preisbildung oder Marktverhalten beeinflussen."
+   ],
+   "contract": [
+    [
+     "Feste Gesamtmenge",
+     "Einmalig beim Deployment erzeugt. Es gibt keine Mint-Funktion; die Menge kann niemals erhöht werden."
+    ],
+    [
+     "Keine Pause, kein Freeze, keine Blacklist",
+     "Token-Transfers können niemals angehalten oder eingeschränkt werden. Das unterstreicht den Utility-, Nicht-Wertpapier-Charakter."
+    ],
+    [
+     "Unveränderlich",
+     "Kein Proxy, keine Upgradefähigkeit. Die Tokenökonomie kann nach dem Deployment nicht geändert werden."
+    ],
+    [
+     "Burn nur durch Halter",
+     "Halter können eigene Token verbrennen oder Dritten eine Freigabe erteilen (burnFrom). Niemand kann fremde Bestände verbrennen oder entziehen."
+    ],
+    [
+     "Multisig 2 von 3",
+     "Die Treasury-Safe ist alleiniger Owner des Vertrags und hat keine Kontrolle über Menge oder Transfers. Treasury- und Liquidity-Allokation liegen in zwei Safe-Konten mit 2 von 3 Unterschriften."
+    ],
+    [
+     "Gasfreie Freigaben",
+     "ERC20Permit (EIP-2612) erlaubt Freigaben per signierter Nachricht."
+    ],
+    [
+     "Eng begrenzte Wiederherstellung",
+     "rescueERC20 gibt versehentlich an den Vertrag gesendete Token zurück. Die Funktion kann weder minten noch die Menge ändern noch Nutzerguthaben bewegen."
+    ],
+    [
+     "Audit-Status",
+     "Mehrstufige interne Prüfung mit 51 automatisierten Tests und vollständiger Sepolia-Generalprobe. Ein unabhängiges externes Audit wurde bislang nicht durchgeführt."
+    ]
+   ],
+   "s_addr": [
+    "Transparenz",
+    "Nachprüfbare On-Chain-Adressen",
+    "Alle Adressen liegen auf dem Ethereum-Mainnet und sind auf etherscan.io nachprüfbar."
+   ],
+   "th_addr": [
+    "Rolle",
+    "Adresse"
+   ],
+   "s_eco": [
+    "Ökosystem",
+    "Zwei Plattformen, eine Utility-Ebene",
+    "Globale Zugänglichkeit verbunden mit jurisdiktionsspezifischer Regulierung. Beide Plattformen bleiben rechtlich, operativ und regulatorisch getrennt."
+   ],
+   "eco": [
+    [
+     "ESTX.exchange International",
+     "Lizenzierter VASP · Georgien",
+     [
+      [
+       "Betreiberin",
+       "ESTX Georgia LLC, Kutaisi"
+      ],
+      [
+       "Lizenz",
+       "VASP-Lizenz L37-2026, Nationalbank von Georgien"
+      ],
+      [
+       "Registrierung",
+       "412800036"
+      ],
+      [
+       "Start",
+       "Geplant für Oktober 2026"
+      ],
+      [
+       "Website",
+       "estx.exchange"
+      ]
+     ]
+    ],
+    [
+     "European Standard Token Exchange",
+     "Geplant · MiCA-CASP-Pfad",
+     [
+      [
+       "Rahmen",
+       "EU-Verordnung über Märkte für Kryptowerte (MiCA)"
+      ],
+      [
+       "Zulassung",
+       "CASP-Zulassung, vorbehaltlich regulatorischer Genehmigung"
+      ],
+      [
+       "Aufsicht",
+       "Vorgesehen: Finanzmarktaufsicht (FMA) Liechtenstein"
+      ],
+      [
+       "Verfahren",
+       "Einleitung ab Dezember 2026 geplant"
+      ]
+     ]
+    ]
+   ],
+   "neutral_h": "Marktneutralität",
+   "neutral": "ESTX betreibt keinen Eigenhandel, keine Preisstützung und keine Market-Making-Strategien zur Preisbeeinflussung. Weder die ESTX Venture GmbH noch die ESTX Georgia LLC erwerben ESTX Tokens am freien Markt, um das Angebot zu verringern oder Preise zu stützen. Liquiditätsbereitstellung dient ausschließlich der Marktfunktion und ist weder Preisstabilisierung noch garantierte Liquidität.",
+   "s_legal": [
+    "Recht",
+    "Regulatorische Einordnung",
+    "Der ESTX Utility Token qualifiziert als „sonstiger Kryptowert“ im Sinne von Artikel 3 der EU-Verordnung über Märkte für Kryptowerte (MiCA)."
+   ],
+   "legal_not": [
+    "kein vermögenswertreferenzierter Token (ART)",
+    "kein E-Geld-Token (EMT)",
+    "kein Finanzinstrument im Sinne der MiFID II",
+    "kein Finanzierungsinstrument, kein Investmentprodukt, kein Anspruch auf Eigentum, Gewinne oder Rückzahlung"
+   ],
+   "legal_not_h": "Der ESTX Token ist",
+   "risk_h": "Risikofaktoren, kurz gefasst",
+   "risks": [
+    "Der Wert des ESTX Tokens kann erheblich schwanken und im Extremfall vollständig entfallen.",
+    "Die Liquidität von Utility Tokens am Sekundärmarkt kann eingeschränkt oder volatil sein.",
+    "Zum TGE lagen 79,0 % der Gesamtmenge technisch übertragbar in projektkontrollierten Wallets; Transfers daraus können Preis und Liquidität erheblich beeinflussen.",
+    "Die Smart Contracts wurden nicht extern auditiert; da sie unveränderlich sind, könnte eine Behebung die Migration auf einen neuen Token-Vertrag erfordern.",
+    "Änderungen gesetzlicher oder aufsichtsrechtlicher Rahmenbedingungen können Plattformbetrieb oder Token-Nutzung beeinflussen."
+   ],
+   "disclaimer_h": "Haftungsausschluss",
+   "disclaimer": "Diese Seite fasst das ESTX Utility Token Whitepaper (Version 2.0) zusammen und dient ausschließlich Informationszwecken. Sie stellt weder ein Verkaufsangebot noch eine Aufforderung zur Abgabe eines Kaufangebots oder eine Empfehlung für Wertpapiere oder andere Finanzinstrumente dar. Der ESTX Token ist ausschließlich als Utility Token gemäß MiCA strukturiert und begründet keinerlei Eigentums-, Gewinn-, Stimm- oder Rückzahlungsrechte. Der ESTX Token wird nicht zum Zweck der Kapitalaufnahme oder zur Finanzierung der Entwicklung der ESTX-Plattformen ausgegeben. Er ist nicht für den Verkauf an Personen in eingeschränkten Jurisdiktionen vorgesehen, insbesondere nicht an US-Personen im Sinne der Regulation S des U.S. Securities Act von 1933. Im Zweifel gilt das Whitepaper.",
+   "final_h": "Das vollständige Whitepaper lesen",
+   "final_p": "Version 2.0, September 2026, zweisprachig Englisch / Deutsch, 38 Seiten.",
+   "foot_issuer": "Emittentin",
+   "foot_operator": "Betreiberin von ESTX.exchange International",
+   "foot_copy": "© 2026 ESTX Venture GmbH. Alle Angaben auf dieser Seite stammen aus Whitepaper 2.0 und wurden gegen das Ethereum-Mainnet geprüft."
+  }
+ }
+}
