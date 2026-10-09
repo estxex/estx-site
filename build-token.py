@@ -26,6 +26,9 @@ if len(sys.argv) == 3 and sys.argv[1] == "--import":
 
 C = json.load(open(CONTENT, encoding="utf-8"))
 T, PDF, CONTRACT = C["T"], C["PDF"], C["CONTRACT"]
+# Until the whitepaper PDF sits next to token.html, its buttons render as "coming soon" instead of a dead link.
+PDF_OK = os.path.exists(os.path.join(HERE, PDF))
+SOON = {"en": "Whitepaper PDF coming soon", "de": "Whitepaper-PDF folgt in Kürze"}
 # allocation colours mapped onto the site palette (brand, gold, purple, green, light blue)
 SITE_COLORS = ["#144CBC", "#B8963E", "#7C3AED", "#10b981", "#5b9aff"]
 
@@ -79,6 +82,12 @@ ICON = {  # 24x24 stroke icons
 TINT = [("20,76,188", "#144CBC"), ("124,58,237", "#7C3AED"), ("184,150,62", "#B8963E"), ("16,185,129", "#10b981")]
 
 
+def wp_button(cls, label, lang, svg):
+    if PDF_OK:
+        return f'<a href="{e(PDF)}" class="{cls}">{e(label)}{svg}</a>'
+    return f'<span class="{cls} is-soon" aria-disabled="true">{e(SOON[lang])}</span>'
+
+
 def icon(name, i):
     rgb, stroke = TINT[i % 4]
     return (f'<div class="why-icon" style="background:linear-gradient(135deg,rgba({rgb},0.12),rgba({rgb},0.06));">'
@@ -119,7 +128,7 @@ def main_block(lang):
         <h1 class="hero-h1 reveal">{h1}</h1>
         <p class="hero-sub reveal">{e(t["lead"])}</p>
         <div class="hero-btns reveal">
-          <a href="{e(PDF)}" class="btn-hero-white">{e(t["cta1"])}<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          {wp_button("btn-hero-white", t["cta1"], lang, '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>')}
           <a href="https://etherscan.io/token/{CONTRACT}" class="btn-hero-outline" target="_blank" rel="noopener">{e(t["cta2"])}</a>
         </div>
       </div>
@@ -231,7 +240,7 @@ def main_block(lang):
 
 <section class="cta-band"><div class="wrap cta-inner">
 <div><h2>{e(t["final_h"])}</h2><p>{e(t["final_p"])}</p></div>
-<a href="{e(PDF)}" class="btn-cta-white">{e(t["nav_cta"])}<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 3v12M6 11l6 6 6-6M5 21h14"/></svg></a>
+{wp_button("btn-cta-white", t["nav_cta"], lang, '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 3v12M6 11l6 6 6-6M5 21h14"/></svg>')}
 </div></section>
 </div>'''
 
@@ -403,6 +412,7 @@ td.mono a:hover{text-decoration:underline;}
 .cta-band h2{font-size:clamp(1.6rem,3vw,2.3rem);font-weight:800;color:#fff;letter-spacing:-0.03em;}
 .cta-band p{color:rgba(255,255,255,0.72);margin-top:8px;}
 .btn-cta-white{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--brand);font-weight:700;font-size:0.9rem;padding:14px 32px;border-radius:8px;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,0.2);transition:transform 0.22s,box-shadow 0.22s;}
+.is-soon{opacity:0.6;cursor:default;pointer-events:none;box-shadow:none !important;}
 .btn-cta-white:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.25);}
 
 /* FOOTER — same as index.html */
@@ -487,7 +497,7 @@ def nav_links(cls, close=False):
     oc = ' onclick="closeMob()"' if close else ""
     out = "".join(f'<a href="#{k}-en" class="{cls}" data-lang="en"{oc}>{en}</a><a href="#{k}-de" class="{cls}" data-lang="de"{oc}>{de}</a>'
                   for k, en, de in items)
-    return out + f'<a href="{e(PDF)}" class="{cls}"{oc}>Whitepaper</a>'
+    return out + (f'<a href="{e(PDF)}" class="{cls}"{oc}>Whitepaper</a>' if PDF_OK else '')
 
 
 def footer():
