@@ -46,5 +46,7 @@ jobs:
             --exclude='build-legal.py' \
             --exclude='build-token.py' \
             --exclude='token-content.json' \
+            --exclude='build-li.py' \
+            --exclude='li-src/' \
             --exclude='deploy/' \
             ./ "${{ env.DEPLOY_USER }}@${{ env.DEPLOY_HOST }}:${{ steps.target.outputs.dir }}/"

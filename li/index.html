@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en" data-ui-lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="robots" content="index, follow"/>
+<title>ESTX Utility Token — ESTX Venture GmbH</title>
+<meta name="description" content="Key facts about the ESTX Utility Token: parameters, allocation, vesting, smart contract design and legal positioning, based on Whitepaper 2.0."/>
+<link rel="canonical" href="https://estx.li/"/>
+<link rel="icon" href="brand_assets/favicon.png" type="image/png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script>(function(){var l=null;try{var q=new URLSearchParams(location.search).get('lang');if(q==='de'||q==='en'){l=q;localStorage.setItem('estx_lang',q);}else{l=localStorage.getItem('estx_lang');}}catch(e){}l=l==='de'?'de':'en';document.documentElement.setAttribute('data-ui-lang',l);document.documentElement.lang=l;})();</script>
+<style>
+:root{--brand:#144CBC;--navy:#032363;--gold:#C9A84C;--purple:#7C3AED;--ink:#0a1628;--muted:#64748b;--line:#eaeff8;--paper:#f8faff;--dark:#020d24;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;scroll-padding-top:84px;overflow-x:hidden;}
+body{font-family:'DM Sans',sans-serif;background:#fff;color:var(--ink);overflow-x:hidden;max-width:100vw;-webkit-font-smoothing:antialiased;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
+html[data-ui-lang="de"] [data-lang="en"],html:not([data-ui-lang="de"]) [data-lang="de"]{display:none !important;}
+h1,h2,h3,h4{font-family:'Outfit',sans-serif;}
+a:focus-visible,button:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:4px;}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86em;word-break:break-all;}
+.wrap{max-width:1280px;margin:0 auto;}
+
+/* NAV — same as index.html */
+nav.top{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 24px;background:rgba(255,255,255,0.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(20,76,188,0.08);box-shadow:0 2px 24px rgba(3,35,99,0.07);}
+.nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;}
+.nav-links{display:none;align-items:center;gap:26px;}
+.nav-link{font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(10,22,40,0.7);text-decoration:none;transition:color 0.2s;position:relative;}
+.nav-link::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:2px;background:var(--brand);transform:scaleX(0);transform-origin:left;transition:transform 0.2s ease;}
+.nav-link:hover{color:var(--brand);}
+.nav-link:hover::after{transform:scaleX(1);}
+.nav-right{display:none;align-items:center;gap:12px;}
+.nav-login{font-weight:600;font-size:0.85rem;color:var(--brand);text-decoration:none;}
+.burger{background:none;border:none;cursor:pointer;padding:4px;}
+@media(min-width:1100px){.nav-links,.nav-right{display:flex;}.burger{display:none;}}
+
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--brand);color:#fff;font-weight:700;font-size:0.8rem;letter-spacing:0.03em;padding:10px 20px;border-radius:8px;border:none;cursor:pointer;transition:transform 0.22s ease,box-shadow 0.22s ease,background 0.22s ease;text-decoration:none;box-shadow:0 4px 18px rgba(20,76,188,0.28);}
+.btn-primary:hover{background:#1a58e0;transform:translateY(-2px);box-shadow:0 8px 28px rgba(20,76,188,0.38);}
+.btn-primary:active{transform:translateY(0);}
+.btn-outline-white{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#fff;font-weight:700;font-size:0.875rem;padding:12px 28px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.3);text-decoration:none;}
+
+.lang-switch{position:relative;display:flex;align-items:center;}
+.lang-switch-btn{display:flex;align-items:center;gap:5px;background:rgba(20,76,188,0.06);border:1px solid rgba(20,76,188,0.12);border-radius:8px;padding:6px 12px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;color:var(--brand);transition:background 0.2s,border-color 0.2s;user-select:none;}
+.lang-switch-btn:hover{background:rgba(20,76,188,0.1);border-color:rgba(20,76,188,0.25);}
+.lang-switch-btn:active{transform:scale(0.97);}
+.lang-dropdown{position:absolute;top:calc(100% + 6px);right:0;background:#fff;border:1px solid #e2e8f8;border-radius:10px;box-shadow:0 8px 28px rgba(3,35,99,0.12);overflow:hidden;opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity 0.2s ease,transform 0.2s ease,visibility 0.2s;z-index:110;min-width:120px;}
+.lang-dropdown.open{opacity:1;visibility:visible;transform:translateY(0);}
+.lang-option{display:flex;align-items:center;gap:8px;width:100%;padding:10px 14px;border:none;background:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;color:#475569;text-align:left;}
+.lang-option:hover{background:rgba(20,76,188,0.06);color:var(--brand);}
+.lang-option.active{color:var(--brand);background:rgba(20,76,188,0.04);}
+
+.mob-menu{display:none;position:fixed;inset:0;background:rgba(3,35,99,0.97);backdrop-filter:blur(20px);z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:26px;padding:24px;}
+.mob-menu.open{display:flex;}
+.mob-close{position:absolute;top:24px;right:24px;background:none;border:none;cursor:pointer;color:#fff;}
+.mob-link{font-family:'Outfit',sans-serif;font-size:1.6rem;font-weight:700;color:#fff;text-decoration:none;}
+.mob-lang{display:flex;gap:12px;margin-top:4px;}
+.mob-lang button{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:10px 18px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;color:rgba(255,255,255,0.7);}
+.mob-lang button.active{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3);color:#fff;}
+
+/* LABEL — same as index.html */
+.label{display:inline-flex;align-items:center;gap:8px;font-size:0.7rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--brand);margin-bottom:14px;}
+.label::before{content:'';width:20px;height:2px;background:var(--brand);flex-shrink:0;}
+.label-white{color:rgba(255,255,255,0.55);}
+.label-white::before{background:rgba(255,255,255,0.35);}
+
+/* HERO — dark like the landing hero */
+.hero{position:relative;overflow:hidden;background:var(--dark);}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 78% 40%,rgba(20,76,188,0.42) 0%,transparent 70%),radial-gradient(ellipse 45% 55% at 8% 100%,rgba(201,168,76,0.10) 0%,transparent 70%),linear-gradient(180deg,rgba(2,13,36,0) 60%,rgba(2,13,36,0.9) 100%);}
+.hero-bg{position:absolute;inset:0;opacity:0.03;}
+.hero-inner{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:136px 40px 36px;}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:40px;align-items:center;}
+.hero-text{max-width:640px;}
+.hero-h1{font-size:clamp(2.6rem,5.5vw,5.2rem);font-weight:900;color:#fff;line-height:0.96;letter-spacing:-0.04em;margin-bottom:22px;text-shadow:0 2px 30px rgba(0,0,0,0.3);}
+.hero-h1 .accent{color:#5b9aff;}
+.hero-sub{font-size:1.05rem;color:rgba(255,255,255,0.7);line-height:1.8;max-width:540px;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px;}
+.btn-hero-white{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--navy);font-weight:700;font-size:0.9rem;padding:15px 32px;border-radius:10px;text-decoration:none;box-shadow:0 4px 24px rgba(0,0,0,0.2);transition:transform 0.22s,box-shadow 0.22s;}
+.btn-hero-white:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.28);}
+.btn-hero-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#fff;font-weight:700;font-size:0.85rem;padding:13px 28px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.25);text-decoration:none;transition:border-color 0.22s,background 0.22s,transform 0.22s;}
+.btn-hero-outline:hover{border-color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.08);transform:translateY(-2px);}
+.token-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:28px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 30px 80px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,0.08);max-width:460px;}
+.tc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;}
+.tc-logo{height:28px;width:auto;}
+.tc-chip{font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#5b9aff;background:rgba(91,154,255,0.12);border:1px solid rgba(91,154,255,0.25);border-radius:999px;padding:5px 11px;}
+.tc-label{font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:8px;}
+.tc-addr{color:#fff;font-size:0.8rem;line-height:1.55;background:rgba(2,13,36,0.55);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 16px;}
+.tc-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:16px;}
+.tc-copy{background:var(--brand);color:#fff;border:none;border-radius:8px;padding:9px 18px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:0.8rem;cursor:pointer;transition:background 0.2s,transform 0.2s;}
+.tc-copy:hover{background:#1a58e0;transform:translateY(-1px);}
+.tc-copy:active{transform:translateY(0);}
+.tc-link{font-size:0.8rem;font-weight:600;color:rgba(255,255,255,0.65);text-decoration:none;}
+.tc-link:hover{color:#fff;}
+.hero-bottom{display:flex;flex-wrap:wrap;gap:12px;margin-top:56px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.08);}
+.hfeat{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:12px 16px;backdrop-filter:blur(8px);}
+.hfeat-icon{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.hfeat-icon svg{width:18px;height:18px;}
+.hfeat-label{font-size:0.68rem;font-weight:600;color:rgba(255,255,255,0.45);}
+.hfeat-val{font-family:'Outfit',sans-serif;font-size:1.05rem;font-weight:800;color:#fff;}
+@media(min-width:1000px){.hero-grid{grid-template-columns:1.25fr 1fr;gap:64px;}.token-card{justify-self:end;width:100%;}}
+
+/* SECTIONS — same rhythm as index.html */
+.sec{padding:96px 24px;background:#fff;}
+.sec.alt{background:var(--paper);}
+.sec-head{max-width:680px;margin-bottom:48px;}
+.sec-head h2{font-size:clamp(2rem,4vw,3rem);font-weight:800;color:var(--ink);letter-spacing:-0.03em;line-height:1.1;margin-bottom:18px;text-wrap:balance;}
+.sec-head p{font-size:1rem;color:var(--muted);line-height:1.75;}
+.grid{display:grid;gap:24px;}
+.g4{grid-template-columns:1fr;}
+.g2{grid-template-columns:1fr;}
+@media(min-width:640px){.g4{grid-template-columns:repeat(2,1fr);}}
+@media(min-width:900px){.g2{grid-template-columns:repeat(2,1fr);}}
+@media(min-width:1100px){.g4{grid-template-columns:repeat(4,1fr);}}
+
+.why-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px;position:relative;overflow:hidden;transition:transform 0.38s cubic-bezier(0.16,1,0.3,1),box-shadow 0.38s cubic-bezier(0.16,1,0.3,1),border-color 0.3s ease;box-shadow:0 1px 8px rgba(3,35,99,0.04);}
+.why-card:hover{border-color:rgba(20,76,188,0.25);box-shadow:0 20px 48px rgba(3,35,99,0.1),0 4px 12px rgba(20,76,188,0.08);transform:translateY(-6px);}
+.why-card h3{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:10px;transition:color 0.25s ease;}
+.why-card:hover h3{color:var(--brand);}
+.why-card p,.why-card li{font-size:0.875rem;color:var(--muted);line-height:1.7;}
+.why-card ul{padding-left:18px;display:flex;flex-direction:column;gap:6px;}
+.why-card.plain:hover{transform:none;}
+.why-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;transition:transform 0.38s cubic-bezier(0.16,1,0.3,1);}
+.why-card:hover .why-icon{transform:scale(1.1) rotate(-4deg);}
+
+.params{display:grid;grid-template-columns:1fr;background:#fff;border:1px solid var(--line);border-radius:16px;padding:8px 28px;box-shadow:0 1px 8px rgba(3,35,99,0.04);}
+.prow{display:grid;grid-template-columns:1fr;gap:4px;padding:16px 0;border-bottom:1px solid var(--line);}
+.prow dt{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#94a3b8;padding-top:3px;}
+.prow dd{font-size:0.95rem;color:var(--ink);}
+.prow dd.mono{font-size:0.8rem;padding-top:2px;}
+@media(min-width:700px){.prow{grid-template-columns:190px 1fr;gap:16px;}}
+@media(min-width:1100px){.params{grid-template-columns:1fr 1fr;column-gap:56px;}}
+.params .prow:last-child{border-bottom:none;}
+@media(min-width:1100px){.params .prow:nth-last-child(2){border-bottom:none;}}
+
+.callout{margin-top:28px;background:linear-gradient(135deg,rgba(20,76,188,0.07),rgba(20,76,188,0.03));border:1px solid rgba(20,76,188,0.12);border-radius:16px;padding:22px 28px;}
+.callout-h{font-size:0.7rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--brand);margin-bottom:10px;}
+.callout p,.callout li{font-size:0.92rem;color:#475569;line-height:1.7;}
+.two-col{padding-left:18px;columns:1;column-gap:40px;}
+@media(min-width:700px){.two-col{columns:2;}}
+
+.bar{display:flex;height:40px;border-radius:10px;overflow:hidden;gap:3px;margin-bottom:22px;}
+.bar span{display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.8rem;font-variant-numeric:tabular-nums;}
+.tcard{background:#fff;border:1px solid var(--line);border-radius:16px;overflow-x:auto;box-shadow:0 1px 8px rgba(3,35,99,0.04);}
+table{width:100%;border-collapse:collapse;font-size:0.92rem;}
+th{text-align:left;font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:#94a3b8;font-weight:700;padding:16px 20px;border-bottom:1px solid var(--line);white-space:nowrap;}
+td{padding:14px 20px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink);}
+tbody tr:last-child td{border-bottom:none;}
+tr.total td{background:var(--paper);}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+td .sub{display:block;color:var(--muted);font-size:0.84rem;margin-top:3px;}
+td.mono a{color:var(--brand);text-decoration:none;}
+td.mono a:hover{text-decoration:underline;}
+.swatch{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:10px;vertical-align:0;}
+.note{color:#94a3b8;font-size:0.84rem;line-height:1.7;margin-top:16px;max-width:900px;}
+.kpis{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:24px;}
+@media(min-width:700px){.kpis{grid-template-columns:repeat(3,1fr);}}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 24px;}
+.kpi b{display:block;font-family:'Outfit',sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:var(--navy);letter-spacing:-0.03em;line-height:1.1;}
+.kpi span{font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#94a3b8;}
+
+.eco-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px;box-shadow:0 1px 8px rgba(3,35,99,0.04);}
+/* planned platform: dashed outline = not built yet */
+.eco-card.planned{background:transparent;border:1.5px dashed rgba(184,150,62,0.45);box-shadow:none;}
+.eco-tag{display:inline-flex;align-items:center;gap:8px;font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--brand);background:rgba(20,76,188,0.06);border:1px solid rgba(20,76,188,0.14);border-radius:999px;padding:5px 12px;margin-bottom:14px;}
+.eco-tag::before{content:'';width:7px;height:7px;border-radius:50%;background:#10b981;box-shadow:0 0 0 3px rgba(16,185,129,0.18);}
+.eco-card.planned .eco-tag{color:#8a6d22;background:rgba(184,150,62,0.08);border-color:rgba(184,150,62,0.25);}
+.eco-card.planned .eco-tag::before{background:transparent;border:1.5px solid #B8963E;box-shadow:none;}
+.eco-card h3{font-size:1.3rem;font-weight:800;color:var(--ink);margin-bottom:16px;}
+.eco-card dl{display:grid;grid-template-columns:120px 1fr;gap:8px 16px;font-size:0.9rem;}
+.eco-card dt{color:var(--muted);font-weight:600;}
+.eco-card dd{color:var(--ink);}
+.disc{margin-top:32px;font-size:0.84rem;color:var(--muted);line-height:1.75;border-top:1px solid var(--line);padding-top:24px;max-width:1000px;}
+.disc b{color:var(--ink);}
+
+.cta-band{background:linear-gradient(135deg,var(--brand) 0%,var(--navy) 100%);padding:72px 24px;position:relative;overflow:hidden;}
+.cta-inner{display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;}
+.cta-band h2{font-size:clamp(1.6rem,3vw,2.3rem);font-weight:800;color:#fff;letter-spacing:-0.03em;}
+.cta-band p{color:rgba(255,255,255,0.72);margin-top:8px;}
+.btn-cta-white{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--brand);font-weight:700;font-size:0.9rem;padding:14px 32px;border-radius:8px;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,0.2);transition:transform 0.22s,box-shadow 0.22s;}
+.is-soon{opacity:0.6;cursor:default;pointer-events:none;box-shadow:none !important;}
+.btn-cta-white:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.25);}
+
+/* FOOTER — same as index.html */
+footer{background:var(--dark);padding:60px 24px 32px;border-top:1px solid rgba(255,255,255,0.05);}
+.footer-grid{display:grid;gap:32px;margin-bottom:48px;grid-template-columns:1fr 1fr;}
+@media(min-width:768px){.footer-grid{grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;}}
+.f-desc{font-size:0.82rem;color:rgba(255,255,255,0.35);line-height:1.7;max-width:240px;margin:16px 0 20px;}
+.f-col-h{font-size:0.68rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:14px;}
+.f-list{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.f-list a{font-size:0.84rem;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;}
+.f-list a:hover,.f-list a[aria-current]{color:#fff;}
+.f-social{display:flex;gap:12px;margin-top:18px;}
+.f-social a{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;transition:background 0.2s,border-color 0.2s;}
+.f-social a:hover{background:rgba(20,76,188,0.3);border-color:var(--brand);}
+.f-legal{padding:20px 0;border-top:1px solid rgba(255,255,255,0.06);margin-bottom:16px;font-size:0.73rem;color:rgba(255,255,255,0.22);line-height:1.7;}
+.f-legal strong{color:rgba(255,255,255,0.35);}
+.f-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:0.72rem;color:rgba(255,255,255,0.18);}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.65s ease,transform 0.65s cubic-bezier(0.16,1,0.3,1);}
+.reveal.in{opacity:1;transform:none;}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}.reveal{opacity:1;transform:none;transition:none;}*{transition:none !important;}}
+
+@media(max-width:600px){
+  nav.top{padding:14px 16px;}
+  .hero-inner{padding:112px 16px 28px;}
+  .sec{padding:64px 16px;}
+  .cta-band{padding:56px 16px;}
+  footer{padding:48px 16px 28px;}
+  .params{padding:4px 18px;}
+  .why-card,.eco-card{padding:22px;}
+  .bar span{font-size:0;}
+  .eco-card dl{grid-template-columns:1fr;gap:2px 0;}
+  .eco-card dd{margin-bottom:8px;}
+  th,td{padding:12px 14px;}
+}
+
+/* estx.li additions on top of the token page styles */
+@media(min-width:1100px) and (max-width:1359px){.nav-links,.nav-right{display:none;}.burger{display:inline-block;}}
+.nav-link,.nav-login,.nav-right .btn-primary{white-space:nowrap;}
+.g3{grid-template-columns:1fr;}
+@media(min-width:900px){.g3{grid-template-columns:repeat(3,1fr);}}
+.eco-tag{display:inline-flex;align-items:center;gap:8px;font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--brand);background:rgba(20,76,188,0.06);border:1px solid rgba(20,76,188,0.14);border-radius:999px;padding:5px 12px;margin-bottom:14px;}
+.eco-tag::before{content:'';width:7px;height:7px;border-radius:50%;background:#10b981;box-shadow:0 0 0 3px rgba(16,185,129,0.18);}
+.eco-tag.planned{color:#8a6d22;background:rgba(184,150,62,0.08);border-color:rgba(184,150,62,0.25);}
+.eco-tag.planned::before{background:transparent;border:1.5px solid #B8963E;box-shadow:none;}
+.eco-tag.eval{color:#475569;background:rgba(100,116,139,0.08);border-color:rgba(100,116,139,0.22);}
+.eco-tag.eval::before{background:transparent;border:1.5px solid #94a3b8;box-shadow:none;}
+.eco-card.planned{background:transparent;border:1.5px dashed rgba(100,116,139,0.35);box-shadow:none;}
+.prose p,.why-card p{margin-bottom:10px;}
+.prose ul,.why-card ul,.callout ul{padding-left:18px;margin:6px 0 12px;display:flex;flex-direction:column;gap:5px;}
+.prose p,.prose li{font-size:0.9rem;color:var(--muted);line-height:1.7;}
+.callout p{margin-bottom:8px;}
+.sub-h{font-size:clamp(1.3rem,2.4vw,1.7rem);font-weight:800;color:var(--ink);letter-spacing:-0.02em;margin:64px 0 12px;}
+.lead-p{color:var(--muted);margin-bottom:20px;}
+.kpis4{grid-template-columns:1fr;}
+@media(min-width:640px){.kpis4{grid-template-columns:repeat(2,1fr);}}
+@media(min-width:1100px){.kpis4{grid-template-columns:repeat(4,1fr);}}
+.kpi .kpi-n{display:block;font-size:0.85rem;font-weight:700;letter-spacing:0;text-transform:none;color:var(--ink);margin:2px 0 6px;font-variant-numeric:tabular-nums;}
+.kpi span:last-child{letter-spacing:0.02em;text-transform:none;font-weight:600;font-size:0.8rem;line-height:1.5;}
+.tl-h{font-size:1.1rem;font-weight:800;color:var(--ink);margin-bottom:18px;}
+.tl{list-style:none;position:relative;padding-left:26px;}
+.tl::before{content:'';position:absolute;left:6px;top:6px;bottom:6px;width:2px;background:var(--line);}
+.tl li{position:relative;margin-bottom:20px;}
+.tl li::before{content:'';position:absolute;left:-26px;top:4px;width:14px;height:14px;border-radius:50%;box-sizing:border-box;}
+.tl-done::before{background:var(--brand);box-shadow:0 0 0 4px rgba(20,76,188,0.14);}
+.tl-next::before{background:#fff;border:2px solid #B8963E;}
+.tl-date{display:block;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--brand);margin-bottom:3px;}
+.tl-next .tl-date{color:#8a6d22;}
+.tl-text{font-size:0.92rem;color:var(--ink);line-height:1.6;}
+.ceo{display:flex;align-items:center;gap:16px;margin-bottom:18px;}
+.ceo-mono{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--brand),var(--navy));color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:800;font-size:1.1rem;flex-shrink:0;}
+.ceo-role{font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#94a3b8;}
+.ceo-name{font-family:'Outfit',sans-serif;font-size:1.25rem;font-weight:800;color:var(--ink);}
+.ceo-desc{font-size:0.85rem;color:var(--muted);}
+.f-text{font-size:0.84rem;color:rgba(255,255,255,0.5);line-height:1.75;}
+.todo{background:#FEF3C7;color:#92400E;padding:0 5px;border-radius:4px;font-weight:600;}
+</style>
+</head>
+<body>
+
+<div class="mob-menu" id="mobMenu" role="dialog" aria-modal="true" aria-label="Menu">
+  <button class="mob-close" onclick="closeMob()" aria-label="Close menu"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  <a href="#why-en" class="mob-link" data-lang="en" onclick="closeMob()">Why ESTX</a><a href="#why-de" class="mob-link" data-lang="de" onclick="closeMob()">Warum ESTX</a><a href="#ecosystem-en" class="mob-link" data-lang="en" onclick="closeMob()">Ecosystem</a><a href="#ecosystem-de" class="mob-link" data-lang="de" onclick="closeMob()">Ökosystem</a><a href="#utility-en" class="mob-link" data-lang="en" onclick="closeMob()">Utility</a><a href="#utility-de" class="mob-link" data-lang="de" onclick="closeMob()">Nutzen</a><a href="#allocation-en" class="mob-link" data-lang="en" onclick="closeMob()">Tokenomics</a><a href="#allocation-de" class="mob-link" data-lang="de" onclick="closeMob()">Tokenomics</a><a href="#contract-en" class="mob-link" data-lang="en" onclick="closeMob()">Technology</a><a href="#contract-de" class="mob-link" data-lang="de" onclick="closeMob()">Technologie</a><a href="#roadmap-en" class="mob-link" data-lang="en" onclick="closeMob()">Roadmap</a><a href="#roadmap-de" class="mob-link" data-lang="de" onclick="closeMob()">Roadmap</a><a href="#governance-en" class="mob-link" data-lang="en" onclick="closeMob()">Governance</a><a href="#governance-de" class="mob-link" data-lang="de" onclick="closeMob()">Governance</a>
+  <div class="mob-lang">
+    <button id="mobLangen" onclick="setLang('en');closeMob();">&#127468;&#127463; EN</button>
+    <button id="mobLangde" onclick="setLang('de');closeMob();">&#127465;&#127466; DE</button>
+  </div>
+  <div style="display:flex;gap:12px;margin-top:8px;flex-wrap:wrap;justify-content:center;"><a href="https://estx.exchange" class="btn-outline-white" target="_blank" rel="noopener">ESTX.exchange ↗</a><a href="ESTX_Whitepaper_v2.0_2026-09.pdf" class="btn-primary">Whitepaper (PDF)</a></div>
+</div>
+
+<nav class="top" aria-label="Main">
+  <div class="nav-inner">
+    <a href="#top" aria-label="ESTX Utility Token"><img src="brand_assets/logo.svg" alt="ESTX" style="height:34px;width:auto;display:block;"/></a>
+    <div class="nav-links"><a href="#why-en" class="nav-link" data-lang="en">Why ESTX</a><a href="#why-de" class="nav-link" data-lang="de">Warum ESTX</a><a href="#ecosystem-en" class="nav-link" data-lang="en">Ecosystem</a><a href="#ecosystem-de" class="nav-link" data-lang="de">Ökosystem</a><a href="#utility-en" class="nav-link" data-lang="en">Utility</a><a href="#utility-de" class="nav-link" data-lang="de">Nutzen</a><a href="#allocation-en" class="nav-link" data-lang="en">Tokenomics</a><a href="#allocation-de" class="nav-link" data-lang="de">Tokenomics</a><a href="#contract-en" class="nav-link" data-lang="en">Technology</a><a href="#contract-de" class="nav-link" data-lang="de">Technologie</a><a href="#roadmap-en" class="nav-link" data-lang="en">Roadmap</a><a href="#roadmap-de" class="nav-link" data-lang="de">Roadmap</a><a href="#governance-en" class="nav-link" data-lang="en">Governance</a><a href="#governance-de" class="nav-link" data-lang="de">Governance</a></div>
+    <div class="nav-right">
+      <div class="lang-switch">
+        <button class="lang-switch-btn" id="langBtn" onclick="toggleLangDropdown()" aria-label="Select language" aria-haspopup="true">
+          <span id="langFlag">&#127468;&#127463;</span><span id="langCode">EN</span>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="lang-dropdown" id="langDropdown">
+          <button class="lang-option" id="langOpten" onclick="setLang('en')">&#127468;&#127463; English</button>
+          <button class="lang-option" id="langOptde" onclick="setLang('de')">&#127465;&#127466; Deutsch</button>
+        </div>
+      </div>
+      <a href="https://estx.exchange" class="nav-login" target="_blank" rel="noopener">ESTX.exchange ↗</a>
+      <a href="ESTX_Whitepaper_v2.0_2026-09.pdf" class="btn-primary">Whitepaper (PDF)</a>
+    </div>
+    <button class="burger" onclick="openMob()" aria-label="Open menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0a1628" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+  </div>
+</nav>
+
+<main id="top">
+<div data-lang="en">
+<section class="hero" id="top-en">
+  <div class="hero-bg" aria-hidden="true"><svg width="100%" height="100%"><defs><pattern id="grid-en" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#fff" stroke-width="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(#grid-en)"/></svg></div>
+  <div class="hero-inner">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="label label-white reveal">ESTX Utility Token · Whitepaper 2.0 · September 2026</div>
+        <h1 class="hero-h1 reveal">One Token.<br/><span class="accent">Every</span> ESTX Platform.</h1>
+        <p class="hero-sub reveal">The ESTX Utility Token is the unified access and usage layer across the ESTX ecosystem. It enables operational platform functionality only and is not designed as an investment, financing, or value-accrual instrument.</p>
+        <div class="hero-btns reveal">
+          <a href="ESTX_Whitepaper_v2.0_2026-09.pdf" class="btn-hero-white">Read the Whitepaper<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="https://etherscan.io/token/0x2C83ef0b36ab580b29350913239DA8f80E192644" class="btn-hero-outline" target="_blank" rel="noopener">View contract on Etherscan</a>
+        </div>
+      </div>
+      <aside class="token-card reveal" aria-label="Contract address">
+        <div class="tc-top"><img src="brand_assets/logo_bw.svg" alt="ESTX" class="tc-logo"/><span class="tc-chip">ERC-20 · Ethereum</span></div>
+        <div class="tc-label">Contract address</div>
+        <div class="tc-addr mono">0x2C83ef0b36ab580b29350913239DA8f80E192644</div>
+        <div class="tc-actions">
+          <button type="button" class="tc-copy" data-copy="0x2C83ef0b36ab580b29350913239DA8f80E192644" data-done="Copied">Copy</button>
+          <a href="https://etherscan.io/address/0x2C83ef0b36ab580b29350913239DA8f80E192644#code" target="_blank" rel="noopener" class="tc-link">Source code verified on Etherscan ↗</a>
+        </div>
+      </aside>
+    </div>
+    <div class="hero-bottom reveal"><div class="hfeat"><div class="hfeat-icon" style="background:linear-gradient(135deg,rgba(20,76,188,0.12),rgba(20,76,188,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#144CBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><div><div class="hfeat-label">ESTX total supply, fixed</div><div class="hfeat-val">2,000,000,000</div></div></div><div class="hfeat"><div class="hfeat-icon" style="background:linear-gradient(135deg,rgba(124,58,237,0.12),rgba(124,58,237,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div><div><div class="hfeat-label">Mainnet, ERC-20</div><div class="hfeat-val">Ethereum</div></div></div><div class="hfeat"><div class="hfeat-icon" style="background:linear-gradient(135deg,rgba(184,150,62,0.12),rgba(184,150,62,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg></div><div><div class="hfeat-label">Token Generation Event</div><div class="hfeat-val">7 Aug 2026</div></div></div><div class="hfeat"><div class="hfeat-icon" style="background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(16,185,129,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.5 8 11 4.6-1.5 8-6 8-11V5z"/></svg></div><div><div class="hfeat-label">other crypto-asset</div><div class="hfeat-val">MiCA</div></div></div></div>
+  </div>
+</section>
+
+<section class="sec" id="why-en"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Why ESTX</div><h2>Problem &amp; Opportunity</h2><p>ESTX Venture GmbH is building a multi-jurisdictional digital asset ecosystem centered around operationally compliant crypto-market infrastructure.</p></div>
+<div class="grid g2">
+<div class="why-card plain reveal"><div class="eco-tag eval">The problem</div><p>Traditional capital markets are slow, fragmented, and costly, particularly for cross-border and digitally native use cases.</p><p>Access to trading and digital asset services is frequently limited by national barriers, complex intermediary structures, and high operational effort. Long settlement cycles, manual compliance processes, and legacy systems reduce transparency and increase operational risk. These inefficiencies particularly affect smaller market participants and users with digital needs.</p><p>Unregulated crypto platforms, on the other hand, expose users to legal, operational, and counterparty risks.</p></div>
+<div class="why-card plain reveal"><div class="eco-tag">The opportunity</div><p>MiCA introduces the first harmonized EU-wide regulatory framework for crypto-assets, creating demand for compliant platforms that combine global reach with regulatory clarity.</p><p>ESTX addresses this gap by delivering jurisdiction-aware infrastructure supported by a strictly functional utility token.</p></div>
+</div>
+<h3 class="sub-h reveal">Market Overview</h3>
+<div class="grid g4"><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(20,76,188,0.12),rgba(20,76,188,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#144CBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><h3>Tokenization &amp; RWA Market Outlook</h3><p>Tokenization of real-world assets (RWA) is expected to expand significantly over the coming decade. Use cases include securities, funds, commodities, and alternative assets. Regulatory clarity is a key driver for sustainable adoption.</p></div><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(124,58,237,0.12),rgba(124,58,237,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.5 8 11 4.6-1.5 8-6 8-11V5z"/></svg></div><h3>Europe as a Regulated Crypto Hub</h3><p>Europe is positioning itself as a regulated crypto hub through MiCA. This framework supports innovation while ensuring consumer protection and market integrity.</p></div><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(184,150,62,0.12),rgba(184,150,62,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.7 12.3 21 2M17 6l3 3M14 9l2 2"/></svg></div><h3>Demand for Utility-Driven Tokens</h3><p>Regulatory developments place increasing emphasis on tokens with a clearly defined functional purpose rather than speculative characteristics.</p></div><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(16,185,129,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div><h3>Regulatory-Forward Architecture</h3><p>ESTX.exchange is designed with a regulatory-forward architecture intended to align with evolving European digital asset frameworks, including MiCA, while remaining adaptable to future supervisory expectations.</p></div></div>
+</div></section>
+
+<section class="sec alt" id="token-en"><div class="wrap">
+<div class="sec-head reveal"><div class="label">At a glance</div><h2>Token Parameters</h2><p>All values are verifiable on-chain. The contract source code is publicly verified on Etherscan.</p></div>
+<dl class="params reveal"><div class="prow"><dt>Name / Symbol</dt><dd>ESTX / ESTX</dd></div><div class="prow"><dt>Standard</dt><dd>ERC-20 (Ethereum) with ERC20Burnable and ERC20Permit (EIP-2612)</dd></div><div class="prow"><dt>Blockchain</dt><dd>Ethereum Mainnet (Chain ID 1)</dd></div><div class="prow"><dt>Contract address</dt><dd class="mono">0x2C83ef0b36ab580b29350913239DA8f80E192644</dd></div><div class="prow"><dt>Decimals</dt><dd>18</dd></div><div class="prow"><dt>Total supply</dt><dd>2,000,000,000 ESTX (fixed, minted once at deployment)</dd></div><div class="prow"><dt>Classification</dt><dd>Utility Token (MiCA – other crypto-asset)</dd></div><div class="prow"><dt>Issuer</dt><dd>ESTX Venture GmbH, Ruggell, Liechtenstein</dd></div><div class="prow"><dt>Token Generation Event</dt><dd>7 August 2026, 12:00 UTC</dd></div><div class="prow"><dt>Source code</dt><dd>Verified on Etherscan</dd></div></dl>
+</div></section>
+
+<section class="sec" id="ecosystem-en"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Ecosystem</div><h2>Two Platforms, One Utility Layer</h2><p>Global accessibility combined with jurisdiction-specific regulatory compliance. Both platforms remain legally, operationally and regulatorily separated.</p></div>
+<div class="grid g2"><div class="eco-card reveal"><div class="eco-tag">Licensed VASP · Georgia</div><h3>ESTX.exchange International</h3><dl><dt>Operator</dt><dd>ESTX Georgia LLC, Kutaisi</dd><dt>Licence</dt><dd>VASP License L37-2026, National Bank of Georgia</dd><dt>Registration</dt><dd>412800036</dd><dt>Launch</dt><dd>Planned for October 2026</dd><dt>Website</dt><dd>estx.exchange</dd></dl></div><div class="eco-card reveal planned"><div class="eco-tag">Planned · MiCA CASP path</div><h3>European Standard Token Exchange</h3><dl><dt>Framework</dt><dd>EU Markets in Crypto-Assets Regulation (MiCA)</dd><dt>Authorisation</dt><dd>CASP authorisation, subject to regulatory approval</dd><dt>Supervision</dt><dd>Envisaged: Financial Market Authority (FMA) Liechtenstein</dd><dt>Process</dt><dd>Planned to commence from December 2026</dd></dl></div></div>
+<div class="callout reveal"><div class="callout-h">Market neutrality</div><p>ESTX does not engage in proprietary trading, price support or market-making strategies intended to influence pricing. Neither ESTX Venture GmbH nor ESTX Georgia LLC purchases ESTX Tokens on the open market to reduce supply or support prices. Liquidity provisioning serves market functionality only and does not constitute price stabilization or guaranteed liquidity.</p></div>
+</div></section>
+
+<section class="sec alt" id="expansion-en"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Expansion</div><h2>One Ecosystem, Several Jurisdictions</h2><p>ESTX Venture GmbH follows a multi-jurisdictional expansion strategy designed to balance global accessibility with local regulatory compliance.</p><p>No platform expansion is initiated without prior regulatory assessment and internal compliance approval.</p></div>
+<div class="grid g3"><div class="eco-card reveal"><div class="eco-tag live">Licensed · VASP</div><h3>Georgia</h3><div class="prose"><p>ESTX.exchange International is operated by ESTX Georgia LLC (registration number 412800036), which holds VASP License L37-2026 issued by the National Bank of Georgia.</p><p>This structure enables global crypto trading activities outside the EU while maintaining regulatory accountability and operational continuity.</p></div></div><div class="eco-card reveal planned"><div class="eco-tag planned">Planned · from Dec 2026</div><h3>European Union / EEA</h3><div class="prose"><p>The European expansion is planned under the EU Markets in Crypto-Assets Regulation (MiCA) through a dedicated CASP authorisation pathway. The regulatory process under MiCA is planned to commence from December 2026.</p><p>The European Standard Token Exchange (ESTX Europe) will operate only upon receipt of the required regulatory approvals and under ongoing supervisory oversight.</p></div></div><div class="eco-card reveal planned"><div class="eco-tag eval">Evaluation</div><h3>United Arab Emirates</h3><div class="prose"><p>Additional jurisdictions, including the United Arab Emirates, are evaluated based on regulatory clarity, supervisory standards, and long-term operational feasibility.</p><p>No market entry is initiated prior to formal regulatory assessment and internal approval.</p></div></div></div>
+<div class="callout reveal"><div class="callout-h">Unified token utility across jurisdictions</div><p>The ESTX Utility Token functions consistently across all ESTX platforms as a functional access and usage mechanism.</p><p>The ESTX Token does not function as a cross-border investment, financing, or value-transfer instrument. Its use is strictly limited to accessing defined platform services and features within the applicable regulatory perimeter.</p></div>
+</div></section>
+
+<section class="sec" id="utility-en"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Utility</div><h2>What the Token Does</h2><p>Strictly functional. The token enables platform interactions and nothing beyond them.</p></div>
+<div class="grid g4"><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(20,76,188,0.12),rgba(20,76,188,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#144CBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2v20l3-2 3 2 3-2 3 2 3-2 1 .7V2l-1 .7-3-2-3 2-3-2-3 2-3-2z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div><h3>Fee settlement</h3><p>Platform fees can be settled in ESTX. Fee reductions are usage-based and non-transferable; they are not financial rewards or yield.</p></div><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(124,58,237,0.12),rgba(124,58,237,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.7 12.3 21 2M17 6l3 3M14 9l2 2"/></svg></div><h3>Access control</h3><p>Access tiers and loyalty mechanisms exist exclusively for functional differentiation and a better user experience.</p></div><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(184,150,62,0.12),rgba(184,150,62,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg></div><h3>Feature activation</h3><p>Usage-based activation of platform features within the applicable regulatory perimeter.</p></div><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(16,185,129,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><h3>Cross-platform</h3><p>One consistent utility layer across ESTX.exchange International and the planned ESTX Europe, without altering their legal separation.</p></div></div>
+<div class="callout reveal"><div class="callout-h">The token explicitly conveys no</div><ul class="two-col"><li>participation in revenues or profits</li><li>claims on assets</li><li>repayment or distribution rights</li><li>governance or voting rights</li></ul></div>
+</div></section>
+
+<section class="sec alt" id="allocation-en"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Tokenomics</div><h2>Token Allocation</h2><p>The fixed supply is allocated across five functional categories. No allocation confers ownership rights, profit participation, asset claims, or governance rights.</p></div>
+<div class="bar reveal" role="img" aria-label="Token Allocation"><span style="flex:35;background:#144CBC" title="Community &amp; Ecosystem 35%">35%</span><span style="flex:20;background:#B8963E" title="Liquidity Provisioning 20%">20%</span><span style="flex:15;background:#7C3AED" title="Treasury &amp; Strategic Operations 15%">15%</span><span style="flex:20;background:#10b981" title="Founders &amp; Management 20%">20%</span><span style="flex:10;background:#5b9aff" title="Advisors &amp; Early Contributors 10%">10%</span></div>
+<div class="tcard reveal"><table><thead><tr><th>Category</th><th class="n">Share</th><th class="n">ESTX</th></tr></thead><tbody><tr><td><span class="swatch" style="background:#144CBC"></span><b>Community &amp; Ecosystem</b><span class="sub">Onboarding, platform activity, campaigns and functional incentives.</span></td><td class="n">35%</td><td class="n">700,000,000</td></tr><tr><td><span class="swatch" style="background:#B8963E"></span><b>Liquidity Provisioning</b><span class="sub">Operational liquidity for orderly trading. Market functionality only, not price support.</span></td><td class="n">20%</td><td class="n">400,000,000</td></tr><tr><td><span class="swatch" style="background:#7C3AED"></span><b>Treasury &amp; Strategic Operations</b><span class="sub">Infrastructure, technology, regulatory expansion and operations.</span></td><td class="n">15%</td><td class="n">300,000,000</td></tr><tr><td><span class="swatch" style="background:#10b981"></span><b>Founders &amp; Management</b><span class="sub">Two founders with 10% each; 20% at TGE, 80% vested over 36 months.</span></td><td class="n">20%</td><td class="n">400,000,000</td></tr><tr><td><span class="swatch" style="background:#5b9aff"></span><b>Advisors &amp; Early Contributors</b><span class="sub">Strategic partner 5%, technical team 1%, governance reserve 4%.</span></td><td class="n">10%</td><td class="n">200,000,000</td></tr>
+<tr class="total"><td><b>Total</b></td><td class="n"><b>100%</b></td><td class="n"><b>2,000,000,000</b></td></tr></tbody></table></div>
+</div></section>
+
+<section class="sec" id="circulation-en"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Tokenomics</div><h2>Distribution at the TGE</h2><p>At the Token Generation Event on 7 August 2026, the entire supply was distributed on-chain in a single deployment run; the deployer account retained no tokens. The distribution at the TGE was as follows:</p></div>
+<div class="tcard reveal"><table><thead><tr><th>Allocation</th><th class=n>ESTX</th><th class=n>%</th><th>Holding / status</th></tr></thead><tbody><tr><td><b>Community &amp; Ecosystem</b></td><td class="n">700,000,000</td><td class="n">35.0%</td><td>Project-controlled hardware wallet</td></tr><tr><td><b>Liquidity Provisioning</b></td><td class="n">400,000,000</td><td class="n">20.0%</td><td>Liquidity Safe (multisig 2-of-3)</td></tr><tr><td><b>Treasury &amp; Strategic Operations</b></td><td class="n">300,000,000</td><td class="n">15.0%</td><td>Treasury Safe (multisig 2-of-3)</td></tr><tr><td><b>Founders &amp; Management – TGE tranches (20%)</b></td><td class="n">80,000,000</td><td class="n">4.0%</td><td>Released to beneficiaries</td></tr><tr><td><b>Founders &amp; Management – vesting (80%)</b></td><td class="n">320,000,000</td><td class="n">16.0%</td><td>Locked in vesting contracts</td></tr><tr><td><b>Strategic partner (5%) *</b></td><td class="n">100,000,000</td><td class="n">5.0%</td><td>Not yet transferred – held by the project</td></tr><tr><td><b>Technical team – TGE tranche (20%)</b></td><td class="n">4,000,000</td><td class="n">0.2%</td><td>Released to beneficiary</td></tr><tr><td><b>Technical team – vesting (80%)</b></td><td class="n">16,000,000</td><td class="n">0.8%</td><td>Locked in vesting contract</td></tr><tr><td><b>Governance reserve</b></td><td class="n">80,000,000</td><td class="n">4.0%</td><td>Project-controlled hardware wallet</td></tr>
+<tr class="total"><td><b>Total</b></td><td class="n"><b>2,000,000,000</b></td><td class="n"><b>100.0%</b></td><td></td></tr></tbody></table></div>
+<p class="note">* On-chain, the Treasury Safe therefore holds 380,000,000 ESTX (300,000,000 treasury + 80,000,000 held for the strategic partner). The figures reflect the distribution at the TGE; balances of project-controlled wallets may change through operational use.</p>
+<h3 class="sub-h reveal">Circulating Supply &amp; Circulation Management</h3>
+<p class="lead-p">At the TGE, the total supply was held as follows:</p>
+<div class="kpis kpis4 reveal"><div class="kpi"><b>16.8%</b><span class="kpi-n">336,000,000 ESTX</span><span>Locked in vesting contracts, linear release until 6 August 2029</span></div><div class="kpi"><b>39.0%</b><span class="kpi-n">780,000,000 ESTX</span><span>Held in multisig safes, 2-of-3</span></div><div class="kpi"><b>40.0%</b><span class="kpi-n">800,000,000 ESTX</span><span>Held in project-controlled hardware wallets</span></div><div class="kpi"><b>4.2%</b><span class="kpi-n">84,000,000 ESTX</span><span>Transferred to beneficiaries as TGE tranches</span></div></div>
+<div class="prose reveal"><p>Only the 336,000,000 ESTX (16.8%) in the vesting contracts are technically locked. The tokens held by the project in multisig safes and hardware wallets (1,580,000,000 ESTX, 79.0%) are technically transferable; they are introduced into circulation gradually, based on:</p><ul><li>actual platform usage</li><li>activation of functional services</li><li>operational necessities</li></ul><p>It does not constitute price management, market intervention, or value support.</p></div>
+<div class="callout reveal"><div class="callout-h">Supply reduction from own holdings</div><p>Neither ESTX Venture GmbH nor the operator of ESTX.exchange International (ESTX Georgia LLC) purchases ESTX Tokens on the open market to reduce supply or to support the price. ESTX Venture GmbH may, at its sole discretion, permanently remove tokens from its own holdings (for example, the treasury allocation) from circulation by using the standard burn function of the token contract.</p><p>Each such burn is publicly verifiable on-chain and permanently reduces the total supply.</p><p>The sole purpose is technical circulation management within the operation of the ecosystem.</p></div>
+</div></section>
+
+<section class="sec alt" id="vesting-en"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Vesting</div><h2>Release Schedule</h2><p>Founders and contributors received 20% at the TGE. The remaining 80% vests linearly per second over 36 months until 6 August 2029, with no cliff, in individual, non-revocable on-chain vesting contracts based on the OpenZeppelin VestingWallet. No third party, including ESTX Venture GmbH, can revoke, stop or redirect the vesting.</p></div>
+<div class="kpis reveal"><div class="kpi"><b>20%</b><span>at the TGE</span></div><div class="kpi"><b>36</b><span>months, linear, no cliff</span></div><div class="kpi"><b>6 Aug 2029</b><span>end of vesting</span></div></div>
+<div class="tcard reveal"><table><thead><tr><th>Date</th><th class="n">Vested per schedule</th><th class="n">Not yet vested</th><th class="n">Release incl. TGE tranches</th><th class="n">Share of supply</th></tr></thead><tbody><tr><td>7 Aug 2026 (TGE)</td><td class="n">0</td><td class="n">416,000,000</td><td class="n">104,000,000</td><td class="n">5.2%</td></tr><tr><td>7 Feb 2027</td><td class="n">69,903,196</td><td class="n">346,096,804</td><td class="n">173,903,196</td><td class="n">8.7%</td></tr><tr><td>7 Aug 2027</td><td class="n">138,666,667</td><td class="n">277,333,333</td><td class="n">242,666,667</td><td class="n">12.1%</td></tr><tr><td>7 Feb 2028</td><td class="n">208,569,863</td><td class="n">207,430,137</td><td class="n">312,569,863</td><td class="n">15.6%</td></tr><tr><td>7 Aug 2028</td><td class="n">277,713,242</td><td class="n">138,286,758</td><td class="n">381,713,242</td><td class="n">19.1%</td></tr><tr><td>7 Feb 2029</td><td class="n">347,616,438</td><td class="n">68,383,562</td><td class="n">451,616,438</td><td class="n">22.6%</td></tr><tr><td>6 Aug 2029 (end)</td><td class="n">416,000,000</td><td class="n">0</td><td class="n">520,000,000</td><td class="n">26.0%</td></tr></tbody></table></div>
+<p class="note">Vesting tranches total 416,000,000 ESTX (founders 320,000,000, strategic partner 80,000,000, technical team 16,000,000). Values rounded to whole tokens. At the TGE, 16.8% of the supply was locked in vesting contracts; 79.0% was held in project-controlled multisig safes and hardware wallets and is introduced into circulation gradually based on actual platform usage.</p>
+</div></section>
+
+<section class="sec" id="contract-en"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Technology</div><h2>Smart Contract Design</h2><p>OpenZeppelin Contracts 5.6, Solidity 0.8.28. No mechanism can influence token value, price formation or market behavior.</p></div>
+<div class="grid g4"><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(20,76,188,0.12),rgba(20,76,188,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#144CBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div><h3>Fixed supply</h3><p>Minted once at deployment. There is no mint function; the supply can never be increased.</p></div><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(124,58,237,0.12),rgba(124,58,237,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4z"/></svg></div><h3>No pause, freeze or blacklist</h3><p>Token transfers can never be halted or restricted. This reinforces the utility, non-security character.</p></div><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(184,150,62,0.12),rgba(184,150,62,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.5 8 11 4.6-1.5 8-6 8-11V5z"/></svg></div><h3>Immutable</h3><p>No proxy, no upgradeability. Token economics can never be altered after deployment.</p></div><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(16,185,129,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22c4 0 7-3 7-7 0-4-3-6-4-9-1 2-2 3-4 3 0-3-1-5-3-7 0 4-5 7-5 13 0 4 3 7 9 7z"/></svg></div><h3>Holder-only burn</h3><p>Holders may burn their own tokens or approve a third party (burnFrom). No one can burn or seize another holder&#x27;s balance.</p></div><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(20,76,188,0.12),rgba(20,76,188,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#144CBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-7 7-7s7 3 7 7M16 4a4 4 0 0 1 0 8M22 21c0-3-2-5.5-4.5-6.5"/></svg></div><h3>2-of-3 multisig</h3><p>The Treasury Safe is the sole owner of the contract and holds no control over supply or holder transfers. Treasury and liquidity allocations sit in two 2-of-3 Safe accounts.</p></div><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(124,58,237,0.12),rgba(124,58,237,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div><h3>Gasless approvals</h3><p>ERC20Permit (EIP-2612) allows approvals via signed messages.</p></div><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(184,150,62,0.12),rgba(184,150,62,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-15-6.7L3 13"/></svg></div><h3>Narrow recovery</h3><p>rescueERC20 returns tokens accidentally sent to the contract. It can never mint, change supply or move a holder&#x27;s balance.</p></div><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(16,185,129,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div><h3>Audit status</h3><p>Multi-stage internal review with 51 automated tests and a full Sepolia rehearsal. An independent external audit has not been performed to date.</p></div></div>
+</div></section>
+
+<section class="sec alt" id="security-en"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Security</div><h2>Review, Audit Status and Controls</h2></div>
+<div class="grid g2"><div class="why-card plain reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(20,76,188,0.12),rgba(20,76,188,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#144CBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div><h3>Security Review &amp; Audit Status</h3><p>Before deployment, the smart contracts underwent a multi-stage internal security review. It comprised 51 automated tests, repeated internal security assessments of the token and vesting contracts, and a complete dress rehearsal of deployment and distribution on the Ethereum Sepolia test network. The source code of all deployed contracts is verified on Etherscan, so that anyone can inspect the code running on-chain.</p><p>An independent external security audit has not been performed to date. Internal reviews do not replace an external audit. Because the contracts are immutable, findings of any future audit cannot be remedied by modifying the deployed contracts; if necessary, a new token contract could be deployed and a migration offered to holders.</p></div><div class="why-card plain reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(124,58,237,0.12),rgba(124,58,237,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-7 7-7s7 3 7 7M16 4a4 4 0 0 1 0 8M22 21c0-3-2-5.5-4.5-6.5"/></svg></div><h3>Treasury &amp; Access Controls</h3><p>The Treasury and Liquidity allocations are held in two Safe multisig accounts (formerly Gnosis Safe) on the Ethereum mainnet. Both require 2 of 3 signatures for every transaction. The three signers use separate hardware wallets that are not used as receiving addresses for any allocation. The Treasury Safe is the sole owner of the token contract.</p><p>The Community &amp; Ecosystem allocation and the governance reserve are held in dedicated hardware wallets. Before deployment, control of these wallets and of the technical team wallet was confirmed by cryptographically signed messages; signers and threshold of both safes were verified on-chain.</p></div></div>
+</div></section>
+
+<section class="sec" id="addresses-en"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Transparency</div><h2>Verifiable On-Chain Addresses</h2><p>All addresses are on the Ethereum mainnet and can be checked on etherscan.io.</p></div>
+<div class="tcard reveal"><table><thead><tr><th>Role</th><th class="n">Address</th></tr></thead><tbody><tr><td>ESTX Token contract</td><td class="mono"><a href="https://etherscan.io/address/0x2C83ef0b36ab580b29350913239DA8f80E192644" target="_blank" rel="noopener">0x2C83ef0b36ab580b29350913239DA8f80E192644</a></td></tr><tr><td>Treasury Safe (owner, 2-of-3)</td><td class="mono"><a href="https://etherscan.io/address/0x455F5992c084Fe3Be2f833CbCB037765C4680DC9" target="_blank" rel="noopener">0x455F5992c084Fe3Be2f833CbCB037765C4680DC9</a></td></tr><tr><td>Liquidity Safe (2-of-3)</td><td class="mono"><a href="https://etherscan.io/address/0xE44bc53A227C15651c07ac989EA0f5c55CAfeD7f" target="_blank" rel="noopener">0xE44bc53A227C15651c07ac989EA0f5c55CAfeD7f</a></td></tr><tr><td>Vesting contract – Founder 1</td><td class="mono"><a href="https://etherscan.io/address/0x7746F08703AD0683aEe1f4EC601122E89B36b433" target="_blank" rel="noopener">0x7746F08703AD0683aEe1f4EC601122E89B36b433</a></td></tr><tr><td>Vesting contract – Founder 2</td><td class="mono"><a href="https://etherscan.io/address/0x1bF9A1AF18d64EDf17b509AB2618613443165B25" target="_blank" rel="noopener">0x1bF9A1AF18d64EDf17b509AB2618613443165B25</a></td></tr><tr><td>Vesting contract – technical team</td><td class="mono"><a href="https://etherscan.io/address/0xBcEf80bB635D6A58f0AA0C28A27893FbDf70969a" target="_blank" rel="noopener">0xBcEf80bB635D6A58f0AA0C28A27893FbDf70969a</a></td></tr><tr><td>Community &amp; Ecosystem wallet</td><td class="mono"><a href="https://etherscan.io/address/0xAb64ab6E99263b2421ccB9Ce267Ad3d694dDC8ED" target="_blank" rel="noopener">0xAb64ab6E99263b2421ccB9Ce267Ad3d694dDC8ED</a></td></tr><tr><td>Governance reserve</td><td class="mono"><a href="https://etherscan.io/address/0x2D5e8c64D7ac20215cC88f4c13310B438a24929F" target="_blank" rel="noopener">0x2D5e8c64D7ac20215cC88f4c13310B438a24929F</a></td></tr></tbody></table></div>
+</div></section>
+
+<section class="sec alt" id="roadmap-en"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Roadmap</div><h2>Where the Ecosystem Stands</h2></div>
+<div class="grid g2 tl-grid"><div class="tl-col reveal"><h3 class="tl-h">Completed</h3><ol class="tl"><li class="tl-done"><span class="tl-text">legal structuring and documentation</span></li><li class="tl-done"><span class=tl-date>July – August 2026</span><span class="tl-text">internal security review of the smart contracts and complete test deployment on the Ethereum Sepolia test network</span></li><li class="tl-done"><span class=tl-date>7 August 2026</span><span class="tl-text">deployment of the ESTX Token on the Ethereum mainnet (TGE), full distribution of the total supply and activation of the vesting contracts</span></li><li class="tl-done"><span class="tl-text">VASP licence of ESTX Georgia LLC granted by the National Bank of Georgia (VASP License L37-2026)</span></li></ol></div><div class="tl-col reveal"><h3 class="tl-h">Next steps</h3><ol class="tl"><li class="tl-next"><span class=tl-date>October 2026 (planned)</span><span class="tl-text">launch of ESTX.exchange International, operated by ESTX Georgia LLC</span></li><li class="tl-next"><span class="tl-text">onboarding of operational partners and liquidity providers for platform functionality</span></li><li class="tl-next"><span class="tl-text">gradual activation of core utility features, ecosystem services, and user access</span></li><li class="tl-next"><span class=tl-date>Q4 2026</span><span class="tl-text">evaluation and decision regarding a regulated crypto licensing framework in the United Arab Emirates (e.g. VARA or ADGM)</span></li><li class="tl-next"><span class=tl-date>from December 2026 (planned)</span><span class="tl-text">European regulatory pathway under MiCA (CASP authorisation or equivalent structure)</span></li><li class="tl-next"><span class="tl-text">launch of the European Standard Token Exchange subject to regulatory approval</span></li></ol></div></div>
+</div></section>
+
+<section class="sec" id="governance-en"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Management &amp; Governance</div><h2>Who Runs ESTX Venture GmbH</h2><p>ESTX Venture GmbH operates under a centralized management structure with clearly defined operational responsibilities.</p></div>
+<div class="grid g2">
+<div class="why-card plain reveal">
+  <div class="ceo"><div class="ceo-mono" aria-hidden="true">CB</div><div><div class="ceo-role">Chief Executive Officer (CEO)</div><div class="ceo-name">Christoph Bosch</div><div class="ceo-desc">FinTech expert since 2009</div></div></div>
+  <div class="prose"><p>Operational responsibilities are structured as follows:</p><ul><li>Management &amp; regulatory coordination: Liechtenstein</li><li>Technology &amp; development: European Union &amp; Ukraine</li><li>Operation of ESTX.exchange International: ESTX Georgia LLC, Georgia</li></ul><p>Management, compliance, and operational execution are functionally separated to ensure internal controls and regulatory alignment.</p></div>
+</div>
+<div class="why-card plain reveal"><h3>Governance principles</h3><div class="prose"><p>The ESTX ecosystem is governed by an internal governance framework designed to ensure:</p><ul><li>operational integrity</li><li>regulatory compliance</li><li>transparency and accountability</li></ul><p>Governance mechanisms apply exclusively to operational and compliance-related matters. They do not extend to economic outcomes, token pricing, or market behavior.</p><p>No operational role includes responsibility for influencing token value, secondary market pricing, or investment outcomes.</p></div></div>
+</div>
+</div></section>
+
+<section class="sec alt" id="legal-en"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Legal</div><h2>Regulatory Positioning</h2><p>The ESTX Utility Token qualifies as an “other crypto-asset” pursuant to Article 3 of the EU Markets in Crypto-Assets Regulation (MiCA).</p></div>
+<div class="grid g2">
+<div class="why-card plain reveal"><h3>The ESTX Token is</h3><ul><li>not an asset-referenced token (ART)</li><li>not an electronic money token (EMT)</li><li>not a financial instrument within the meaning of MiFID II</li><li>not a financing instrument, investment product, or ownership, profit or repayment claim</li></ul></div>
+<div class="why-card plain reveal"><h3>Risk factors, in brief</h3><ul><li>The value of the ESTX Token may fluctuate significantly and may decline to zero.</li><li>Secondary market liquidity for utility tokens may be limited or volatile.</li><li>At the TGE, 79.0% of the supply was held in technically transferable, project-controlled wallets; transfers from these holdings may significantly affect price and liquidity.</li><li>The smart contracts have not been externally audited; because they are immutable, remediation could require a migration to a new token contract.</li><li>Changes in laws, regulations or supervisory practice may affect platform operation or token usage.</li></ul></div>
+</div>
+<div class="disc"><b>Disclaimer.</b> This page is a summary of the ESTX Utility Token Whitepaper (Version 2.0) and is provided for informational purposes only. It does not constitute an offer to sell, a solicitation of an offer to buy, or a recommendation of any security, investment product or financial instrument. The ESTX Token is structured exclusively as a utility token under MiCA and does not represent any form of security, equity, debt instrument, profit participation or ownership right. The ESTX Token is not issued for the purpose of raising capital or financing the development of the ESTX platforms. It is not intended to be offered or sold to residents of restricted jurisdictions, including U.S. persons as defined in Regulation S under the U.S. Securities Act of 1933. In case of discrepancy, the Whitepaper prevails.</div>
+<p class="note">All facts on this page are taken from Whitepaper 2.0 and verified against the Ethereum mainnet.</p>
+</div></section>
+
+<section class="cta-band"><div class="wrap cta-inner">
+<div><h2>Read the full Whitepaper</h2><p>Version 2.0, September 2026, bilingual English / German, 38 pages.</p></div>
+<a href="ESTX_Whitepaper_v2.0_2026-09.pdf" class="btn-cta-white">Whitepaper (PDF)<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 3v12M6 11l6 6 6-6M5 21h14"/></svg></a>
+</div></section>
+</div>
+<div data-lang="de">
+<section class="hero" id="top-de">
+  <div class="hero-bg" aria-hidden="true"><svg width="100%" height="100%"><defs><pattern id="grid-de" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#fff" stroke-width="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(#grid-de)"/></svg></div>
+  <div class="hero-inner">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="label label-white reveal">ESTX Utility Token · Whitepaper 2.0 · September 2026</div>
+        <h1 class="hero-h1 reveal">Ein Token.<br/><span class="accent">Jede</span> ESTX-Plattform.</h1>
+        <p class="hero-sub reveal">Der ESTX Utility Token ist die einheitliche Zugangs- und Nutzungsebene innerhalb des ESTX-Ökosystems. Er ermöglicht ausschließlich operative Plattformfunktionen und ist kein Investment-, Finanzierungs- oder Wertsteigerungsinstrument.</p>
+        <div class="hero-btns reveal">
+          <a href="ESTX_Whitepaper_v2.0_2026-09.pdf" class="btn-hero-white">Whitepaper lesen<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="https://etherscan.io/token/0x2C83ef0b36ab580b29350913239DA8f80E192644" class="btn-hero-outline" target="_blank" rel="noopener">Vertrag auf Etherscan ansehen</a>
+        </div>
+      </div>
+      <aside class="token-card reveal" aria-label="Contract-Adresse">
+        <div class="tc-top"><img src="brand_assets/logo_bw.svg" alt="ESTX" class="tc-logo"/><span class="tc-chip">ERC-20 · Ethereum</span></div>
+        <div class="tc-label">Contract-Adresse</div>
+        <div class="tc-addr mono">0x2C83ef0b36ab580b29350913239DA8f80E192644</div>
+        <div class="tc-actions">
+          <button type="button" class="tc-copy" data-copy="0x2C83ef0b36ab580b29350913239DA8f80E192644" data-done="Kopiert">Kopieren</button>
+          <a href="https://etherscan.io/address/0x2C83ef0b36ab580b29350913239DA8f80E192644#code" target="_blank" rel="noopener" class="tc-link">Quellcode auf Etherscan verifiziert ↗</a>
+        </div>
+      </aside>
+    </div>
+    <div class="hero-bottom reveal"><div class="hfeat"><div class="hfeat-icon" style="background:linear-gradient(135deg,rgba(20,76,188,0.12),rgba(20,76,188,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#144CBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><div><div class="hfeat-label">ESTX Gesamtmenge, fix</div><div class="hfeat-val">2.000.000.000</div></div></div><div class="hfeat"><div class="hfeat-icon" style="background:linear-gradient(135deg,rgba(124,58,237,0.12),rgba(124,58,237,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div><div><div class="hfeat-label">Mainnet, ERC-20</div><div class="hfeat-val">Ethereum</div></div></div><div class="hfeat"><div class="hfeat-icon" style="background:linear-gradient(135deg,rgba(184,150,62,0.12),rgba(184,150,62,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg></div><div><div class="hfeat-label">Token Generation Event</div><div class="hfeat-val">7. Aug. 2026</div></div></div><div class="hfeat"><div class="hfeat-icon" style="background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(16,185,129,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.5 8 11 4.6-1.5 8-6 8-11V5z"/></svg></div><div><div class="hfeat-label">sonstiger Kryptowert</div><div class="hfeat-val">MiCA</div></div></div></div>
+  </div>
+</section>
+
+<section class="sec" id="why-de"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Warum ESTX</div><h2>Problem &amp; Chance</h2><p>Die ESTX Venture GmbH entwickelt ein multiregionales digitales Asset-Ökosystem mit Fokus auf regulatorisch konforme Marktinfrastruktur.</p></div>
+<div class="grid g2">
+<div class="why-card plain reveal"><div class="eco-tag eval">Das Problem</div><p>Traditionelle Kapitalmarktinfrastrukturen sind insbesondere für digitale und grenzüberschreitende Anwendungsfälle fragmentiert, langsam und kostenintensiv.</p><p>Der Zugang zu Handels- und digitalen Asset-Dienstleistungen ist häufig durch nationale Schranken, komplexe Intermediärsstrukturen und hohen operativen Aufwand begrenzt. Lange Abwicklungszyklen, manuelle Compliance-Prozesse und veraltete Systeme reduzieren Transparenz und erhöhen operative Risiken. Diese Ineffizienzen treffen insbesondere kleinere Marktteilnehmer und Nutzer mit digitalem Nutzungsbedarf.</p><p>Unregulierte Kryptoplattformen hingegen bergen erhebliche rechtliche und operative Risiken.</p></div>
+<div class="why-card plain reveal"><div class="eco-tag">Die Chance</div><p>Mit MiCA entsteht erstmals ein harmonisierter europäischer Rechtsrahmen für Kryptowerte. ESTX adressiert diese Lücke durch eine regulatorisch strukturierte Plattformarchitektur mit einem strikt funktionalen Utility Token.</p></div>
+</div>
+<h3 class="sub-h reveal">Marktüberblick</h3>
+<div class="grid g4"><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(20,76,188,0.12),rgba(20,76,188,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#144CBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><h3>Tokenisierung &amp; RWA-Marktausblick</h3><p>Die Tokenisierung realer Vermögenswerte (RWA) wird in den kommenden Jahren erheblich wachsen. Anwendungsfälle umfassen Wertpapiere, Fonds, Rohstoffe und alternative Assets. Regulatorische Klarheit ist ein zentraler Treiber für nachhaltige Marktakzeptanz.</p></div><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(124,58,237,0.12),rgba(124,58,237,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.5 8 11 4.6-1.5 8-6 8-11V5z"/></svg></div><h3>Europa als regulierter Krypto-Hub</h3><p>Europa positioniert sich mit MiCA als regulierter Krypto-Standort. Der Rechtsrahmen fördert Innovation bei gleichzeitiger Wahrung von Marktintegrität und Verbraucherschutz.</p></div><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(184,150,62,0.12),rgba(184,150,62,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.7 12.3 21 2M17 6l3 3M14 9l2 2"/></svg></div><h3>Nachfrage nach nutzungsorientierten Tokens</h3><p>Regulatorische Entwicklungen rücken zunehmend Tokens mit klar definiertem Nutzungszweck statt spekulativer Eigenschaften in den Vordergrund.</p></div><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(16,185,129,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div><h3>Regulatorisch ausgerichtete Architektur</h3><p>ESTX.exchange wurde mit einer regulatorisch ausgerichteten Architektur konzipiert, die darauf abzielt, sich an den sich entwickelnden europäischen Rahmenwerken für digitale Vermögenswerte – einschließlich MiCA – zu orientieren und gleichzeitig flexibel gegenüber zukünftigen aufsichtsrechtlichen Anforderungen zu bleiben.</p></div></div>
+</div></section>
+
+<section class="sec alt" id="token-de"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Auf einen Blick</div><h2>Token-Parameter</h2><p>Alle Werte sind on-chain nachprüfbar. Der Quellcode des Vertrags ist auf Etherscan öffentlich verifiziert.</p></div>
+<dl class="params reveal"><div class="prow"><dt>Name / Symbol</dt><dd>ESTX / ESTX</dd></div><div class="prow"><dt>Standard</dt><dd>ERC-20 (Ethereum) mit ERC20Burnable und ERC20Permit (EIP-2612)</dd></div><div class="prow"><dt>Blockchain</dt><dd>Ethereum-Mainnet (Chain-ID 1)</dd></div><div class="prow"><dt>Contract-Adresse</dt><dd class="mono">0x2C83ef0b36ab580b29350913239DA8f80E192644</dd></div><div class="prow"><dt>Nachkommastellen</dt><dd>18</dd></div><div class="prow"><dt>Gesamtmenge</dt><dd>2.000.000.000 ESTX (fix, einmalig beim Deployment erzeugt)</dd></div><div class="prow"><dt>Klassifizierung</dt><dd>Utility Token (MiCA – sonstiger Kryptowert)</dd></div><div class="prow"><dt>Emittentin</dt><dd>ESTX Venture GmbH, Ruggell, Liechtenstein</dd></div><div class="prow"><dt>Token Generation Event</dt><dd>7. August 2026, 12:00 UTC</dd></div><div class="prow"><dt>Quellcode</dt><dd>Auf Etherscan verifiziert</dd></div></dl>
+</div></section>
+
+<section class="sec" id="ecosystem-de"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Ökosystem</div><h2>Zwei Plattformen, eine Utility-Ebene</h2><p>Globale Zugänglichkeit verbunden mit jurisdiktionsspezifischer Regulierung. Beide Plattformen bleiben rechtlich, operativ und regulatorisch getrennt.</p></div>
+<div class="grid g2"><div class="eco-card reveal"><div class="eco-tag">Lizenzierter VASP · Georgien</div><h3>ESTX.exchange International</h3><dl><dt>Betreiberin</dt><dd>ESTX Georgia LLC, Kutaisi</dd><dt>Lizenz</dt><dd>VASP-Lizenz L37-2026, Nationalbank von Georgien</dd><dt>Registrierung</dt><dd>412800036</dd><dt>Start</dt><dd>Geplant für Oktober 2026</dd><dt>Website</dt><dd>estx.exchange</dd></dl></div><div class="eco-card reveal planned"><div class="eco-tag">Geplant · MiCA-CASP-Pfad</div><h3>European Standard Token Exchange</h3><dl><dt>Rahmen</dt><dd>EU-Verordnung über Märkte für Kryptowerte (MiCA)</dd><dt>Zulassung</dt><dd>CASP-Zulassung, vorbehaltlich regulatorischer Genehmigung</dd><dt>Aufsicht</dt><dd>Vorgesehen: Finanzmarktaufsicht (FMA) Liechtenstein</dd><dt>Verfahren</dt><dd>Einleitung ab Dezember 2026 geplant</dd></dl></div></div>
+<div class="callout reveal"><div class="callout-h">Marktneutralität</div><p>ESTX betreibt keinen Eigenhandel, keine Preisstützung und keine Market-Making-Strategien zur Preisbeeinflussung. Weder die ESTX Venture GmbH noch die ESTX Georgia LLC erwerben ESTX Tokens am freien Markt, um das Angebot zu verringern oder Preise zu stützen. Liquiditätsbereitstellung dient ausschließlich der Marktfunktion und ist weder Preisstabilisierung noch garantierte Liquidität.</p></div>
+</div></section>
+
+<section class="sec alt" id="expansion-de"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Expansion</div><h2>Ein Ökosystem, mehrere Jurisdiktionen</h2><p>Die ESTX Venture GmbH verfolgt eine multijurisdiktionale Expansionsstrategie, die globale Zugänglichkeit mit lokaler regulatorischer Konformität verbindet.</p><p>Keine Expansion erfolgt ohne vorherige regulatorische Prüfung und interne Compliance-Freigabe.</p></div>
+<div class="grid g3"><div class="eco-card reveal"><div class="eco-tag live">Lizenziert · VASP</div><h3>Georgien</h3><div class="prose"><p>ESTX.exchange International wird von der ESTX Georgia LLC (Registrierungsnummer 412800036) betrieben, die die VASP-Lizenz L37-2026 der Nationalbank von Georgien hält.</p><p>Diese Struktur ermöglicht globalen Kryptohandel außerhalb der EU bei gleichzeitiger regulatorischer Verantwortlichkeit und operativer Stabilität.</p></div></div><div class="eco-card reveal planned"><div class="eco-tag planned">Geplant · ab Dez. 2026</div><h3>Europäische Union / EWR</h3><div class="prose"><p>Die europäische Expansion erfolgt im Rahmen der EU-Verordnung über Märkte für Kryptowerte (MiCA) über einen dedizierten CASP-Zulassungspfad. Das regulatorische Verfahren unter MiCA soll ab Dezember 2026 eingeleitet werden.</p><p>Die European Standard Token Exchange (ESTX Europe) wird ausschließlich nach Erteilung der erforderlichen Genehmigungen und unter laufender aufsichtsrechtlicher Kontrolle betrieben.</p></div></div><div class="eco-card reveal planned"><div class="eco-tag eval">Evaluierung</div><h3>Vereinigte Arabische Emirate</h3><div class="prose"><p>Weitere Jurisdiktionen, einschließlich der Vereinigten Arabischen Emirate, werden anhand regulatorischer Klarheit, aufsichtsrechtlicher Standards und langfristiger operativer Umsetzbarkeit geprüft.</p><p>Ein Markteintritt erfolgt erst nach formeller regulatorischer Bewertung und interner Freigabe.</p></div></div></div>
+<div class="callout reveal"><div class="callout-h">Einheitlicher Token-Nutzen über Jurisdiktionen hinweg</div><p>Der ESTX Utility Token wird plattformübergreifend als funktionales Zugangs- und Nutzungselement innerhalb des ESTX-Ökosystems eingesetzt.</p><p>Der ESTX Token dient nicht als grenzüberschreitendes Investment-, Finanzierungs- oder Wertübertragungsinstrument. Seine Nutzung ist strikt auf den Zugang zu definierten Plattformdiensten und -funktionen innerhalb des jeweiligen regulatorischen Rahmens beschränkt.</p></div>
+</div></section>
+
+<section class="sec" id="utility-de"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Nutzen</div><h2>Was der Token leistet</h2><p>Strikt funktional. Der Token ermöglicht Plattforminteraktionen und nichts darüber hinaus.</p></div>
+<div class="grid g4"><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(20,76,188,0.12),rgba(20,76,188,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#144CBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2v20l3-2 3 2 3-2 3 2 3-2 1 .7V2l-1 .7-3-2-3 2-3-2-3 2-3-2z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div><h3>Gebührenabrechnung</h3><p>Plattformgebühren können in ESTX beglichen werden. Gebührenreduktionen sind nutzungsbasiert und nicht übertragbar; sie sind keine finanziellen Erträge.</p></div><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(124,58,237,0.12),rgba(124,58,237,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.7 12.3 21 2M17 6l3 3M14 9l2 2"/></svg></div><h3>Zugriffskontrolle</h3><p>Zugangs- und Loyalitätsmechanismen dienen ausschließlich der funktionalen Differenzierung und einer besseren Nutzererfahrung.</p></div><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(184,150,62,0.12),rgba(184,150,62,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg></div><h3>Feature-Aktivierung</h3><p>Nutzungsbasierte Aktivierung von Plattformfunktionen innerhalb des jeweiligen regulatorischen Rahmens.</p></div><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(16,185,129,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><h3>Plattformübergreifend</h3><p>Eine einheitliche Utility-Ebene über ESTX.exchange International und die geplante ESTX Europe hinweg, ohne deren rechtliche Trennung aufzuheben.</p></div></div>
+<div class="callout reveal"><div class="callout-h">Der Token vermittelt ausdrücklich keine</div><ul class="two-col"><li>Beteiligung an Umsätzen oder Gewinnen</li><li>Ansprüche auf Vermögenswerte</li><li>Rückzahlungs- oder Ausschüttungsrechte</li><li>Mitwirkungs- oder Stimmrechte</li></ul></div>
+</div></section>
+
+<section class="sec alt" id="allocation-de"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Tokenomics</div><h2>Token-Allokation</h2><p>Die feste Gesamtmenge verteilt sich auf fünf funktionale Kategorien. Keine Allokation begründet Eigentums-, Gewinn-, Vermögens- oder Mitspracherechte.</p></div>
+<div class="bar reveal" role="img" aria-label="Token-Allokation"><span style="flex:35;background:#144CBC" title="Community &amp; Ecosystem 35 %">35 %</span><span style="flex:20;background:#B8963E" title="Liquidity Provisioning 20 %">20 %</span><span style="flex:15;background:#7C3AED" title="Treasury &amp; Strategic Operations 15 %">15 %</span><span style="flex:20;background:#10b981" title="Founders &amp; Management 20 %">20 %</span><span style="flex:10;background:#5b9aff" title="Advisors &amp; Early Contributors 10 %">10 %</span></div>
+<div class="tcard reveal"><table><thead><tr><th>Kategorie</th><th class="n">Anteil</th><th class="n">ESTX</th></tr></thead><tbody><tr><td><span class="swatch" style="background:#144CBC"></span><b>Community &amp; Ecosystem</b><span class="sub">Onboarding, Plattformaktivität, Kampagnen und funktionale Anreize.</span></td><td class="n">35 %</td><td class="n">700.000.000</td></tr><tr><td><span class="swatch" style="background:#B8963E"></span><b>Liquidity Provisioning</b><span class="sub">Operative Liquidität für geordneten Handel. Nur Marktfunktion, keine Preisstützung.</span></td><td class="n">20 %</td><td class="n">400.000.000</td></tr><tr><td><span class="swatch" style="background:#7C3AED"></span><b>Treasury &amp; Strategic Operations</b><span class="sub">Infrastruktur, Technologie, regulatorische Expansion und Betrieb.</span></td><td class="n">15 %</td><td class="n">300.000.000</td></tr><tr><td><span class="swatch" style="background:#10b981"></span><b>Founders &amp; Management</b><span class="sub">Zwei Gründer mit je 10 %; 20 % zum TGE, 80 % Vesting über 36 Monate.</span></td><td class="n">20 %</td><td class="n">400.000.000</td></tr><tr><td><span class="swatch" style="background:#5b9aff"></span><b>Advisors &amp; Early Contributors</b><span class="sub">Strategischer Partner 5 %, Tech-Team 1 %, Governance-Reserve 4 %.</span></td><td class="n">10 %</td><td class="n">200.000.000</td></tr>
+<tr class="total"><td><b>Summe</b></td><td class="n"><b>100 %</b></td><td class="n"><b>2.000.000.000</b></td></tr></tbody></table></div>
+</div></section>
+
+<section class="sec" id="circulation-de"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Tokenomics</div><h2>Verteilung zum TGE</h2><p>Zum Token Generation Event am 7. August 2026 wurde die gesamte Menge in einem einzigen Deploy-Lauf on-chain verteilt; der Deployer-Account behielt keine Token. Die Verteilung zum TGE:</p></div>
+<div class="tcard reveal"><table><thead><tr><th>Allokation</th><th class=n>ESTX</th><th class=n>%</th><th>Verwahrung / Status</th></tr></thead><tbody><tr><td><b>Community &amp; Ecosystem</b></td><td class="n">700.000.000</td><td class="n">35,0 %</td><td>Projektkontrollierte Hardware-Wallet</td></tr><tr><td><b>Liquidity Provisioning</b></td><td class="n">400.000.000</td><td class="n">20,0 %</td><td>Liquidity-Safe (Multisig 2 von 3)</td></tr><tr><td><b>Treasury &amp; Strategic Operations</b></td><td class="n">300.000.000</td><td class="n">15,0 %</td><td>Treasury-Safe (Multisig 2 von 3)</td></tr><tr><td><b>Founders &amp; Management – TGE-Tranchen (20 %)</b></td><td class="n">80.000.000</td><td class="n">4,0 %</td><td>An Begünstigte freigegeben</td></tr><tr><td><b>Founders &amp; Management – Vesting (80 %)</b></td><td class="n">320.000.000</td><td class="n">16,0 %</td><td>In Vesting-Verträgen gesperrt</td></tr><tr><td><b>Strategischer Partner (5 %) *</b></td><td class="n">100.000.000</td><td class="n">5,0 %</td><td>Noch nicht übertragen – vom Projekt verwahrt</td></tr><tr><td><b>Tech-Team – TGE-Tranche (20 %)</b></td><td class="n">4.000.000</td><td class="n">0,2 %</td><td>An Begünstigten freigegeben</td></tr><tr><td><b>Tech-Team – Vesting (80 %)</b></td><td class="n">16.000.000</td><td class="n">0,8 %</td><td>Im Vesting-Vertrag gesperrt</td></tr><tr><td><b>Governance-Reserve</b></td><td class="n">80.000.000</td><td class="n">4,0 %</td><td>Projektkontrollierte Hardware-Wallet</td></tr>
+<tr class="total"><td><b>Summe</b></td><td class="n"><b>2.000.000.000</b></td><td class="n"><b>100,0 %</b></td><td></td></tr></tbody></table></div>
+<p class="note">* On-chain hält die Treasury-Safe daher 380.000.000 ESTX (300.000.000 Treasury + 80.000.000 verwahrt für den strategischen Partner). Die Zahlen geben die Verteilung zum TGE wieder; Bestände projektkontrollierter Wallets können sich durch operative Nutzung verändern.</p>
+<h3 class="sub-h reveal">Umlaufmenge &amp; Zirkulationsmanagement</h3>
+<p class="lead-p">Zum TGE wurde die Gesamtmenge wie folgt gehalten:</p>
+<div class="kpis kpis4 reveal"><div class="kpi"><b>16,8 %</b><span class="kpi-n">336.000.000 ESTX</span><span>In Vesting-Verträgen gesperrt, lineare Freigabe bis 06.08.2029</span></div><div class="kpi"><b>39,0 %</b><span class="kpi-n">780.000.000 ESTX</span><span>In Multisig-Safes, 2 von 3</span></div><div class="kpi"><b>40,0 %</b><span class="kpi-n">800.000.000 ESTX</span><span>In projektkontrollierten Hardware-Wallets</span></div><div class="kpi"><b>4,2 %</b><span class="kpi-n">84.000.000 ESTX</span><span>Als TGE-Tranchen an Begünstigte übertragen</span></div></div>
+<div class="prose reveal"><p>Technisch gesperrt sind ausschließlich die 336.000.000 ESTX (16,8 %) in den Vesting-Verträgen. Die vom Projekt in Multisig-Safes und Hardware-Wallets gehaltenen Token (1.580.000.000 ESTX, 79,0 %) sind technisch übertragbar; sie gelangen schrittweise in den Umlauf, abhängig von:</p><ul><li>tatsächlicher Plattformnutzung</li><li>Aktivierung funktionaler Services</li><li>operativen Erfordernissen</li></ul><p>Sie stellt keine Preis-, Markt- oder Wertsteuerung dar.</p></div>
+<div class="callout reveal"><div class="callout-h">Angebotsreduktion aus eigenen Beständen</div><p>Weder die ESTX Venture GmbH noch die Betreiberin von ESTX.exchange International (ESTX Georgia LLC) erwerben ESTX Tokens am freien Markt, um das Angebot zu verringern oder den Preis zu stützen. Die ESTX Venture GmbH kann nach eigenem Ermessen Token aus ihren eigenen Beständen (zum Beispiel der Treasury-Allokation) über die Standard-Burn-Funktion des Token-Vertrags dauerhaft aus dem Umlauf entfernen.</p><p>Jeder solche Burn ist on-chain öffentlich nachprüfbar und verringert die Gesamtmenge dauerhaft.</p><p>Zweck ist ausschließlich die technische Steuerung der Umlaufmenge im Rahmen des Ökosystembetriebs.</p></div>
+</div></section>
+
+<section class="sec alt" id="vesting-de"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Vesting</div><h2>Freigabeplan</h2><p>Gründer und Beitragende erhielten 20 % zum TGE. Die restlichen 80 % vesten sekundengenau linear über 36 Monate bis zum 6. August 2029, ohne Cliff, in individuellen, unwiderruflichen On-Chain-Vesting-Verträgen auf Basis des OpenZeppelin VestingWallet. Kein Dritter, auch nicht die ESTX Venture GmbH, kann das Vesting widerrufen, anhalten oder umleiten.</p></div>
+<div class="kpis reveal"><div class="kpi"><b>20 %</b><span>zum TGE</span></div><div class="kpi"><b>36</b><span>Monate, linear, ohne Cliff</span></div><div class="kpi"><b>06.08.2029</b><span>Ende des Vestings</span></div></div>
+<div class="tcard reveal"><table><thead><tr><th>Datum</th><th class="n">Planmäßig gevestet</th><th class="n">Noch nicht gevestet</th><th class="n">Freigabe inkl. TGE-Tranchen</th><th class="n">Anteil Gesamtmenge</th></tr></thead><tbody><tr><td>07.08.2026 (TGE)</td><td class="n">0</td><td class="n">416.000.000</td><td class="n">104.000.000</td><td class="n">5,2 %</td></tr><tr><td>07.02.2027</td><td class="n">69.903.196</td><td class="n">346.096.804</td><td class="n">173.903.196</td><td class="n">8,7 %</td></tr><tr><td>07.08.2027</td><td class="n">138.666.667</td><td class="n">277.333.333</td><td class="n">242.666.667</td><td class="n">12,1 %</td></tr><tr><td>07.02.2028</td><td class="n">208.569.863</td><td class="n">207.430.137</td><td class="n">312.569.863</td><td class="n">15,6 %</td></tr><tr><td>07.08.2028</td><td class="n">277.713.242</td><td class="n">138.286.758</td><td class="n">381.713.242</td><td class="n">19,1 %</td></tr><tr><td>07.02.2029</td><td class="n">347.616.438</td><td class="n">68.383.562</td><td class="n">451.616.438</td><td class="n">22,6 %</td></tr><tr><td>06.08.2029 (Ende)</td><td class="n">416.000.000</td><td class="n">0</td><td class="n">520.000.000</td><td class="n">26,0 %</td></tr></tbody></table></div>
+<p class="note">Die Vesting-Tranchen umfassen 416.000.000 ESTX (Gründer 320.000.000, strategischer Partner 80.000.000, Tech-Team 16.000.000). Werte auf ganze Token gerundet. Zum TGE waren 16,8 % der Gesamtmenge in Vesting-Verträgen gesperrt; 79,0 % lagen in projektkontrollierten Multisig-Safes und Hardware-Wallets und gelangen schrittweise, abhängig von der tatsächlichen Plattformnutzung, in den Umlauf.</p>
+</div></section>
+
+<section class="sec" id="contract-de"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Technologie</div><h2>Smart-Contract-Design</h2><p>OpenZeppelin Contracts 5.6, Solidity 0.8.28. Kein Mechanismus kann Tokenwert, Preisbildung oder Marktverhalten beeinflussen.</p></div>
+<div class="grid g4"><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(20,76,188,0.12),rgba(20,76,188,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#144CBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div><h3>Feste Gesamtmenge</h3><p>Einmalig beim Deployment erzeugt. Es gibt keine Mint-Funktion; die Menge kann niemals erhöht werden.</p></div><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(124,58,237,0.12),rgba(124,58,237,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4z"/></svg></div><h3>Keine Pause, kein Freeze, keine Blacklist</h3><p>Token-Transfers können niemals angehalten oder eingeschränkt werden. Das unterstreicht den Utility-, Nicht-Wertpapier-Charakter.</p></div><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(184,150,62,0.12),rgba(184,150,62,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.5 8 11 4.6-1.5 8-6 8-11V5z"/></svg></div><h3>Unveränderlich</h3><p>Kein Proxy, keine Upgradefähigkeit. Die Tokenökonomie kann nach dem Deployment nicht geändert werden.</p></div><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(16,185,129,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22c4 0 7-3 7-7 0-4-3-6-4-9-1 2-2 3-4 3 0-3-1-5-3-7 0 4-5 7-5 13 0 4 3 7 9 7z"/></svg></div><h3>Burn nur durch Halter</h3><p>Halter können eigene Token verbrennen oder Dritten eine Freigabe erteilen (burnFrom). Niemand kann fremde Bestände verbrennen oder entziehen.</p></div><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(20,76,188,0.12),rgba(20,76,188,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#144CBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-7 7-7s7 3 7 7M16 4a4 4 0 0 1 0 8M22 21c0-3-2-5.5-4.5-6.5"/></svg></div><h3>Multisig 2 von 3</h3><p>Die Treasury-Safe ist alleiniger Owner des Vertrags und hat keine Kontrolle über Menge oder Transfers. Treasury- und Liquidity-Allokation liegen in zwei Safe-Konten mit 2 von 3 Unterschriften.</p></div><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(124,58,237,0.12),rgba(124,58,237,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div><h3>Gasfreie Freigaben</h3><p>ERC20Permit (EIP-2612) erlaubt Freigaben per signierter Nachricht.</p></div><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(184,150,62,0.12),rgba(184,150,62,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-15-6.7L3 13"/></svg></div><h3>Eng begrenzte Wiederherstellung</h3><p>rescueERC20 gibt versehentlich an den Vertrag gesendete Token zurück. Die Funktion kann weder minten noch die Menge ändern noch Nutzerguthaben bewegen.</p></div><div class="why-card reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(16,185,129,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div><h3>Audit-Status</h3><p>Mehrstufige interne Prüfung mit 51 automatisierten Tests und vollständiger Sepolia-Generalprobe. Ein unabhängiges externes Audit wurde bislang nicht durchgeführt.</p></div></div>
+</div></section>
+
+<section class="sec alt" id="security-de"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Sicherheit</div><h2>Prüfung, Audit-Status und Kontrollen</h2></div>
+<div class="grid g2"><div class="why-card plain reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(20,76,188,0.12),rgba(20,76,188,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#144CBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div><h3>Sicherheitsprüfung &amp; Audit-Status</h3><p>Vor dem Deployment durchliefen die Smart Contracts eine mehrstufige interne Sicherheitsprüfung. Sie umfasste 51 automatisierte Tests, wiederholte interne Sicherheitsbewertungen der Token- und Vesting-Verträge sowie eine vollständige Generalprobe von Deployment und Verteilung im Ethereum-Testnetz Sepolia. Der Quellcode aller deployten Verträge ist auf Etherscan verifiziert, sodass jeder den on-chain laufenden Code einsehen kann.</p><p>Ein unabhängiges externes Sicherheitsaudit wurde bislang nicht durchgeführt. Interne Prüfungen ersetzen kein externes Audit. Da die Verträge unveränderlich sind, könnten Ergebnisse eines künftigen Audits nicht durch Änderung der deployten Verträge behoben werden; erforderlichenfalls könnte ein neuer Token-Vertrag deployt und den Haltern eine Migration angeboten werden.</p></div><div class="why-card plain reveal"><div class="why-icon" style="background:linear-gradient(135deg,rgba(124,58,237,0.12),rgba(124,58,237,0.06));"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-7 7-7s7 3 7 7M16 4a4 4 0 0 1 0 8M22 21c0-3-2-5.5-4.5-6.5"/></svg></div><h3>Treasury- &amp; Zugriffskontrollen</h3><p>Die Treasury- und die Liquidity-Allokation werden in zwei Safe-Multisig-Konten (ehemals Gnosis Safe) auf dem Ethereum-Mainnet gehalten. Beide erfordern für jede Transaktion 2 von 3 Unterschriften. Die drei Unterzeichner</p><p>nutzen getrennte Hardware-Wallets, die für keine Allokation als Empfangsadresse verwendet werden. Die Treasury-Safe ist alleiniger Owner des Token-Vertrags.</p></div></div>
+</div></section>
+
+<section class="sec" id="addresses-de"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Transparenz</div><h2>Nachprüfbare On-Chain-Adressen</h2><p>Alle Adressen liegen auf dem Ethereum-Mainnet und sind auf etherscan.io nachprüfbar.</p></div>
+<div class="tcard reveal"><table><thead><tr><th>Rolle</th><th class="n">Adresse</th></tr></thead><tbody><tr><td>Token-Vertrag</td><td class="mono"><a href="https://etherscan.io/address/0x2C83ef0b36ab580b29350913239DA8f80E192644" target="_blank" rel="noopener">0x2C83ef0b36ab580b29350913239DA8f80E192644</a></td></tr><tr><td>Treasury-Safe (Owner, 2 von 3)</td><td class="mono"><a href="https://etherscan.io/address/0x455F5992c084Fe3Be2f833CbCB037765C4680DC9" target="_blank" rel="noopener">0x455F5992c084Fe3Be2f833CbCB037765C4680DC9</a></td></tr><tr><td>Liquidity-Safe (2 von 3)</td><td class="mono"><a href="https://etherscan.io/address/0xE44bc53A227C15651c07ac989EA0f5c55CAfeD7f" target="_blank" rel="noopener">0xE44bc53A227C15651c07ac989EA0f5c55CAfeD7f</a></td></tr><tr><td>Vesting-Vertrag – Gründer 1</td><td class="mono"><a href="https://etherscan.io/address/0x7746F08703AD0683aEe1f4EC601122E89B36b433" target="_blank" rel="noopener">0x7746F08703AD0683aEe1f4EC601122E89B36b433</a></td></tr><tr><td>Vesting-Vertrag – Gründer 2</td><td class="mono"><a href="https://etherscan.io/address/0x1bF9A1AF18d64EDf17b509AB2618613443165B25" target="_blank" rel="noopener">0x1bF9A1AF18d64EDf17b509AB2618613443165B25</a></td></tr><tr><td>Vesting-Vertrag – Tech-Team</td><td class="mono"><a href="https://etherscan.io/address/0xBcEf80bB635D6A58f0AA0C28A27893FbDf70969a" target="_blank" rel="noopener">0xBcEf80bB635D6A58f0AA0C28A27893FbDf70969a</a></td></tr><tr><td>Community-&amp;-Ecosystem-Wallet</td><td class="mono"><a href="https://etherscan.io/address/0xAb64ab6E99263b2421ccB9Ce267Ad3d694dDC8ED" target="_blank" rel="noopener">0xAb64ab6E99263b2421ccB9Ce267Ad3d694dDC8ED</a></td></tr><tr><td>Governance-Reserve</td><td class="mono"><a href="https://etherscan.io/address/0x2D5e8c64D7ac20215cC88f4c13310B438a24929F" target="_blank" rel="noopener">0x2D5e8c64D7ac20215cC88f4c13310B438a24929F</a></td></tr></tbody></table></div>
+</div></section>
+
+<section class="sec alt" id="roadmap-de"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Roadmap</div><h2>Wo das Ökosystem steht</h2></div>
+<div class="grid g2 tl-grid"><div class="tl-col reveal"><h3 class="tl-h">Abgeschlossen</h3><ol class="tl"><li class="tl-done"><span class="tl-text">rechtliche Strukturierung und Dokumentation</span></li><li class="tl-done"><span class=tl-date>Juli – August 2026</span><span class="tl-text">interne Sicherheitsprüfung der Smart Contracts und vollständiges Test-Deployment im Ethereum-Testnetz Sepolia</span></li><li class="tl-done"><span class=tl-date>7. August 2026</span><span class="tl-text">Deployment des ESTX Tokens auf dem Ethereum-Mainnet (TGE), vollständige Verteilung der Gesamtmenge und Aktivierung der Vesting-Verträge</span></li><li class="tl-done"><span class="tl-text">VASP-Lizenz der ESTX Georgia LLC durch die Nationalbank von Georgien erteilt (VASP-Lizenz L37-2026)</span></li></ol></div><div class="tl-col reveal"><h3 class="tl-h">Nächste Schritte</h3><ol class="tl"><li class="tl-next"><span class=tl-date>Oktober 2026 (geplant)</span><span class="tl-text">Start von ESTX.exchange International, betrieben durch die ESTX Georgia LLC</span></li><li class="tl-next"><span class="tl-text">Anbindung operativer Partner und Liquiditätsanbieter zur Unterstützung der Plattformfunktionalität</span></li><li class="tl-next"><span class="tl-text">schrittweise Aktivierung zentraler Utility-Funktionen, Ökosystem-Services und Nutzerzugänge</span></li><li class="tl-next"><span class=tl-date>Q4 2026</span><span class="tl-text">Evaluierung und Entscheidungsfindung hinsichtlich eines regulierten Krypto-Lizenzrahmens in den Vereinigten Arabischen Emiraten (z. B. VARA oder ADGM)</span></li><li class="tl-next"><span class=tl-date>ab Dezember 2026 (geplant)</span><span class="tl-text">europäischer regulatorischer Pfad unter MiCA (CASP-Zulassung oder gleichwertige Struktur)</span></li><li class="tl-next"><span class="tl-text">Start der European Standard Token Exchange vorbehaltlich regulatorischer Genehmigungen</span></li></ol></div></div>
+</div></section>
+
+<section class="sec" id="governance-de"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Management &amp; Governance</div><h2>Wer die ESTX Venture GmbH führt</h2><p>Die ESTX Venture GmbH operiert unter einer zentralisierten Managementstruktur mit klar definierten operativen Verantwortlichkeiten.</p></div>
+<div class="grid g2">
+<div class="why-card plain reveal">
+  <div class="ceo"><div class="ceo-mono" aria-hidden="true">CB</div><div><div class="ceo-role">Chief Executive Officer (CEO)</div><div class="ceo-name">Christoph Bosch</div><div class="ceo-desc">FinTech-Experte seit 2009</div></div></div>
+  <div class="prose"><p>Die operativen Zuständigkeiten sind wie folgt strukturiert:</p><ul><li>Management &amp; regulatorische Koordination: Liechtenstein</li><li>Technologie &amp; Entwicklung: Europäische Union &amp; Ukraine</li><li>Betrieb von ESTX.exchange International: ESTX Georgia LLC, Georgien</li></ul><p>Management, Compliance und operative Umsetzung sind funktional voneinander getrennt, um interne Kontrollen und regulatorische Konformität sicherzustellen.</p></div>
+</div>
+<div class="why-card plain reveal"><h3>Governance-Grundsätze</h3><div class="prose"><p>Das ESTX-Ökosystem unterliegt einem internen Governance-Rahmen, der auf folgende Ziele ausgerichtet ist:</p><ul><li>operative Integrität</li><li>regulatorische Konformität</li><li>Transparenz und Verantwortlichkeit</li></ul><p>Governance-Mechanismen beziehen sich ausschließlich auf operative und Compliance-relevante Sachverhalte. Sie erstrecken sich ausdrücklich nicht auf wirtschaftliche Ergebnisse, Tokenpreise oder Marktverhalten.</p><p>Keine operative Funktion beinhaltet die Verantwortung für die Beeinflussung des Tokenwerts, der Preisbildung am Sekundärmarkt oder von Investmentergebnissen.</p></div></div>
+</div>
+</div></section>
+
+<section class="sec alt" id="legal-de"><div class="wrap">
+<div class="sec-head reveal"><div class="label">Recht</div><h2>Regulatorische Einordnung</h2><p>Der ESTX Utility Token qualifiziert als „sonstiger Kryptowert“ im Sinne von Artikel 3 der EU-Verordnung über Märkte für Kryptowerte (MiCA).</p></div>
+<div class="grid g2">
+<div class="why-card plain reveal"><h3>Der ESTX Token ist</h3><ul><li>kein vermögenswertreferenzierter Token (ART)</li><li>kein E-Geld-Token (EMT)</li><li>kein Finanzinstrument im Sinne der MiFID II</li><li>kein Finanzierungsinstrument, kein Investmentprodukt, kein Anspruch auf Eigentum, Gewinne oder Rückzahlung</li></ul></div>
+<div class="why-card plain reveal"><h3>Risikofaktoren, kurz gefasst</h3><ul><li>Der Wert des ESTX Tokens kann erheblich schwanken und im Extremfall vollständig entfallen.</li><li>Die Liquidität von Utility Tokens am Sekundärmarkt kann eingeschränkt oder volatil sein.</li><li>Zum TGE lagen 79,0 % der Gesamtmenge technisch übertragbar in projektkontrollierten Wallets; Transfers daraus können Preis und Liquidität erheblich beeinflussen.</li><li>Die Smart Contracts wurden nicht extern auditiert; da sie unveränderlich sind, könnte eine Behebung die Migration auf einen neuen Token-Vertrag erfordern.</li><li>Änderungen gesetzlicher oder aufsichtsrechtlicher Rahmenbedingungen können Plattformbetrieb oder Token-Nutzung beeinflussen.</li></ul></div>
+</div>
+<div class="disc"><b>Haftungsausschluss.</b> Diese Seite fasst das ESTX Utility Token Whitepaper (Version 2.0) zusammen und dient ausschließlich Informationszwecken. Sie stellt weder ein Verkaufsangebot noch eine Aufforderung zur Abgabe eines Kaufangebots oder eine Empfehlung für Wertpapiere oder andere Finanzinstrumente dar. Der ESTX Token ist ausschließlich als Utility Token gemäß MiCA strukturiert und begründet keinerlei Eigentums-, Gewinn-, Stimm- oder Rückzahlungsrechte. Der ESTX Token wird nicht zum Zweck der Kapitalaufnahme oder zur Finanzierung der Entwicklung der ESTX-Plattformen ausgegeben. Er ist nicht für den Verkauf an Personen in eingeschränkten Jurisdiktionen vorgesehen, insbesondere nicht an US-Personen im Sinne der Regulation S des U.S. Securities Act von 1933. Im Zweifel gilt das Whitepaper.</div>
+<p class="note">Alle Angaben auf dieser Seite stammen aus Whitepaper 2.0 und wurden gegen das Ethereum-Mainnet geprüft.</p>
+</div></section>
+
+<section class="cta-band"><div class="wrap cta-inner">
+<div><h2>Das vollständige Whitepaper lesen</h2><p>Version 2.0, September 2026, zweisprachig Englisch / Deutsch, 38 Seiten.</p></div>
+<a href="ESTX_Whitepaper_v2.0_2026-09.pdf" class="btn-cta-white">Whitepaper (PDF)<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 3v12M6 11l6 6 6-6M5 21h14"/></svg></a>
+</div></section>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <img src="brand_assets/logo_bw.svg" alt="ESTX" style="height:30px;width:auto;"/>
+        <p class="f-desc"><span data-lang="en">ESTX Utility Token · issued by ESTX Venture GmbH, Liechtenstein</span><span data-lang="de">ESTX Utility Token · ausgegeben von der ESTX Venture GmbH, Liechtenstein</span></p>
+        <a href="ESTX_Whitepaper_v2.0_2026-09.pdf" class="btn-primary" style="font-size:0.78rem;">Whitepaper (PDF)</a>
+      </div>
+      <div id="imprint"><div class="f-col-h"><span data-lang="en">Issuer · Imprint</span><span data-lang="de">Emittentin · Impressum</span></div>
+        <p class="f-text">ESTX Venture GmbH<br/>Industriestrasse 4<br/>9491 Ruggell, Liechtenstein<br/>CEO: Christoph Bosch<br/><span data-lang="en">Commercial register</span><span data-lang="de">Handelsregister</span>: <span class="todo">[FL-…]</span><br/>E-mail: <span class="todo">[hello@estx.li?]</span></p></div>
+      <div><div class="f-col-h"><span data-lang="en">Exchange operator</span><span data-lang="de">Börsenbetreiberin</span></div>
+        <p class="f-text">ESTX.exchange International<br/>ESTX Georgia LLC, Kutaisi, Georgia<br/><span data-lang="en">Registration number</span><span data-lang="de">Registrierungsnummer</span> 412800036<br/>VASP License L37-2026<br/>National Bank of Georgia</p></div>
+      <div><div class="f-col-h"><span data-lang="en">Links</span><span data-lang="de">Links</span></div><ul class="f-list">
+        <li><a href="ESTX_Whitepaper_v2.0_2026-09.pdf">Whitepaper (PDF)</a></li>
+        <li><a href="https://etherscan.io/token/0x2C83ef0b36ab580b29350913239DA8f80E192644" target="_blank" rel="noopener"><span data-lang="en">Contract on Etherscan</span><span data-lang="de">Vertrag auf Etherscan</span></a></li>
+        <li><a href="https://estx.exchange" target="_blank" rel="noopener">ESTX.exchange ↗</a></li>
+        <li><a href="#legal-en" data-lang="en">Legal</a><a href="#legal-de" data-lang="de">Recht</a></li></ul></div>
+    </div>
+    <div class="f-bottom"><div>© 2026 ESTX Venture GmbH</div><div><span data-lang="en">All facts on this page are taken from Whitepaper 2.0 and verified against the Ethereum mainnet.</span><span data-lang="de">Alle Angaben auf dieser Seite stammen aus Whitepaper 2.0 und wurden gegen das Ethereum-Mainnet geprüft.</span></div></div>
+  </div>
+</footer>
+<script>
+(function(){
+  var flags={en:'🇬🇧',de:'🇩🇪'};
+  window.setLang=function(lang){
+    lang=lang==='de'?'de':'en';
+    document.documentElement.setAttribute('data-ui-lang',lang);
+    document.documentElement.lang=lang;
+    try{localStorage.setItem('estx_lang',lang);}catch(e){}
+    document.getElementById('langFlag').innerHTML=flags[lang];
+    document.getElementById('langCode').textContent=lang.toUpperCase();
+    ['en','de'].forEach(function(l){
+      var o=document.getElementById('langOpt'+l);if(o)o.classList.toggle('active',l===lang);
+      var m=document.getElementById('mobLang'+l);if(m)m.classList.toggle('active',l===lang);
+    });
+    document.getElementById('langDropdown').classList.remove('open');
+    
+    observe();
+  };
+  window.toggleLangDropdown=function(){document.getElementById('langDropdown').classList.toggle('open');};
+  document.addEventListener('click',function(e){var ls=document.querySelector('.lang-switch');if(ls&&!ls.contains(e.target))document.getElementById('langDropdown').classList.remove('open');});
+  window.openMob=function(){document.getElementById('mobMenu').classList.add('open');};
+  window.closeMob=function(){document.getElementById('mobMenu').classList.remove('open');};
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeMob();document.getElementById('langDropdown').classList.remove('open');}});
+  document.querySelectorAll('.tc-copy').forEach(function(b){
+    var label=b.textContent;
+    b.addEventListener('click',function(){
+      var done=function(){b.textContent=b.getAttribute('data-done');setTimeout(function(){b.textContent=label;},1600);};
+      if(navigator.clipboard){navigator.clipboard.writeText(b.getAttribute('data-copy')).then(done,function(){});}
+    });
+  });
+  var io=('IntersectionObserver' in window)?new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'}):null;
+  function observe(){document.querySelectorAll('.reveal:not(.in)').forEach(function(el){if(io&&el.offsetParent!==null)io.observe(el);else if(!io)el.classList.add('in');});}
+  setLang(document.documentElement.getAttribute('data-ui-lang'));
+})();
+</script>
+</body>
+</html>

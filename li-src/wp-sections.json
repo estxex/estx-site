@@ -1,0 +1,795 @@
+[
+ {
+  "id": "1",
+  "title": "Disclaimer / Haftungsausschluss",
+  "en": [
+   "This Whitepaper constitutes a technical and functional description of the ESTX Utility Token and is provided for informational purposes only. It does not constitute an offer to sell, a solicitation of an offer to buy, or a recommendation of any security, investment product, or financial instrument.",
+   "The ESTX Token is structured exclusively as a utility token under the EU Markets in Crypto-Assets Regulation (MiCA) and does not represent any form of security, equity, debt instrument, profit participation, or ownership right.",
+   "Cryptographic tokens involve substantial risks, including price volatility, technological risks, regulatory uncertainty, and the potential total loss of value. No guarantees are made regarding future value, performance, or liquidity.",
+   "The ESTX Token is not intended to be offered or sold to residents of restricted jurisdictions, including the United States (U.S. persons as defined in Regulation S under the U.S. Securities Act of 1933).",
+   "The ESTX Token is not issued for the purpose of raising capital or financing the development of the ESTX platforms. Any platform development, regulatory applications, or operational expansion are funded independently of the ESTX Token."
+  ],
+  "de": [
+   "Dieses Whitepaper stellt eine technische und funktionale Beschreibung des ESTX Utility Tokens dar und dient ausschließlich Informationszwecken. Es stellt weder ein Verkaufsangebot noch eine Aufforderung zur Abgabe eines Kaufangebots oder eine Empfehlung für Wertpapiere oder andere Finanzinstrumente dar.",
+   "Der ESTX Token ist ausschließlich als Utility Token gemäß der EU-Verordnung über Märkte für Kryptowerte (MiCA) strukturiert und begründet keinerlei Eigentums-, Gewinn-, Stimm- oder Rückzahlungsrechte.",
+   "Kryptografische Token unterliegen erheblichen Risiken, einschließlich Preisvolatilität, technologischer Risiken, regulatorischer Unsicherheiten sowie dem möglichen Totalverlust des eingesetzten Kapitals. Es bestehen keinerlei Garantien hinsichtlich Wertentwicklung oder Liquidität.",
+   "Der ESTX Token ist nicht für den Verkauf an Personen in eingeschränkten Jurisdiktionen vorgesehen, insbesondere nicht an US-Personen im Sinne der Regulation S des U.S. Securities Act von 1933.",
+   "Der ESTX Token wird nicht zum Zweck der Kapitalaufnahme oder zur Finanzierung der Entwicklung der ESTX-Plattformen ausgegeben. Jegliche Plattformentwicklung, regulatorische Anträge oder operative Expansion werden unabhängig vom ESTX Token finanziert."
+  ]
+ },
+ {
+  "id": "2",
+  "title": "Executive Summary / Zusammenfassung",
+  "en": [
+   "ESTX Venture GmbH is building a multi-jurisdictional digital asset ecosystem centered around operationally compliant crypto-market infrastructure.",
+   "The ecosystem combines:",
+   "•   a globally accessible crypto exchange (ESTX.exchange International), and •   a planned regulated European expansion under the MiCA framework (European Standard Token Exchange).",
+   "The ESTX Utility Token functions as a unified access and usage layer across the ESTX ecosystem. It enables operational platform functionality only and is not designed as an investment, financing, or value-accrual instrument. The ESTX Token was deployed on the Ethereum mainnet on 7 August 2026 (Token Generation Event, TGE). Its fixed total supply of 2,000,000,000 ESTX was minted once at deployment and distributed in full; the source code of all contracts is publicly verified."
+  ],
+  "de": [
+   "Die ESTX Venture GmbH entwickelt ein multiregionales digitales Asset-Ökosystem mit Fokus auf regulatorisch konforme Marktinfrastruktur.",
+   "Das Ökosystem verbindet:",
+   "•   eine global zugängliche Krypto-Handelsplattform (ESTX.exchange International) sowie •   eine geplante regulierte europäische Expansion unter dem MiCA-Regime (European Standard Token Exchange).",
+   "Der ESTX Utility Token fungiert als einheitliche Zugangs- und Nutzungsebene innerhalb des Ökosystems und ist kein Investment- oder Finanzierungsinstrument.",
+   "Der ESTX Token wurde am 7. August 2026 auf dem Ethereum-Mainnet deployt (Token Generation Event, TGE). Die feste Gesamtmenge von 2.000.000.000 ESTX wurde beim Deployment einmalig erzeugt und vollständig verteilt; der Quellcode aller Verträge ist öffentlich verifiziert."
+  ]
+ },
+ {
+  "id": "3",
+  "title": "Problem & Opportunity / Problem & Chance",
+  "en": [
+   "Traditional capital markets are slow, fragmented, and costly, particularly for cross-border and digitally native use cases.",
+   "Access to trading and digital asset services is frequently limited by national barriers, complex intermediary structures, and high operational effort. Long settlement cycles, manual compliance processes, and legacy systems reduce transparency and increase operational risk. These inefficiencies particularly affect smaller market participants and users with digital needs.",
+   "Unregulated crypto platforms, on the other hand, expose users to legal, operational, and counterparty risks.",
+   "MiCA introduces the first harmonized EU-wide regulatory framework for crypto-assets, creating demand for compliant platforms that combine global reach with regulatory clarity.",
+   "ESTX addresses this gap by delivering jurisdiction-aware infrastructure supported by a strictly functional utility token."
+  ],
+  "de": [
+   "Traditionelle Kapitalmarktinfrastrukturen sind insbesondere für digitale und grenzüberschreitende Anwendungsfälle fragmentiert, langsam und kostenintensiv.",
+   "Der Zugang zu Handels- und digitalen Asset-Dienstleistungen ist häufig durch nationale Schranken, komplexe Intermediärsstrukturen und hohen operativen Aufwand begrenzt. Lange Abwicklungszyklen, manuelle Compliance-Prozesse und veraltete Systeme reduzieren Transparenz und erhöhen operative Risiken. Diese Ineffizienzen treffen insbesondere kleinere Marktteilnehmer und Nutzer mit digitalem Nutzungsbedarf.",
+   "Unregulierte Kryptoplattformen hingegen bergen erhebliche rechtliche und operative Risiken.",
+   "Mit MiCA entsteht erstmals ein harmonisierter europäischer Rechtsrahmen für Kryptowerte. ESTX adressiert diese Lücke durch eine regulatorisch strukturierte Plattformarchitektur mit einem strikt funktionalen Utility Token."
+  ]
+ },
+ {
+  "id": "4",
+  "title": "Market Overview / Marktüberblick",
+  "en": [
+   "•   Crypto-assets are used by a large and growing global user base. •   Tokenization of real-world assets (RWA) is widely expected to grow significantly over the coming years. •   Europe is the first major economic bloc with harmonized crypto regulation (MiCA). •   Regulatory clarity increases the relevance of compliant platforms with clearly defined utility tokens."
+  ],
+  "de": [
+   "•   Kryptowerte werden weltweit von einer großen und wachsenden Nutzerbasis verwendet. •   Für die Tokenisierung realer Vermögenswerte (RWA) wird in den kommenden Jahren allgemein ein deutliches Wachstum erwartet. •   Europa ist der erste große Wirtschaftsraum mit harmonisierter Krypto-Regulierung (MiCA). •   Regulatorische Klarheit erhöht die Bedeutung konformer Plattformen mit klar definierten Utility Tokens."
+  ]
+ },
+ {
+  "id": "4.1",
+  "title": "Tokenization & RWA Market Outlook / Tokenisierung & RWA-Marktausblick",
+  "en": [
+   "Tokenization of real-world assets (RWA) is expected to expand significantly over the coming decade. Use cases include securities, funds, commodities, and alternative assets. Regulatory clarity is a key driver for sustainable adoption."
+  ],
+  "de": [
+   "Die Tokenisierung realer Vermögenswerte (RWA) wird in den kommenden Jahren erheblich wachsen. Anwendungsfälle umfassen Wertpapiere, Fonds, Rohstoffe und alternative Assets. Regulatorische Klarheit ist ein zentraler Treiber für nachhaltige Marktakzeptanz."
+  ]
+ },
+ {
+  "id": "4.2",
+  "title": "Europe as a Regulated Crypto Hub / Europa als regulierter Krypto-Hub",
+  "en": [
+   "Europe is positioning itself as a regulated crypto hub through MiCA. This framework supports innovation while ensuring consumer protection and market integrity."
+  ],
+  "de": [
+   "Europa positioniert sich mit MiCA als regulierter Krypto-Standort. Der Rechtsrahmen fördert Innovation bei gleichzeitiger Wahrung von Marktintegrität und Verbraucherschutz."
+  ]
+ },
+ {
+  "id": "4.3",
+  "title": "Demand for Utility-Driven Tokens / Nachfrage nach nutzungsorientierten Tokens",
+  "en": [
+   "Regulatory developments place increasing emphasis on tokens with a clearly defined functional purpose rather than speculative characteristics."
+  ],
+  "de": [
+   "Regulatorische Entwicklungen rücken zunehmend Tokens mit klar definiertem Nutzungszweck statt spekulativer Eigenschaften in den Vordergrund."
+  ]
+ },
+ {
+  "id": "4.4",
+  "title": "Regulatory-Forward Architecture / Regulatorisch ausgerichtete Architektur",
+  "en": [
+   "ESTX.exchange is designed with a regulatory-forward architecture intended to align with evolving European digital asset frameworks, including MiCA, while remaining adaptable to future supervisory expectations."
+  ],
+  "de": [
+   "ESTX.exchange wurde mit einer regulatorisch ausgerichteten Architektur konzipiert, die darauf abzielt, sich an den sich entwickelnden europäischen Rahmenwerken für digitale Vermögenswerte – einschließlich MiCA – zu orientieren und gleichzeitig flexibel gegenüber zukünftigen aufsichtsrechtlichen Anforderungen zu bleiben."
+  ]
+ },
+ {
+  "id": "5",
+  "title": "ESTX Ecosystem / ESTX-Ökosystem",
+  "en": [],
+  "de": []
+ },
+ {
+  "id": "5.1",
+  "title": "Overview of the ESTX Ecosystem / Überblick über das ESTX-Ökosystem",
+  "en": [
+   "ESTX operates a dual-platform ecosystem designed to combine global accessibility with jurisdiction-specific regulatory compliance.",
+   "The ecosystem consists of:",
+   "•   a globally accessible crypto trading platform operated under a licensed VASP framework, and •   a planned European expansion operated under the EU Markets in Crypto-Assets Regulation (MiCA).",
+   "Both platforms share a common utility layer through the ESTX Utility Token, while remaining legally, operationally, and regulatorily separated by jurisdiction."
+  ],
+  "de": [
+   "ESTX betreibt ein duales Plattform-Ökosystem, das globale Zugänglichkeit mit einer klaren Trennung regulatorischer Zuständigkeiten verbindet. Das Ökosystem besteht aus:",
+   "•   einer global zugänglichen Krypto-Handelsplattform unter einer lizenzierten VASP-Struktur sowie •   einer geplanten europäischen Expansion unter der EU-Verordnung über Märkte für Kryptowerte (MiCA).",
+   "Beide Plattformen nutzen eine gemeinsame Utility-Ebene über den ESTX Utility Token, bleiben jedoch rechtlich, operativ und regulatorisch strikt nach Jurisdiktionen getrennt."
+  ]
+ },
+ {
+  "id": "5.2",
+  "title": "Dual-Platform Strategy / Duale Plattformstrategie",
+  "en": [
+   "The ESTX ecosystem follows a dual-platform strategy that separates:",
+   "•   global crypto operations outside the European Union, and •   regulated crypto-asset services within the EU/EEA.",
+   "This structure allows ESTX to:",
+   "•   maintain global market access, •   comply with jurisdiction-specific regulatory frameworks, and •   avoid cross-border regulatory conflicts.",
+   "The ESTX Utility Token acts as a functional access and usage mechanism across both platforms without altering the legal or regulatory separation.",
+   "ESTX.exchange International is the globally accessible crypto trading platform of the ESTX ecosystem.",
+   "Key characteristics include:",
+   "Operator                                ESTX Georgia LLC Registered office                       Avtomshenebeli St. N 88 (Plot N01/298), Free Industrial Zone, Kutaisi, Georgia Regulatory framework                    Licensed Virtual Asset Service Provider (VASP), National Bank of Georgia VASP licence                            L37-2026 Jurisdiction                            Georgia Registration number                     412800036 Launch                                  Planned for October 2026 Website                                 https://estx.exchange",
+   "The platform operates independently from any EU-regulated entity and serves non-EU markets in accordance with applicable local laws.",
+   "The European Standard Token Exchange (ESTX Europe) represents the planned regulated expansion of the ESTX ecosystem within the European Union and European Economic Area.",
+   "ESTX Europe is intended to operate subject to:",
+   "•   MiCA Crypto-Asset Service Provider (CASP) authorisation, and •   supervision by the competent national authority, currently envisaged as the Financial Market Authority (FMA) Liechtenstein.",
+   "The launch of ESTX Europe is conditional upon regulatory approval and completion of internal compliance procedures."
+  ],
+  "de": [
+   "Das ESTX-Ökosystem basiert auf einer dualen Plattformstrategie mit klarer Trennung zwischen:",
+   "•   globalem Kryptobetrieb außerhalb der Europäischen Union sowie •   regulierten Kryptowerte-Dienstleistungen innerhalb der EU/EWR.",
+   "Diese Struktur ermöglicht:",
+   "•   globale Marktzugänglichkeit, •   die Einhaltung lokaler regulatorischer Anforderungen und •   die Vermeidung grenzüberschreitender aufsichtsrechtlicher Konflikte.",
+   "Der ESTX Utility Token fungiert als funktionales Zugangs- und Nutzungselement über beide Plattformen hinweg, ohne die rechtliche oder regulatorische Trennung aufzuheben.",
+   "5.3 ESTX.exchange International",
+   "ESTX.exchange International ist die global zugängliche Krypto-Handelsplattform des ESTX-Ökosystems.",
+   "Zentrale Merkmale:",
+   "Betreiber                               ESTX Georgia LLC Sitz                                    Avtomshenebeli St. N 88 (Plot N01/298), Free Industrial Zone, Kutaisi, Georgien Regulatorischer Rahmen                  Lizenzierter Virtual Asset Service Provider (VASP), Nationalbank von Georgien VASP-Lizenz                             L37-2026 Jurisdiktion                            Georgien Registrierungsnummer                    412800036 Start                                   Geplant für Oktober 2026 Website                                 https://estx.exchange",
+   "Die Plattform wird unabhängig von EU-regulierten Einheiten betrieben und bedient internationale Märkte gemäß den jeweils anwendbaren lokalen Rechtsvorschriften.",
+   "5.4 European Standard Token Exchange (ESTX Europe)",
+   "Die European Standard Token Exchange (ESTX Europe) stellt die geplante regulierte Expansion des ESTX-Ökosystems innerhalb der Europäischen Union und des Europäischen Wirtschaftsraums dar.",
+   "Der Betrieb von ESTX Europe erfolgt vorbehaltlich:",
+   "•   einer Zulassung als Crypto-Asset Service Provider (CASP) gemäß MiCA sowie •   der Aufsicht durch die zuständige nationale Behörde, derzeit vorgesehen die Finanzmarktaufsicht (FMA) Liechtenstein.",
+   "Der Start von ESTX Europe ist an regulatorische Genehmigungen und den Abschluss interner Compliance-Prozesse gebunden."
+  ]
+ },
+ {
+  "id": "5.5",
+  "title": "Unified Token Utility Across Jurisdictions / Einheitlicher Token-Nutzen über",
+  "en": [
+   "The ESTX Utility Token functions consistently across all ESTX platforms as a functional access and usage mechanism.",
+   "Regulatory responsibilities, licensing requirements, and operational obligations remain strictly jurisdiction-specific and are fulfilled by the respective operating entities in accordance with applicable local laws.",
+   "The ESTX Token does not function as a cross-border investment, financing, or value-transfer instrument. Its use is strictly limited to accessing defined platform services and features within the applicable regulatory perimeter."
+  ],
+  "de": [
+   "Der ESTX Utility Token wird plattformübergreifend als funktionales Zugangs- und Nutzungselement innerhalb des ESTX-Ökosystems eingesetzt.",
+   "Regulatorische Zuständigkeiten, Lizenzanforderungen und operative Pflichten bleiben strikt nach Jurisdiktionen getrennt und werden durch die jeweils verantwortlichen Betreibergesellschaften gemäß den anwendbaren lokalen Rechtsvorschriften erfüllt.",
+   "Der ESTX Token dient nicht als grenzüberschreitendes Investment-, Finanzierungs- oder Wertübertragungsinstrument. Seine Nutzung ist strikt auf den Zugang zu definierten Plattformdiensten und -funktionen innerhalb des jeweiligen regulatorischen Rahmens beschränkt."
+  ]
+ },
+ {
+  "id": "6",
+  "title": "Exchange & Ecosystem Expansion / Börsen- & Ökosystem-",
+  "en": [
+   "ESTX maintains clear operational separation between exchange infrastructure, listed asset issuers, liquidity providers, and trading participants in order to mitigate conflicts of interest and promote market neutrality."
+  ],
+  "de": [
+   "ESTX gewährleistet eine klare operative Trennung zwischen Exchange-Infrastruktur, Emittenten gelisteter Vermögenswerte, Liquiditätsanbietern sowie Handelsteilnehmern, um Interessenkonflikte zu minimieren und Marktneutralität zu fördern."
+  ]
+ },
+ {
+  "id": "6.1",
+  "title": "Multi-Jurisdictional Strategy / Multijurisdiktionale Strategie",
+  "en": [
+   "ESTX Venture GmbH follows a multi-jurisdictional expansion strategy designed to balance global accessibility with local regulatory compliance.",
+   "Each platform component is launched, operated, and supervised under the regulatory framework applicable to its jurisdiction, ensuring legal clarity and operational resilience.",
+   "No platform expansion is initiated without prior regulatory assessment and internal compliance approval."
+  ],
+  "de": [
+   "Die ESTX Venture GmbH verfolgt eine multijurisdiktionale Expansionsstrategie, die globale Zugänglichkeit mit lokaler regulatorischer Konformität verbindet.",
+   "Jede Plattformkomponente wird ausschließlich unter dem jeweils anwendbaren regulatorischen Rahmen gestartet, betrieben und beaufsichtigt, um rechtliche Klarheit und operative Stabilität sicherzustellen.",
+   "Keine Expansion erfolgt ohne vorherige regulatorische Prüfung und interne Compliance-Freigabe."
+  ]
+ },
+ {
+  "id": "6.2",
+  "title": "European Union / EEA (MiCA CASP Path) / Europäische Union / EWR (MiCA-",
+  "en": [
+   "The European expansion is planned under the EU Markets in Crypto-Assets Regulation (MiCA) through a dedicated CASP authorisation pathway. The regulatory process under MiCA is planned to commence from December 2026.",
+   "The European Standard Token Exchange (ESTX Europe) will operate only upon receipt of the required regulatory approvals and under ongoing supervisory oversight."
+  ],
+  "de": [
+   "Die europäische Expansion erfolgt im Rahmen der EU-Verordnung über Märkte für Kryptowerte (MiCA) über einen dedizierten CASP-Zulassungspfad. Das regulatorische Verfahren unter MiCA soll ab Dezember 2026 eingeleitet werden.",
+   "Die European Standard Token Exchange (ESTX Europe) wird ausschließlich nach Erteilung der erforderlichen Genehmigungen und unter laufender aufsichtsrechtlicher Kontrolle betrieben."
+  ]
+ },
+ {
+  "id": "6.3",
+  "title": "Georgia (VASP-Licensed Operation) / Georgien (VASP-lizenzierter Betrieb)",
+  "en": [
+   "ESTX.exchange International is operated by ESTX Georgia LLC (registration number 412800036), which holds VASP License L37-2026 issued by the National Bank of Georgia.",
+   "This structure enables global crypto trading activities outside the EU while maintaining regulatory accountability and operational continuity."
+  ],
+  "de": [
+   "ESTX.exchange International wird von der ESTX Georgia LLC (Registrierungsnummer 412800036) betrieben, die die VASP-Lizenz L37-2026 der Nationalbank von Georgien hält.",
+   "Diese Struktur ermöglicht globalen Kryptohandel außerhalb der EU bei gleichzeitiger regulatorischer Verantwortlichkeit und operativer Stabilität."
+  ]
+ },
+ {
+  "id": "6.4",
+  "title": "United Arab Emirates (Evaluation Phase) / Vereinigte Arabische Emirate",
+  "en": [
+   "Additional jurisdictions, including the United Arab Emirates, are evaluated based on regulatory clarity, supervisory standards, and long-term operational feasibility.",
+   "No market entry is initiated prior to formal regulatory assessment and internal approval."
+  ],
+  "de": [
+   "Weitere Jurisdiktionen, einschließlich der Vereinigten Arabischen Emirate, werden anhand regulatorischer Klarheit, aufsichtsrechtlicher Standards und langfristiger operativer Umsetzbarkeit geprüft.",
+   "Ein Markteintritt erfolgt erst nach formeller regulatorischer Bewertung und interner Freigabe."
+  ]
+ },
+ {
+  "id": "6.5",
+  "title": "Strategic Advantages of Global Expansion / Strategische Vorteile der globalen",
+  "en": [
+   "The multi-jurisdictional approach enables:",
+   "•   diversified regulatory exposure •   operational resilience •   consistent utility token usage across platforms •   scalable, compliant growth"
+  ],
+  "de": [
+   "Der multijurisdiktionale Ansatz ermöglicht:",
+   "•   regulatorische Diversifikation •   operative Stabilität •   konsistente Token-Nutzung über Plattformen hinweg •   skalierbares, regelkonformes Wachstum"
+  ]
+ },
+ {
+  "id": "7",
+  "title": "Market Model & Trading Environment / Marktmodell &",
+  "en": [],
+  "de": []
+ },
+ {
+  "id": "7.1",
+  "title": "Institutional Separation Statement / Institutionelle Trennung",
+  "en": [
+   "ESTX.exchange operates under a strict framework of institutional separation designed to prevent conflicts of interest and preserve market integrity.",
+   "The exchange maintains clear operational and governance boundaries between:",
+   "•   the exchange operator •   token issuers •   liquidity providers •   brokers and trading participants",
+   "ESTX does not engage in proprietary trading, price support activities, or market-making strategies intended to influence asset pricing. In particular, neither ESTX Venture GmbH nor the operator of ESTX.exchange International (ESTX Georgia LLC) purchases ESTX Tokens on the open market in order to reduce supply or to support prices (see Section 9.8).",
+   "All participants operate within a neutral, rules-based trading environment where prices are determined by supply and demand.",
+   "This structural separation is a foundational principle of the ESTX market model and reflects the platform’s commitment to transparency, fairness, and institutional-grade governance."
+  ],
+  "de": [
+   "ESTX.exchange arbeitet unter einem strikten Rahmen institutioneller Trennung, der darauf ausgelegt ist, Interessenkonflikte zu vermeiden und die Marktintegrität zu schützen.",
+   "Die Börse wahrt klare operative sowie Governance-bezogene Abgrenzungen zwischen:",
+   "•   dem Betreiber der Handelsplattform •   Token-Emittenten •   Liquiditätsanbietern •   Brokern und Handelsteilnehmern",
+   "ESTX betreibt keinen Eigenhandel, keine Maßnahmen zur Preisstützung und keine Market-Making-Aktivitäten mit dem Ziel, Preise zu beeinflussen. Insbesondere erwerben weder die ESTX Venture GmbH noch die Betreiberin von ESTX.exchange International (ESTX Georgia LLC) ESTX Tokens am freien Markt, um das Angebot zu verringern oder Preise zu stützen (siehe Abschnitt 9.8).",
+   "Alle Marktteilnehmer agieren in einem neutralen, regelbasierten Handelsumfeld, in dem sich Preise durch Angebot und Nachfrage bilden.",
+   "Diese strukturelle Trennung ist ein Grundpfeiler des ESTX-Marktdesigns und unterstreicht das klare Bekenntnis der Plattform zu Transparenz, Fairness und institutioneller Governance."
+  ]
+ },
+ {
+  "id": "7.2",
+  "title": "Market Structure & Trading Environment / Marktstruktur & Handelsumgebung",
+  "en": [
+   "ESTX.exchange is designed to operate a professionally structured, transparent, and technology-driven trading environment that meets the expectations of institutional participants, brokers, and sophisticated digital asset investors.",
+   "The platform utilizes a fully electronic Central Limit Order Book (CLOB) to support efficient price discovery, fair market access, and liquidity across listed digital assets. Advanced matching engine technology supports high-throughput execution with low latency, enabling reliable trade performance even during periods of elevated market activity."
+  ],
+  "de": [
+   "ESTX.exchange wurde konzipiert, um eine professionell strukturierte, transparente und technologiebasierte Handelsumgebung bereitzustellen, die den Anforderungen institutioneller Marktteilnehmer, Broker sowie anspruchsvoller Digital-Asset-Investoren entspricht.",
+   "Die Plattform nutzt ein vollständig elektronisches Central Limit Order Book (CLOB), um eine effiziente Preisfindung, fairen Marktzugang sowie Liquidität über alle gelisteten digitalen Vermögenswerte hinweg zu unterstützen. Eine leistungsfähige Matching-Engine ermöglicht eine hochfrequente Orderausführung mit geringer Latenz und stabiler Performance – auch in Phasen erhöhter Marktaktivität."
+  ]
+ },
+ {
+  "id": "7.3",
+  "title": "Institutional Liquidity Framework / Institutioneller Liquiditätsrahmen",
+  "en": [
+   "To promote orderly markets, ESTX intends to collaborate with regulated liquidity providers and professional market-making firms after launch. These participants are intended to support continuous two-sided pricing, tighter spreads, and resilient order books; their quotes are not aimed at any particular price level.",
+   "Liquidity provisioning on ESTX.exchange is strictly intended to enhance market functionality and trading efficiency. It does not constitute price stabilization, price targeting, investment promotion, or guaranteed liquidity."
+  ],
+  "de": [
+   "Zur Förderung geordneter Marktbedingungen beabsichtigt ESTX, nach dem Start mit regulierten Liquiditätsanbietern sowie professionellen Market-Making-Unternehmen zusammenzuarbeiten. Diese sollen eine kontinuierliche beidseitige Preisstellung, engere Spreads sowie stabile Orderbücher unterstützen; ihre Quotierung zielt auf kein bestimmtes Preisniveau.",
+   "Die Bereitstellung von Liquidität auf ESTX.exchange dient ausschließlich der Verbesserung der Marktmechanik und Handelseffizienz. Sie stellt weder eine Preisstabilisierung noch eine Preissteuerung, Anlageempfehlung oder garantierte Liquidität dar."
+  ]
+ },
+ {
+  "id": "7.4",
+  "title": "Fair & Transparent Market Principles / Grundsätze eines fairen und transparenten",
+  "en": [
+   "ESTX is committed to maintaining a trading venue grounded in integrity and neutrality. Core principles include:",
+   "•   Non-discriminatory market access •   Transparent fee structures •   Equal treatment of participants •   Clearly defined listing standards •   Real-time market data availability",
+   "This framework ensures that all participants interact within a fair and rules-based marketplace."
+  ],
+  "de": [
+   "ESTX verpflichtet sich zu einem Handelsplatz, der auf Integrität und Neutralität basiert. Zu den zentralen Prinzipien zählen:",
+   "•   Nicht-diskriminierender Marktzugang •   Transparente Gebührenstrukturen •   Gleichbehandlung aller Teilnehmer •   Klar definierte Listing-Standards •   Echtzeit-Marktdatenverfügbarkeit",
+   "Dieses Rahmenwerk stellt sicher, dass sämtliche Marktteilnehmer innerhalb eines fairen und regelbasierten Systems agieren."
+  ]
+ },
+ {
+  "id": "7.5",
+  "title": "Broker & API Connectivity / Broker- und API-Konnektivität",
+  "en": [
+   "The exchange infrastructure supports institutional connectivity through secure API integrations, enabling brokers, proprietary trading firms, and algorithmic participants to seamlessly access the marketplace."
+  ],
+  "de": [
+   "Die Exchange-Infrastruktur unterstützt institutionelle Konnektivität über sichere API-Integrationen und ermöglicht es Brokern, Proprietary-Trading-Firmen sowie algorithmischen Marktteilnehmern, nahtlos auf den Marktplatz zuzugreifen."
+  ]
+ },
+ {
+  "id": "7.6",
+  "title": "Best Execution Environment / Bestmögliche Ausführungsumgebung",
+  "en": [
+   "While digital asset markets remain globally fragmented, ESTX is committed to delivering an execution environment that prioritizes price competitiveness, speed, and reliability.",
+   "Order matching follows deterministic rules, ensuring predictable execution outcomes and minimizing slippage where reasonably possible."
+  ],
+  "de": [
+   "Obwohl digitale Vermögensmärkte global weiterhin fragmentiert sind, verfolgt ESTX das Ziel, eine Ausführungsumgebung bereitzustellen, die Preisqualität, Geschwindigkeit und Zuverlässigkeit priorisiert. Das Order-Matching erfolgt auf Basis deterministischer Regeln, wodurch vorhersehbare Ausführungsergebnisse ermöglicht und Slippage nach Möglichkeit reduziert werden."
+  ]
+ },
+ {
+  "id": "7.7",
+  "title": "Liquidity Protection & Market Resilience / Liquiditätsschutz & Marktresilienz",
+  "en": [
+   "ESTX implements structural safeguards designed to support resilient market conditions and reduce the risk of disorderly trading environments.",
+   "Such safeguards may include liquidity monitoring thresholds, volatility interruption mechanisms, and dynamic risk controls intended to protect both participants and overall market quality during periods of market stress.",
+   "These measures are not designed to influence pricing but to preserve fair and continuous trading.",
+   "ESTX may cooperate with regulatory authorities and compliance partners, where appropriate, to uphold market integrity and support a secure trading environment."
+  ],
+  "de": [
+   "ESTX implementiert strukturelle Schutzmechanismen zur Unterstützung stabiler Marktbedingungen und zur Reduzierung des Risikos ungeordneter Handelsphasen.",
+   "Hierzu können unter anderem Liquiditätsüberwachungsgrenzen, Volatilitätsunterbrechungen sowie dynamische Risikokontrollen gehören, die sowohl Marktteilnehmer als auch die allgemeine Marktqualität in Stressphasen schützen sollen.",
+   "Diese Maßnahmen dienen nicht der Preisbeeinflussung, sondern ausschließlich der Aufrechterhaltung eines fairen und kontinuierlichen Handels.",
+   "ESTX kann – sofern angemessen – mit Aufsichtsbehörden und Compliance-Partnern zusammenarbeiten, um die Marktintegrität zu wahren und eine sichere Handelsumgebung zu unterstützen."
+  ]
+ },
+ {
+  "id": "7.8",
+  "title": "Institutional Risk Disclosure / Institutioneller Risikohinweis",
+  "en": [
+   "Participation in digital asset markets involves risk, and ESTX does not represent that any listed asset will achieve liquidity, maintain market value, or meet investor expectations."
+  ],
+  "de": [
+   "Die Teilnahme an Märkten für digitale Vermögenswerte ist mit Risiken verbunden, und ESTX übernimmt keine Gewähr dafür, dass ein gelisteter Vermögenswert Liquidität erreicht, seinen Marktwert erhält oder die Erwartungen von Investoren erfüllt."
+  ]
+ },
+ {
+  "id": "8",
+  "title": "ESTX Utility Token – Design & Utility / Design & Nutzen",
+  "en": [],
+  "de": []
+ },
+ {
+  "id": "8.1",
+  "title": "Token Parameters / Token-Parameter",
+  "en": [
+   "Name / Symbol                           ESTX / ESTX Standard                                ERC-20 (Ethereum) with ERC20Burnable and ERC20Permit (EIP-2612) Blockchain                              Ethereum Mainnet (Chain ID 1) Contract address                        0x2C83ef0b36ab580b29350913239DA8f80E192644",
+   "Decimals                                18 Total supply                            2,000,000,000 ESTX (fixed, minted once at deployment) Classification                          Utility Token (MiCA – other crypto-asset) Issuer                                  ESTX Venture GmbH Token Generation Event                  7 August 2026, 12:00 UTC Source code                             Verified on Etherscan (etherscan.io)"
+  ],
+  "de": [
+   "Name / Symbol                           ESTX / ESTX Standard                                ERC-20 (Ethereum) mit ERC20Burnable und ERC20Permit (EIP-2612) Blockchain                              Ethereum-Mainnet (Chain-ID 1) Contract-Adresse                        0x2C83ef0b36ab580b29350913239DA8f80E192644",
+   "Nachkommastellen                        18 Gesamtmenge                             2.000.000.000 ESTX (fix, einmalig beim Deployment erzeugt) Klassifizierung                         Utility Token (MiCA – sonstiger Kryptowert) Emittentin                              ESTX Venture GmbH Token Generation Event                  7. August 2026, 12:00 UTC Quellcode                               Auf Etherscan verifiziert (etherscan.io)"
+  ]
+ },
+ {
+  "id": "8.2",
+  "title": "Core Utility Functions / Zentrale Nutzungsfunktionen",
+  "en": [
+   "The ESTX Token enables functional platform interactions, including fee settlement, access control, and usage-based feature activation."
+  ],
+  "de": [
+   "Der ESTX Token ermöglicht funktionale Plattforminteraktionen, einschließlich Gebührenabrechnung, Zugriffskontrolle und nutzungsbasierter Feature-Aktivierung."
+  ]
+ },
+ {
+  "id": "8.3",
+  "title": "Fee Payments & Discounts / Gebührenzahlungen & Rabatte",
+  "en": [
+   "Fee reductions are usage-based and non-transferable. They do not constitute financial rewards or economic yield."
+  ],
+  "de": [
+   "Gebührenreduktionen sind nutzungsbasiert und nicht übertragbar. Sie stellen keine finanziellen Erträge oder wirtschaftlichen Vorteile dar."
+  ]
+ },
+ {
+  "id": "8.4",
+  "title": "Platform Access & Loyalty Programs / Plattformzugang & Loyalitätsprogramme",
+  "en": [
+   "Access tiers and loyalty mechanisms are designed exclusively for functional differentiation and user experience enhancement."
+  ],
+  "de": [
+   "Zugangs- und Loyalitätsmechanismen dienen ausschließlich der funktionalen Differenzierung und Verbesserung der Nutzererfahrung."
+  ]
+ },
+ {
+  "id": "8.5",
+  "title": "Non-Financial Nature of Utility / Nicht-finanzielle Natur des Nutzens",
+  "en": [
+   "All token utilities are non-financial in nature and cannot be monetized independently of platform usage."
+  ],
+  "de": [
+   "Alle Token-Nutzungen sind nicht-finanzieller Natur und können nicht unabhängig von der Plattform monetarisiert werden."
+  ]
+ },
+ {
+  "id": "9",
+  "title": "Tokenomics & Supply Mechanics / Tokenomik &",
+  "en": [],
+  "de": []
+ },
+ {
+  "id": "9.1",
+  "title": "Core Principles of the Token Economy / Grundprinzipien der Tokenökonomie",
+  "en": [
+   "The token economy of the ESTX Utility Token is strictly designed to be functional and usage-driven. It serves exclusively to support the operational functionality of the ESTX ecosystem and does not represent economic value creation, capital returns, or business performance of any entity.",
+   "Core design principles include:",
+   "•   clear separation between token usage and corporate financing •   no linkage to revenues, profits, or other financial performance indicators •   no promise or expectation of value appreciation •   full transparency regarding total supply and allocation",
+   "The ESTX Token is not a financing instrument, not an investment vehicle, and not a substitute for equity or debt capital."
+  ],
+  "de": [
+   "Die Tokenökonomie des ESTX Utility Tokens ist strikt funktions- und nutzungsorientiert ausgestaltet. Sie dient ausschließlich der operativen Unterstützung des ESTX-Ökosystems und stellt weder wirtschaftliche Wertschöpfung noch Kapitalrenditen oder Unternehmensperformance dar.",
+   "Zentrale Leitprinzipien sind:",
+   "•   klare Trennung zwischen Token-Nutzung und Unternehmensfinanzierung •   keine Kopplung an Umsätze, Gewinne oder sonstige Leistungskennzahlen •   keine Zusicherung oder Erwartung einer Wertsteigerung •   vollständige Transparenz hinsichtlich Gesamtmenge und Verteilung",
+   "Der ESTX Token ist kein Finanzierungsinstrument, kein Investmentvehikel und kein Ersatz für Eigen- oder Fremdkapital."
+  ]
+ },
+ {
+  "id": "9.2",
+  "title": "Total Supply / Gesamtmenge",
+  "en": [
+   "The maximum supply of the ESTX Utility Token is fixed and can never be increased.",
+   "•   Total Supply: 2,000,000,000 ESTX •   Minting: excluded (one-time minting at deployment only) •   Inflation: excluded •   Rebasing or algorithmic adjustments: excluded •   Burning: only by holders of their own tokens or with their approval; burned tokens permanently reduce the total supply",
+   "This fixed supply exists solely to ensure technical stability and operational predictability within the ecosystem and does not constitute a scarcity mechanism or value appreciation commitment."
+  ],
+  "de": [
+   "Die Maximalmenge des ESTX Utility Tokens ist fest definiert und kann niemals erhöht werden.",
+   "•   Gesamtmenge: 2.000.000.000 ESTX •   Nachträgliches Minting: ausgeschlossen (einmaliges Minting ausschließlich beim Deployment) •   Inflation: ausgeschlossen •   Rebasing oder algorithmische Anpassungen: ausgeschlossen •   Burn: nur durch Halter für eigene Token oder mit deren Freigabe; verbrannte Token verringern die Gesamtmenge dauerhaft",
+   "Diese feste Obergrenze dient ausschließlich der technischen Stabilität und Planbarkeit des Ökosystems und stellt weder ein Knappheits- noch ein Wertversprechen dar."
+  ]
+ },
+ {
+  "id": "9.3",
+  "title": "Token Allocation / Token-Allokation",
+  "en": [
+   "The total supply is allocated across clearly defined functional categories:",
+   "•   Community & Ecosystem (35%) – Used for onboarding, platform activity, campaigns, and functional incentives within the ecosystem. •   Liquidity Provisioning (20%) – Operational liquidity provision to support orderly trading processes on supported platforms. This allocation serves market functionality only and not price support. •   Treasury & Strategic Operations (15%) – Allocated for infrastructure, technological development, regulatory expansion, and operational purposes. •   Founders & Management (20%) – Designed to align the long-term commitment of key contributors with the build-out and operation of the ecosystem. •   Advisors & Early Contributors (10%) 1 – Compensation for strategic and operational contributions during early project phases.",
+   "No allocation confers ownership rights, profit participation, asset claims, or governance rights."
+  ],
+  "de": [
+   "Die Gesamtmenge wird auf klar definierte funktionale Kategorien verteilt:",
+   "•   Community & Ecosystem (35 %) – Nutzung für Onboarding, Plattformaktivität, Kampagnen und funktionale Anreize innerhalb des Ökosystems. •   Liquidity Provisioning (20 %) – Operative Bereitstellung von Liquidität zur Unterstützung geordneter Handelsprozesse auf unterstützten Plattformen. Diese Allokation dient ausschließlich der Marktfunktionsfähigkeit und nicht der Preisstützung. •   Treasury & Strategic Operations (15 %) – Verwendung für Infrastruktur, technologische Entwicklung, regulatorische Expansion und operative Zwecke. •   Founders & Management (20 %) – Ausgestaltung zur langfristigen Bindung zentraler Beitragender an Aufbau und Betrieb des Ökosystems. •   Advisors & Early Contributors (10 %)2 – Vergütung strategischer und operativer Unterstützungsleistungen in frühen Projektphasen.",
+   "In the smart-contract distribution, the category “Advisors & Early Contributors” (10%) comprises the strategic partner (5%), the technical team (1%) and a governance reserve (4%). The governance reserve is held by the project and is not subject to vesting. The category “Founders & Management” (20%) comprises two founders with 10% each. In der Smart-Contract-Verteilung setzt sich die Kategorie „Advisors & Early Contributors“ (10 %) aus dem strategischen Partner (5 %), dem Tech-Team (1 %) und einer Governance-Reserve (4 %) zusammen. Die Governance-Reserve wird vom Projekt gehalten und unterliegt keinem Vesting. Die Kategorie „Founders & Management“ (20 %) umfasst zwei Gründer mit je 10 %.",
+   "Keine Allokation begründet Eigentums-, Gewinn-, Vermögens- oder Mitspracherechte."
+  ]
+ },
+ {
+  "id": "9.4",
+  "title": "Distribution at the TGE / Verteilung zum TGE",
+  "en": [
+   "At the Token Generation Event on 7 August 2026, the entire supply was distributed on-chain in a single deployment run; the deployer account retained no tokens. The distribution at the TGE was as follows:",
+   "Allocation                                                ESTX            %    Holding / status",
+   "Community & Ecosystem                              700,000,000       35.0%     Project-controlled hardware wallet Liquidity Provisioning                             400,000,000       20.0%     Liquidity Safe (multisig 2-of-3) Treasury & Strategic Operations                    300,000,000       15.0%     Treasury Safe (multisig 2-of-3) Founders & Management – TGE                         80,000,000         4.0%    Released to beneficiaries tranches (20%) Founders & Management – vesting                    320,000,000       16.0%     Locked in vesting contracts (80%) Strategic partner (5%) *                           100,000,000         5.0%    Not yet transferred – held by the project * Technical team – TGE tranche (20%)                    4,000,000        0.2%    Released to beneficiary Technical team – vesting (80%)                      16,000,000         0.8%    Locked in vesting contract Governance reserve                                  80,000,000         4.0%    Project-controlled hardware wallet Total                                            2,000,000,000      100.0%",
+   "* See footnote in Section 9.5. On-chain, the Treasury Safe therefore holds 380,000,000 ESTX (300,000,000 treasury + 80,000,000 held for the strategic partner). The figures reflect the distribution at the TGE; balances of project-controlled wallets may change through operational use."
+  ],
+  "de": [
+   "Zum Token Generation Event am 7. August 2026 wurde die gesamte Menge in einem einzigen Deploy-Lauf on-chain verteilt; der Deployer-Account behielt keine Token. Die Verteilung zum TGE:",
+   "Allokation                                                ESTX            %    Verwahrung / Status",
+   "Community & Ecosystem                              700.000.000       35,0 %    Projektkontrollierte Hardware-Wallet Liquidity Provisioning                             400.000.000       20,0 %    Liquidity-Safe (Multisig 2 von 3) Treasury & Strategic Operations                    300.000.000       15,0 %    Treasury-Safe (Multisig 2 von 3) Founders & Management – TGE-                        80.000.000        4,0 %    An Begünstigte freigegeben Tranchen (20 %) Founders & Management – Vesting (80                320.000.000       16,0 %    In Vesting-Verträgen gesperrt %) Strategischer Partner (5 %) *                      100.000.000        5,0 %    Noch nicht übertragen – vom Projekt verwahrt * Tech-Team – TGE-Tranche (20 %)                        4.000.000       0,2 %    An Begünstigten freigegeben Tech-Team – Vesting (80 %)                          16.000.000        0,8 %    Im Vesting-Vertrag gesperrt Governance-Reserve                                  80.000.000        4,0 %    Projektkontrollierte Hardware-Wallet Summe                                            2.000.000.000     100,0 %",
+   "* Siehe Fußnote in Abschnitt 9.5. On-chain hält die Treasury-Safe daher 380.000.000 ESTX (300.000.000 Treasury + 80.000.000 verwahrt für den strategischen Partner). Die Zahlen geben die Verteilung zum TGE wieder; Bestände projektkontrollierter Wallets können sich durch operative Nutzung verändern."
+  ]
+ },
+ {
+  "id": "9.5",
+  "title": "Vesting and Lock-Up Principles / Vesting- und Lock-up-Grundsätze",
+  "en": [
+   "To avoid short-term misaligned incentives, structured vesting mechanisms apply:",
+   "•   Founders & Management – 20% released at the Token Generation Event (TGE, 7 August 2026); the remaining 80% vested linearly over 36 months (1,095 days, until 6 August 2029), no cliff — held in an individual, non-revocable on-chain vesting contract per beneficiary. •   Strategic & Technical Contributors (including the strategic partner and the tech team) – same schedule: 20% released at TGE; remaining 80% vested linearly over 36 months, no cliff.3",
+   "The vesting contracts are based on the OpenZeppelin VestingWallet. Vested tokens can only be paid out to the respective beneficiary; no third party – including ESTX Venture GmbH – can revoke, stop, or redirect the vesting. Community, governance reserve, treasury, and liquidity allocations are subject to internal release policies aligned with operational requirements and compliance obligations."
+  ],
+  "de": [
+   "Zur Vermeidung kurzfristiger Fehlanreize gelten strukturierte Vesting-Regelungen:",
+   "•   Founders & Management – 20 % werden zum Token Generation Event (TGE, 7. August 2026) freigegeben; die verbleibenden 80 % vesten linear über 36 Monate (1.095 Tage, bis 6. August 2029), ohne Cliff — gehalten in einem individuellen, unwiderruflichen On-Chain-Vesting-Vertrag je Begünstigtem. •   Strategische & technische Beitragende (einschließlich strategischer Partner und Tech-Team) – identischer Zeitplan: 20 % bei TGE, restliche 80 % linear über 36 Monate, ohne Cliff.4",
+   "Die Vesting-Verträge basieren auf dem OpenZeppelin VestingWallet. Gevestete Token können nur an den jeweiligen Begünstigten ausgezahlt werden; kein Dritter – auch nicht die ESTX Venture GmbH – kann das Vesting widerrufen, anhalten oder umleiten.",
+   "Community-, Governance-Reserve-, Treasury- und Liquiditätsbestände unterliegen internen Freigaberichtlinien, die sich an operativen Anforderungen und Compliance-Vorgaben orientieren."
+  ]
+ },
+ {
+  "id": "9.6",
+  "title": "Release Schedule / Freigabeplan",
+  "en": [
+   "The vesting tranches (416,000,000 ESTX: founders 320,000,000, strategic partner 80,000,000*, technical team 16,000,000) are released linearly per second between 7 August 2026 and 6 August 2029. Together with the TGE tranches (104,000,000 ESTX), the cumulative releases develop as follows:",
+   "Date                         Vested per schedule              Not yet vested     Scheduled release incl.          Share of total TGE tranches                   supply",
+   "7 Aug 2026 (TGE)                                 0              416,000,000                  104,000,000                   5.2% 7 Feb 2027                             69,903,196               346,096,804                  173,903,196                   8.7%",
+   "The allocation of the strategic partner (100,000,000 ESTX) has not yet been transferred to the partner. It will only be trans ferred once the partner has designated the wallet through which the vesting is to run. Until then, the TGE tranche (20,000,000 ESTX) is held in a separate project-controlled custody wallet and the vesting tranche (80,000,000 ESTX) in the Treasury multisig (2-of-3). The partner’s vesting contract will be created with the same start date as all other vesting contracts (7 August 2026), so that the same release schedule applies. Die Allokation des strategischen Partners (100.000.000 ESTX) wurde noch nicht an den Partner übertragen. Die Übertragung erfolgt erst, wenn der Partner die Wallet benannt hat, über die das Vesting laufen soll. Bis dahin liegt die TGE-Tranche (20.000.000 ESTX) in einer separaten, projektkontrollierten Verwahr-Wallet und die Vesting-Tranche (80.000.000 ESTX) in der Treasury-Multisig (2 von 3). Der Vesting-Vertrag des Partners wird mit demselben Startzeitpunkt wie alle übrigen Vesting-Verträge (7. August 2026) erstellt, sodass derselbe Freigabeplan gilt.",
+   "Date                            Vested per schedule                Not yet vested   Scheduled release incl.        Share of total TGE tranches                 supply",
+   "7 Aug 2027                              138,666,667                  277,333,333               242,666,667                 12.1% 7 Feb 2028                              208,569,863                  207,430,137               312,569,863                 15.6% 7 Aug 2028                              277,713,242                  138,286,758               381,713,242                 19.1% 7 Feb 2029                              347,616,438                   68,383,562               451,616,438                 22.6% 6 Aug 2029 (end)                        416,000,000                            0               520,000,000                 26.0%",
+   "Values rounded to whole tokens. Vested tokens can be paid out to the respective beneficiary at any time. * Includes the 100,0 00,000 ESTX of the strategic partner (20,000,000 TGE tranche, 80,000,000 vesting tranche), which are currently held by the project, subject to the creation of the partner’s vesting contract (see footnote in Section 9.5)."
+  ],
+  "de": [
+   "Die Vesting-Tranchen (416.000.000 ESTX: Gründer 320.000.000, strategischer Partner 80.000.000*, Tech-Team 16.000.000) werden zwischen dem 7. August 2026 und dem 6. August 2029 sekundengenau linear freigegeben. Zusammen mit den TGE-Tranchen (104.000.000 ESTX) entwickeln sich die kumulierten Freigaben wie folgt:",
+   "Datum                           Planmäßig gevestet            Noch nicht gevestet     Planmäßige Freigabe              Anteil an inkl. TGE-Tranchen         Gesamtmenge",
+   "07.08.2026 (TGE)                                    0                416.000.000               104.000.000                  5,2 % 07.02.2027                                69.903.196                 346.096.804               173.903.196                  8,7 % 07.08.2027                              138.666.667                  277.333.333               242.666.667                12,1 % 07.02.2028                              208.569.863                  207.430.137               312.569.863                15,6 % 07.08.2028                              277.713.242                  138.286.758               381.713.242                19,1 % 07.02.2029                              347.616.438                   68.383.562               451.616.438                22,6 % 06.08.2029 (Ende)                       416.000.000                            0               520.000.000                26,0 %",
+   "Werte auf ganze Token gerundet. Gevestete Token können jederzeit an den jeweiligen Begünstigten ausgezahlt werden. * Enthält die 100.000.000 ESTX des strategischen Partners (20.000.000 TGE-Tranche, 80.000.000 Vesting-Tranche), die derzeit vom Projekt verwahrt werden, vorbehaltlich der Erstellung seines Vesting-Vertrags (siehe Fußnote in Abschnitt 9.5)."
+  ]
+ },
+ {
+  "id": "9.7",
+  "title": "Circulating Supply & Circulation Management / Umlaufmenge &",
+  "en": [
+   "At the TGE, the total supply was held as follows:",
+   "Type of holding                                                                                             ESTX                %",
+   "Locked in vesting contracts (contract-enforced, linear release until 6 August 2029)                  336,000,000           16.8% Held in multisig safes, 2-of-3 (Liquidity 400,000,000; Treasury 380,000,000 incl.                    780,000,000           39.0% 80,000,000 for the strategic partner) Held in project-controlled hardware wallets (Community & Ecosystem 700,000,000;                      800,000,000           40.0% governance reserve 80,000,000; strategic partner TGE tranche 20,000,000) Transferred to beneficiaries as TGE tranches (founders, technical team)                               84,000,000            4.2% Total                                                                                              2,000,000,000          100.0%",
+   "Only the 336,000,000 ESTX (16.8%) in the vesting contracts are technically locked. The tokens held by the project in multisig safes and hardware wallets (1,580,000,000 ESTX, 79.0%) are technically transferable; they are introduced into circulation gradually, based on:",
+   "•   actual platform usage •   activation of functional services •   operational necessities",
+   "This approach supports:",
+   "•   technical stability of the ecosystem •   avoidance of operational bottlenecks •   orderly market introduction",
+   "It does not constitute price management, market intervention, or value support."
+  ],
+  "de": [
+   "Zum TGE wurde die Gesamtmenge wie folgt gehalten:",
+   "Art der Verwahrung                                                                      ESTX             %",
+   "In Vesting-Verträgen gesperrt (vertraglich erzwungen, lineare Freigabe bis        336.000.000       16,8 % 06.08.2029) In Multisig-Safes, 2 von 3 (Liquidity 400.000.000; Treasury 380.000.000 inkl.     780.000.000       39,0 % 80.000.000 für den strategischen Partner) In projektkontrollierten Hardware-Wallets (Community & Ecosystem 700.000.000;     800.000.000       40,0 % Governance-Reserve 80.000.000; TGE-Tranche strategischer Partner 20.000.000) Als TGE-Tranchen an Begünstigte übertragen (Gründer, Tech-Team)                    84.000.000        4,2 % Summe                                                                            2.000.000.000     100,0 %",
+   "Technisch gesperrt sind ausschließlich die 336.000.000 ESTX (16,8 %) in den Vesting-Verträgen. Die vom Projekt in Multisig-Safes und Hardware-Wallets gehaltenen Token (1.580.000.000 ESTX, 79,0 %) sind technisch übertragbar; sie gelangen schrittweise in den Umlauf, abhängig von:",
+   "•   tatsächlicher Plattformnutzung •   Aktivierung funktionaler Services •   operativen Erfordernissen",
+   "Diese Steuerung dient:",
+   "•   der technischen Stabilität des Ökosystems •   der Vermeidung operativer Engpässe •   einer geordneten Markteinführung",
+   "Sie stellt keine Preis-, Markt- oder Wertsteuerung dar."
+  ]
+ },
+ {
+  "id": "9.8",
+  "title": "Supply Reduction from Own Holdings / Angebotsreduktion aus eigenen",
+  "en": [
+   "Neither ESTX Venture GmbH nor the operator of ESTX.exchange International (ESTX Georgia LLC) purchases ESTX Tokens on the open market to reduce supply or to support the price. ESTX Venture GmbH may, at its sole discretion, permanently remove tokens from its own holdings (for example, the treasury allocation) from circulation by using the standard burn function of the token contract.",
+   "It is explicitly clarified that:",
+   "•   there is no obligation or regularity •   actions are fully independent of revenues, profits, or business performance •   no formula, quota, or performance-linked mechanism applies",
+   "Such actions:",
+   "•   create no entitlement for token holders •   generate no expectation of value appreciation •   do not constitute profit distribution, a buyback program, or a capital measure",
+   "Each such burn is publicly verifiable on-chain and permanently reduces the total supply.",
+   "The sole purpose is technical circulation management within the operation of the ecosystem.",
+   "Any such actions are subject to internal governance, documentation, and compliance controls as defined in the ESTX Governance & Controls framework."
+  ],
+  "de": [
+   "Weder die ESTX Venture GmbH noch die Betreiberin von ESTX.exchange International (ESTX Georgia LLC) erwerben ESTX Tokens am freien Markt, um das Angebot zu verringern oder den Preis zu stützen. Die ESTX Venture GmbH kann nach eigenem Ermessen Token aus ihren eigenen Beständen (zum Beispiel der Treasury-Allokation) über die Standard-Burn-Funktion des Token-Vertrags dauerhaft aus dem Umlauf entfernen.",
+   "Dabei gilt ausdrücklich:",
+   "•   keine Verpflichtung und keine Regelmäßigkeit •   vollständige Unabhängigkeit von Umsätzen, Gewinnen oder Geschäftserfolg •   keine Quote, Formel oder leistungsabhängige Mechanik",
+   "Diese Maßnahmen:",
+   "•   begründen keinerlei Ansprüche für Tokeninhaber •   erzeugen keine Erwartung einer Wertsteigerung •   stellen keine Gewinnverwendung, kein Buyback-Programm und keine Kapitalmaßnahme dar",
+   "Jeder solche Burn ist on-chain öffentlich nachprüfbar und verringert die Gesamtmenge dauerhaft.",
+   "Zweck ist ausschließlich die technische Steuerung der Umlaufmenge im Rahmen des Ökosystembetriebs.",
+   "Etwaige Maßnahmen unterliegen internen Governance-, Dokumentations- und Compliance-Kontrollen gemäß dem Governance- & Controls-Rahmenwerk von ESTX."
+  ]
+ },
+ {
+  "id": "9.9",
+  "title": "No Revenue, Profit, or Asset Claims / Keine Erlös-, Gewinn- oder",
+  "en": [
+   "The ESTX Utility Token explicitly conveys no:",
+   "•   participation in revenues or profits •   claims on assets •   repayment or distribution rights •   governance or voting rights",
+   "Token usage is strictly limited to functional platform services."
+  ],
+  "de": [
+   "Der ESTX Utility Token vermittelt ausdrücklich keine:",
+   "•   Beteiligung an Umsätzen oder Gewinnen •   Ansprüche auf Vermögenswerte •   Rückzahlungs- oder Ausschüttungsrechte •   Mitwirkungs- oder Stimmrechte",
+   "Die Nutzung des Tokens ist strikt auf funktionale Plattformleistungen beschränkt."
+  ]
+ },
+ {
+  "id": "9.10",
+  "title": "Tokenomics Summary / Zusammenfassung der Tokenomics",
+  "en": [
+   "The ESTX token economy is:",
+   "•   conservative •   non-financial •   MiCA-aligned •   designed around usage rather than value appreciation",
+   "The ESTX Token exists to enable access, usage, and coordination within the ESTX ecosystem — not to support economic expectations or investment narratives.",
+   "Nothing in this section should be interpreted as creating economic incentives beyond functional platform usage."
+  ],
+  "de": [
+   "Die Tokenökonomie von ESTX ist:",
+   "•   konservativ •   nicht-finanziell •   an MiCA ausgerichtet •   auf Nutzung statt Wertentwicklung ausgelegt",
+   "Der Token existiert, um Zugang, Nutzung und Koordination innerhalb des ESTX-Ökosystems zu ermöglichen – nicht, um wirtschaftliche Erwartungen oder Investmentnarrative zu bedienen.",
+   "Nichts in diesem Abschnitt ist so auszulegen, dass über die funktionale Plattformnutzung hinaus wirtschaftliche Anreize geschaffen werden."
+  ]
+ },
+ {
+  "id": "10",
+  "title": "Technology & Smart Contract Architecture / Technologie &",
+  "en": [],
+  "de": []
+ },
+ {
+  "id": "10.1",
+  "title": "Smart Contract Design / Smart-Contract-Design",
+  "en": [
+   "The ESTX Token is implemented as an ERC-20 token on the Ethereum blockchain.",
+   "Smart contracts follow established industry standards and are designed to ensure technical security, operational stability, and regulatory compliance. They do not include any mechanisms intended to influence token value, price formation, or market behavior.",
+   "Key technical components include:",
+   "•   smart contracts based on OpenZeppelin Contracts 5.6 (Solidity 0.8.28), with source code verified on Etherscan •   minimal ownership model (Ownable, two-step transfer): the sole owner is the Treasury multisig (2-of-3), which holds no control over token supply or holder transfers •   multi-signature governance (2-of-3) for security-critical actions •   no pause, freeze, or blacklist functionality — token transfers can never be halted or restricted (reinforcing the utility, non-security character) •   immutable contract design — no proxy and no upgradeability; token economics can never be altered and the total supply can never be increased after deployment •   multi-signature treasury management for operational purposes only •   one-time minting at deployment only — no post-deployment mint function (fixed supply) •   holder-only burn (ERC20Burnable): holders may burn their own tokens or approve a third party to do so (burnFrom); no third party can burn without the holder’s approval or seize balances •   narrowly-scoped recovery function (rescueERC20), callable only by the Treasury multisig, to return tokens accidentally sent to a contract — it can never mint, change the total supply, or move any holder’s balance •   gasless approvals via signed messages (ERC20Permit, EIP-2612)",
+   "The exchange engine operates as a separate white-label solution and does not grant discretionary control over token economics."
+  ],
+  "de": [
+   "Der ESTX Token wird als ERC-20-Token auf der Ethereum-Blockchain implementiert. Die Smart-Contract-Architektur folgt anerkannten Industriestandards und dient der technischen Sicherheit, operativen Stabilität sowie regulatorischen Konformität. Sie enthält ausdrücklich keine Mechanismen zur Beeinflussung von Tokenwert, Preisbildung oder Marktverhalten.",
+   "Zentrale technische Komponenten umfassen:",
+   "•   Smart Contracts auf Basis von OpenZeppelin Contracts 5.6 (Solidity 0.8.28), Quellcode auf Etherscan verifiziert •   minimales Ownership-Modell (Ownable, zweistufige Übertragung): alleiniger Owner ist die Treasury-Multisig (2 von 3), die keinerlei Kontrolle über Tokenmenge oder Nutzer-Transfers hat •   Multisignatur-Governance (2 von 3) für sicherheitskritische Aktionen •   keine Pause-, Freeze- oder Blacklist-Funktion — Token-Transfers können niemals angehalten oder eingeschränkt werden (unterstreicht den Utility-, Nicht-Wertpapier-Charakter) •   unveränderliches (immutable) Contract-Design — kein Proxy, keine Upgradefähigkeit; die Tokenökonomie kann nach dem Deployment niemals geändert und die Gesamtmenge niemals erhöht werden",
+   "•   Multisignatur-Treasury-Verwaltung ausschließlich zu operativen Zwecken •   einmaliges Minting ausschließlich beim Deployment — keine nachträgliche Mint-Funktion (feste Gesamtmenge) •   Burn nur durch Halter (ERC20Burnable): Halter können ausschließlich eigene Token verbrennen oder Dritten dafür eine Freigabe erteilen (burnFrom); Dritte können ohne Freigabe des Halters keine Bestände verbrennen oder entziehen •   eng begrenzte Wiederherstellungsfunktion (rescueERC20), nur durch die Treasury-Multisig aufrufbar, um versehentlich an einen Vertrag gesendete Token zurückzugeben — sie kann niemals minten, die Gesamtmenge ändern oder Nutzerguthaben bewegen •   gasfreie Freigaben per signierter Nachricht (ERC20Permit, EIP-2612)",
+   "Die Exchange-Engine wird als separates White-Label-System betrieben und verleiht keine diskretionäre Kontrolle über die Tokenökonomie."
+  ]
+ },
+ {
+  "id": "10.2",
+  "title": "Security Review & Audit Status / Sicherheitsprüfung & Audit-Status",
+  "en": [
+   "Before deployment, the smart contracts underwent a multi-stage internal security review. It comprised 51 automated tests, repeated internal security assessments of the token and vesting contracts, and a complete dress rehearsal of deployment and distribution on the Ethereum Sepolia test network. The source code of all deployed contracts is verified on Etherscan, so that anyone can inspect the code running on-chain.",
+   "An independent external security audit has not been performed to date. Internal reviews do not replace an external audit. Because the contracts are immutable, findings of any future audit cannot be remedied by modifying the deployed contracts; if necessary, a new token contract could be deployed and a migration offered to holders."
+  ],
+  "de": [
+   "Vor dem Deployment durchliefen die Smart Contracts eine mehrstufige interne Sicherheitsprüfung. Sie umfasste 51 automatisierte Tests, wiederholte interne Sicherheitsbewertungen der Token- und Vesting-Verträge sowie eine vollständige Generalprobe von Deployment und Verteilung im Ethereum-Testnetz Sepolia. Der Quellcode aller deployten Verträge ist auf Etherscan verifiziert, sodass jeder den on-chain laufenden Code einsehen kann.",
+   "Ein unabhängiges externes Sicherheitsaudit wurde bislang nicht durchgeführt. Interne Prüfungen ersetzen kein externes Audit. Da die Verträge unveränderlich sind, könnten Ergebnisse eines künftigen Audits nicht durch Änderung der deployten Verträge behoben werden; erforderlichenfalls könnte ein neuer Token-Vertrag deployt und den Haltern eine Migration angeboten werden."
+  ]
+ },
+ {
+  "id": "10.3",
+  "title": "Treasury & Access Controls / Treasury- & Zugriffskontrollen",
+  "en": [
+   "The Treasury and Liquidity allocations are held in two Safe multisig accounts (formerly Gnosis Safe) on the Ethereum mainnet. Both require 2 of 3 signatures for every transaction. The three signers use separate hardware wallets that are not used as receiving addresses for any allocation. The Treasury Safe is the sole owner of the token contract.",
+   "The Community & Ecosystem allocation and the governance reserve are held in dedicated hardware wallets. Before deployment, control of these wallets and of the technical team wallet was confirmed by cryptographically signed messages; signers and threshold of both safes were verified on-chain."
+  ],
+  "de": [
+   "Die Treasury- und die Liquidity-Allokation werden in zwei Safe-Multisig-Konten (ehemals Gnosis Safe) auf dem Ethereum-Mainnet gehalten. Beide erfordern für jede Transaktion 2 von 3 Unterschriften. Die drei Unterzeichner",
+   "nutzen getrennte Hardware-Wallets, die für keine Allokation als Empfangsadresse verwendet werden. Die Treasury-Safe ist alleiniger Owner des Token-Vertrags.",
+   "Die Community-&-Ecosystem-Allokation und die Governance-Reserve werden in dedizierten Hardware-Wallets gehalten. Vor dem Deployment wurde die Kontrolle über diese Wallets sowie über die Wallet des Tech-Teams durch kryptografisch signierte Nachrichten bestätigt; Unterzeichner und Schwelle beider Safes wurden on-chain geprüft."
+  ]
+ },
+ {
+  "id": "10.4",
+  "title": "Verifiable On-Chain Addresses / Nachprüfbare On-Chain-Adressen",
+  "en": [],
+  "de": []
+ },
+ {
+  "id": "11",
+  "title": "Roadmap",
+  "en": [
+   "Completed",
+   "•   legal structuring and documentation •   July – August 2026: internal security review of the smart contracts and complete test deployment on the Ethereum Sepolia test network •   7 August 2026: deployment of the ESTX Token on the Ethereum mainnet (TGE), full distribution of the total supply and activation of the vesting contracts •   VASP licence of ESTX Georgia LLC granted by the National Bank of Georgia (VASP License L37-2026)",
+   "Next steps",
+   "•   October 2026 (planned): launch of ESTX.exchange International, operated by ESTX Georgia LLC •   onboarding of operational partners and liquidity providers for platform functionality •   gradual activation of core utility features, ecosystem services, and user access •   Q4 2026: evaluation and decision regarding a regulated crypto licensing framework in the United Arab Emirates (e.g. VARA or ADGM) •   from December 2026 (planned): European regulatory pathway under MiCA (CASP authorisation or equivalent structure) •   launch of the European Standard Token Exchange subject to regulatory approval"
+  ],
+  "de": [
+   "Abgeschlossen",
+   "•   rechtliche Strukturierung und Dokumentation •   Juli – August 2026: interne Sicherheitsprüfung der Smart Contracts und vollständiges Test-Deployment im Ethereum-Testnetz Sepolia •   7. August 2026: Deployment des ESTX Tokens auf dem Ethereum-Mainnet (TGE), vollständige Verteilung der Gesamtmenge und Aktivierung der Vesting-Verträge •   VASP-Lizenz der ESTX Georgia LLC durch die Nationalbank von Georgien erteilt (VASP-Lizenz L37-2026)",
+   "Nächste Schritte",
+   "•   Oktober 2026 (geplant): Start von ESTX.exchange International, betrieben durch die ESTX Georgia LLC •   Anbindung operativer Partner und Liquiditätsanbieter zur Unterstützung der Plattformfunktionalität •   schrittweise Aktivierung zentraler Utility-Funktionen, Ökosystem-Services und Nutzerzugänge •   Q4 2026: Evaluierung und Entscheidungsfindung hinsichtlich eines regulierten Krypto-Lizenzrahmens in den Vereinigten Arabischen Emiraten (z. B. VARA oder ADGM) •   ab Dezember 2026 (geplant): europäischer regulatorischer Pfad unter MiCA (CASP-Zulassung oder gleichwertige Struktur) •   Start der European Standard Token Exchange vorbehaltlich regulatorischer Genehmigungen"
+  ]
+ },
+ {
+  "id": "12",
+  "title": "Management & Governance",
+  "en": [],
+  "de": []
+ },
+ {
+  "id": "12.1",
+  "title": "Management Structure / Managementstruktur",
+  "en": [
+   "ESTX Venture GmbH operates under a centralized management structure with clearly defined operational responsibilities.",
+   "Chief Executive Officer (CEO): Christoph Bosch – FinTech expert since 2009",
+   "Operational responsibilities are structured as follows:",
+   "•   Management & regulatory coordination: Liechtenstein •   Technology & development: European Union & Ukraine •   Operation of ESTX.exchange International: ESTX Georgia LLC, Georgia",
+   "Management, compliance, and operational execution are functionally separated to ensure internal controls and regulatory alignment."
+  ],
+  "de": [
+   "Die ESTX Venture GmbH operiert unter einer zentralisierten Managementstruktur mit klar definierten operativen Verantwortlichkeiten.",
+   "Chief Executive Officer (CEO): Christoph Bosch – FinTech-Experte seit 2009",
+   "Die operativen Zuständigkeiten sind wie folgt strukturiert:",
+   "•   Management & regulatorische Koordination: Liechtenstein •   Technologie & Entwicklung: Europäische Union & Ukraine •   Betrieb von ESTX.exchange International: ESTX Georgia LLC, Georgien",
+   "Management, Compliance und operative Umsetzung sind funktional voneinander getrennt, um interne Kontrollen und regulatorische Konformität sicherzustellen."
+  ]
+ },
+ {
+  "id": "12.2",
+  "title": "Operational Responsibilities / Operative Verantwortlichkeiten",
+  "en": [
+   "Operational activities are executed in accordance with internal policies covering:",
+   "•   platform operations •   technology development •   regulatory coordination •   risk management",
+   "No operational role includes responsibility for influencing token value, secondary market pricing, or investment outcomes."
+  ],
+  "de": [
+   "Operative Tätigkeiten erfolgen gemäß interner Richtlinien, insbesondere in den Bereichen:",
+   "•   Plattformbetrieb •   technologische Entwicklung •   regulatorische Koordination",
+   "•   Risikomanagement",
+   "Keine operative Funktion beinhaltet die Verantwortung für die Beeinflussung des Tokenwerts, der Preisbildung am Sekundärmarkt oder von Investmentergebnissen."
+  ]
+ },
+ {
+  "id": "12.3",
+  "title": "Governance Framework / Governance-Rahmen",
+  "en": [
+   "The ESTX ecosystem is governed by an internal governance framework designed to ensure:",
+   "•   operational integrity •   regulatory compliance •   transparency and accountability",
+   "Governance mechanisms apply exclusively to operational and compliance-related matters. They do not extend to economic outcomes, token pricing, or market behavior."
+  ],
+  "de": [
+   "Das ESTX-Ökosystem unterliegt einem internen Governance-Rahmen, der auf folgende Ziele ausgerichtet ist:",
+   "•   operative Integrität •   regulatorische Konformität •   Transparenz und Verantwortlichkeit",
+   "Governance-Mechanismen beziehen sich ausschließlich auf operative und Compliance-relevante Sachverhalte. Sie erstrecken sich ausdrücklich nicht auf wirtschaftliche Ergebnisse, Tokenpreise oder Marktverhalten."
+  ]
+ },
+ {
+  "id": "12.4",
+  "title": "Governance & Operational Controls / Governance- & Kontrollgrundsätze",
+  "en": [
+   "Key governance and control principles include:",
+   "•   Defined decision-making processes – Material operational actions are subject to documented internal approval procedures aligned with compliance requirements. •   Multi-signature wallet controls – Treasury and liquidity holdings are secured by 2-of-3 multi-signature safes to prevent unilateral access or execution; the Community & Ecosystem allocation and the governance reserve are held in dedicated hardware wallets. •   Disclosure and documentation standards – Relevant operational actions are documented and subject to internal review to reduce information asymmetries and ensure traceability. •   Compliance oversight – Governance processes are designed to support MiCA-aligned operations and to enable regulatory review where required.",
+   "A separate and more detailed Governance & Controls Policy governs internal procedures and is maintained outside of this Whitepaper.",
+   "Nothing in this section constitutes:",
+   "•   a commitment to token value support •   a price intervention mechanism •   a representation of financial performance or economic outcomes"
+  ],
+  "de": [
+   "Zentrale Governance- und Kontrollgrundsätze umfassen:",
+   "•   Definierte Entscheidungsprozesse – Wesentliche operative Maßnahmen unterliegen dokumentierten internen Freigabeprozessen im Einklang mit Compliance-Anforderungen. •   Multi-Signature-Wallet-Kontrollen – Treasury- und Liquiditätsbestände sind durch Multi-Signature-Safes (2 von 3) abgesichert, um einseitige Zugriffe oder Maßnahmen zu verhindern; die Community-&- Ecosystem-Allokation und die Governance-Reserve liegen in dedizierten Hardware-Wallets. •   Disclosure- und Dokumentationsstandards – Relevante operative Vorgänge werden dokumentiert und internen Prüfungen unterzogen, um Informationsasymmetrien zu vermeiden und Nachvollziehbarkeit sicherzustellen. •   Compliance-Aufsicht – Die Governance-Strukturen unterstützen einen an MiCA ausgerichteten Betrieb und ermöglichen eine aufsichtsrechtliche Überprüfbarkeit.",
+   "Ein separates, detaillierteres Governance- & Controls-Dokument regelt interne Verfahren außerhalb dieses Whitepapers.",
+   "Dieser Abschnitt begründet ausdrücklich keine:",
+   "•   Zusagen zur Wertentwicklung des Tokens •   Preisstützungs- oder Marktinterventionsmechanismen •   Aussagen zur wirtschaftlichen Performance"
+  ]
+ },
+ {
+  "id": "13",
+  "title": "Legal & Regulatory Positioning / Rechtliche & regulatorische",
+  "en": [
+   "The ESTX Utility Token qualifies as an “other crypto-asset” pursuant to Article 3 of the EU Markets in Crypto-Assets Regulation (MiCA).",
+   "The ESTX Token:",
+   "•   is not an asset-referenced token (ART), •   is not an electronic money token (EMT), •   is not a financial instrument within the meaning of MiFID II.",
+   "The token is designed exclusively for functional access and usage within the ESTX ecosystem and does not represent:",
+   "•   a financing instrument, •   an investment product, •   an ownership, profit, or repayment claim.",
+   "Any future expansion of the ESTX platform into regulated financial instruments, securities, or capital market products would be conducted through separate legal entities, separate regulatory approvals, and distinct documentation, and would not retroactively affect the classification of the ESTX Utility Token."
+  ],
+  "de": [
+   "Der ESTX Utility Token qualifiziert als „sonstiger Kryptowert“ im Sinne von Artikel 3 der EU-Verordnung über Märkte für Kryptowerte (MiCA).",
+   "Der ESTX Token ist:",
+   "•   kein vermögenswertreferenzierter Token (ART), •   kein E-Geld-Token (EMT), •   kein Finanzinstrument im Sinne der MiFID II.",
+   "Der Token ist ausschließlich für funktionale Zugangs- und Nutzungszwecke innerhalb des ESTX-Ökosystems konzipiert und stellt weder",
+   "•   ein Finanzierungsinstrument, •   ein Investmentprodukt, •   noch einen Anspruch auf Eigentum, Gewinne oder Rückzahlung dar.",
+   "Eine etwaige zukünftige Erweiterung der ESTX-Plattform um regulierte Finanzinstrumente, Wertpapiere oder Kapitalmarktprodukte würde über separate Rechtsträger, eigenständige Genehmigungen und gesonderte Dokumentation erfolgen und hätte keine rückwirkende Auswirkung auf die rechtliche Einordnung des ESTX Utility Tokens."
+  ]
+ },
+ {
+  "id": "14",
+  "title": "Risk Factors / Risikofaktoren",
+  "en": [
+   "The use of cryptographic tokens and digital asset platforms involves various risks, including but not limited to:",
+   "•   Regulatory risks – Changes in laws, regulations, or supervisory practices may affect the operation of digital asset platforms or token usage. •   Technology and cyber risks – Smart contracts, blockchain infrastructure, and platform components may be subject to vulnerabilities, attacks, or technical failures. The ESTX smart contracts have not been externally audited to date; undetected vulnerabilities cannot be ruled out, and because the contracts are immutable, remediation could require a migration to a new token contract. •   Operational risks – Risks related to internal processes, system dependencies, third-party service providers, or human error. •   Market and liquidity risks – Secondary market liquidity for utility tokens may be limited or volatile. •   Concentration risk – At the TGE, 79.0% of the total supply was held in technically transferable, project-controlled wallets; transfers from these holdings may significantly affect price and liquidity. •   Token value risk – The value of the ESTX Token may fluctuate significantly and may decline to zero.",
+   "This Whitepaper does not provide an exhaustive list of risks."
+  ],
+  "de": [
+   "Die Nutzung kryptografischer Token und digitaler Asset-Plattformen ist mit verschiedenen Risiken verbunden, insbesondere:",
+   "•   Regulatorische Risiken – Änderungen gesetzlicher, regulatorischer oder aufsichtsrechtlicher Rahmenbedingungen können den Plattformbetrieb oder die Token-Nutzung beeinflussen. •   Technologische und Cyber-Risiken – Smart Contracts, Blockchain-Infrastruktur und Plattformkomponenten können technischen Schwachstellen, Angriffen oder Ausfällen unterliegen. Die ESTX Smart Contracts wurden bislang nicht extern auditiert; unentdeckte Schwachstellen sind nicht auszuschließen, und da die Verträge unveränderlich sind, könnte eine Behebung die Migration auf einen neuen Token-Vertrag erfordern. •   Operative Risiken – Risiken im Zusammenhang mit internen Prozessen, Systemabhängigkeiten, Drittanbietern oder menschlichen Fehlern. •   Markt- und Liquiditätsrisiken – Die Liquidität von Utility Tokens am Sekundärmarkt kann eingeschränkt oder volatil sein. •   Konzentrationsrisiko – Zum TGE lagen 79,0 % der Gesamtmenge technisch übertragbar in projektkontrollierten Wallets; Transfers aus diesen Beständen können Preis und Liquidität erheblich beeinflussen. •   Token-Wertrisiko – Der Wert des ESTX Tokens kann erheblich schwanken und im Extremfall vollständig entfallen.",
+   "Dieses Whitepaper erhebt keinen Anspruch auf Vollständigkeit hinsichtlich aller möglichen Risiken."
+  ]
+ },
+ {
+  "id": "15",
+  "title": "Forward-Looking Statements / Zukunftsgerichtete Aussagen",
+  "en": [
+   "This Whitepaper may contain statements regarding future plans, intentions, objectives, strategies, timelines, or anticipated developments of the ESTX ecosystem, platforms, or related services.",
+   "Such statements are forward-looking in nature and are based on assumptions, expectations, and information available at the time of publication. They are subject to known and unknown risks, uncertainties, regulatory developments, technical constraints, market conditions, and other factors beyond the control of ESTX Venture GmbH.",
+   "Forward-looking statements do not constitute guarantees, commitments, or assurances of future performance, regulatory approval, availability of services, or ecosystem outcomes. Actual results, implementations, or timelines may differ materially from those described or implied.",
+   "No reliance should be placed on forward-looking statements for the purpose of acquiring, holding, or using the ESTX Token.",
+   "The ESTX Token remains a functional utility mechanism and does not represent a financial instrument, investment opportunity, or claim on future outcomes."
+  ],
+  "de": [
+   "Dieses Whitepaper kann Aussagen über zukünftige Pläne, Absichten, Ziele, Strategien, Zeitpläne oder erwartete Entwicklungen des ESTX-Ökosystems, der Plattformen oder zugehöriger Dienstleistungen enthalten.",
+   "Solche Aussagen sind zukunftsgerichteter Natur und beruhen auf Annahmen, Erwartungen und Informationen, die zum Zeitpunkt der Veröffentlichung verfügbar waren. Sie unterliegen bekannten und unbekannten Risiken, Unsicherheiten, regulatorischen Entwicklungen, technischen Einschränkungen, Marktbedingungen sowie weiteren Faktoren, die außerhalb des Einflussbereichs der ESTX Venture GmbH liegen.",
+   "Zukunftsgerichtete Aussagen stellen keine Garantien, Zusagen oder verbindlichen Zusicherungen hinsichtlich zukünftiger Leistungen, regulatorischer Genehmigungen, der Verfügbarkeit von Dienstleistungen oder der Entwicklung des Ökosystems dar. Tatsächliche Ergebnisse, Umsetzungen oder Zeitpläne können wesentlich von den dargestellten oder implizierten Aussagen abweichen.",
+   "Zukunftsgerichtete Aussagen dürfen nicht als Grundlage für den Erwerb, das Halten oder die Nutzung des ESTX Tokens herangezogen werden.",
+   "Der ESTX Token bleibt ein funktionales Nutzungselement und stellt weder ein Finanzinstrument noch eine Investitionsmöglichkeit oder einen Anspruch auf zukünftige Ergebnisse dar."
+  ]
+ },
+ {
+  "id": "16",
+  "title": "Contact & Legal Notice / Kontakt & rechtlicher Hinweis",
+  "en": [],
+  "de": []
+ }
+]
