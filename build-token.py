@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build token.html — the ESTX Utility Token page (EN + DE) in the estx.exchange site style.
 
-Content lives in token-content.json (taken from ESTX Utility Token Whitepaper 2.0 via
+Content lives in token-content.json (taken from ESTX Utility Token Whitepaper 6.1 via
 build_landing.py). Layout, colours, nav and footer mirror index.html.
 
   python3 build-token.py                              # writes token.html
@@ -18,7 +18,7 @@ if len(sys.argv) == 3 and sys.argv[1] == "--import":
     spec = importlib.util.spec_from_file_location("bl", sys.argv[2])
     bl = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(bl)
-    data = {"source": "ESTX Utility Token Whitepaper 2.0 (September 2026), via build_landing.py",
+    data = {"source": "ESTX Utility Token Whitepaper 6.1 (September 2026), via build_landing.py",
             "PDF": bl.PDF, "CONTRACT": bl.CONTRACT, "ADDR": bl.ADDR, "ALLOC": bl.ALLOC,
             "RELEASE": bl.RELEASE, "T": bl.T}
     json.dump(data, open(CONTENT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
@@ -60,8 +60,8 @@ S = {
     "copy": ("Copy", "Kopieren"), "copied": ("Copied", "Kopiert"),
     "verified": ("Source code verified on Etherscan", "Quellcode auf Etherscan verifiziert"),
     "contract": ("Contract address", "Contract-Adresse"),
-    "facts": ("All facts on this page are taken from Whitepaper 2.0 and verified against the Ethereum mainnet.",
-              "Alle Angaben auf dieser Seite stammen aus Whitepaper 2.0 und wurden gegen das Ethereum-Mainnet geprüft."),
+    "facts": ("All facts on this page are taken from Whitepaper 6.1 and verified against the Ethereum mainnet.",
+              "Alle Angaben auf dieser Seite stammen aus Whitepaper 6.1 und wurden gegen das Ethereum-Mainnet geprüft."),
 }
 s2 = lambda k: bi(e(S[k][0]), e(S[k][1]))
 

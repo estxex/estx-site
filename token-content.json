@@ -1,6 +1,6 @@
 {
- "source": "ESTX Utility Token Whitepaper 2.0 (September 2026), via build_landing.py",
- "PDF": "ESTX_Whitepaper_v2.0_2026-09.pdf",
+ "source": "ESTX Utility Token Whitepaper 6.1 (September 2026), via build_landing.py",
+ "PDF": "ESTX_Whitepaper_v6.1.pdf",
  "CONTRACT": "0x2C83ef0b36ab580b29350913239DA8f80E192644",
  "ADDR": [
   [
@@ -146,7 +146,7 @@
    "other_label": "DE",
    "other_file": "estx-token-de.html",
    "title": "ESTX Utility Token",
-   "meta_desc": "Key facts about the ESTX Utility Token: parameters, allocation, vesting, smart contract design and legal positioning, based on Whitepaper 2.0.",
+   "meta_desc": "Key facts about the ESTX Utility Token: parameters, allocation, vesting, smart contract design and legal positioning, based on Whitepaper 6.1.",
    "nav": [
     [
      "#token",
@@ -174,7 +174,7 @@
     ]
    ],
    "nav_cta": "Whitepaper (PDF)",
-   "eyebrow": "ESTX Utility Token · Whitepaper 2.0 · September 2026",
+   "eyebrow": "ESTX Utility Token · Whitepaper 6.1 · September 2026",
    "h1": "One Token. Every ESTX Platform.",
    "lead": "The ESTX Utility Token is the unified access and usage layer across the ESTX ecosystem. It enables operational platform functionality only and is not designed as an investment, financing, or value-accrual instrument.",
    "cta1": "Read the Whitepaper",
@@ -430,12 +430,12 @@
     "Changes in laws, regulations or supervisory practice may affect platform operation or token usage."
    ],
    "disclaimer_h": "Disclaimer",
-   "disclaimer": "This page is a summary of the ESTX Utility Token Whitepaper (Version 2.0) and is provided for informational purposes only. It does not constitute an offer to sell, a solicitation of an offer to buy, or a recommendation of any security, investment product or financial instrument. The ESTX Token is structured exclusively as a utility token under MiCA and does not represent any form of security, equity, debt instrument, profit participation or ownership right. The ESTX Token is not issued for the purpose of raising capital or financing the development of the ESTX platforms. It is not intended to be offered or sold to residents of restricted jurisdictions, including U.S. persons as defined in Regulation S under the U.S. Securities Act of 1933. In case of discrepancy, the Whitepaper prevails.",
+   "disclaimer": "This page is a summary of the ESTX Utility Token Whitepaper (Version 6.1) and is provided for informational purposes only. It does not constitute an offer to sell, a solicitation of an offer to buy, or a recommendation of any security, investment product or financial instrument. The ESTX Token is structured exclusively as a utility token under MiCA and does not represent any form of security, equity, debt instrument, profit participation or ownership right. The ESTX Token is not issued for the purpose of raising capital or financing the development of the ESTX platforms. It is not intended to be offered or sold to residents of restricted jurisdictions, including U.S. persons as defined in Regulation S under the U.S. Securities Act of 1933. In case of discrepancy, the Whitepaper prevails.",
    "final_h": "Read the full Whitepaper",
-   "final_p": "Version 2.0, September 2026, bilingual English / German, 38 pages.",
+   "final_p": "Version 6.1, September 2026, bilingual English / German, 38 pages.",
    "foot_issuer": "Issuer",
    "foot_operator": "Operator of ESTX.exchange International",
-   "foot_copy": "© 2026 ESTX Venture GmbH. All facts on this page are taken from Whitepaper 2.0 and verified against the Ethereum mainnet."
+   "foot_copy": "© 2026 ESTX Venture GmbH. All facts on this page are taken from Whitepaper 6.1 and verified against the Ethereum mainnet."
   },
   "de": {
    "lang": "de",
@@ -443,7 +443,7 @@
    "other_label": "EN",
    "other_file": "estx-token-en.html",
    "title": "ESTX Utility Token",
-   "meta_desc": "Die wichtigsten Fakten zum ESTX Utility Token: Parameter, Allokation, Vesting, Smart-Contract-Design und rechtliche Einordnung, auf Basis von Whitepaper 2.0.",
+   "meta_desc": "Die wichtigsten Fakten zum ESTX Utility Token: Parameter, Allokation, Vesting, Smart-Contract-Design und rechtliche Einordnung, auf Basis von Whitepaper 6.1.",
    "nav": [
     [
      "#token",
@@ -471,7 +471,7 @@
     ]
    ],
    "nav_cta": "Whitepaper (PDF)",
-   "eyebrow": "ESTX Utility Token · Whitepaper 2.0 · September 2026",
+   "eyebrow": "ESTX Utility Token · Whitepaper 6.1 · September 2026",
    "h1": "Ein Token. Jede ESTX-Plattform.",
    "lead": "Der ESTX Utility Token ist die einheitliche Zugangs- und Nutzungsebene innerhalb des ESTX-Ökosystems. Er ermöglicht ausschließlich operative Plattformfunktionen und ist kein Investment-, Finanzierungs- oder Wertsteigerungsinstrument.",
    "cta1": "Whitepaper lesen",
@@ -727,12 +727,12 @@
     "Änderungen gesetzlicher oder aufsichtsrechtlicher Rahmenbedingungen können Plattformbetrieb oder Token-Nutzung beeinflussen."
    ],
    "disclaimer_h": "Haftungsausschluss",
-   "disclaimer": "Diese Seite fasst das ESTX Utility Token Whitepaper (Version 2.0) zusammen und dient ausschließlich Informationszwecken. Sie stellt weder ein Verkaufsangebot noch eine Aufforderung zur Abgabe eines Kaufangebots oder eine Empfehlung für Wertpapiere oder andere Finanzinstrumente dar. Der ESTX Token ist ausschließlich als Utility Token gemäß MiCA strukturiert und begründet keinerlei Eigentums-, Gewinn-, Stimm- oder Rückzahlungsrechte. Der ESTX Token wird nicht zum Zweck der Kapitalaufnahme oder zur Finanzierung der Entwicklung der ESTX-Plattformen ausgegeben. Er ist nicht für den Verkauf an Personen in eingeschränkten Jurisdiktionen vorgesehen, insbesondere nicht an US-Personen im Sinne der Regulation S des U.S. Securities Act von 1933. Im Zweifel gilt das Whitepaper.",
+   "disclaimer": "Diese Seite fasst das ESTX Utility Token Whitepaper (Version 6.1) zusammen und dient ausschließlich Informationszwecken. Sie stellt weder ein Verkaufsangebot noch eine Aufforderung zur Abgabe eines Kaufangebots oder eine Empfehlung für Wertpapiere oder andere Finanzinstrumente dar. Der ESTX Token ist ausschließlich als Utility Token gemäß MiCA strukturiert und begründet keinerlei Eigentums-, Gewinn-, Stimm- oder Rückzahlungsrechte. Der ESTX Token wird nicht zum Zweck der Kapitalaufnahme oder zur Finanzierung der Entwicklung der ESTX-Plattformen ausgegeben. Er ist nicht für den Verkauf an Personen in eingeschränkten Jurisdiktionen vorgesehen, insbesondere nicht an US-Personen im Sinne der Regulation S des U.S. Securities Act von 1933. Im Zweifel gilt das Whitepaper.",
    "final_h": "Das vollständige Whitepaper lesen",
-   "final_p": "Version 2.0, September 2026, zweisprachig Englisch / Deutsch, 38 Seiten.",
+   "final_p": "Version 6.1, September 2026, zweisprachig Englisch / Deutsch, 38 Seiten.",
    "foot_issuer": "Emittentin",
    "foot_operator": "Betreiberin von ESTX.exchange International",
-   "foot_copy": "© 2026 ESTX Venture GmbH. Alle Angaben auf dieser Seite stammen aus Whitepaper 2.0 und wurden gegen das Ethereum-Mainnet geprüft."
+   "foot_copy": "© 2026 ESTX Venture GmbH. Alle Angaben auf dieser Seite stammen aus Whitepaper 6.1 und wurden gegen das Ethereum-Mainnet geprüft."
   }
  }
 }
