@@ -1,13 +1,20 @@
 #!/usr/bin/env python3
-"""Build li/ — the estx.li landing page of the ESTX Utility Token (EN + DE), in the estx.exchange style.
+"""Build li/ — the estx.li website (EN + DE), in the estx.exchange style.
+
+Two pages (Wolfgang 2026-10-12: "main page like a website, token part in the footer … so we hide a bit";
+Christoph: estx.li must stay corporate/informational, no crypto transactions or token sales under the GmbH):
+  li/index.html  — corporate page of ESTX Venture GmbH (company, focus, structure, management, contact)
+  li/token.html  — the ESTX Utility Token page, linked only from the footer ("ESTX Token"), noindex
+Neither page links to the exchange.
 
 Texts: li-src/wp-sections.json (the whitepaper split into paragraphs, word for word — see
 li-src/parse_wp.py) and token-content.json (the token page data). Design, hero, cards and the
 shared sections come from build-token.py, so both pages look the same.
 
-  python3 build-li.py      -> li/index.html, li/brand_assets/*, li/<whitepaper>.pdf
+  python3 build-li.py      -> li/index.html, li/token.html, li/brand_assets/*, li/<whitepaper>.pdf
 
 Preview: https://stage.estx.exchange/li/   Production target: estx.li (nginx root -> the li/ folder).
+Company texts: whitepaper 6.1 sections 2, 6.1 and 12.1 (WP ids "2", "6.1", "12.1"); imprint from Christoph (WhatsApp 2026-10-11).
 """
 import importlib.util, json, os, re, shutil
 
@@ -211,42 +218,228 @@ def page_block(lang):
     return f'<div data-lang="{lang}">\n' + "\n\n".join(out) + "\n</div>"
 
 
-NAV = [("why", "Why ESTX", "Warum ESTX"), ("ecosystem", "Ecosystem", "Ökosystem"), ("utility", "Utility", "Nutzen"),
-       ("allocation", "Tokenomics", "Tokenomics"), ("contract", "Technology", "Technologie"), ("roadmap", "Roadmap", "Roadmap"),
-       ("governance", "Governance", "Governance")]
 
 
-def nav_links(cls, close=False):
+# ---------- shared page shell ----------
+
+TOKEN_NAV = [("why", "Why ESTX", "Warum ESTX"), ("ecosystem", "Ecosystem", "Ökosystem"), ("utility", "Utility", "Nutzen"),
+             ("allocation", "Tokenomics", "Tokenomics"), ("contract", "Technology", "Technologie"), ("roadmap", "Roadmap", "Roadmap"),
+             ("governance", "Governance", "Governance")]
+HOME_NAV = [("about", "Company", "Unternehmen"), ("structure", "Structure", "Struktur"),
+            ("management", "Management", "Geschäftsführung"), ("contact", "Contact", "Kontakt")]
+
+
+def nav_links(items, cls, close=False):
     oc = ' onclick="closeMob()"' if close else ""
     return "".join(f'<a href="#{k}-en" class="{cls}" data-lang="en"{oc}>{en}</a><a href="#{k}-de" class="{cls}" data-lang="de"{oc}>{de}</a>'
-                   for k, en, de in NAV)
+                   for k, en, de in items)
 
 
-todo = lambda x: f'<span class="todo">[{e(x)}]</span>'
+IMPRINT = (f'<div id="imprint"><div class="f-col-h">{bi("Imprint", "Impressum")}</div>'
+           f'<p class="f-text">ESTX Venture GmbH<br/>Industriestrasse 4<br/>9491 Ruggell, Liechtenstein<br/>CEO: Christoph Bosch<br/>'
+           f'{bi("Commercial register", "Handelsregister")}: FL-0002.723.364-0<br/>E-mail: <a href="mailto:hello@estx.li">hello@estx.li</a></p></div>')
 
 
-def footer():
+def footer(desc_html, cols_html, bottom_right=""):
     return f'''<footer>
   <div class="wrap">
     <div class="footer-grid">
       <div>
         <img src="brand_assets/logo_bw.svg" alt="ESTX" style="height:30px;width:auto;"/>
-        <p class="f-desc">{bi("ESTX Utility Token · issued by ESTX Venture GmbH, Liechtenstein", "ESTX Utility Token · ausgegeben von der ESTX Venture GmbH, Liechtenstein")}</p>
-        {bt.wp_button("btn-primary", "Whitepaper (PDF)", "en", "") .replace('class="btn-primary"', 'class="btn-primary" style="font-size:0.78rem;"')}
+        {desc_html}
       </div>
-      <div id="imprint"><div class="f-col-h">{bi("Issuer · Imprint", "Emittentin · Impressum")}</div>
-        <p class="f-text">ESTX Venture GmbH<br/>Industriestrasse 4<br/>9491 Ruggell, Liechtenstein<br/>CEO: Christoph Bosch<br/>{bi("Commercial register", "Handelsregister")}: FL-0002.723.364-0<br/>E-mail: <a href="mailto:hello@estx.li">hello@estx.li</a></p></div>
-      <div><div class="f-col-h">{bi("Exchange operator", "Börsenbetreiberin")}</div>
-        <p class="f-text">ESTX.exchange International<br/>ESTX Georgia LLC, Kutaisi, Georgia<br/>{bi("Registration number", "Registrierungsnummer")} 412800036<br/>VASP License L37-2026<br/>National Bank of Georgia</p></div>
-      <div><div class="f-col-h">{bi("Links", "Links")}</div><ul class="f-list">
-        <li><a href="{e(PDF)}">Whitepaper (PDF)</a></li>
-        <li><a href="https://etherscan.io/token/{CONTRACT}" target="_blank" rel="noopener">{bi("Contract on Etherscan", "Vertrag auf Etherscan")}</a></li>
-        <li><a href="https://estx.exchange" target="_blank" rel="noopener">ESTX.exchange ↗</a></li>
-        <li><a href="#legal-en" data-lang="en">Legal</a><a href="#legal-de" data-lang="de">Recht</a></li></ul></div>
+      {cols_html}
     </div>
-    <div class="f-bottom"><div>© 2026 ESTX Venture GmbH</div><div>{bt.s2("facts")}</div></div>
+    <div class="f-bottom"><div>© 2026 ESTX Venture GmbH</div><div>{bottom_right}</div></div>
   </div>
 </footer>'''
+
+
+LANG_SWITCH = '''<div class="lang-switch">
+        <button class="lang-switch-btn" id="langBtn" onclick="toggleLangDropdown()" aria-label="Select language" aria-haspopup="true">
+          <span id="langFlag">&#127468;&#127463;</span><span id="langCode">EN</span>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="lang-dropdown" id="langDropdown">
+          <button class="lang-option" id="langOpten" onclick="setLang('en')">&#127468;&#127463; English</button>
+          <button class="lang-option" id="langOptde" onclick="setLang('de')">&#127465;&#127466; Deutsch</button>
+        </div>
+      </div>'''
+
+
+def shell(*, title, desc, canonical, robots, nav_items, home_href, nav_right, mob_btns, main, foot):
+    js = bt.JS
+    old_title = "document.title=lang==='de'?'ESTX Utility Token — ESTX.Exchange':'ESTX Utility Token — ESTX.Exchange';"
+    assert js.count(old_title) == 1
+    js = js.replace(old_title, "")
+    return f'''<!DOCTYPE html>
+<html lang="en" data-ui-lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="robots" content="{robots}"/>
+<title>{e(title)}</title>
+<meta name="description" content="{e(desc)}"/>
+<link rel="canonical" href="{canonical}"/>
+<link rel="icon" href="brand_assets/favicon.png" type="image/png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script>{bt.HEAD_JS}</script>
+<style>{bt.CSS}{LI_CSS}</style>
+</head>
+<body>
+
+<div class="mob-menu" id="mobMenu" role="dialog" aria-modal="true" aria-label="Menu">
+  <button class="mob-close" onclick="closeMob()" aria-label="Close menu"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  {nav_links(nav_items, "mob-link", close=True)}
+  <div class="mob-lang">
+    <button id="mobLangen" onclick="setLang('en');closeMob();">&#127468;&#127463; EN</button>
+    <button id="mobLangde" onclick="setLang('de');closeMob();">&#127465;&#127466; DE</button>
+  </div>
+  <div style="display:flex;gap:12px;margin-top:8px;flex-wrap:wrap;justify-content:center;">{mob_btns}</div>
+</div>
+
+<nav class="top" aria-label="Main">
+  <div class="nav-inner">
+    <a href="{home_href}" aria-label="ESTX Venture GmbH"><img src="brand_assets/logo.svg" alt="ESTX" style="height:34px;width:auto;display:block;"/></a>
+    <div class="nav-links">{nav_links(nav_items, "nav-link")}</div>
+    <div class="nav-right">
+      {LANG_SWITCH}
+      {nav_right}
+    </div>
+    <button class="burger" onclick="openMob()" aria-label="Open menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0a1628" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+  </div>
+</nav>
+
+<main id="top">
+{main}
+</main>
+
+{foot}
+<script>{js}</script>
+</body>
+</html>
+'''
+
+
+# ---------- token page (li/token.html) ----------
+
+def token_page():
+    home = f'<a href="index.html" class="nav-login">{bi("Company", "Unternehmen")}</a>'
+    cols = (IMPRINT
+            + f'<div><div class="f-col-h">{bi("Exchange operator", "Börsenbetreiberin")}</div>'
+              f'<p class="f-text">ESTX.exchange International<br/>ESTX Georgia LLC, Kutaisi, Georgia<br/>{bi("Registration number", "Registrierungsnummer")} 412800036<br/>VASP License L37-2026<br/>National Bank of Georgia</p></div>'
+            + f'<div><div class="f-col-h">{bi("Links", "Links")}</div><ul class="f-list">'
+              f'<li><a href="index.html">ESTX Venture GmbH</a></li>'
+              f'<li><a href="{e(PDF)}">Whitepaper (PDF)</a></li>'
+              f'<li><a href="https://etherscan.io/token/{CONTRACT}" target="_blank" rel="noopener">{bi("Contract on Etherscan", "Vertrag auf Etherscan")}</a></li>'
+              f'<li><a href="#legal-en" data-lang="en">Legal</a><a href="#legal-de" data-lang="de">Recht</a></li></ul></div>')
+    desc = (f'<p class="f-desc">{bi("ESTX Utility Token · issued by ESTX Venture GmbH, Liechtenstein", "ESTX Utility Token · ausgegeben von der ESTX Venture GmbH, Liechtenstein")}</p>'
+            + bt.wp_button("btn-primary", "Whitepaper (PDF)", "en", "").replace('class="btn-primary"', 'class="btn-primary" style="font-size:0.78rem;"'))
+    return shell(title="ESTX Utility Token — ESTX Venture GmbH", desc=T["en"]["meta_desc"],
+                 canonical="https://estx.li/token.html", robots="noindex, follow",
+                 nav_items=TOKEN_NAV, home_href="index.html",
+                 nav_right=home + bt.wp_button("btn-primary", "Whitepaper (PDF)", "en", ""),
+                 mob_btns=f'<a href="index.html" class="btn-outline-white">ESTX Venture GmbH</a>' + bt.wp_button("btn-primary", "Whitepaper (PDF)", "en", ""),
+                 main=page_block("en") + "\n" + page_block("de"),
+                 foot=footer(desc, cols, bt.s2("facts")))
+
+
+# ---------- corporate page (li/index.html) ----------
+
+def home_block(lang):
+    de = lang == "de"
+    a = lambda k: f"{k}-{lang}"
+    role, rest = para("12.1", lang, 1).split(": ", 1)
+    name, ceo_desc = rest.split(" – ", 1)
+    resp = [x.strip() for x in para("12.1", lang, 3).split("•") if x.strip()]   # role: place (x3)
+    assert len(resp) == 3
+    r_mgmt, r_tech, r_ops = (x.split(": ", 1) for x in resp)
+    h1 = L(lang, 'Market infrastructure,<br/><span class="accent">built to comply.</span>',
+                 'Marktinfrastruktur,<br/><span class="accent">regelkonform gebaut.</span>')
+    lead = L(lang, "ESTX Venture GmbH, based in Ruggell, Liechtenstein, develops the technology of the ESTX ecosystem "
+                   "and coordinates its management and regulatory matters.",
+                   "Die ESTX Venture GmbH mit Sitz in Ruggell, Liechtenstein, entwickelt die Technologie des ESTX-Ökosystems "
+                   "und koordiniert dessen Management und regulatorische Belange.")
+    facts = [(L(lang, "Company", "Firma"), "ESTX Venture GmbH"),
+             (L(lang, "Registered office", "Sitz"), L(lang, "Ruggell, Liechtenstein", "Ruggell, Liechtenstein")),
+             (L(lang, "Commercial register", "Handelsregister"), "FL-0002.723.364-0"),
+             ("CEO", name)]
+    rows = "".join(f'<div class="co-row"><dt>{e(k)}</dt><dd>{e(v)}</dd></div>' for k, v in facts)
+    arrow = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'
+    hero = f'''<section class="hero" id="{a("top")}">
+  <div class="hero-bg" aria-hidden="true"><svg width="100%" height="100%"><defs><pattern id="grid-{lang}" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M 44 0 L 0 0 0 44" fill="none" stroke="#fff" stroke-width="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(#grid-{lang})"/></svg></div>
+  <div class="hero-inner">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="label label-white reveal">ESTX Venture GmbH · Liechtenstein</div>
+        <h1 class="hero-h1 reveal">{h1}</h1>
+        <p class="hero-sub reveal">{e(lead)}</p>
+        <div class="hero-btns reveal">
+          <a href="#{a("about")}" class="btn-hero-white">{e(L(lang, "About the company", "Über das Unternehmen"))}{arrow}</a>
+          <a href="mailto:hello@estx.li" class="btn-hero-outline">{e(L(lang, "Contact", "Kontakt"))}</a>
+        </div>
+      </div>
+      <aside class="token-card co-card reveal" aria-label="{e(L(lang, "Company profile", "Firmenprofil"))}">
+        <div class="tc-top"><img src="brand_assets/logo_bw.svg" alt="ESTX" class="tc-logo"/><span class="tc-chip">GmbH · FL</span></div>
+        <div class="tc-label">{e(L(lang, "Company profile", "Firmenprofil"))}</div>
+        <dl class="co-rows">{rows}</dl>
+      </aside>
+    </div>
+  </div>
+</section>'''
+
+    cards = [("layers", L(lang, "Technology & development", "Technologie & Entwicklung"),
+              f'<p>{e(L(lang, "Software and infrastructure for the ESTX ecosystem are developed by teams in the European Union and Ukraine.", "Software und Infrastruktur des ESTX-Ökosystems werden von Teams in der Europäischen Union und der Ukraine entwickelt."))}</p>'),
+             ("shield", L(lang, "Regulation first", "Regulierung zuerst"), text("6.1", lang, 1, 2)),
+             ("lock", L(lang, "Separated functions", "Getrennte Funktionen"), text("12.1", lang, 4))]
+    about = f'''<section class="sec" id="{a("about")}"><div class="wrap">
+{head(lang, L(lang, "Company", "Unternehmen"), L(lang, "How we work", "Wie wir arbeiten"), text("6.1", lang, 0))}
+<div class="grid g3">{"".join(f'<div class="why-card reveal">{icon(ic, i)}<h3>{e(h)}</h3>{body}</div>' for i, (ic, h, body) in enumerate(cards))}</div>
+</div></section>'''
+
+    places = [(r_mgmt[1], r_mgmt[0], "ESTX Venture GmbH, Ruggell"),
+              (r_tech[1], r_tech[0], L(lang, "Development teams", "Entwicklungsteams")),
+              (r_ops[1].split(", ", 1)[1], r_ops[0], L(lang, "ESTX Georgia LLC, Kutaisi – a separate, locally licensed company",
+                                                         "ESTX Georgia LLC, Kutaisi – eine eigenständige, lokal lizenzierte Gesellschaft"))]
+    structure = f'''<section class="sec alt" id="{a("structure")}"><div class="wrap">
+{head(lang, L(lang, "Structure", "Struktur"), L(lang, "Clear responsibilities", "Klare Zuständigkeiten"), text("12.1", lang, 0))}
+<div class="grid g3">{"".join(f'<div class="why-card plain place reveal"><div class="place-where">{e(w)}</div><h3>{e(r)}</h3><p>{e(who)}</p></div>' for w, r, who in places)}</div>
+</div></section>'''
+
+    management = f'''<section class="sec" id="{a("management")}"><div class="wrap">
+{head(lang, "Management", L(lang, "Leadership", "Geschäftsführung"))}
+<div class="grid g2">
+<div class="why-card plain ceo-card reveal"><div class="ceo"><div class="ceo-mono" aria-hidden="true">CB</div><div><div class="ceo-role">{e(role)}</div><div class="ceo-name">{e(name)}</div><div class="ceo-desc">{e(ceo_desc)}</div></div></div></div>
+<div class="why-card plain reveal"><h3>{e(L(lang, "Company details", "Firmendaten"))}</h3><dl class="co-rows light">
+  <div class="co-row"><dt>{e(L(lang, "Company", "Firma"))}</dt><dd>ESTX Venture GmbH</dd></div>
+  <div class="co-row"><dt>{e(L(lang, "Address", "Adresse"))}</dt><dd>Industriestrasse 4, 9491 Ruggell, Liechtenstein</dd></div>
+  <div class="co-row"><dt>{e(L(lang, "Commercial register", "Handelsregister"))}</dt><dd>FL-0002.723.364-0</dd></div>
+  <div class="co-row"><dt>E-mail</dt><dd><a href="mailto:hello@estx.li">hello@estx.li</a></dd></div>
+</dl></div>
+</div>
+</div></section>'''
+
+    contact = f'''<section class="cta-band" id="{a("contact")}"><div class="wrap cta-inner">
+<div><h2>{e(L(lang, "Get in touch", "Kontakt aufnehmen"))}</h2><p>{e(L(lang, "For business enquiries, write to us.", "Für geschäftliche Anfragen schreiben Sie uns."))}</p></div>
+<a href="mailto:hello@estx.li" class="btn-cta-white">hello@estx.li</a>
+</div></section>'''
+    return f'<div data-lang="{lang}">\n' + "\n\n".join([hero, about, structure, management, contact]) + "\n</div>"
+
+
+def home_page():
+    company = "".join(f'<li><a href="#{k}-en" data-lang="en">{en}</a><a href="#{k}-de" data-lang="de">{de}</a></li>' for k, en, de in HOME_NAV)
+    cols = (IMPRINT
+            + f'<div><div class="f-col-h">{bi("Company", "Unternehmen")}</div><ul class="f-list">{company}</ul></div>'
+            + f'<div><div class="f-col-h">{bi("More", "Weiteres")}</div><ul class="f-list"><li><a href="token.html">ESTX Token</a></li></ul></div>')
+    desc = f'<p class="f-desc">ESTX Venture GmbH · Ruggell, Liechtenstein</p>'
+    contact_btn = f'<a href="mailto:hello@estx.li" class="btn-primary">{bi("Contact", "Kontakt")}</a>'
+    return shell(title="ESTX Venture GmbH — Ruggell, Liechtenstein",
+                 desc="ESTX Venture GmbH, Ruggell, Liechtenstein: technology development, management and regulatory coordination of the ESTX ecosystem.",
+                 canonical="https://estx.li/", robots="index, follow", nav_items=HOME_NAV, home_href="#top",
+                 nav_right=contact_btn, mob_btns=contact_btn,
+                 main=home_block("en") + "\n" + home_block("de"), foot=footer(desc, cols))
 
 
 LI_CSS = r"""
@@ -283,90 +476,40 @@ LI_CSS = r"""
 .tl-date{display:block;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--brand);margin-bottom:3px;}
 .tl-next .tl-date{color:#8a6d22;}
 .tl-text{font-size:0.92rem;color:var(--ink);line-height:1.6;}
-.ceo{display:flex;align-items:center;gap:16px;margin-bottom:18px;}
+.ceo{display:flex;align-items:center;gap:16px;}
+.ceo:not(:last-child){margin-bottom:18px;}
 .ceo-mono{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--brand),var(--navy));color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:800;font-size:1.1rem;flex-shrink:0;}
 .ceo-role{font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#94a3b8;}
 .ceo-name{font-family:'Outfit',sans-serif;font-size:1.25rem;font-weight:800;color:var(--ink);}
 .ceo-desc{font-size:0.85rem;color:var(--muted);}
 .f-text{font-size:0.84rem;color:rgba(255,255,255,0.5);line-height:1.75;}
-.todo{background:#FEF3C7;color:#92400E;padding:0 5px;border-radius:4px;font-weight:600;}
+.f-text a{color:rgba(255,255,255,0.7);}
+/* corporate page */
+.co-rows{display:flex;flex-direction:column;}
+.co-row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 0;border-top:1px solid rgba(255,255,255,0.09);font-size:0.88rem;}
+.co-row dt{color:rgba(255,255,255,0.45);}
+.co-row dd{color:#fff;font-weight:600;text-align:right;}
+.co-rows.light .co-row{border-top-color:var(--line);}
+.co-rows.light .co-row dt{color:var(--muted);}
+.co-rows.light .co-row dd{color:var(--ink);}
+.co-rows.light a{color:var(--brand);}
+.why-card .co-rows{margin-top:6px;}
+.ceo-card{display:flex;align-items:center;}
+@media(max-width:480px){html[data-ui-lang="de"] .hero-h1{font-size:2.2rem;}}
+.place-where{font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--brand);margin-bottom:10px;}
 """
 
 
 def build():
-    js = bt.JS
-    old_title = "document.title=lang==='de'?'ESTX Utility Token — ESTX.Exchange':'ESTX Utility Token — ESTX.Exchange';"
-    assert js.count(old_title) == 1
-    js = js.replace(old_title, "")
-    mob_btns = (f'<a href="https://estx.exchange" class="btn-outline-white" target="_blank" rel="noopener">ESTX.exchange ↗</a>'
-                + bt.wp_button("btn-primary", "Whitepaper (PDF)", "en", ""))
-    page = f'''<!DOCTYPE html>
-<html lang="en" data-ui-lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-<meta name="robots" content="index, follow"/>
-<title>ESTX Utility Token — ESTX Venture GmbH</title>
-<meta name="description" content="{e(T["en"]["meta_desc"])}"/>
-<link rel="canonical" href="https://estx.li/"/>
-<link rel="icon" href="brand_assets/favicon.png" type="image/png"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<script>{bt.HEAD_JS}</script>
-<style>{bt.CSS}{LI_CSS}</style>
-</head>
-<body>
-
-<div class="mob-menu" id="mobMenu" role="dialog" aria-modal="true" aria-label="Menu">
-  <button class="mob-close" onclick="closeMob()" aria-label="Close menu"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-  {nav_links("mob-link", close=True)}
-  <div class="mob-lang">
-    <button id="mobLangen" onclick="setLang('en');closeMob();">&#127468;&#127463; EN</button>
-    <button id="mobLangde" onclick="setLang('de');closeMob();">&#127465;&#127466; DE</button>
-  </div>
-  <div style="display:flex;gap:12px;margin-top:8px;flex-wrap:wrap;justify-content:center;">{mob_btns}</div>
-</div>
-
-<nav class="top" aria-label="Main">
-  <div class="nav-inner">
-    <a href="#top" aria-label="ESTX Utility Token"><img src="brand_assets/logo.svg" alt="ESTX" style="height:34px;width:auto;display:block;"/></a>
-    <div class="nav-links">{nav_links("nav-link")}</div>
-    <div class="nav-right">
-      <div class="lang-switch">
-        <button class="lang-switch-btn" id="langBtn" onclick="toggleLangDropdown()" aria-label="Select language" aria-haspopup="true">
-          <span id="langFlag">&#127468;&#127463;</span><span id="langCode">EN</span>
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="lang-dropdown" id="langDropdown">
-          <button class="lang-option" id="langOpten" onclick="setLang('en')">&#127468;&#127463; English</button>
-          <button class="lang-option" id="langOptde" onclick="setLang('de')">&#127465;&#127466; Deutsch</button>
-        </div>
-      </div>
-      <a href="https://estx.exchange" class="nav-login" target="_blank" rel="noopener">ESTX.exchange ↗</a>
-      {bt.wp_button("btn-primary", "Whitepaper (PDF)", "en", "")}
-    </div>
-    <button class="burger" onclick="openMob()" aria-label="Open menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0a1628" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
-  </div>
-</nav>
-
-<main id="top">
-{page_block("en")}
-{page_block("de")}
-</main>
-
-{footer()}
-<script>{js}</script>
-</body>
-</html>
-'''
     os.makedirs(os.path.join(OUT, "brand_assets"), exist_ok=True)
     for f in ("logo.svg", "logo_bw.svg", "favicon.png"):
         shutil.copy(os.path.join(HERE, "brand_assets", f), os.path.join(OUT, "brand_assets", f))
     if bt.PDF_OK:
         shutil.copy(os.path.join(HERE, PDF), os.path.join(OUT, PDF))
-    open(os.path.join(OUT, "index.html"), "w", encoding="utf-8").write(page)
-    print("written:", os.path.join(OUT, "index.html"), len(page.encode()), "bytes")
+    for name, page in (("index.html", home_page()), ("token.html", token_page())):
+        assert "estx.exchange\"" not in page and "href=\"https://estx.exchange" not in page and "trade.estx.exchange" not in page, name
+        open(os.path.join(OUT, name), "w", encoding="utf-8").write(page)
+        print("written:", os.path.join(OUT, name), len(page.encode()), "bytes")
 
 
 if __name__ == "__main__":
