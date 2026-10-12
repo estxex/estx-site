@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """Build li/ — the estx.li website (EN + DE), in the estx.exchange style.
 
-Two pages (Wolfgang 2026-10-12: "main page like a website, token part in the footer … so we hide a bit";
-Christoph: estx.li must stay corporate/informational, no crypto transactions or token sales under the GmbH):
-  li/index.html  — corporate page of ESTX Venture GmbH (company, focus, structure, management, contact)
-  li/token.html  — the ESTX Utility Token page, linked only from the footer ("ESTX Token"), noindex
-Neither page links to the exchange.
+One page: li/index.html — corporate page of ESTX Venture GmbH (company, how we work, structure, management,
+contact, imprint). Christoph 2026-10-12: no token page, token link, tokenomics or exchange reference anywhere on
+estx.li — bank KYB crawlers index every subpage and footer link; Wolfgang agreed ("take another url").
+token_page() below is the former estx.li token page (commit bed4614), kept for the token page on its own URL;
+build() does not output it.
 
 Texts: li-src/wp-sections.json (the whitepaper split into paragraphs, word for word — see
 li-src/parse_wp.py) and token-content.json (the token page data). Design, hero, cards and the
 shared sections come from build-token.py, so both pages look the same.
 
-  python3 build-li.py      -> li/index.html, li/token.html, li/brand_assets/*, li/<whitepaper>.pdf
+  python3 build-li.py      -> li/index.html, li/brand_assets/*
 
 Preview: https://stage.estx.exchange/li/   Production target: estx.li (nginx root -> the li/ folder).
 Company texts: whitepaper 6.1 sections 2, 6.1 and 12.1 (WP ids "2", "6.1", "12.1"); imprint from Christoph (WhatsApp 2026-10-11).
@@ -267,7 +267,7 @@ LANG_SWITCH = '''<div class="lang-switch">
       </div>'''
 
 
-def shell(*, title, desc, canonical, robots, nav_items, home_href, nav_right, mob_btns, main, foot):
+def shell(*, title, desc, canonical, robots, nav_items, home_href, nav_right, mob_btns, main, foot, css=None):
     js = bt.JS
     old_title = "document.title=lang==='de'?'ESTX Utility Token — ESTX.Exchange':'ESTX Utility Token — ESTX.Exchange';"
     assert js.count(old_title) == 1
@@ -286,7 +286,7 @@ def shell(*, title, desc, canonical, robots, nav_items, home_href, nav_right, mo
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <script>{bt.HEAD_JS}</script>
-<style>{bt.CSS}{LI_CSS}</style>
+<style>{css or (bt.CSS + LI_CSS)}</style>
 </head>
 <body>
 
@@ -381,7 +381,7 @@ def home_block(lang):
           <a href="mailto:hello@estx.li" class="btn-hero-outline">{e(L(lang, "Contact", "Kontakt"))}</a>
         </div>
       </div>
-      <aside class="token-card co-card reveal" aria-label="{e(L(lang, "Company profile", "Firmenprofil"))}">
+      <aside class="co-card reveal" aria-label="{e(L(lang, "Company profile", "Firmenprofil"))}">
         <div class="tc-top"><img src="brand_assets/logo_bw.svg" alt="ESTX" class="tc-logo"/><span class="tc-chip">GmbH · FL</span></div>
         <div class="tc-label">{e(L(lang, "Company profile", "Firmenprofil"))}</div>
         <dl class="co-rows">{rows}</dl>
@@ -400,12 +400,10 @@ def home_block(lang):
 </div></section>'''
 
     places = [(r_mgmt[1], r_mgmt[0], "ESTX Venture GmbH, Ruggell"),
-              (r_tech[1], r_tech[0], L(lang, "Development teams", "Entwicklungsteams")),
-              (r_ops[1].split(", ", 1)[1], r_ops[0], L(lang, "ESTX Georgia LLC, Kutaisi – a separate, locally licensed company",
-                                                         "ESTX Georgia LLC, Kutaisi – eine eigenständige, lokal lizenzierte Gesellschaft"))]
+              (r_tech[1], r_tech[0], L(lang, "Development teams", "Entwicklungsteams"))]   # no exchange operator here (Christoph)
     structure = f'''<section class="sec alt" id="{a("structure")}"><div class="wrap">
 {head(lang, L(lang, "Structure", "Struktur"), L(lang, "Clear responsibilities", "Klare Zuständigkeiten"), text("12.1", lang, 0))}
-<div class="grid g3">{"".join(f'<div class="why-card plain place reveal"><div class="place-where">{e(w)}</div><h3>{e(r)}</h3><p>{e(who)}</p></div>' for w, r, who in places)}</div>
+<div class="grid g2">{"".join(f'<div class="why-card plain place reveal"><div class="place-where">{e(w)}</div><h3>{e(r)}</h3><p>{e(who)}</p></div>' for w, r, who in places)}</div>
 </div></section>'''
 
     management = f'''<section class="sec" id="{a("management")}"><div class="wrap">
@@ -431,19 +429,19 @@ def home_block(lang):
 def home_page():
     company = "".join(f'<li><a href="#{k}-en" data-lang="en">{en}</a><a href="#{k}-de" data-lang="de">{de}</a></li>' for k, en, de in HOME_NAV)
     cols = (IMPRINT
-            + f'<div><div class="f-col-h">{bi("Company", "Unternehmen")}</div><ul class="f-list">{company}</ul></div>'
-            + f'<div><div class="f-col-h">{bi("More", "Weiteres")}</div><ul class="f-list"><li><a href="token.html">ESTX Token</a></li></ul></div>')
+            + f'<div><div class="f-col-h">{bi("Company", "Unternehmen")}</div><ul class="f-list">{company}</ul></div>')
     desc = f'<p class="f-desc">ESTX Venture GmbH · Ruggell, Liechtenstein</p>'
     contact_btn = f'<a href="mailto:hello@estx.li" class="btn-primary">{bi("Contact", "Kontakt")}</a>'
     return shell(title="ESTX Venture GmbH — Ruggell, Liechtenstein",
                  desc="ESTX Venture GmbH, Ruggell, Liechtenstein: technology development, management and regulatory coordination of the ESTX ecosystem.",
                  canonical="https://estx.li/", robots="index, follow", nav_items=HOME_NAV, home_href="#top",
                  nav_right=contact_btn, mob_btns=contact_btn,
-                 main=home_block("en") + "\n" + home_block("de"), foot=footer(desc, cols))
+                 main=home_block("en") + "\n" + home_block("de"), foot=footer(desc, cols),
+                 css=(bt.CSS + LI_CSS).replace(".token-card", ".co-card"))
 
 
 LI_CSS = r"""
-/* estx.li additions on top of the token page styles */
+/* estx.li additions on top of the shared site styles */
 @media(min-width:1100px) and (max-width:1359px){.nav-links,.nav-right{display:none;}.burger{display:inline-block;}}
 .nav-link,.nav-login,.nav-right .btn-primary{white-space:nowrap;}
 .g3{grid-template-columns:1fr;}
@@ -504,12 +502,11 @@ def build():
     os.makedirs(os.path.join(OUT, "brand_assets"), exist_ok=True)
     for f in ("logo.svg", "logo_bw.svg", "favicon.png"):
         shutil.copy(os.path.join(HERE, "brand_assets", f), os.path.join(OUT, "brand_assets", f))
-    if bt.PDF_OK:
-        shutil.copy(os.path.join(HERE, PDF), os.path.join(OUT, PDF))
-    for name, page in (("index.html", home_page()), ("token.html", token_page())):
-        assert "estx.exchange\"" not in page and "href=\"https://estx.exchange" not in page and "trade.estx.exchange" not in page, name
-        open(os.path.join(OUT, name), "w", encoding="utf-8").write(page)
-        print("written:", os.path.join(OUT, name), len(page.encode()), "bytes")
+    page = home_page()
+    banned = re.findall(r"(?i)token|whitepaper|etherscan|vesting|estx\.exchange|crypto|krypto|\.pdf", page)  # whole source, CSS/JS included
+    assert not banned, f"estx.li must stay corporate (Christoph 2026-10-12): {sorted(set(banned))}"
+    open(os.path.join(OUT, "index.html"), "w", encoding="utf-8").write(page)
+    print("written:", os.path.join(OUT, "index.html"), len(page.encode()), "bytes")
 
 
 if __name__ == "__main__":

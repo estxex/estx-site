@@ -81,7 +81,7 @@ nav.top{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 24px;backgr
 .btn-hero-white:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.28);}
 .btn-hero-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#fff;font-weight:700;font-size:0.85rem;padding:13px 28px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.25);text-decoration:none;transition:border-color 0.22s,background 0.22s,transform 0.22s;}
 .btn-hero-outline:hover{border-color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.08);transform:translateY(-2px);}
-.token-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:28px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 30px 80px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,0.08);max-width:460px;}
+.co-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:28px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 30px 80px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,0.08);max-width:460px;}
 .tc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;}
 .tc-logo{height:28px;width:auto;}
 .tc-chip{font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#5b9aff;background:rgba(91,154,255,0.12);border:1px solid rgba(91,154,255,0.25);border-radius:999px;padding:5px 11px;}
@@ -99,7 +99,7 @@ nav.top{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 24px;backgr
 .hfeat-icon svg{width:18px;height:18px;}
 .hfeat-label{font-size:0.68rem;font-weight:600;color:rgba(255,255,255,0.45);}
 .hfeat-val{font-family:'Outfit',sans-serif;font-size:1.05rem;font-weight:800;color:#fff;}
-@media(min-width:1000px){.hero-grid{grid-template-columns:1.25fr 1fr;gap:64px;}.token-card{justify-self:end;width:100%;}}
+@media(min-width:1000px){.hero-grid{grid-template-columns:1.25fr 1fr;gap:64px;}.co-card{justify-self:end;width:100%;}}
 
 /* SECTIONS — same rhythm as index.html */
 .sec{padding:96px 24px;background:#fff;}
@@ -216,7 +216,7 @@ footer{background:var(--dark);padding:60px 24px 32px;border-top:1px solid rgba(2
   th,td{padding:12px 14px;}
 }
 
-/* estx.li additions on top of the token page styles */
+/* estx.li additions on top of the shared site styles */
 @media(min-width:1100px) and (max-width:1359px){.nav-links,.nav-right{display:none;}.burger{display:inline-block;}}
 .nav-link,.nav-login,.nav-right .btn-primary{white-space:nowrap;}
 .g3{grid-template-columns:1fr;}
@@ -320,7 +320,7 @@ footer{background:var(--dark);padding:60px 24px 32px;border-top:1px solid rgba(2
           <a href="mailto:hello@estx.li" class="btn-hero-outline">Contact</a>
         </div>
       </div>
-      <aside class="token-card co-card reveal" aria-label="Company profile">
+      <aside class="co-card reveal" aria-label="Company profile">
         <div class="tc-top"><img src="brand_assets/logo_bw.svg" alt="ESTX" class="tc-logo"/><span class="tc-chip">GmbH · FL</span></div>
         <div class="tc-label">Company profile</div>
         <dl class="co-rows"><div class="co-row"><dt>Company</dt><dd>ESTX Venture GmbH</dd></div><div class="co-row"><dt>Registered office</dt><dd>Ruggell, Liechtenstein</dd></div><div class="co-row"><dt>Commercial register</dt><dd>FL-0002.723.364-0</dd></div><div class="co-row"><dt>CEO</dt><dd>Christoph Bosch</dd></div></dl>
@@ -336,7 +336,7 @@ footer{background:var(--dark);padding:60px 24px 32px;border-top:1px solid rgba(2
 
 <section class="sec alt" id="structure-en"><div class="wrap">
 <div class="sec-head reveal"><div class="label">Structure</div><h2>Clear responsibilities</h2><p>ESTX Venture GmbH operates under a centralized management structure with clearly defined operational responsibilities.</p></div>
-<div class="grid g3"><div class="why-card plain place reveal"><div class="place-where">Liechtenstein</div><h3>Management &amp; regulatory coordination</h3><p>ESTX Venture GmbH, Ruggell</p></div><div class="why-card plain place reveal"><div class="place-where">European Union &amp; Ukraine</div><h3>Technology &amp; development</h3><p>Development teams</p></div><div class="why-card plain place reveal"><div class="place-where">Georgia</div><h3>Operation of ESTX.exchange International</h3><p>ESTX Georgia LLC, Kutaisi – a separate, locally licensed company</p></div></div>
+<div class="grid g2"><div class="why-card plain place reveal"><div class="place-where">Liechtenstein</div><h3>Management &amp; regulatory coordination</h3><p>ESTX Venture GmbH, Ruggell</p></div><div class="why-card plain place reveal"><div class="place-where">European Union &amp; Ukraine</div><h3>Technology &amp; development</h3><p>Development teams</p></div></div>
 </div></section>
 
 <section class="sec" id="management-en"><div class="wrap">
@@ -371,7 +371,7 @@ footer{background:var(--dark);padding:60px 24px 32px;border-top:1px solid rgba(2
           <a href="mailto:hello@estx.li" class="btn-hero-outline">Kontakt</a>
         </div>
       </div>
-      <aside class="token-card co-card reveal" aria-label="Firmenprofil">
+      <aside class="co-card reveal" aria-label="Firmenprofil">
         <div class="tc-top"><img src="brand_assets/logo_bw.svg" alt="ESTX" class="tc-logo"/><span class="tc-chip">GmbH · FL</span></div>
         <div class="tc-label">Firmenprofil</div>
         <dl class="co-rows"><div class="co-row"><dt>Firma</dt><dd>ESTX Venture GmbH</dd></div><div class="co-row"><dt>Sitz</dt><dd>Ruggell, Liechtenstein</dd></div><div class="co-row"><dt>Handelsregister</dt><dd>FL-0002.723.364-0</dd></div><div class="co-row"><dt>CEO</dt><dd>Christoph Bosch</dd></div></dl>
@@ -387,7 +387,7 @@ footer{background:var(--dark);padding:60px 24px 32px;border-top:1px solid rgba(2
 
 <section class="sec alt" id="structure-de"><div class="wrap">
 <div class="sec-head reveal"><div class="label">Struktur</div><h2>Klare Zuständigkeiten</h2><p>Die ESTX Venture GmbH operiert unter einer zentralisierten Managementstruktur mit klar definierten operativen Verantwortlichkeiten.</p></div>
-<div class="grid g3"><div class="why-card plain place reveal"><div class="place-where">Liechtenstein</div><h3>Management &amp; regulatorische Koordination</h3><p>ESTX Venture GmbH, Ruggell</p></div><div class="why-card plain place reveal"><div class="place-where">Europäische Union &amp; Ukraine</div><h3>Technologie &amp; Entwicklung</h3><p>Entwicklungsteams</p></div><div class="why-card plain place reveal"><div class="place-where">Georgien</div><h3>Betrieb von ESTX.exchange International</h3><p>ESTX Georgia LLC, Kutaisi – eine eigenständige, lokal lizenzierte Gesellschaft</p></div></div>
+<div class="grid g2"><div class="why-card plain place reveal"><div class="place-where">Liechtenstein</div><h3>Management &amp; regulatorische Koordination</h3><p>ESTX Venture GmbH, Ruggell</p></div><div class="why-card plain place reveal"><div class="place-where">Europäische Union &amp; Ukraine</div><h3>Technologie &amp; Entwicklung</h3><p>Entwicklungsteams</p></div></div>
 </div></section>
 
 <section class="sec" id="management-de"><div class="wrap">
@@ -417,7 +417,7 @@ footer{background:var(--dark);padding:60px 24px 32px;border-top:1px solid rgba(2
         <img src="brand_assets/logo_bw.svg" alt="ESTX" style="height:30px;width:auto;"/>
         <p class="f-desc">ESTX Venture GmbH · Ruggell, Liechtenstein</p>
       </div>
-      <div id="imprint"><div class="f-col-h"><span data-lang="en">Imprint</span><span data-lang="de">Impressum</span></div><p class="f-text">ESTX Venture GmbH<br/>Industriestrasse 4<br/>9491 Ruggell, Liechtenstein<br/>CEO: Christoph Bosch<br/><span data-lang="en">Commercial register</span><span data-lang="de">Handelsregister</span>: FL-0002.723.364-0<br/>E-mail: <a href="mailto:hello@estx.li">hello@estx.li</a></p></div><div><div class="f-col-h"><span data-lang="en">Company</span><span data-lang="de">Unternehmen</span></div><ul class="f-list"><li><a href="#about-en" data-lang="en">Company</a><a href="#about-de" data-lang="de">Unternehmen</a></li><li><a href="#structure-en" data-lang="en">Structure</a><a href="#structure-de" data-lang="de">Struktur</a></li><li><a href="#management-en" data-lang="en">Management</a><a href="#management-de" data-lang="de">Geschäftsführung</a></li><li><a href="#contact-en" data-lang="en">Contact</a><a href="#contact-de" data-lang="de">Kontakt</a></li></ul></div><div><div class="f-col-h"><span data-lang="en">More</span><span data-lang="de">Weiteres</span></div><ul class="f-list"><li><a href="token.html">ESTX Token</a></li></ul></div>
+      <div id="imprint"><div class="f-col-h"><span data-lang="en">Imprint</span><span data-lang="de">Impressum</span></div><p class="f-text">ESTX Venture GmbH<br/>Industriestrasse 4<br/>9491 Ruggell, Liechtenstein<br/>CEO: Christoph Bosch<br/><span data-lang="en">Commercial register</span><span data-lang="de">Handelsregister</span>: FL-0002.723.364-0<br/>E-mail: <a href="mailto:hello@estx.li">hello@estx.li</a></p></div><div><div class="f-col-h"><span data-lang="en">Company</span><span data-lang="de">Unternehmen</span></div><ul class="f-list"><li><a href="#about-en" data-lang="en">Company</a><a href="#about-de" data-lang="de">Unternehmen</a></li><li><a href="#structure-en" data-lang="en">Structure</a><a href="#structure-de" data-lang="de">Struktur</a></li><li><a href="#management-en" data-lang="en">Management</a><a href="#management-de" data-lang="de">Geschäftsführung</a></li><li><a href="#contact-en" data-lang="en">Contact</a><a href="#contact-de" data-lang="de">Kontakt</a></li></ul></div>
     </div>
     <div class="f-bottom"><div>© 2026 ESTX Venture GmbH</div><div></div></div>
   </div>
