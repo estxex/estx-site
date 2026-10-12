@@ -235,7 +235,7 @@ def footer():
         {bt.wp_button("btn-primary", "Whitepaper (PDF)", "en", "") .replace('class="btn-primary"', 'class="btn-primary" style="font-size:0.78rem;"')}
       </div>
       <div id="imprint"><div class="f-col-h">{bi("Issuer · Imprint", "Emittentin · Impressum")}</div>
-        <p class="f-text">ESTX Venture GmbH<br/>Industriestrasse 4<br/>9491 Ruggell, Liechtenstein<br/>CEO: Christoph Bosch<br/>{bi("Commercial register", "Handelsregister")}: {todo("FL-…")}<br/>E-mail: {todo("hello@estx.li?")}</p></div>
+        <p class="f-text">ESTX Venture GmbH<br/>Industriestrasse 4<br/>9491 Ruggell, Liechtenstein<br/>CEO: Christoph Bosch<br/>{bi("Commercial register", "Handelsregister")}: FL-0002.723.364-0<br/>E-mail: <a href="mailto:hello@estx.li">hello@estx.li</a></p></div>
       <div><div class="f-col-h">{bi("Exchange operator", "Börsenbetreiberin")}</div>
         <p class="f-text">ESTX.exchange International<br/>ESTX Georgia LLC, Kutaisi, Georgia<br/>{bi("Registration number", "Registrierungsnummer")} 412800036<br/>VASP License L37-2026<br/>National Bank of Georgia</p></div>
       <div><div class="f-col-h">{bi("Links", "Links")}</div><ul class="f-list">
