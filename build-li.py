@@ -225,8 +225,7 @@ def page_block(lang):
 TOKEN_NAV = [("why", "Why ESTX", "Warum ESTX"), ("ecosystem", "Ecosystem", "Ökosystem"), ("utility", "Utility", "Nutzen"),
              ("allocation", "Tokenomics", "Tokenomics"), ("contract", "Technology", "Technologie"), ("roadmap", "Roadmap", "Roadmap"),
              ("governance", "Governance", "Governance")]
-HOME_NAV = [("about", "Company", "Unternehmen"), ("structure", "Structure", "Struktur"),
-            ("management", "Management", "Geschäftsführung"), ("contact", "Contact", "Kontakt")]
+HOME_NAV = [("about", "Company", "Unternehmen"), ("structure", "Structure", "Struktur"), ("contact", "Contact", "Kontakt")]
 
 
 def nav_links(items, cls, close=False):
@@ -236,7 +235,7 @@ def nav_links(items, cls, close=False):
 
 
 IMPRINT = (f'<div id="imprint"><div class="f-col-h">{bi("Imprint", "Impressum")}</div>'
-           f'<p class="f-text">ESTX Venture GmbH<br/>Industriestrasse 4<br/>9491 Ruggell, Liechtenstein<br/>CEO: Christoph Bosch<br/>'
+           f'<p class="f-text">ESTX Venture GmbH<br/>Industriestrasse 4<br/>9491 Ruggell, Liechtenstein<br/>'
            f'{bi("Commercial register", "Handelsregister")}: FL-0002.723.364-0<br/>E-mail: <a href="mailto:hello@estx.li">hello@estx.li</a></p></div>')
 
 
@@ -351,8 +350,6 @@ def token_page():
 def home_block(lang):
     de = lang == "de"
     a = lambda k: f"{k}-{lang}"
-    role, rest = para("12.1", lang, 1).split(": ", 1)
-    name, ceo_desc = rest.split(" – ", 1)
     resp = [x.strip() for x in para("12.1", lang, 3).split("•") if x.strip()]   # role: place (x3)
     assert len(resp) == 3
     r_mgmt, r_tech, r_ops = (x.split(": ", 1) for x in resp)
@@ -364,8 +361,7 @@ def home_block(lang):
                    "und koordiniert dessen Management und regulatorische Belange.")
     facts = [(L(lang, "Company", "Firma"), "ESTX Venture GmbH"),
              (L(lang, "Registered office", "Sitz"), L(lang, "Ruggell, Liechtenstein", "Ruggell, Liechtenstein")),
-             (L(lang, "Commercial register", "Handelsregister"), "FL-0002.723.364-0"),
-             ("CEO", name)]
+             (L(lang, "Commercial register", "Handelsregister"), "FL-0002.723.364-0")]
     rows = "".join(f'<div class="co-row"><dt>{e(k)}</dt><dd>{e(v)}</dd></div>' for k, v in facts)
     arrow = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'
     hero = f'''<section class="hero" id="{a("top")}">
@@ -406,24 +402,11 @@ def home_block(lang):
 <div class="grid g2">{"".join(f'<div class="why-card plain place reveal"><div class="place-where">{e(w)}</div><h3>{e(r)}</h3><p>{e(who)}</p></div>' for w, r, who in places)}</div>
 </div></section>'''
 
-    management = f'''<section class="sec" id="{a("management")}"><div class="wrap">
-{head(lang, "Management", L(lang, "Leadership", "Geschäftsführung"))}
-<div class="grid g2">
-<div class="why-card plain ceo-card reveal"><div class="ceo"><div class="ceo-mono" aria-hidden="true">CB</div><div><div class="ceo-role">{e(role)}</div><div class="ceo-name">{e(name)}</div><div class="ceo-desc">{e(ceo_desc)}</div></div></div></div>
-<div class="why-card plain reveal"><h3>{e(L(lang, "Company details", "Firmendaten"))}</h3><dl class="co-rows light">
-  <div class="co-row"><dt>{e(L(lang, "Company", "Firma"))}</dt><dd>ESTX Venture GmbH</dd></div>
-  <div class="co-row"><dt>{e(L(lang, "Address", "Adresse"))}</dt><dd>Industriestrasse 4, 9491 Ruggell, Liechtenstein</dd></div>
-  <div class="co-row"><dt>{e(L(lang, "Commercial register", "Handelsregister"))}</dt><dd>FL-0002.723.364-0</dd></div>
-  <div class="co-row"><dt>E-mail</dt><dd><a href="mailto:hello@estx.li">hello@estx.li</a></dd></div>
-</dl></div>
-</div>
-</div></section>'''
-
     contact = f'''<section class="cta-band" id="{a("contact")}"><div class="wrap cta-inner">
 <div><h2>{e(L(lang, "Get in touch", "Kontakt aufnehmen"))}</h2><p>{e(L(lang, "For business enquiries, write to us.", "Für geschäftliche Anfragen schreiben Sie uns."))}</p></div>
 <a href="mailto:hello@estx.li" class="btn-cta-white">hello@estx.li</a>
 </div></section>'''
-    return f'<div data-lang="{lang}">\n' + "\n\n".join([hero, about, structure, management, contact]) + "\n</div>"
+    return f'<div data-lang="{lang}">\n' + "\n\n".join([hero, about, structure, contact]) + "\n</div>"
 
 
 def home_page():
@@ -504,6 +487,7 @@ def build():
         shutil.copy(os.path.join(HERE, "brand_assets", f), os.path.join(OUT, "brand_assets", f))
     page = home_page()
     banned = re.findall(r"(?i)token|whitepaper|etherscan|vesting|estx\.exchange|crypto|krypto|\.pdf", page)  # whole source, CSS/JS included
+    banned += re.findall(r"Bosch|\bCEO\b", page)  # no names of people without their OK (Sergii 2026-10-12)
     assert not banned, f"estx.li must stay corporate (Christoph 2026-10-12): {sorted(set(banned))}"
     open(os.path.join(OUT, "index.html"), "w", encoding="utf-8").write(page)
     print("written:", os.path.join(OUT, "index.html"), len(page.encode()), "bytes")
