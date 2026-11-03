@@ -81,7 +81,7 @@ def sec_why(lang):
 
 
 def sec_expansion(lang):
-    jur = [("live", "Licensed · VASP", "Lizenziert · VASP", "Georgia", "Georgien", "6.3", (0, 1)),
+    jur = [("live", "Operator · Georgia", "Betreiberin · Georgien", "Georgia", "Georgien", "6.3", (0, 1)),
            ("planned", "Planned · from Dec 2026", "Geplant · ab Dez. 2026", "European Union / EEA", "Europäische Union / EWR", "6.2", (0, 1)),
            ("eval", "Evaluation", "Evaluierung", "United Arab Emirates", "Vereinigte Arabische Emirate", "6.4", (0, 1))]
     cards = "".join(
@@ -328,7 +328,7 @@ def token_page():
     home = f'<a href="index.html" class="nav-login">{bi("Company", "Unternehmen")}</a>'
     cols = (IMPRINT
             + f'<div><div class="f-col-h">{bi("Exchange operator", "Börsenbetreiberin")}</div>'
-              f'<p class="f-text">ESTX.exchange International<br/>ESTX Georgia LLC, Kutaisi, Georgia<br/>{bi("Registration number", "Registrierungsnummer")} 412800036<br/>VASP License L37-2026<br/>National Bank of Georgia</p></div>'
+              f'<p class="f-text">ESTX.exchange International<br/>ESTX Georgia LLC, Kutaisi, Georgia<br/>{bi("Registration number", "Registrierungsnummer")} 412800036</p></div>'
             + f'<div><div class="f-col-h">{bi("Links", "Links")}</div><ul class="f-list">'
               f'<li><a href="index.html">ESTX Venture GmbH</a></li>'
               f'<li><a href="{e(PDF)}">Whitepaper (PDF)</a></li>'
