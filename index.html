@@ -4,18 +4,18 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>ESTX Exchange — Where Crypto Starts to Trade</title>
-<meta name="description" content="Digital asset exchange with a purpose-built three-tier market structure. Trade Bitcoin, Ethereum and 200+ assets with deep liquidity and tight spreads."/>
+<meta name="description" content="ESTX Exchange is a digital asset exchange platform, currently in its testing and preparation phase."/>
 <link rel="canonical" href="https://estx.exchange/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="ESTX Exchange"/>
 <meta property="og:title" content="ESTX Exchange — Where Crypto Starts to Trade"/>
-<meta property="og:description" content="Digital asset exchange with a purpose-built three-tier market structure. Trade Bitcoin, Ethereum and 200+ assets with deep liquidity and tight spreads."/>
+<meta property="og:description" content="ESTX Exchange is a digital asset exchange platform, currently in its testing and preparation phase."/>
 <meta property="og:url" content="https://estx.exchange/"/>
 <meta property="og:image" content="https://estx.exchange/brand_assets/image8.jpg"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:site" content="@estx_exchange"/>
 <meta name="twitter:title" content="ESTX Exchange — Where Crypto Starts to Trade"/>
-<meta name="twitter:description" content="Digital asset exchange with a purpose-built three-tier market structure. Trade Bitcoin, Ethereum and 200+ assets with deep liquidity and tight spreads."/>
+<meta name="twitter:description" content="ESTX Exchange is a digital asset exchange platform, currently in its testing and preparation phase."/>
 <meta name="twitter:image" content="https://estx.exchange/brand_assets/image8.jpg"/>
 <link rel="icon" href="brand_assets/favicon.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -35,6 +35,10 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:all 0.35s ease;}
+.test-banner{background:#FFF4D6;color:#4A3600;border-bottom:1px solid #F0D58A;padding:9px 20px;text-align:center;font-family:'DM Sans',sans-serif;font-size:0.82rem;line-height:1.45;}
+.test-banner strong{font-weight:700;margin-right:6px;}
+@media(max-width:767px){.test-banner{font-size:0.74rem;padding:8px 14px;}.test-banner strong{display:block;margin:0 0 2px;}}
+html{scroll-padding-top:130px;}
 nav.scrolled{background:rgba(255,255,255,0.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(20,76,188,0.08);box-shadow:0 2px 24px rgba(3,35,99,0.07);}
 .nav-link{font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(10,22,40,0.7);text-decoration:none;transition:color 0.2s;position:relative;}
 .nav-link::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:2px;background:var(--brand);transform:scaleX(0);transform-origin:left;transition:transform 0.2s ease;}
@@ -138,7 +142,7 @@ option{background:#0a1628;}
 .hero-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% center;}
 .hero-grad-lr{position:absolute;inset:0;background:linear-gradient(100deg,rgba(2,13,36,0.96) 0%,rgba(2,13,36,0.88) 22%,rgba(2,13,36,0.5) 48%,rgba(2,13,36,0.18) 78%);}
 .hero-grad-tb{position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,13,36,0.35) 0%,transparent 16%,transparent 65%,rgba(2,13,36,0.92) 100%);}
-.hero-dark-content{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:130px 40px 36px;min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;}
+.hero-dark-content{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:175px 40px 36px;min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;}
 .hero-dark-text{max-width:580px;margin-top:16px;}
 .hero-dark-h1{font-size:clamp(2.6rem,5.5vw,5.2rem);font-weight:900;color:#fff;line-height:0.96;letter-spacing:-0.04em;margin-bottom:22px;text-shadow:0 2px 30px rgba(0,0,0,0.3);}
 .hero-dark-sub{font-size:1.05rem;color:rgba(255,255,255,0.7);line-height:1.8;margin-bottom:0;max-width:480px;text-shadow:0 1px 8px rgba(0,0,0,0.2);}
@@ -165,7 +169,7 @@ option{background:#0a1628;}
   .hero-bg-img{object-position:78% 8% !important;}
   .hero-grad-lr{background:linear-gradient(180deg,transparent 0%,transparent 22%,rgba(2,13,36,0.55) 38%,rgba(2,13,36,0.95) 52%,rgba(2,13,36,1) 100%) !important;}
   .hero-grad-tb{background:none !important;}
-  .hero-dark-content{padding:80px 20px 24px;justify-content:flex-end !important;}
+  .hero-dark-content{padding:150px 20px 24px;justify-content:flex-end !important;}
   .hero-dark-text{margin-top:42vh;}
   .hero-dark-h1{font-size:2.3rem;margin-bottom:14px;}
   .hero-dark-sub{font-size:0.9rem;}
@@ -241,8 +245,9 @@ option{background:#0a1628;}
 </div>
 
 <!-- NAV -->
-<nav id="mainNav" class="scrolled px-6 py-4">
-  <div class="max-w-7xl mx-auto flex items-center justify-between">
+<nav id="mainNav" class="scrolled pb-4">
+  <div class="test-banner" role="status"><strong data-i18n="banner_title">ESTX Exchange – Test &amp; Preparation Phase</strong><span data-i18n="banner_text">The platform is currently in its testing and preparation phase. Live customer trading, deposits, withdrawals and custody services are not currently available.</span></div>
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-6 pt-4">
     <a href="#home"><img src="brand_assets/logo.svg" alt="ESTX" style="height:34px;width:auto;"/></a>
     <div class="hidden md:flex items-center gap-7">
       <a href="#home" class="nav-link" data-i18n="nav_home">Home</a>
@@ -308,20 +313,10 @@ option{background:#0a1628;}
 
     <!-- Bottom bar -->
     <div class="hero-dark-bottom reveal">
-      <div class="hero-dark-cd" style="display:none;">
-        <div class="hcd"><div class="hcd-n" id="cd-d">00</div><div class="hcd-l" data-i18n="cd_days">Days</div></div>
-        <span class="hcd-sep">:</span>
-        <div class="hcd"><div class="hcd-n" id="cd-h">00</div><div class="hcd-l" data-i18n="cd_hours">Hrs</div></div>
-        <span class="hcd-sep">:</span>
-        <div class="hcd"><div class="hcd-n" id="cd-m">00</div><div class="hcd-l" data-i18n="cd_minutes">Min</div></div>
-        <span class="hcd-sep">:</span>
-        <div class="hcd"><div class="hcd-n" id="cd-s">00</div><div class="hcd-l" data-i18n="cd_seconds">Sec</div></div>
-        <div style="font-size:0.68rem;color:rgba(255,255,255,0.35);line-height:1.3;margin-left:10px;" data-i18n-html="cd_launch_label">Launch<br/><span style="color:#5b9aff;font-weight:700;">Coming soon</span></div>
-      </div>
       <div class="hero-dark-feats">
         <div class="hfeat">
           <div class="hfeat-icon" style="background:rgba(20,76,188,0.2);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-          <div><div class="hfeat-label" data-i18n="hero_market_tiers">Market Tiers</div><div class="hfeat-val">3</div></div>
+          <div><div class="hfeat-label" data-i18n="hero_market_tiers">Market Tiers</div><div class="hfeat-val">2</div></div>
         </div>
         <div class="hfeat">
           <div class="hfeat-icon" style="background:rgba(16,185,129,0.15);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
@@ -397,8 +392,8 @@ option{background:#0a1628;}
         <div class="why-icon" style="background:linear-gradient(135deg,rgba(201,168,76,0.15),rgba(201,168,76,0.07));">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <h3 class="why-card-title" style="font-size:1rem;font-weight:700;color:#0a1628;margin-bottom:10px;transition:color 0.25s ease;" data-i18n="why_c3_title">Prime Segment — Coming Soon</h3>
-        <p style="font-size:0.875rem;color:#64748b;line-height:1.7;" data-i18n="why_c3_desc">A dedicated premium segment for tokenized assets and institutional listings is in preparation. Details coming soon.</p>
+        <h3 class="why-card-title" style="font-size:1rem;font-weight:700;color:#0a1628;margin-bottom:10px;transition:color 0.25s ease;" data-i18n="why_c3_title">Transparent Listing Criteria</h3>
+        <p style="font-size:0.875rem;color:#64748b;line-height:1.7;" data-i18n="why_c3_desc">Clear criteria and a structured screening process for every new listing.</p>
       </div>
       <!-- Card 4 -->
       <div class="why-card reveal">
@@ -414,7 +409,7 @@ option{background:#0a1628;}
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
         </div>
         <h3 class="why-card-title" style="font-size:1rem;font-weight:700;color:#0a1628;margin-bottom:10px;transition:color 0.25s ease;" data-i18n="why_c5_title">Secure by Design</h3>
-        <p style="font-size:0.875rem;color:#64748b;line-height:1.7;" data-i18n="why_c5_desc">Multi-layered security framework. Two-factor authentication, cold storage, and continuous monitoring.</p>
+        <p style="font-size:0.875rem;color:#64748b;line-height:1.7;" data-i18n="why_c5_desc">Multi-layered security framework. Two-factor authentication, suspicious-login detection and continuous monitoring.</p>
       </div>
       <!-- Card 6 -->
       <div class="why-card reveal">
@@ -448,33 +443,16 @@ option{background:#0a1628;}
   <div class="max-w-7xl mx-auto">
     <div class="reveal" style="text-align:center;max-width:620px;margin:0 auto 60px;">
       <div class="label" style="justify-content:center;" data-i18n="ms_label">Market Structure</div>
-      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#0a1628;letter-spacing:-0.03em;line-height:1.1;margin-bottom:16px;" data-i18n="ms_heading">Three Tiers. Clear Segmentation.</h2>
-      <p style="font-size:1rem;color:#64748b;line-height:1.75;" data-i18n="ms_subtitle">ESTX offers three clearly defined market segments — providing the right environment for every stage of a digital asset's lifecycle.</p>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#0a1628;letter-spacing:-0.03em;line-height:1.1;margin-bottom:16px;" data-i18n="ms_heading">Two Segments. Clear Structure.</h2>
+      <p style="font-size:1rem;color:#64748b;line-height:1.75;" data-i18n="ms_subtitle">ESTX offers two clearly defined market segments — providing the right environment for every stage of a digital asset's lifecycle.</p>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-6">
-      <!-- Tier 1 Prime -->
+    <div class="grid md:grid-cols-2 gap-6" style="max-width:880px;margin:0 auto;">
+      <!-- Market -->
       <div class="tier-card reveal">
-        <div class="tier-card-accent" style="background:linear-gradient(90deg,#B8963E,#C9A84C,#e0c068);"></div>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-          <span style="font-family:'DM Sans',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#B8963E;">Tier 1</span>
-        </div>
-        <h3 class="tier-card-title" style="font-family:'Outfit',sans-serif;font-size:1.4rem;font-weight:800;color:#0a1628;margin-bottom:4px;">ESTX Prime</h3>
-        <div style="font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;color:#B8963E;margin-bottom:16px;" data-i18n="ms_t1_sub">Coming Soon</div>
-        <p style="font-size:0.875rem;color:#64748b;line-height:1.7;margin-bottom:24px;" data-i18n="ms_t1_desc">The premium segment for tokenized assets and institutional listings — where traditional finance meets blockchain infrastructure. Coming soon.</p>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
-          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="ms_t1_li1"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Tokenized asset listings</li>
-          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="ms_t1_li2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Strict listing standards</li>
-          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="ms_t1_li3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Institutional-grade infrastructure</li>
-          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="ms_t1_li4"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Real-world asset tokenization</li>
-        </ul>
-      </div>
-
-      <!-- Tier 2 Market -->
-      <div class="tier-card reveal" style="animation-delay:0.1s;">
         <div class="tier-card-accent" style="background:linear-gradient(90deg,var(--brand),#3b7dfc);"></div>
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-          <span style="font-family:'DM Sans',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--brand);">Tier 2</span>
+          <span style="font-family:'DM Sans',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--brand);">Tier 1</span>
         </div>
         <h3 class="tier-card-title" style="font-family:'Outfit',sans-serif;font-size:1.4rem;font-weight:800;color:#0a1628;margin-bottom:4px;">ESTX Market</h3>
         <div style="font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;color:var(--brand);margin-bottom:16px;" data-i18n="ms_t2_sub">Established Crypto Assets</div>
@@ -487,11 +465,11 @@ option{background:#0a1628;}
         </ul>
       </div>
 
-      <!-- Tier 3 Venture -->
-      <div class="tier-card reveal" style="animation-delay:0.2s;">
+      <!-- Venture -->
+      <div class="tier-card reveal" style="animation-delay:0.1s;">
         <div class="tier-card-accent" style="background:linear-gradient(90deg,#7C3AED,#9f67ff);"></div>
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-          <span style="font-family:'DM Sans',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#7C3AED;">Tier 3</span>
+          <span style="font-family:'DM Sans',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#7C3AED;">Tier 2</span>
         </div>
         <h3 class="tier-card-title" style="font-family:'Outfit',sans-serif;font-size:1.4rem;font-weight:800;color:#0a1628;margin-bottom:4px;">ESTX Venture</h3>
         <div style="font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;color:#7C3AED;margin-bottom:16px;" data-i18n="ms_t3_sub">Early-Stage &amp; Micro Tokens</div>
@@ -729,16 +707,8 @@ option{background:#0a1628;}
             <div><div style="font-family:'Outfit',sans-serif;font-weight:700;font-size:0.9rem;color:#0a1628;margin-bottom:3px;" data-i18n="sec_2fa_title">Two-Factor Authentication</div><div style="font-size:0.82rem;color:#64748b;line-height:1.6;" data-i18n="sec_2fa_desc">Mandatory 2FA on all withdrawals. Supported across every account action for maximum asset protection.</div></div>
           </div>
           <div style="display:flex;gap:14px;align-items:flex-start;padding:18px;background:#f8faff;border-radius:12px;border:1px solid #e8edf8;">
-            <div style="width:40px;height:40px;background:linear-gradient(135deg,#10b981,#059669);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-            <div><div style="font-family:'Outfit',sans-serif;font-weight:700;font-size:0.9rem;color:#0a1628;margin-bottom:3px;" data-i18n="sec_cold_title">Cold Storage Custody</div><div style="font-size:0.82rem;color:#64748b;line-height:1.6;" data-i18n="sec_cold_desc">The majority of digital assets are stored in secure, offline cold storage — completely isolated from online threats.</div></div>
-          </div>
-          <div style="display:flex;gap:14px;align-items:flex-start;padding:18px;background:#f8faff;border-radius:12px;border:1px solid #e8edf8;">
             <div style="width:40px;height:40px;background:linear-gradient(135deg,#f59e0b,#d97706);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
             <div><div style="font-family:'Outfit',sans-serif;font-weight:700;font-size:0.9rem;color:#0a1628;margin-bottom:3px;" data-i18n="sec_login_title">Suspicious Login Detection</div><div style="font-size:0.82rem;color:#64748b;line-height:1.6;" data-i18n="sec_login_desc">Real-time monitoring with automated alerts for unusual login patterns, device changes, or geographic anomalies.</div></div>
-          </div>
-          <div style="display:none;gap:14px;align-items:flex-start;padding:18px;background:#f8faff;border-radius:12px;border:1px solid #e8edf8;">
-            <div style="width:40px;height:40px;background:linear-gradient(135deg,var(--navy),#0a2878);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
-            <div><div style="font-family:'Outfit',sans-serif;font-weight:700;font-size:0.9rem;color:#0a1628;margin-bottom:3px;" data-i18n="sec_vasp_title">KYC &amp; AML checks</div><div style="font-size:0.82rem;color:#64748b;line-height:1.6;" data-i18n="sec_vasp_desc">Every account is verified before withdrawals are enabled.</div></div>
           </div>
           <div style="display:flex;gap:14px;align-items:flex-start;padding:18px;background:#f8faff;border-radius:12px;border:1px solid #e8edf8;">
             <div style="width:40px;height:40px;background:linear-gradient(135deg,#6366f1,#4f46e5);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="9" y1="12" x2="15" y2="12"/></svg></div>
@@ -751,23 +721,19 @@ option{background:#0a1628;}
         <div style="background:linear-gradient(135deg,var(--navy),#071a47);border-radius:20px;padding:48px 40px;color:#fff;">
           <div style="width:56px;height:56px;background:rgba(20,76,188,0.4);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
           <h3 style="font-size:1.5rem;font-weight:800;color:#fff;margin-bottom:14px;" data-i18n="sec_ent_heading">Enterprise-Grade Protection</h3>
-          <p style="font-size:0.9rem;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:28px;" data-i18n="sec_ent_desc">Your digital assets are safeguarded by institutional-level security infrastructure — the same standards used by leading financial institutions.</p>
+          <p style="font-size:0.9rem;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:28px;" data-i18n="sec_ent_desc">The platform runs on multi-layered security infrastructure — encrypted connections, two-factor authentication and continuous monitoring.</p>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
             <div style="background:rgba(255,255,255,0.07);border-radius:10px;padding:16px;text-align:center;">
               <div style="font-family:'Outfit',sans-serif;font-size:1.8rem;font-weight:800;color:#fff;">99.9%</div>
               <div style="font-size:0.7rem;color:rgba(255,255,255,0.5);margin-top:4px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;" data-i18n="sec_stat_uptime">Uptime SLA</div>
             </div>
             <div style="background:rgba(255,255,255,0.07);border-radius:10px;padding:16px;text-align:center;">
-              <div style="font-family:'Outfit',sans-serif;font-size:1.8rem;font-weight:800;color:#fff;">100%</div>
-              <div style="font-size:0.7rem;color:rgba(255,255,255,0.5);margin-top:4px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;" data-i18n="sec_stat_cold">Cold Storage</div>
+              <div style="font-family:'Outfit',sans-serif;font-size:1.8rem;font-weight:800;color:#fff;">2FA</div>
+              <div style="font-size:0.7rem;color:rgba(255,255,255,0.5);margin-top:4px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;" data-i18n="sec_stat_2fa">Account Protection</div>
             </div>
             <div style="background:rgba(255,255,255,0.07);border-radius:10px;padding:16px;text-align:center;">
               <div style="font-family:'Outfit',sans-serif;font-size:1.8rem;font-weight:800;color:#fff;">24/7</div>
               <div style="font-size:0.7rem;color:rgba(255,255,255,0.5);margin-top:4px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;" data-i18n="sec_stat_monitoring">Monitoring</div>
-            </div>
-            <div style="display:none;background:rgba(255,255,255,0.07);border-radius:10px;padding:16px;text-align:center;">
-              <div style="font-family:'Outfit',sans-serif;font-size:1.8rem;font-weight:800;color:#fff;">VASP</div>
-              <div style="font-size:0.7rem;color:rgba(255,255,255,0.5);margin-top:4px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;" data-i18n="sec_stat_licensed">Licensed</div>
             </div>
           </div>
         </div>
@@ -784,10 +750,9 @@ option{background:#0a1628;}
       <div class="reveal" style="background:#fff;border:1px solid #e2e8f8;border-radius:20px;padding:44px 40px;box-shadow:0 2px 16px rgba(3,35,99,0.05);">
         <div style="width:52px;height:52px;background:linear-gradient(135deg,var(--brand),#3b7dfc);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:22px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
         <h3 style="font-size:1.4rem;font-weight:800;color:#0a1628;margin-bottom:12px;" data-i18n="inst_title">Institutional Access</h3>
-        <p style="font-size:0.9rem;color:#64748b;line-height:1.75;margin-bottom:28px;" data-i18n="inst_desc">ESTX provides dedicated infrastructure for institutional participants — deep liquidity pools, API connectivity, OTC trading desks, and bespoke custody solutions.</p>
+        <p style="font-size:0.9rem;color:#64748b;line-height:1.75;margin-bottom:28px;" data-i18n="inst_desc">ESTX is preparing dedicated infrastructure for institutional participants — API connectivity and dedicated relationship management.</p>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:28px;">
           <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="inst_li1"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>High-frequency trading API</li>
-          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="inst_li2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>OTC desk for large-block trades</li>
           <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="inst_li3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Dedicated relationship management</li>
         </ul>
         <a href="#contact" class="btn-primary" data-i18n="inst_cta">Contact Institutional Team</a>
@@ -798,33 +763,10 @@ option{background:#0a1628;}
         <p style="font-size:0.9rem;color:#64748b;line-height:1.75;margin-bottom:28px;" data-i18n="list_desc">ESTX provides a transparent, structured listing pathway for projects of all sizes — from early-stage tokens to established networks.</p>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:28px;">
           <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="list_li1"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Transparent listing criteria</li>
-          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="list_li2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Three-tier placement system</li>
+          <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="list_li2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Two-segment placement system</li>
           <li style="display:flex;gap:8px;align-items:center;font-size:0.84rem;color:#475569;" data-i18n-html="list_li3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Marketing support &amp; community access</li>
         </ul>
         <a href="#contact" class="btn-outline-dark" style="border-color:#7C3AED;color:#7C3AED;" onmouseover="this.style.background='rgba(124,58,237,0.06)'" onmouseout="this.style.background='transparent'" data-i18n="list_cta">Apply for Listing</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ ESTX TOKEN COMMUNITY (hidden 2026-10-30) ═══ -->
-<section style="display:none;padding:96px 24px;background:var(--navy);position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 50% 50%,rgba(20,76,188,0.4) 0%,transparent 70%);"></div>
-  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:40px 40px;"></div>
-  <div class="max-w-3xl mx-auto text-center relative" style="z-index:1;">
-    <div class="reveal">
-      <div class="label label-white" style="justify-content:center;" data-i18n="token_label">ESTX Token</div>
-      <h2 style="font-size:clamp(2.2rem,5vw,3.5rem);font-weight:900;color:#fff;letter-spacing:-0.04em;line-height:1.05;margin-bottom:18px;" data-i18n="token_heading">Join the ESTX Army</h2>
-      <p style="font-size:1.05rem;color:rgba(255,255,255,0.6);line-height:1.75;margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;" data-i18n="token_subtitle">Join the ESTX Token Community and become part of the fast-growing ESTX ecosystem. Early community members receive exclusive benefits and priority access to new features.</p>
-      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-        <a href="https://t.me/estx_exchange" target="_blank" class="btn-primary" style="font-size:1rem;padding:15px 36px;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-          <span data-i18n="token_cta_tg">Join Telegram</span>
-        </a>
-        <a href="https://x.com/estx_exchange" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:transparent;border:1.5px solid rgba(255,255,255,0.3);color:#fff;font-family:'DM Sans';font-weight:700;font-size:1rem;padding:15px 36px;border-radius:8px;text-decoration:none;transition:all 0.22s;" onmouseover="this.style.borderColor='#fff';this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.3)';this.style.background='transparent'">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          <span data-i18n="token_cta_x">Follow on X</span>
-        </a>
       </div>
     </div>
   </div>
@@ -893,7 +835,7 @@ option{background:#0a1628;}
     <div style="display:grid;gap:32px;margin-bottom:48px;grid-template-columns:1fr 1fr;" class="footer-grid">
       <div>
         <img src="brand_assets/logo_bw.svg" alt="ESTX" style="height:30px;width:auto;margin-bottom:16px;"/>
-        <p style="font-size:0.82rem;color:rgba(255,255,255,0.35);line-height:1.7;max-width:240px;margin-bottom:20px;" data-i18n="footer_desc">Next-generation digital asset exchange with a purpose-built three-tier market structure.</p>
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.35);line-height:1.7;max-width:240px;margin-bottom:20px;" data-i18n="footer_desc">Next-generation digital asset exchange with a clearly segmented market structure.</p>
         <a href="https://trade.estx.exchange/signup" class="btn-primary" style="padding:10px 20px;font-size:0.78rem;" data-i18n="footer_signup">Sign Up Free</a>
         <div style="display:flex;gap:12px;margin-top:18px;">
           <a href="https://t.me/estx_exchange" target="_blank" style="width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;transition:all 0.2s;text-decoration:none;" onmouseover="this.style.background='rgba(20,76,188,0.3)';this.style.borderColor='var(--brand)'" onmouseout="this.style.background='rgba(255,255,255,0.06)';this.style.borderColor='rgba(255,255,255,0.1)'">
@@ -950,18 +892,6 @@ option{background:#0a1628;}
 function pad(n){return String(n).padStart(2,'0');}
 function closeMob(){document.getElementById('mobMenu').classList.remove('open');}
 
-// ── COUNTDOWN ───────────────────────────────────────────
-const TARGET=new Date('2026-10-15T10:00:00+02:00').getTime();
-function tick(){
-  const d=TARGET-Date.now();
-  if(d<=0){['cd-d','cd-h','cd-m','cd-s'].forEach(id=>document.getElementById(id).textContent='00');return;}
-  document.getElementById('cd-d').textContent=pad(Math.floor(d/86400000));
-  document.getElementById('cd-h').textContent=pad(Math.floor((d%86400000)/3600000));
-  document.getElementById('cd-m').textContent=pad(Math.floor((d%3600000)/60000));
-  document.getElementById('cd-s').textContent=pad(Math.floor((d%60000)/1000));
-}
-tick(); setInterval(tick,1000);
-
 // ── SCROLL REVEAL ────────────────────────────────────────
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
@@ -992,7 +922,7 @@ document.querySelectorAll('.why-card,.tier-card,.pro-card').forEach(card=>{
 
 // ── MARKET DATA (CoinGecko) ──────────────────────────────
 const CG='https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&sparkline=false&page=';
-const EXCLUDE_SYM=new Set(['usdt','usdc','busd','dai','tusd','usdp','fdusd','wbtc','weth','steth','wsteth','weeth','reth','cbeth','ezeth','eeth','susde','usde','usds','frax','pyusd','gusd','lusd','crvusd','mkusd','ethx','usdx']);
+const EXCLUDE_SYM=new Set(['xmr','zec','dash','usdt','usdc','busd','dai','tusd','usdp','fdusd','wbtc','weth','steth','wsteth','weeth','reth','cbeth','ezeth','eeth','susde','usde','usds','frax','pyusd','gusd','lusd','crvusd','mkusd','ethx','usdx']);
 
 // Real markets/coins on the exchange — pair pages only exist for these,
 // and HollaEx URLs are case-sensitive (uppercase renders an error page).
@@ -1070,12 +1000,11 @@ loadMarkets();
 
 // ── FAQ ──────────────────────────────────────────────────
 const FAQS=[
-  {q:'What is ESTX Exchange?',a:'ESTX is a digital asset exchange that stands apart from conventional crypto platforms. While we support all major cryptocurrencies like BTC, ETH, SOL, XRP, and BNB, our core focus is on listing new token projects and curated memecoins. Our unique three-tier market structure — Venture, Market, and Prime — provides clear segmentation for different asset classes and investor profiles.'},
-  {q:'How is ESTX different from Binance, Coinbase or other exchanges?',a:'ESTX is specifically designed to serve projects and communities that are underserved by major exchanges. We provide an accessible, structured listing path for token issuers who cannot afford the high fees and long waiting periods at platforms like Binance or Coinbase — while maintaining rigorous screening to ensure project quality and legitimacy. Our three-tier structure gives every project the right market environment.'},
+  {q:'What is ESTX Exchange?',a:'ESTX is a digital asset exchange that stands apart from conventional crypto platforms. While we support all major cryptocurrencies like BTC, ETH, SOL, XRP, and BNB, our core focus is on listing new token projects and curated memecoins. Our two market segments — Market and Venture — provide clear segmentation for different asset classes and investor profiles.'},
+  {q:'How is ESTX different from Binance, Coinbase or other exchanges?',a:'ESTX is specifically designed to serve projects and communities that are underserved by major exchanges. We provide an accessible, structured listing path for token issuers who cannot afford the high fees and long waiting periods at platforms like Binance or Coinbase — while maintaining rigorous screening to ensure project quality and legitimacy. Our segment structure gives every project the right market environment.'},
   {q:'Who operates ESTX.Exchange?',a:'ESTX.Exchange is operated by ESTX Georgia LLC, a company incorporated in Georgia (Registration number 412800036) with its registered office at Avtomshenebeli St. N 88 (Plot N01/298), Free Industrial Zone, Kutaisi, Georgia. ESTX Georgia LLC is the designated platform operator. The core technology infrastructure is provided through HollaEx, an external exchange technology provider, which manages the underlying wallet infrastructure and private keys.'},
   {q:'How can I buy cryptocurrency on ESTX?',a:'Getting started is simple: (1) Create an account with your email and country of residence, (2) Complete identity verification (KYC) by uploading required documents, (3) Add your payment method — credit card, debit card, or bank transfer, (4) Start buying Bitcoin, Ethereum, Solana and 200+ other cryptocurrencies using USD, EUR, GBP, AUD, and over 48 additional local currencies.'},
-  {q:'What is the ESTX Token?',a:'The ESTX Token (ERC-20 on Ethereum, fixed supply of 2,000,000,000) is the utility token of the ESTX ecosystem. It can be used to settle platform fees, for access tiers and to activate platform features. Fee reductions depend on usage and are not a financial reward or yield. The token gives no share in revenues or profits, no claim on assets and no governance or voting rights.'},
-  {q:'How do I list my token on ESTX?',a:'ESTX provides an accessible and structured listing process. Visit our "Apply for Listing" page to submit your project for review. Our team evaluates every submission through a comprehensive screening process — covering project legitimacy, team background, tokenomics, and community — before approving listings on the appropriate market tier (Venture, Market, or Prime).'},
+  {q:'How do I list my token on ESTX?',a:'ESTX provides an accessible and structured listing process. Visit our "Apply for Listing" page to submit your project for review. Our team evaluates every submission through a comprehensive screening process — covering project legitimacy, team background, tokenomics, and community — before approving listings in the appropriate market segment (Market or Venture).'},
   {q:'How do I secure my ESTX account?',a:'ESTX provides multiple layers of account security: enable Two-Factor Authentication (2FA) — which is mandatory for withdrawals — use a strong, unique password, and monitor your active sessions regularly. Our platform also includes suspicious login detection that alerts you to any unusual access attempts on your account.'},
 ];
 
@@ -1083,7 +1012,6 @@ const fc=document.getElementById('faqContainer');
 FAQS.forEach((f,i)=>{
   const item=document.createElement('div');
   item.className='faq-item reveal';
-  if(f.q.indexOf('ESTX Token')!==-1) item.style.display='none';
   item.innerHTML=`<button class="faq-btn" onclick="toggleFaq(${i})"><span>${f.q}</span><svg class="faq-chevron" id="chev-${i}" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer" id="ans-${i}"><p style="font-size:0.9rem;color:#64748b;line-height:1.75;padding-bottom:20px;">${f.a}</p></div>`;
   fc.appendChild(item);
   obs.observe(item);
@@ -1266,7 +1194,7 @@ function qtPickCoin(id){
 async function qtInit(){
   try{
     const data=await fetch(QT_CG).then(r=>r.json());
-    qtCoins=data.filter(c=>c.current_price>0);
+    qtCoins=data.filter(c=>c.current_price>0&&!['xmr','zec','dash'].includes(c.symbol));
   }catch{return;}
   // Default: USD → BTC
   qtTo=qtCoins.find(c=>c.symbol==='btc')||qtCoins[0];
@@ -1318,6 +1246,8 @@ document.head.appendChild(s);
 const i18n = {
   en: {
     // Nav
+    banner_title: 'ESTX Exchange \u2013 Test & Preparation Phase',
+    banner_text: 'The platform is currently in its testing and preparation phase. Live customer trading, deposits, withdrawals and custody services are not currently available.',
     nav_home: 'Home', nav_markets: 'Markets', nav_why: 'Why ESTX', nav_buy: 'Buy Crypto',
     nav_institutional: 'Institutional', nav_contact: 'Contact', nav_login: 'Login', nav_signup: 'Sign Up',
     // Hero
@@ -1326,9 +1256,6 @@ const i18n = {
     hero_start_trading: 'Start Now \u2014 It\u2019s Free <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
     hero_learn_more: 'View Markets',
     hero_market_tiers: 'Market Tiers', hero_crypto_assets: 'Crypto Assets',
-    // Countdown
-    cd_days: 'Days', cd_hours: 'Hrs', cd_minutes: 'Min', cd_seconds: 'Sec',
-    cd_launch_label: 'Launch<br/><span style="color:#5b9aff;font-weight:700;">Coming soon</span>',
     // Markets
     markets_label: 'Live Markets', markets_heading: 'Markets That Never Sleep',
     markets_subtitle: '200+ digital assets available on ESTX Exchange \u2014 updated in real time.',
@@ -1345,23 +1272,17 @@ const i18n = {
     why_subtitle: 'ESTX goes beyond standard crypto trading. Our main focus is listing new token projects and memecoins \u2014 alongside all major cryptocurrencies like BTC, ETH, SOL, XRP and BNB.',
     why_c1_title: 'New Token Listings', why_c1_desc: 'The launchpad for promising projects that cannot afford listings on Binance or Coinbase. A structured onboarding and screening process ensures only legitimate projects make it through.',
     why_c2_title: 'Curated Memecoins', why_c2_desc: 'A carefully vetted selection of emerging memecoins. Get early access to the tokens the market is talking about \u2014 with quality screening to separate signal from noise.',
-    why_c3_title: 'Prime Segment \u2014 Coming Soon', why_c3_desc: 'A dedicated premium segment for tokenized assets and institutional listings is in preparation. Details coming soon.',
+    why_c3_title: 'Transparent Listing Criteria', why_c3_desc: 'Clear criteria and a structured screening process for every new listing.',
     why_c4_title: 'Professional Trading', why_c4_desc: 'Advanced order book, real-time charts, and instant execution. Professional-grade tools for serious traders.',
-    why_c5_title: 'Secure by Design', why_c5_desc: 'Multi-layered security framework. Two-factor authentication, cold storage, and continuous monitoring.',
+    why_c5_title: 'Secure by Design', why_c5_desc: 'Multi-layered security framework. Two-factor authentication, suspicious-login detection and continuous monitoring.',
     why_c6_title: 'Instant Buy with Card', why_c6_desc: 'Buy crypto instantly with credit card or debit card. Support for USD, EUR, GBP, AUD, and over 48 local currencies worldwide.',
     // CTA
     cta_heading: 'Start Trading on ESTX Today',
     cta_subtitle: 'Create your free account in minutes and access the next generation of digital asset markets.',
     cta_create_account: 'Create Free Account', cta_learn_more: 'Learn More',
     // Market Structure
-    ms_label: 'Market Structure', ms_heading: 'Three Tiers. Clear Segmentation.',
-    ms_subtitle: 'ESTX offers three clearly defined market segments \u2014 providing the right environment for every stage of a digital asset\u2019s lifecycle.',
-    ms_t1_sub: 'Coming Soon',
-    ms_t1_desc: 'The premium segment for tokenized assets and institutional listings \u2014 where traditional finance meets blockchain infrastructure. Coming soon.',
-    ms_t1_li1: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Tokenized asset listings',
-    ms_t1_li2: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Strict listing standards',
-    ms_t1_li3: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Institutional-grade infrastructure',
-    ms_t1_li4: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Real-world asset tokenization',
+    ms_label: 'Market Structure', ms_heading: 'Two Segments. Clear Structure.',
+    ms_subtitle: 'ESTX offers two clearly defined market segments \u2014 providing the right environment for every stage of a digital asset\u2019s lifecycle.',
     ms_t2_sub: 'Established Crypto Assets',
     ms_t2_desc: 'The core trading tier. Mid-cap and established cryptocurrency projects with extended liquidity structures and institutional-grade connectivity.',
     ms_t2_li1: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Mid-cap crypto projects',
@@ -1395,46 +1316,37 @@ const i18n = {
     sec_label: 'Security & Compliance', sec_heading: 'Multi-Layered Security Framework',
     sec_subtitle: 'We\u2019ve built a comprehensive security framework that addresses vulnerabilities, data protection, user privacy, and global compliance standards.',
     sec_2fa_title: 'Two-Factor Authentication', sec_2fa_desc: 'Mandatory 2FA on all withdrawals. Supported across every account action for maximum asset protection.',
-    sec_cold_title: 'Cold Storage Custody', sec_cold_desc: 'The majority of digital assets are stored in secure, offline cold storage \u2014 completely isolated from online threats.',
     sec_login_title: 'Suspicious Login Detection', sec_login_desc: 'Real-time monitoring with automated alerts for unusual login patterns, device changes, or geographic anomalies.',
-    sec_vasp_title: 'KYC & AML checks', sec_vasp_desc: 'Every account is verified before withdrawals are enabled.',
     sec_bot_title: 'Anti-Bot Protection', sec_bot_desc: 'Cloudflare Turnstile integration on all login and signup forms to prevent automated attacks and credential stuffing.',
     sec_ent_heading: 'Enterprise-Grade Protection',
-    sec_ent_desc: 'Your digital assets are safeguarded by institutional-level security infrastructure \u2014 the same standards used by leading financial institutions.',
-    sec_stat_uptime: 'Uptime SLA', sec_stat_cold: 'Cold Storage', sec_stat_monitoring: 'Monitoring', sec_stat_licensed: 'Licensed',
+    sec_ent_desc: 'The platform runs on multi-layered security infrastructure \u2014 encrypted connections, two-factor authentication and continuous monitoring.',
+    sec_stat_uptime: 'Uptime SLA', sec_stat_2fa: 'Account Protection', sec_stat_monitoring: 'Monitoring', 
     // Institutional
     inst_title: 'Institutional Access',
-    inst_desc: 'ESTX provides dedicated infrastructure for institutional participants \u2014 deep liquidity pools, API connectivity, OTC trading desks, and bespoke custody solutions.',
+    inst_desc: 'ESTX is preparing dedicated infrastructure for institutional participants \u2014 API connectivity and dedicated relationship management.',
     inst_li1: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>High-frequency trading API',
-    inst_li2: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>OTC desk for large-block trades',
     inst_li3: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Dedicated relationship management',
     inst_cta: 'Contact Institutional Team',
     // List Token
     list_title: 'List Your Token',
     list_desc: 'ESTX provides a transparent, structured listing pathway for projects of all sizes \u2014 from early-stage tokens to established networks.',
     list_li1: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Transparent listing criteria',
-    list_li2: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Three-tier placement system',
+    list_li2: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Two-segment placement system',
     list_li3: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Marketing support & community access',
     list_cta: 'Apply for Listing',
-    // Token Community
-    token_label: 'ESTX Token', token_heading: 'Join the ESTX Army',
-    token_subtitle: 'Join the ESTX Token Community and become part of the fast-growing ESTX ecosystem. Early community members receive exclusive benefits and priority access to new features.',
-    token_cta_tg: 'Join Telegram', token_cta_x: 'Follow on X',
     // FAQ
     faq_label: 'FAQ', faq_heading: 'Questions? We\u2019ve Got Answers.',
     faq_subtitle: 'Find quick answers to common questions about our platform and services.',
     faq_q0: 'What is ESTX Exchange?',
-    faq_a0: 'ESTX is a digital asset exchange that stands apart from conventional crypto platforms. While we support all major cryptocurrencies like BTC, ETH, SOL, XRP, and BNB, our core focus is on listing new token projects and curated memecoins. Our unique three-tier market structure \u2014 Venture, Market, and Prime \u2014 provides clear segmentation for different asset classes and investor profiles.',
+    faq_a0: 'ESTX is a digital asset exchange that stands apart from conventional crypto platforms. While we support all major cryptocurrencies like BTC, ETH, SOL, XRP, and BNB, our core focus is on listing new token projects and curated memecoins. Our two market segments \u2014 Market and Venture \u2014 provide clear segmentation for different asset classes and investor profiles.',
     faq_q1: 'How is ESTX different from Binance, Coinbase or other exchanges?',
-    faq_a1: 'ESTX is specifically designed to serve projects and communities that are underserved by major exchanges. We provide an accessible, structured listing path for token issuers who cannot afford the high fees and long waiting periods at platforms like Binance or Coinbase \u2014 while maintaining rigorous screening to ensure project quality and legitimacy. Our three-tier structure gives every project the right market environment.',
+    faq_a1: 'ESTX is specifically designed to serve projects and communities that are underserved by major exchanges. We provide an accessible, structured listing path for token issuers who cannot afford the high fees and long waiting periods at platforms like Binance or Coinbase \u2014 while maintaining rigorous screening to ensure project quality and legitimacy. Our segment structure gives every project the right market environment.',
     faq_q2: 'Who operates ESTX.Exchange?',
     faq_a2: 'ESTX.Exchange is operated by ESTX Georgia LLC, a company incorporated in Georgia (Registration number 412800036) with its registered office at Avtomshenebeli St. N 88 (Plot N01/298), Free Industrial Zone, Kutaisi, Georgia. ESTX Georgia LLC is the designated platform operator. The core technology infrastructure is provided through HollaEx, an external exchange technology provider, which manages the underlying wallet infrastructure and private keys.',
     faq_q3: 'How can I buy cryptocurrency on ESTX?',
     faq_a3: 'Getting started is simple: (1) Create an account with your email and country of residence, (2) Complete identity verification (KYC) by uploading required documents, (3) Add your payment method \u2014 credit card, debit card, or bank transfer, (4) Start buying Bitcoin, Ethereum, Solana and 200+ other cryptocurrencies using USD, EUR, GBP, AUD, and over 48 additional local currencies.',
-    faq_q4: 'What is the ESTX Token?',
-    faq_a4: 'The ESTX Token (ERC-20 on Ethereum, fixed supply of 2,000,000,000) is the utility token of the ESTX ecosystem. It can be used to settle platform fees, for access tiers and to activate platform features. Fee reductions depend on usage and are not a financial reward or yield. The token gives no share in revenues or profits, no claim on assets and no governance or voting rights.',
     faq_q5: 'How do I list my token on ESTX?',
-    faq_a5: 'ESTX provides an accessible and structured listing process. Visit our "Apply for Listing" page to submit your project for review. Our team evaluates every submission through a comprehensive screening process \u2014 covering project legitimacy, team background, tokenomics, and community \u2014 before approving listings on the appropriate market tier (Venture, Market, or Prime).',
+    faq_a5: 'ESTX provides an accessible and structured listing process. Visit our "Apply for Listing" page to submit your project for review. Our team evaluates every submission through a comprehensive screening process \u2014 covering project legitimacy, team background, tokenomics, and community \u2014 before approving listings in the appropriate market segment (Market or Venture).',
     faq_q6: 'How do I secure my ESTX account?',
     faq_a6: 'ESTX provides multiple layers of account security: enable Two-Factor Authentication (2FA) \u2014 which is mandatory for withdrawals \u2014 use a strong, unique password, and monitor your active sessions regularly. Our platform also includes suspicious login detection that alerts you to any unusual access attempts on your account.',
     // Contact
@@ -1452,7 +1364,7 @@ const i18n = {
     form_submit: 'Send Message <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>',
     form_success: 'Message sent! We\u2019ll respond within 24 hours.',
     // Footer
-    footer_desc: 'Next-generation digital asset exchange with a purpose-built three-tier market structure.',
+    footer_desc: 'Next-generation digital asset exchange with a clearly segmented market structure.',
     footer_signup: 'Sign Up Free',
     footer_col_exchange: 'Exchange', footer_col_service: 'Service', footer_col_legal: 'Legal',
     footer_crypto_prices: 'Crypto Prices', footer_trade_now: 'Trade Now', footer_buy_crypto: 'Buy Crypto',
@@ -1466,15 +1378,11 @@ const i18n = {
     cookie_title: 'We value your privacy',
     cookie_desc: 'We use cookies to improve your experience, analyse traffic, and personalise content. You can choose to accept all or only essential cookies.',
     cookie_essential: 'Essential Only', cookie_accept: 'Accept All',
-    // Popup
-    popup_heading: 'Get Early Access to<br/>ESTX Exchange',
-    popup_desc: 'Create your account today and generate your wallet before the official launch. Be ready when ESTX goes live.',
-    popup_li1: 'Open your account now', popup_li2: 'Generate your wallet', popup_li3: 'Be ready before launch',
-    popup_register: 'Register Now <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>', popup_already: 'I Already Have an Account',
-    popup_free: 'Free to join \u00B7 No commitment required',
   },
   de: {
     // Nav
+    banner_title: 'ESTX Exchange \u2013 Test- & Vorbereitungsphase',
+    banner_text: 'Die Plattform befindet sich derzeit in der Test- und Vorbereitungsphase. Live-Handel f\u00FCr Kunden, Einzahlungen, Auszahlungen und Verwahrdienstleistungen sind derzeit nicht verf\u00FCgbar.',
     nav_home: 'Startseite', nav_markets: 'M\u00E4rkte', nav_why: 'Warum ESTX', nav_buy: 'Krypto kaufen',
     nav_institutional: 'Institutionell', nav_contact: 'Kontakt', nav_login: 'Anmelden', nav_signup: 'Registrieren',
     // Hero
@@ -1483,9 +1391,6 @@ const i18n = {
     hero_start_trading: 'Jetzt starten \u2014 Kostenlos <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
     hero_learn_more: 'M\u00E4rkte ansehen',
     hero_market_tiers: 'Marktstufen', hero_crypto_assets: 'Krypto-Assets',
-    // Countdown
-    cd_days: 'Tage', cd_hours: 'Std', cd_minutes: 'Min', cd_seconds: 'Sek',
-    cd_launch_label: 'Launch<br/><span style="color:#5b9aff;font-weight:700;">Demn\u00E4chst</span>',
     // Markets
     markets_label: 'Live-M\u00E4rkte', markets_heading: 'M\u00E4rkte, die niemals schlafen',
     markets_subtitle: '\u00DCber 200 digitale Assets auf ESTX Exchange \u2014 in Echtzeit aktualisiert.',
@@ -1502,23 +1407,17 @@ const i18n = {
     why_subtitle: 'ESTX geht \u00FCber den Standard-Kryptohandel hinaus. Unser Hauptfokus liegt auf der Listung neuer Token-Projekte und Memecoins \u2014 neben allen g\u00E4ngigen Kryptow\u00E4hrungen wie BTC, ETH, SOL, XRP und BNB.',
     why_c1_title: 'Neue Token-Listings', why_c1_desc: 'Die Startrampe f\u00FCr vielversprechende Projekte, die sich Listings auf Binance oder Coinbase nicht leisten k\u00F6nnen. Ein strukturierter Onboarding- und Pr\u00FCfprozess stellt sicher, dass nur seri\u00F6se Projekte zugelassen werden.',
     why_c2_title: 'Kuratierte Memecoins', why_c2_desc: 'Eine sorgf\u00E4ltig gepr\u00FCfte Auswahl aufstrebender Memecoins. Fr\u00FChzeitiger Zugang zu den Token, \u00FCber die der Markt spricht \u2014 mit Qualit\u00E4tspr\u00FCfung, um Signal von Rauschen zu trennen.',
-    why_c3_title: 'Prime-Segment \u2014 demn\u00E4chst', why_c3_desc: 'Ein eigenes Premium-Segment f\u00FCr tokenisierte Verm\u00F6genswerte und institutionelle Listings ist in Vorbereitung. Details folgen in K\u00FCrze.',
+    why_c3_title: 'Transparente Listing-Kriterien', why_c3_desc: 'Klare Kriterien und ein strukturierter Pr\u00FCfprozess f\u00FCr jedes neue Listing.',
     why_c4_title: 'Professioneller Handel', why_c4_desc: 'Fortschrittliches Orderbuch, Echtzeit-Charts und sofortige Ausf\u00FChrung. Professionelle Tools f\u00FCr erfahrene Trader.',
-    why_c5_title: 'Sicher durch Design', why_c5_desc: 'Mehrschichtiges Sicherheitsframework. Zwei-Faktor-Authentifizierung, Cold Storage und kontinuierliche \u00DCberwachung.',
+    why_c5_title: 'Sicher durch Design', why_c5_desc: 'Mehrschichtiges Sicherheitsframework. Zwei-Faktor-Authentifizierung, Erkennung verd\u00E4chtiger Logins und kontinuierliche \u00DCberwachung.',
     why_c6_title: 'Sofortkauf per Karte', why_c6_desc: 'Krypto sofort mit Kredit- oder Debitkarte kaufen. Unterst\u00FCtzung f\u00FCr USD, EUR, GBP, AUD und \u00FCber 48 lokale W\u00E4hrungen weltweit.',
     // CTA
     cta_heading: 'Starte noch heute mit ESTX',
     cta_subtitle: 'Erstelle dein kostenloses Konto in wenigen Minuten und erhalte Zugang zur n\u00E4chsten Generation digitaler Asset-M\u00E4rkte.',
     cta_create_account: 'Kostenloses Konto erstellen', cta_learn_more: 'Mehr erfahren',
     // Market Structure
-    ms_label: 'Marktstruktur', ms_heading: 'Drei Stufen. Klare Segmentierung.',
-    ms_subtitle: 'ESTX bietet drei klar definierte Marktsegmente \u2014 die richtige Umgebung f\u00FCr jede Phase im Lebenszyklus eines digitalen Assets.',
-    ms_t1_sub: 'Demn\u00E4chst',
-    ms_t1_desc: 'Das Premium-Segment f\u00FCr tokenisierte Verm\u00F6genswerte und institutionelle Listings \u2014 dort, wo traditionelles Finanzwesen auf Blockchain-Infrastruktur trifft. Demn\u00E4chst verf\u00FCgbar.',
-    ms_t1_li1: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Listings tokenisierter Verm\u00F6genswerte',
-    ms_t1_li2: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Strenge Listing-Standards',
-    ms_t1_li3: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Infrastruktur auf institutionellem Niveau',
-    ms_t1_li4: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Tokenisierung realer Verm\u00F6genswerte',
+    ms_label: 'Marktstruktur', ms_heading: 'Zwei Segmente. Klare Struktur.',
+    ms_subtitle: 'ESTX bietet zwei klar definierte Marktsegmente \u2014 die richtige Umgebung f\u00FCr jede Phase im Lebenszyklus eines digitalen Assets.',
     ms_t2_sub: 'Etablierte Krypto-Assets',
     ms_t2_desc: 'Die zentrale Handelsstufe. Mid-Cap- und etablierte Kryptow\u00E4hrungsprojekte mit erweiterten Liquidit\u00E4tsstrukturen und institutioneller Anbindung.',
     ms_t2_li1: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Mid-Cap-Kryptoprojekte',
@@ -1552,46 +1451,37 @@ const i18n = {
     sec_label: 'Sicherheit & Compliance', sec_heading: 'Mehrschichtiges Sicherheitsframework',
     sec_subtitle: 'Wir haben ein umfassendes Sicherheitsframework aufgebaut, das Schwachstellen, Datenschutz, Nutzerprivatsph\u00E4re und globale Compliance-Standards adressiert.',
     sec_2fa_title: 'Zwei-Faktor-Authentifizierung', sec_2fa_desc: 'Verpflichtende 2FA bei allen Auszahlungen. Unterst\u00FCtzt bei jeder Kontoaktion f\u00FCr maximalen Asset-Schutz.',
-    sec_cold_title: 'Cold-Storage-Verwahrung', sec_cold_desc: 'Der Gro\u00DFteil der digitalen Assets wird in sicherem, offline Cold Storage verwahrt \u2014 vollst\u00E4ndig isoliert von Online-Bedrohungen.',
     sec_login_title: 'Erkennung verd\u00E4chtiger Anmeldungen', sec_login_desc: 'Echtzeit-\u00DCberwachung mit automatischen Benachrichtigungen bei ungew\u00F6hnlichen Anmeldemustern, Ger\u00E4tewechseln oder geografischen Auff\u00E4lligkeiten.',
-    sec_vasp_title: 'KYC- & AML-Pr\u00FCfung', sec_vasp_desc: 'Jedes Konto wird vor der Freigabe von Auszahlungen gepr\u00FCft.',
     sec_bot_title: 'Anti-Bot-Schutz', sec_bot_desc: 'Cloudflare-Turnstile-Integration bei allen Anmelde- und Registrierungsformularen zum Schutz vor automatisierten Angriffen und Credential Stuffing.',
     sec_ent_heading: 'Schutz auf Enterprise-Niveau',
-    sec_ent_desc: 'Deine digitalen Assets werden durch Sicherheitsinfrastruktur auf institutionellem Niveau gesch\u00FCtzt \u2014 dieselben Standards, die von f\u00FChrenden Finanzinstituten verwendet werden.',
-    sec_stat_uptime: 'Verf\u00FCgbarkeit', sec_stat_cold: 'Cold Storage', sec_stat_monitoring: '\u00DCberwachung', sec_stat_licensed: 'Lizenziert',
+    sec_ent_desc: 'Die Plattform l\u00E4uft auf einer mehrschichtigen Sicherheitsinfrastruktur \u2014 verschl\u00FCsselte Verbindungen, Zwei-Faktor-Authentifizierung und kontinuierliche \u00DCberwachung.',
+    sec_stat_uptime: 'Verf\u00FCgbarkeit', sec_stat_2fa: 'Kontoschutz', sec_stat_monitoring: '\u00DCberwachung', 
     // Institutional
     inst_title: 'Institutioneller Zugang',
-    inst_desc: 'ESTX bietet dedizierte Infrastruktur f\u00FCr institutionelle Teilnehmer \u2014 tiefe Liquidit\u00E4tspools, API-Anbindung, OTC-Trading-Desks und ma\u00DFgeschneiderte Verwahrungsl\u00F6sungen.',
+    inst_desc: 'ESTX bereitet eine dedizierte Infrastruktur f\u00FCr institutionelle Teilnehmer vor \u2014 API-Anbindung und dediziertes Relationship Management.',
     inst_li1: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Hochfrequenz-Trading-API',
-    inst_li2: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>OTC-Desk f\u00FCr Blockhandel',
     inst_li3: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Dediziertes Relationship Management',
     inst_cta: 'Institutionelles Team kontaktieren',
     // List Token
     list_title: 'Token listen lassen',
     list_desc: 'ESTX bietet einen transparenten, strukturierten Listing-Prozess f\u00FCr Projekte jeder Gr\u00F6\u00DFe \u2014 von Fr\u00FChphasen-Token bis hin zu etablierten Netzwerken.',
     list_li1: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Transparente Listing-Kriterien',
-    list_li2: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Drei-Stufen-Platzierungssystem',
+    list_li2: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Zwei-Segment-Platzierungssystem',
     list_li3: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Marketing-Support & Community-Zugang',
     list_cta: 'F\u00FCr Listing bewerben',
-    // Token Community
-    token_label: 'ESTX Token', token_heading: 'Werde Teil der ESTX Army',
-    token_subtitle: 'Tritt der ESTX Token Community bei und werde Teil des schnell wachsenden ESTX-\u00D6kosystems. Fr\u00FChe Community-Mitglieder erhalten exklusive Vorteile und bevorzugten Zugang zu neuen Funktionen.',
-    token_cta_tg: 'Telegram beitreten', token_cta_x: 'Folgen auf X',
     // FAQ
     faq_label: 'FAQ', faq_heading: 'Fragen? Wir haben Antworten.',
     faq_subtitle: 'Finde schnelle Antworten auf h\u00E4ufige Fragen zu unserer Plattform und unseren Dienstleistungen.',
     faq_q0: 'Was ist ESTX Exchange?',
-    faq_a0: 'ESTX ist eine B\u00F6rse f\u00FCr digitale Assets, die sich von herk\u00F6mmlichen Krypto-Plattformen abhebt. W\u00E4hrend wir alle g\u00E4ngigen Kryptow\u00E4hrungen wie BTC, ETH, SOL, XRP und BNB unterst\u00FCtzen, liegt unser Kernfokus auf der Listung neuer Token-Projekte und kuratierter Memecoins. Unsere einzigartige Drei-Stufen-Marktstruktur \u2014 Venture, Market und Prime \u2014 bietet eine klare Segmentierung f\u00FCr verschiedene Assetklassen und Anlegerprofile.',
+    faq_a0: 'ESTX ist eine B\u00F6rse f\u00FCr digitale Assets, die sich von herk\u00F6mmlichen Krypto-Plattformen abhebt. W\u00E4hrend wir alle g\u00E4ngigen Kryptow\u00E4hrungen wie BTC, ETH, SOL, XRP und BNB unterst\u00FCtzen, liegt unser Kernfokus auf der Listung neuer Token-Projekte und kuratierter Memecoins. Unsere zwei Marktsegmente \u2014 Market und Venture \u2014 bieten eine klare Segmentierung f\u00FCr verschiedene Assetklassen und Anlegerprofile.',
     faq_q1: 'Wie unterscheidet sich ESTX von Binance, Coinbase oder anderen B\u00F6rsen?',
-    faq_a1: 'ESTX wurde speziell f\u00FCr Projekte und Communities entwickelt, die von gro\u00DFen B\u00F6rsen unterversorgt werden. Wir bieten einen zug\u00E4nglichen, strukturierten Listing-Weg f\u00FCr Token-Emittenten, die sich die hohen Geb\u00FChren und langen Wartezeiten bei Plattformen wie Binance oder Coinbase nicht leisten k\u00F6nnen \u2014 bei gleichzeitig strenger Pr\u00FCfung zur Sicherstellung der Projektqualit\u00E4t und Legitimit\u00E4t. Unsere Drei-Stufen-Struktur bietet jedem Projekt die richtige Marktumgebung.',
+    faq_a1: 'ESTX wurde speziell f\u00FCr Projekte und Communities entwickelt, die von gro\u00DFen B\u00F6rsen unterversorgt werden. Wir bieten einen zug\u00E4nglichen, strukturierten Listing-Weg f\u00FCr Token-Emittenten, die sich die hohen Geb\u00FChren und langen Wartezeiten bei Plattformen wie Binance oder Coinbase nicht leisten k\u00F6nnen \u2014 bei gleichzeitig strenger Pr\u00FCfung zur Sicherstellung der Projektqualit\u00E4t und Legitimit\u00E4t. Unsere Segmentstruktur bietet jedem Projekt die richtige Marktumgebung.',
     faq_q2: 'Wer betreibt ESTX.Exchange?',
     faq_a2: 'ESTX.Exchange wird von der ESTX Georgia LLC betrieben, einem in Georgien eingetragenen Unternehmen (Registrierungsnummer 412800036) mit Sitz in Avtomshenebeli Str. N 88 (Grundst\u00FCck N01/298), Freie Industriezone, Kutaissi, Georgien. Die ESTX Georgia LLC ist die benannte Betreiberin der Plattform. Die zentrale technische Infrastruktur wird \u00FCber HollaEx, einen externen Anbieter von B\u00F6rsentechnologie, bereitgestellt, der die zugrunde liegende Wallet-Infrastruktur und die privaten Schl\u00FCssel verwaltet.',
     faq_q3: 'Wie kann ich auf ESTX Kryptow\u00E4hrungen kaufen?',
     faq_a3: 'Der Einstieg ist einfach: (1) Erstelle ein Konto mit deiner E-Mail und deinem Wohnsitzland, (2) Schlie\u00DFe die Identit\u00E4tsverifizierung (KYC) durch Hochladen der erforderlichen Dokumente ab, (3) F\u00FCge deine Zahlungsmethode hinzu \u2014 Kreditkarte, Debitkarte oder Bank\u00FCberweisung, (4) Beginne mit dem Kauf von Bitcoin, Ethereum, Solana und \u00FCber 200 weiteren Kryptow\u00E4hrungen mit USD, EUR, GBP, AUD und \u00FCber 48 zus\u00E4tzlichen lokalen W\u00E4hrungen.',
-    faq_q4: 'Was ist der ESTX Token?',
-    faq_a4: 'Der ESTX Token (ERC-20 auf Ethereum, feste Gesamtmenge von 2.000.000.000) ist der Utility-Token des ESTX-\u00D6kosystems. Er kann zur Begleichung von Plattformgeb\u00FChren, f\u00FCr Zugangsstufen und zur Aktivierung von Plattformfunktionen genutzt werden. Geb\u00FChrenreduktionen sind nutzungsbasiert und keine finanziellen Ertr\u00E4ge. Der Token vermittelt keine Beteiligung an Ums\u00E4tzen oder Gewinnen, keine Anspr\u00FCche auf Verm\u00F6genswerte und keine Mitwirkungs- oder Stimmrechte.',
     faq_q5: 'Wie kann ich meinen Token auf ESTX listen lassen?',
-    faq_a5: 'ESTX bietet einen zug\u00E4nglichen und strukturierten Listing-Prozess. Besuche unsere Seite \u201EF\u00FCr Listing bewerben\u201C, um dein Projekt zur Pr\u00FCfung einzureichen. Unser Team bewertet jede Einreichung durch einen umfassenden Screening-Prozess \u2014 einschlie\u00DFlich Projektlegitimit\u00E4t, Team-Hintergrund, Tokenomics und Community \u2014 bevor Listings auf der entsprechenden Marktstufe (Venture, Market oder Prime) genehmigt werden.',
+    faq_a5: 'ESTX bietet einen zug\u00E4nglichen und strukturierten Listing-Prozess. Besuche unsere Seite \u201EF\u00FCr Listing bewerben\u201C, um dein Projekt zur Pr\u00FCfung einzureichen. Unser Team bewertet jede Einreichung durch einen umfassenden Screening-Prozess \u2014 einschlie\u00DFlich Projektlegitimit\u00E4t, Team-Hintergrund, Tokenomics und Community \u2014 bevor Listings im entsprechenden Marktsegment (Market oder Venture) genehmigt werden.',
     faq_q6: 'Wie sichere ich mein ESTX-Konto?',
     faq_a6: 'ESTX bietet mehrere Sicherheitsebenen: Aktiviere die Zwei-Faktor-Authentifizierung (2FA) \u2014 die f\u00FCr Auszahlungen verpflichtend ist \u2014 verwende ein starkes, einzigartiges Passwort und \u00FCberwache deine aktiven Sitzungen regelm\u00E4\u00DFig. Unsere Plattform enth\u00E4lt zudem eine Erkennung verd\u00E4chtiger Anmeldungen, die dich bei ungew\u00F6hnlichen Zugriffsversuchen auf dein Konto benachrichtigt.',
     // Contact
@@ -1609,7 +1499,7 @@ const i18n = {
     form_submit: 'Nachricht senden <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>',
     form_success: 'Nachricht gesendet! Wir antworten innerhalb von 24 Stunden.',
     // Footer
-    footer_desc: 'B\u00F6rse der n\u00E4chsten Generation f\u00FCr digitale Assets mit einer speziell entwickelten Drei-Stufen-Marktstruktur.',
+    footer_desc: 'B\u00F6rse der n\u00E4chsten Generation f\u00FCr digitale Assets mit einer klar segmentierten Marktstruktur.',
     footer_signup: 'Kostenlos registrieren',
     footer_col_exchange: 'B\u00F6rse', footer_col_service: 'Service', footer_col_legal: 'Rechtliches',
     footer_crypto_prices: 'Krypto-Kurse', footer_trade_now: 'Jetzt handeln', footer_buy_crypto: 'Krypto kaufen',
@@ -1623,12 +1513,6 @@ const i18n = {
     cookie_title: 'Wir sch\u00E4tzen Ihre Privatsph\u00E4re',
     cookie_desc: 'Wir verwenden Cookies, um Ihr Erlebnis zu verbessern, den Datenverkehr zu analysieren und Inhalte zu personalisieren. Sie k\u00F6nnen alle oder nur essenzielle Cookies akzeptieren.',
     cookie_essential: 'Nur essenzielle', cookie_accept: 'Alle akzeptieren',
-    // Popup
-    popup_heading: 'Fr\u00FChzeitigen Zugang zu<br/>ESTX Exchange erhalten',
-    popup_desc: 'Erstelle heute dein Konto und generiere dein Wallet vor dem offiziellen Launch. Sei bereit, wenn ESTX live geht.',
-    popup_li1: 'Konto jetzt er\u00F6ffnen', popup_li2: 'Wallet generieren', popup_li3: 'Vor dem Launch bereit sein',
-    popup_register: 'Jetzt registrieren <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>', popup_already: 'Ich habe bereits ein Konto',
-    popup_free: 'Kostenlos \u00B7 Keine Verpflichtung',
   }
 };
 
@@ -1699,8 +1583,6 @@ function setLang(lang) {
   if (dd) dd.classList.remove('open');
   // Update cookie banner if present
   updateCookieLang(lang);
-  // Update popup if present
-  updatePopupLang(lang);
 }
 
 function toggleLangDropdown() {
@@ -1727,90 +1609,6 @@ function updateCookieLang(lang) {
   if (essEl) essEl.textContent = t.cookie_essential;
   if (accEl) accEl.textContent = t.cookie_accept;
 }
-
-function updatePopupLang(lang) {
-  const t = i18n[lang];
-  const popup = document.getElementById('earlyPopup');
-  if (!popup || !t) return;
-  const headEl = popup.querySelector('[data-i18n-html="popup_heading"]');
-  const descEl = popup.querySelector('[data-i18n="popup_desc"]');
-  const li1 = popup.querySelector('[data-i18n="popup_li1"]');
-  const li2 = popup.querySelector('[data-i18n="popup_li2"]');
-  const li3 = popup.querySelector('[data-i18n="popup_li3"]');
-  const regEl = popup.querySelector('[data-i18n-html="popup_register"]');
-  const alrEl = popup.querySelector('[data-i18n="popup_already"]');
-  const freeEl = popup.querySelector('[data-i18n="popup_free"]');
-  if (headEl) headEl.innerHTML = t.popup_heading;
-  if (descEl) descEl.textContent = t.popup_desc;
-  if (li1) li1.textContent = t.popup_li1;
-  if (li2) li2.textContent = t.popup_li2;
-  if (li3) li3.textContent = t.popup_li3;
-  if (regEl) regEl.innerHTML = t.popup_register;
-  if (alrEl) alrEl.textContent = t.popup_already;
-  if (freeEl) freeEl.textContent = t.popup_free;
-}
-
-// ── EARLY ACCESS POPUP ──────────────────────────────────
-(function(){
-  if(localStorage.getItem('estx_registered'))return;
-  const overlay=document.createElement('div');
-  overlay.id='earlyPopup';
-  overlay.style.cssText='display:none;position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,0.55);backdrop-filter:blur(8px);align-items:center;justify-content:center;opacity:0;transition:opacity 0.4s ease;';
-  overlay.innerHTML=`
-    <div style="background:#fff;border-radius:24px;max-width:480px;width:90%;padding:44px 40px;position:relative;box-shadow:0 24px 80px rgba(0,0,0,0.25);transform:translateY(20px);transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);" id="popupCard">
-      <button onclick="closeEarlyPopup()" style="position:absolute;top:12px;right:12px;width:36px;height:36px;background:rgba(0,0,0,0.06);border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;z-index:10;" ontouchstart="" onmouseover="this.style.background='rgba(0,0,0,0.12)'" onmouseout="this.style.background='rgba(0,0,0,0.06)'"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-      <div style="width:56px;height:56px;background:linear-gradient(135deg,var(--brand),var(--navy));border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;box-shadow:0 6px 20px rgba(20,76,188,0.25);">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-      </div>
-      <h3 style="font-family:'Outfit',sans-serif;font-size:1.5rem;font-weight:800;color:#0a1628;letter-spacing:-0.03em;line-height:1.2;margin-bottom:12px;" data-i18n-html="popup_heading">Get Early Access to<br/>ESTX Exchange</h3>
-      <p style="font-family:'DM Sans',sans-serif;font-size:0.92rem;color:#64748b;line-height:1.7;margin-bottom:24px;" data-i18n="popup_desc">Create your account today and generate your wallet before the official launch. Be ready when ESTX goes live.</p>
-      <ul style="list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:28px;">
-        <li style="display:flex;align-items:center;gap:10px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;color:#0a1628;">
-          <div style="width:28px;height:28px;border-radius:50%;background:rgba(16,185,129,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-          <span data-i18n="popup_li1">Open your account now</span>
-        </li>
-        <li style="display:flex;align-items:center;gap:10px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;color:#0a1628;">
-          <div style="width:28px;height:28px;border-radius:50%;background:rgba(16,185,129,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-          <span data-i18n="popup_li2">Generate your wallet</span>
-        </li>
-        <li style="display:flex;align-items:center;gap:10px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;color:#0a1628;">
-          <div style="width:28px;height:28px;border-radius:50%;background:rgba(16,185,129,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-          <span data-i18n="popup_li3">Be ready before launch</span>
-        </li>
-      </ul>
-      <a href="https://trade.estx.exchange/signup" target="_blank" class="btn-primary" style="width:100%;justify-content:center;padding:15px 28px;font-size:0.95rem;border-radius:14px;" data-i18n-html="popup_register">
-        Register Now
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <button onclick="alreadyRegistered()" style="width:100%;margin-top:10px;padding:12px 28px;background:none;border:1.5px solid #e2e8f8;border-radius:14px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:600;color:#64748b;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--brand)';this.style.color='var(--brand)'" onmouseout="this.style.borderColor='#e2e8f8';this.style.color='#64748b'" data-i18n="popup_already">I Already Have an Account</button>
-      <p style="font-size:0.72rem;color:#cbd5e1;text-align:center;margin-top:12px;" data-i18n="popup_free">Free to join · No commitment required</p>
-    </div>`;
-  document.body.appendChild(overlay);
-
-  window.closeEarlyPopup=function(){
-    overlay.style.opacity='0';
-    document.getElementById('popupCard').style.transform='translateY(20px)';
-    setTimeout(()=>{overlay.style.display='none';},400);
-  };
-  window.alreadyRegistered=function(){
-    localStorage.setItem('estx_registered','1');
-    closeEarlyPopup();
-  };
-  overlay.addEventListener('click',function(e){if(e.target===overlay)closeEarlyPopup();});
-
-  let shown=false;
-  window.addEventListener('scroll',function(){
-    if(shown)return;
-    if(window.scrollY>100){
-      shown=true;
-      overlay.style.display='flex';
-      requestAnimationFrame(()=>{requestAnimationFrame(()=>{
-        overlay.style.opacity='1';
-        document.getElementById('popupCard').style.transform='translateY(0)';
-      });});
-    }
-  },{passive:true});
-})();
 
 // ── i18n INIT (after all dynamic elements created) ──────
 (function(){
