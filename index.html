@@ -193,6 +193,8 @@ option{background:#0a1628;}
 .cd-colon{font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:#cbd5e1;padding-top:12px;flex-shrink:0;}
 
 /* LANG SWITCH */
+/* 2026-11-13: landing is English-only for now; switch hidden, German strings kept for later */
+.lang-switch,.mob-lang-switch{display:none!important;}
 .lang-switch{position:relative;display:flex;align-items:center;}
 .lang-switch-btn{display:flex;align-items:center;gap:5px;background:rgba(20,76,188,0.06);border:1px solid rgba(20,76,188,0.12);border-radius:8px;padding:6px 12px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;color:var(--brand);transition:all 0.2s;user-select:none;}
 .lang-switch-btn:hover{background:rgba(20,76,188,0.1);border-color:rgba(20,76,188,0.25);}
@@ -1516,7 +1518,9 @@ const i18n = {
   }
 };
 
-let currentLang = localStorage.getItem('estx_lang') || 'en';
+// 2026-11-13: English only (a stored 'de' choice is ignored and cleared)
+let currentLang = 'en';
+try { localStorage.removeItem('estx_lang'); } catch (e) {}
 
 function applyTranslations(lang) {
   const t = i18n[lang];
@@ -1559,6 +1563,7 @@ function renderFaqTranslated(lang) {
 }
 
 function setLang(lang) {
+  lang = 'en';
   currentLang = lang;
   localStorage.setItem('estx_lang', lang);
   applyTranslations(lang);
